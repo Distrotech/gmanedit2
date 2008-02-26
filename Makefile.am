@@ -12,7 +12,13 @@ dist-hook:
 	  done \
 	fi
 
+man_MANS = gmanedit.1
+
+DESKTOP_FILES = gmanedit.desktop
+
+desktopdir = $(datadir)/applications
+desktop_DATA = $(DESKTOP_FILES)
 
 ACLOCAL_AMFLAGS = -I m4
 
-EXTRA_DIST = config.rpath m4/ChangeLog
+EXTRA_DIST = config.rpath $(DESKTOP_FILES)
