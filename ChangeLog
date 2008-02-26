@@ -1,0 +1,39 @@
+gmanedit (0.3.3-1)
+
+  * Added translation to Català
+
+gmanedit (0.3.2-1)
+
+  * Bug fixed on exec commands
+
+gmanedit (0.3.1-1)
+
+  * Bug fixed on preferences option. Thanks to Takeshi Aihana
+
+gmanedit (0.3-1)
+
+  * Drag & Drop function added
+  * Label Comments added
+  * Bug fixed
+
+gmanedit (0.2-1)
+
+  * Page creation with Wizard
+  * Translation to Japanese
+
+gmanedit (0.1.2-1)
+
+  * Multilanguges support added
+  * Tranlatios to Galician and Korean added
+
+gmanedit (0.1.1-1)
+
+  * New upstream release
+
+gmanedit (0.1-1)
+
+  * Initial Release.
+
+
+AUTHOR:
+Sergio Rua <srua@debian.org>

@@ -1,0 +1,1117 @@
+# Catalan translation of Gmanedit.
+# Copyright (C) 2000, 2002 Free Software Foundation, Inc.
+# Jordi Mallach <jordi@sindominio.net>, 2000, 2002.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 0.3.3\n"
+"Report-Msgid-Bugs-To: pg4i@xs4all.nl\n"
+"POT-Creation-Date: 2008-02-22 16:19+0100\n"
+"PO-Revision-Date: 2002-06-30 03:38+0200\n"
+"Last-Translator: Jordi Mallach <jordi@sindominio.net>\n"
+"Language-Team: Catalan <ca@dodds.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/interface.c:24
+msgid "_New"
+msgstr "_Nou"
+
+#: src/interface.c:26
+msgid "New _Wizard page"
+msgstr "Nova pàgina amb _asistent"
+
+#: src/interface.c:46
+msgid "_Select All"
+msgstr "_Seleccionar tot"
+
+#: src/interface.c:59
+msgid "Name"
+msgstr "Nom"
+
+#: src/interface.c:66
+msgid "Synopsis"
+msgstr "Sinopsi"
+
+#: src/interface.c:73
+msgid "Description"
+msgstr "Descripció"
+
+#: src/interface.c:80
+msgid "Options"
+msgstr "Opcions"
+
+#: src/interface.c:87
+msgid "Return values"
+msgstr "Valors de retorn"
+
+#: src/interface.c:94
+msgid "Exit status"
+msgstr "Estats de sortida"
+
+#: src/interface.c:101
+msgid "Usage"
+msgstr "Ús"
+
+#: src/interface.c:108
+msgid "File"
+msgstr "Fitxer"
+
+#: src/interface.c:115
+msgid "Environment"
+msgstr "Entorn"
+
+#: src/interface.c:122
+msgid "Diagnostics"
+msgstr "Diagnòstics"
+
+#: src/interface.c:129
+msgid "Security"
+msgstr "Seguretat"
+
+#: src/interface.c:136
+msgid "Notes"
+msgstr "Notes"
+
+#: src/interface.c:143
+msgid "Bugs"
+msgstr "Errades"
+
+#: src/interface.c:150
+msgid "Author"
+msgstr "Autor"
+
+#: src/interface.c:157
+msgid "Examples"
+msgstr "Exemples"
+
+#: src/interface.c:164
+msgid "See also"
+msgstr "Veure també"
+
+#: src/interface.c:171
+msgid "Conforming to"
+msgstr "Conform a"
+
+#: src/interface.c:179
+msgid "Other"
+msgstr "Altre"
+
+#: src/interface.c:191
+msgid "Left"
+msgstr "Esquerra"
+
+#: src/interface.c:198
+msgid "Both"
+msgstr "Dreta"
+
+#: src/interface.c:210
+msgid "Enable"
+msgstr "Habilita"
+
+#: src/interface.c:217
+msgid "Disable"
+msgstr "Deshabilita"
+
+#: src/interface.c:229
+msgid "Bold"
+msgstr "Negreta"
+
+#: src/interface.c:236
+msgid "Bold - Roman"
+msgstr "Negreta - Roman"
+
+#: src/interface.c:243
+msgid "Italic"
+msgstr "Cursiva"
+
+#: src/interface.c:250
+msgid "Italic - Bold"
+msgstr "Cursiva - Negreta"
+
+#: src/interface.c:257
+msgid "Italic - Roman"
+msgstr "Cursiva - Roman"
+
+#: src/interface.c:264
+msgid "Roman - Bold"
+msgstr "Roman - Negreta"
+
+#: src/interface.c:271
+msgid "Roman - Italic"
+msgstr "Roman - Cursiva"
+
+#: src/interface.c:278
+msgid "Small - Bold"
+msgstr "Petita - Negreta"
+
+#: src/interface.c:285
+msgid "Small"
+msgstr "Petita"
+
+#: src/interface.c:297
+msgid "New paragraph"
+msgstr "Nou paràgraf"
+
+#: src/interface.c:304
+msgid "Paragraph start"
+msgstr "Inici del paràgraf"
+
+#: src/interface.c:316
+msgid "Margin start"
+msgstr "Inici del marge"
+
+#: src/interface.c:317
+msgid "Start a margin"
+msgstr "Inicia un marge"
+
+#: src/interface.c:323
+msgid "Margin end"
+msgstr "Final del marge"
+
+#: src/interface.c:335
+msgid "A HREF"
+msgstr "A HREF"
+
+#: src/interface.c:342
+msgid "A NAME"
+msgstr "A NAME"
+
+#: src/interface.c:354
+msgid "Default tabs"
+msgstr "Tabulador per defecte"
+
+#: src/interface.c:361
+msgid "Subheader"
+msgstr "Subcapçalera"
+
+#: src/interface.c:362
+msgid "Like .SH"
+msgstr "Com .SH"
+
+#: src/interface.c:368
+msgid "Empty lines"
+msgstr "Línies buïdes"
+
+#: src/interface.c:375
+msgid "Comments"
+msgstr "Comentaris"
+
+#: src/interface.c:387
+msgid "Basic page"
+msgstr "Pàgina bàsica"
+
+#: src/interface.c:394
+msgid "Title"
+msgstr "Títol"
+
+#: src/interface.c:401
+msgid "Date"
+msgstr "Data"
+
+#: src/interface.c:408
+msgid "Section"
+msgstr "Secció"
+
+#: src/interface.c:415
+#, fuzzy
+msgid "Justify"
+msgstr "Justifica"
+
+#: src/interface.c:422
+msgid "Filling"
+msgstr "Farcit"
+
+#: src/interface.c:429
+msgid "Font"
+msgstr "Font"
+
+#: src/interface.c:436
+msgid "Paragraphs"
+msgstr "Paràgraf"
+
+#: src/interface.c:443
+msgid "Margin"
+msgstr "Marge"
+
+#: src/interface.c:450
+msgid "Hypertext"
+msgstr "Hipertext"
+
+#: src/interface.c:451
+msgid "Not available"
+msgstr "No disponible"
+
+#: src/interface.c:457
+msgid "Others"
+msgstr "Altres"
+
+#: src/interface.c:469
+#, fuzzy
+msgid "View created page"
+msgstr "Pàgina creada"
+
+#: src/interface.c:482
+msgid "H_elp"
+msgstr "A_juda"
+
+#: src/interface.c:489
+msgid "_Home Page"
+msgstr "_Pàgina principal"
+
+#: src/interface.c:504
+msgid "_Insert"
+msgstr "_Inserta"
+
+#: src/interface.c:539
+msgid "GNOME manpages editor"
+msgstr "Editor de pàgines de manual del GNOME"
+
+#: src/interface.c:943
+msgid "New"
+msgstr "Nou"
+
+#: src/interface.c:944
+msgid "New page"
+msgstr "Nova pàgina"
+
+#: src/interface.c:955
+msgid "Open"
+msgstr "Obre"
+
+#: src/interface.c:956
+msgid "Open page"
+msgstr "Obre pàgina"
+
+#: src/interface.c:967
+msgid "Save"
+msgstr "Desa"
+
+#: src/interface.c:968
+msgid "Save current page"
+msgstr "Desa la pàgina actual"
+
+#: src/interface.c:986
+msgid "Cut"
+msgstr "Talla"
+
+#: src/interface.c:987
+msgid "Cut selected text"
+msgstr "Talla el texte seleccionat"
+
+#: src/interface.c:998
+msgid "Copy"
+msgstr "Copia"
+
+#: src/interface.c:999
+msgid "Copy selected text"
+msgstr "Copia el texte seleccionat"
+
+#: src/interface.c:1010
+msgid "Paste"
+msgstr "Engantxa"
+
+#: src/interface.c:1011
+msgid "Paste from clipboard"
+msgstr "Engantxa des del portapapers"
+
+#: src/interface.c:1029 src/interface.c:1329
+msgid "Exit"
+msgstr "Surt"
+
+#: src/interface.c:1030
+msgid "Exit from gmanedit"
+msgstr "Sortir de gmanedit?"
+
+#: src/interface.c:1102
+msgid "Select file"
+msgstr "Seleccioneu el fitxer"
+
+#: src/interface.c:1134
+msgid "Saving file"
+msgstr "S'està desant el fixter"
+
+#: src/interface.c:1183
+msgid "Search and replace"
+msgstr "Cerca i reemplaça"
+
+#: src/interface.c:1200
+msgid "Search:         "
+msgstr "Cerca:          "
+
+#: src/interface.c:1213 src/interface.c:1235
+msgid "Option not yet available"
+msgstr "Opció encara no disponible"
+
+#: src/interface.c:1222
+msgid "Replace with: "
+msgstr "Reemplaça amb: "
+
+#: src/interface.c:1246
+msgid "_Search"
+msgstr "_Buscar"
+
+#: src/interface.c:1257
+#, fuzzy
+msgid "_Replace"
+msgstr "_Reemplaça"
+
+#: src/interface.c:1268
+msgid "_Close"
+msgstr "_Tanca"
+
+#: src/interface.c:1313
+#, fuzzy
+msgid "Man Pages Editor"
+msgstr "Editor de pàgines de manual."
+
+#: src/interface.c:1338
+msgid "Exit from gmanedit?"
+msgstr "Sortir de gmanedit?"
+
+#: src/interface.c:1400
+msgid "Preferences"
+msgstr "Preferències"
+
+#: src/interface.c:1426
+#, fuzzy
+msgid "Command to test created man pages: "
+msgstr "Ordre per a testejar les pàgines creades"
+
+#: src/interface.c:1439
+msgid "xterm -e man "
+msgstr "xterm -e man "
+
+#: src/interface.c:1448
+msgid "Internet browser"
+msgstr "Navegador d'Internet"
+
+#: src/interface.c:1461 src/interface.c:1476
+msgid "netscape"
+msgstr "netscape"
+
+#: src/interface.c:1462
+msgid "mozilla"
+msgstr "mozilla"
+
+#: src/interface.c:1463
+msgid "galeon"
+msgstr "galeon"
+
+#: src/interface.c:1464
+#, fuzzy
+msgid "yelp"
+msgstr "A_juda"
+
+#: src/interface.c:1465
+msgid "konqueror"
+msgstr ""
+
+#: src/interface.c:1466
+msgid "nautilus"
+msgstr ""
+
+#: src/interface.c:1475
+msgid "Select your internet browser from this list"
+msgstr "Sel·leccioneu el vostre navegador de la llista"
+
+#: src/interface.c:1478
+msgid "Use yelp"
+msgstr ""
+
+#: src/interface.c:1602
+msgid "Wizard"
+msgstr "Asistent"
+
+#: src/interface.c:1627
+msgid "Welcome"
+msgstr "Benvingut"
+
+#: src/interface.c:1628
+msgid ""
+"Welcome to the Gmanedit Man Pages Wizard. \n"
+"Follow the next steps to build a Basic Man Page."
+msgstr ""
+"Benvinguts al asistent de pàgines de manual\n"
+"de Gmanedit. Seguiu els passos per a crear\n"
+"una pàgina de manual bàsica."
+
+#: src/interface.c:1640
+msgid "Step 1: Basic Information"
+msgstr "Pas 1: Informació bàsica"
+
+#: src/interface.c:1664
+msgid "Short name to the man page (example: gmanedit)"
+msgstr "Nom curt per a la pàgina de manual (exemple: gmanedit)"
+
+#: src/interface.c:1674
+msgid "Creation date (default today)"
+msgstr "Data de creació (per defecte avuí)"
+
+#: src/interface.c:1684
+msgid "Long man page name or title"
+msgstr "Nom llarg o títol per a la pàgina"
+
+#: src/interface.c:1694
+msgid "First_Name Last_Name <my@email.com>"
+msgstr "Nom Cognoms <nom@domini.com>"
+
+#: src/interface.c:1696
+msgid "Creation Date:"
+msgstr "Data de creació:"
+
+#: src/interface.c:1706
+msgid "Man page Title:"
+msgstr "Títol de la pàgina:"
+
+#: src/interface.c:1716
+msgid "Author:"
+msgstr "Autor:"
+
+#: src/interface.c:1726
+msgid "Man page Name:"
+msgstr "Nom de la pàgina:"
+
+#: src/interface.c:1745
+msgid "Step 2: Section number"
+msgstr "Pas 2: nombre de secció"
+
+#: src/interface.c:1761
+msgid "Section 5: File format and conventions"
+msgstr "Secció 5: Format de fitxers i convencions"
+
+#: src/interface.c:1771
+msgid "Section number"
+msgstr "Nombre de secció"
+
+#: src/interface.c:1780
+msgid "Section 6: Games"
+msgstr "Secció 6: Jocs"
+
+#: src/interface.c:1790
+msgid "Section 7: Macro packages and Coventions"
+msgstr "Secció 7: Macro paquets i convencions"
+
+#: src/interface.c:1800
+msgid "Section 8: System management commands"
+msgstr "Secció 8: Ordres del maneig del sistema"
+
+#: src/interface.c:1810
+msgid "Section 9: Kernel routines"
+msgstr "Secció 9: Rutines del nucli"
+
+#: src/interface.c:1819
+msgid "Section 4: Special files"
+msgstr "Secció 4: Fitxers especials"
+
+#: src/interface.c:1828
+msgid "Section 3: Library calls"
+msgstr "Secció 3: Cridades a biblioteques"
+
+#: src/interface.c:1837
+msgid "Section 2: System calls"
+msgstr "Secció 2: Cridades del sistema"
+
+#: src/interface.c:1846
+msgid "Section 1: Commands"
+msgstr "Secció 1: Ordres"
+
+#: src/interface.c:1855
+msgid "There are 9 sections for man pages. Select one:"
+msgstr "Hi ha 9 seccions per a les pàgines de manual. Seleccioneu una:"
+
+#: src/interface.c:1874 src/interface.c:1892
+msgid "1"
+msgstr "1"
+
+#: src/interface.c:1875
+msgid "2"
+msgstr "2"
+
+#: src/interface.c:1876
+msgid "3"
+msgstr "3"
+
+#: src/interface.c:1877
+msgid "4"
+msgstr "4"
+
+#: src/interface.c:1878
+msgid "5"
+msgstr "5"
+
+#: src/interface.c:1879
+msgid "6"
+msgstr "6"
+
+#: src/interface.c:1880
+msgid "7"
+msgstr "7"
+
+#: src/interface.c:1881
+msgid "8"
+msgstr "8"
+
+#: src/interface.c:1882
+msgid "9"
+msgstr "9"
+
+#: src/interface.c:1891
+msgid "Select section number"
+msgstr "Seleccioneu un nombre de secció"
+
+#: src/interface.c:1903
+msgid "Step 3: Man Sections"
+msgstr "Pas 3: Seccions del Manual"
+
+#: src/interface.c:1918
+msgid "What sections would you like include?"
+msgstr "Quines seccions voleu incloure?"
+
+#: src/interface.c:1927
+msgid "ERROR HANDLING"
+msgstr "GESTIÓ D'ERRORS"
+
+#: src/interface.c:1936
+msgid "ENVIRONMENT"
+msgstr "ENTORN"
+
+#: src/interface.c:1945
+msgid "FILES"
+msgstr "FITXERS"
+
+#: src/interface.c:1954
+msgid "USAGE"
+msgstr "ÚS"
+
+#: src/interface.c:1963
+msgid "ERRORS"
+msgstr "ERRORS"
+
+#: src/interface.c:1972
+msgid "SYNOPSIS"
+msgstr "SINOPSI"
+
+#: src/interface.c:1982
+msgid "DESCRIPTION"
+msgstr "DESCRIPCIÓ"
+
+#: src/interface.c:1992
+msgid "OPTIONS"
+msgstr "OPCIONS"
+
+#: src/interface.c:2002
+msgid "NAME"
+msgstr "NOM"
+
+#: src/interface.c:2012
+msgid "SEE ALSO"
+msgstr "VEGEU TAMBÉ"
+
+#: src/interface.c:2022
+msgid "AUTHOR"
+msgstr "AUTOR"
+
+#: src/interface.c:2032
+msgid "RETURN VALUES"
+msgstr "VALORS DE RETORN"
+
+#: src/interface.c:2041
+msgid "DIAGNOSTICS"
+msgstr "DIAGNÒSTICS"
+
+#: src/interface.c:2050
+msgid "SECURITY"
+msgstr "SEGURETAT"
+
+#: src/interface.c:2059
+msgid "CONFORMING TO"
+msgstr "CONFORMANT A"
+
+#: src/interface.c:2068
+msgid "NOTES"
+msgstr "NOTES"
+
+#: src/interface.c:2077
+msgid "BUGS"
+msgstr "ERRADES"
+
+#: src/interface.c:2097
+msgid "The End"
+msgstr "Fí"
+
+#: src/interface.c:2098
+msgid ""
+"Thank you for using me!\n"
+"You can now edit the man page with\n"
+"gmanedit to change and complete the\n"
+"text."
+msgstr ""
+"Gracies per utilitzar-me!\n"
+"Ara podeu editar la pàgina de manual amb\n"
+"gmanedit per canviar i completar el text."
+
+#: src/callbacks.c:105
+msgid "New File."
+msgstr "Nou fitxer."
+
+#: src/callbacks.c:122 src/callbacks.c:1107 src/callbacks.c:1122
+msgid "Text cutted."
+msgstr "Text tallat."
+
+#: src/callbacks.c:137
+msgid "Text copied."
+msgstr "Text copiat."
+
+#: src/callbacks.c:153 src/callbacks.c:1138
+msgid "Text pasted."
+msgstr "Text enganxat."
+
+#: src/callbacks.c:161
+msgid ""
+".\\\"Created with GNOME Manpages Editor\n"
+".\\\"http://gmanedit.sourceforge.net\n"
+".\\\"Sergio Rua <srua@gpul.org>\n"
+".\\\"\n"
+".TH program <section number> \"<date>\" \"<title>\"\n"
+"\n"
+".SH NAME\n"
+"<program> \\-program for...\n"
+"\n"
+".SH SYNOPSIS\n"
+".B <program>\n"
+".RI [ options ]\n"
+".br\n"
+"\n"
+".SH DESCRIPTION\n"
+"This manual page explains the\n"
+".B <program>\n"
+"program. This program...\n"
+".PP\n"
+"\\fB<program>\\fP is for...\n"
+"\n"
+".SH OPTIONS\n"
+".B\n"
+".IP OPTION\n"
+"This option...\n"
+"\n"
+".SH LICENCE\n"
+"\n"
+".SH BUGS\n"
+"\n"
+".SH AUTHOR\n"
+msgstr ""
+".\\\"Creada amb GNOME Manpages Editor\n"
+".\\\"http://gmanedit.sourceforge.net\n"
+".\\\"Sergio Rua <srua@gpul.org>\n"
+".\\\"\n"
+".TH programa <nombre secció> \"<data>\" \"<títol>\"\n"
+"\n"
+".SH NOM\n"
+"<programa> \\-programa per a...\n"
+"\n"
+".SH SINOPSI\n"
+".B <programa>\n"
+".RI [ opcions ]\n"
+".br\n"
+"\n"
+".SH DESCRIPCIÓ\n"
+"Aquesta pàgina de manual explica el programa\n"
+".B <programa>\n"
+"Aquest programa...\n"
+".PP\n"
+"\\fB<programa>\\fP és per a...\n"
+"\n"
+".SH OPCIONS\n"
+".B\n"
+".IP -OPCIÓ\n"
+"Aquesta opció...\n"
+"\n"
+".SH LLICÈNCIA\n"
+"\n"
+".SH ERRADES\n"
+"\n"
+".SH AUTOR\n"
+
+#: src/callbacks.c:230
+msgid "New file."
+msgstr "Nou fitxer."
+
+#: src/callbacks.c:382
+msgid "File saved."
+msgstr "Fitxer desat."
+
+#: src/callbacks.c:386
+msgid "File NOT saved."
+msgstr "Fitxer NO desat."
+
+#: src/callbacks.c:399
+msgid ""
+".TH program <section number> \"<date>\" \"<title>\"\n"
+"\n"
+msgstr ""
+".TH programa <nombre de secció> \"<data>\" \"<títol>\"\n"
+"\n"
+
+#: src/callbacks.c:410
+msgid ""
+".SH NAME program\n"
+"<program> \\- program for... \n"
+msgstr ""
+".SH NOM programa\n"
+"<programa> \\- programa per a...\n"
+
+#: src/callbacks.c:420
+msgid ".SH SYNOPSIS\n"
+msgstr ".SH SINOPSI\n"
+
+#: src/callbacks.c:430
+msgid ".SH DESCRIPTION\n"
+msgstr ".SH DESCRIPCIÓ\n"
+
+#: src/callbacks.c:440
+msgid ".SH OPTIONS\n"
+msgstr ".SH OPCIONS\n"
+
+#: src/callbacks.c:450
+msgid ".SH RETURN VALUES\n"
+msgstr ".SH VALORS DE RETORN\n"
+
+#: src/callbacks.c:460
+msgid ".SH EXIT STATUS\n"
+msgstr ".SH ESTATS DE SORTIDA\n"
+
+#: src/callbacks.c:469
+msgid ".SH USAGE\n"
+msgstr ".SH ÚS\n"
+
+#: src/callbacks.c:479
+msgid ".SH FILES\n"
+msgstr ".SH FITXERS\n"
+
+#: src/callbacks.c:488
+msgid ".SH ENVIRONMENT\n"
+msgstr ".SH ENTORN\n"
+
+#: src/callbacks.c:497
+msgid ".SH DIAGNOSTICS\n"
+msgstr ".SH DIAGNÒSTICS\n"
+
+#: src/callbacks.c:506
+msgid ".SH SECURITY\n"
+msgstr ".SH SEGURETAT\n"
+
+#: src/callbacks.c:515
+msgid ".SH NOTES\n"
+msgstr ".SH NOTES\n"
+
+#: src/callbacks.c:524
+msgid ".SH BUGS\n"
+msgstr ".SH ERRADES\n"
+
+#: src/callbacks.c:533 src/callbacks.c:1380
+msgid ".SH AUTHOR\n"
+msgstr ".SH AUTORS\n"
+
+#: src/callbacks.c:542
+msgid ".SH EXAMPLES\n"
+msgstr ".SH EXEMPLES\n"
+
+#: src/callbacks.c:552
+msgid ".SH SEE ALSO\n"
+msgstr ".SH VEURE TAMBÉ\n"
+
+#: src/callbacks.c:561
+msgid ".SH CONFORMING TO\n"
+msgstr ".SH CONFORM A\n"
+
+#: src/callbacks.c:578
+msgid ".SH <SECTION NAME>\n"
+msgstr ".SH <NOM DE SECCIÓ>\n"
+
+#: src/callbacks.c:713
+msgid ".RS <margin position>\n"
+msgstr ".RS <posició del marge>\n"
+
+#: src/callbacks.c:740
+msgid ".SS <NAME>\n"
+msgstr ".SS <NOM>\n"
+
+#: src/callbacks.c:748
+msgid ""
+".UR <address>\n"
+".UE\n"
+msgstr ""
+".UR <adreça>\n"
+".UE\n"
+
+#: src/callbacks.c:757
+msgid ".UN <address>\n"
+msgstr ".UN <adreça>\n"
+
+#: src/callbacks.c:848
+msgid "Page preview."
+msgstr "Previsualització"
+
+#: src/callbacks.c:952 src/callbacks.c:1419
+msgid "January"
+msgstr "Gener"
+
+#: src/callbacks.c:952 src/callbacks.c:1419
+msgid "February"
+msgstr "Febrer"
+
+#: src/callbacks.c:952 src/callbacks.c:1419
+msgid "Mars"
+msgstr "Març"
+
+#: src/callbacks.c:952 src/callbacks.c:1419
+msgid "April"
+msgstr "Abril"
+
+#: src/callbacks.c:953 src/callbacks.c:1420
+msgid "May"
+msgstr "Maig"
+
+#: src/callbacks.c:953 src/callbacks.c:1420
+msgid "June"
+msgstr "Juny"
+
+#: src/callbacks.c:953 src/callbacks.c:1420
+msgid "Jule"
+msgstr "Juliol"
+
+#: src/callbacks.c:953 src/callbacks.c:1420
+msgid "August"
+msgstr "Agost"
+
+#: src/callbacks.c:954 src/callbacks.c:1421
+msgid "September"
+msgstr "Setembre"
+
+#: src/callbacks.c:954 src/callbacks.c:1421
+msgid "October"
+msgstr "Octubre"
+
+#: src/callbacks.c:954 src/callbacks.c:1421
+msgid "November"
+msgstr "Novembre"
+
+#: src/callbacks.c:954 src/callbacks.c:1421
+msgid "December"
+msgstr "Desembre"
+
+#: src/callbacks.c:968
+msgid "Date inserted."
+msgstr "Data insertada."
+
+#: src/callbacks.c:971
+msgid "Cannot get system date!"
+msgstr "No es pot obtindre la data del sistema!"
+
+#: src/callbacks.c:1177
+msgid "Text selected."
+msgstr "Text seleccionat"
+
+#: src/callbacks.c:1284
+msgid ".SH NAME\n"
+msgstr ".SH NOM\n"
+
+#: src/callbacks.c:1286
+msgid ""
+" \\-program for...\n"
+"\n"
+msgstr ""
+" \\-programa per a...\n"
+"\n"
+
+#: src/callbacks.c:1293
+msgid ""
+".SH SYNOPSIS\n"
+".B "
+msgstr ""
+".SH SINOPSI\n"
+".B "
+
+#: src/callbacks.c:1295
+msgid ""
+"\n"
+".RI [ options ]\n"
+".br\n"
+"\n"
+msgstr ""
+"\n"
+".RI [ opcions ]\n"
+".br\n"
+"\n"
+
+#: src/callbacks.c:1302
+msgid ""
+".SH DESCRIPTION\n"
+"This manual page explains the\n"
+".B "
+msgstr ""
+".SH DESCRIPCIÓ\n"
+"Aquesta pàgina de manual explica el\n"
+".B "
+
+#: src/callbacks.c:1304
+msgid ""
+"\n"
+"program. This program...\n"
+".PP\n"
+"\\fB"
+msgstr ""
+"\n"
+"programa. Aquest programa...\n"
+"\\fB"
+
+#: src/callbacks.c:1306
+msgid ""
+"\\fP is for...\n"
+"\n"
+msgstr ""
+"\\fP és per a...\n"
+"\n"
+
+#: src/callbacks.c:1312
+msgid ""
+".SH OPTIONS\n"
+".B\n"
+".IP -OPTION\n"
+"This option...\n"
+"\n"
+msgstr ""
+".SH OPCIONS\n"
+".B\n"
+".IP -OPCIÓ\n"
+"Aquesta opció...\n"
+"\n"
+
+#: src/callbacks.c:1317
+msgid ""
+".SH USAGE\n"
+"\n"
+msgstr ""
+".SH ÚS\n"
+"\n"
+
+#: src/callbacks.c:1322
+msgid ""
+".SH FILES\n"
+"\n"
+msgstr ""
+".SH FITXERS\n"
+"\n"
+
+#: src/callbacks.c:1327
+msgid ""
+".SH ENVIRONMENT\n"
+"\n"
+msgstr ""
+".SH ENTORN\n"
+"\n"
+
+#: src/callbacks.c:1332
+msgid ""
+".SH DIAGNOSTICS\n"
+"\n"
+msgstr ""
+".SH DIAGNÓSTICS\n"
+"\n"
+
+#: src/callbacks.c:1337
+msgid ""
+".SH SECURITY\n"
+"\n"
+msgstr ""
+".SH SEGURETAT\n"
+"\n"
+
+#: src/callbacks.c:1347
+msgid ""
+".SH ERROR HANDLING\n"
+"\n"
+msgstr ""
+".SH GESTIÓ D'ERRORS\n"
+"\n"
+
+#: src/callbacks.c:1352
+msgid ""
+".SH ERRORS\n"
+"\n"
+msgstr ""
+".SH ERRADES\n"
+"\n"
+
+#: src/callbacks.c:1357
+msgid ""
+".SH CONFORMING TO\n"
+"\n"
+msgstr ""
+".SH CONFORM A\n"
+"\n"
+
+#: src/callbacks.c:1362
+msgid ""
+".SH NOTES\n"
+"\n"
+msgstr ""
+".SH NOTES\n"
+"\n"
+
+#: src/callbacks.c:1367
+msgid ""
+".SH BUGS\n"
+"\n"
+msgstr ""
+".SH ERRATES\n"
+"\n"
+
+#: src/callbacks.c:1373
+msgid ""
+".SH SEE ALSO\n"
+"\n"
+msgstr ""
+".SH VEURE TAMBÉ\n"
+"\n"
+
+#: src/callbacks.c:1388
+msgid "Wizard page created"
+msgstr "Pàgina de l'assistent creada"
+
+#: src/callbacks.c:1458
+msgid "Cannot be opened this Internet Browser"
+msgstr "Aquest navegador no es pot obrir"
+
+#: src/callbacks.c:1492 src/callbacks.c:1522
+msgid "Man help."
+msgstr "Ajuda de «man»."
+
+#: src/callbacks.c:1541
+msgid "File opening."
+msgstr "S'està obrint el fitxer."
+
+#: src/support.c:97
+#, c-format
+msgid "Couldn't find pixmap file: %s"
+msgstr "No es pot trobar el fitxer de pixmap: %s"
+
+#: src/support.c:104
+#, c-format
+msgid "Failed to load pixbuf file: %s: %s\n"
+msgstr ""
+
+#, fuzzy
+#~ msgid "G.P.U.L. 2000-2001 Sergio Rua"
+#~ msgstr "G.P.U.L 2000 Sergio Rua"
+
+#~ msgid "gnome-help-browser"
+#~ msgstr "gnome-help-browser"
+
+#~ msgid "Use gnome-help-browser"
+#~ msgstr "Utilitza gnome-help-browser"
+
+#~ msgid "Couldn't create pixmap from file: %s"
+#~ msgstr "No s'ha pogut crear el pixmap des del fitxer: %s"
