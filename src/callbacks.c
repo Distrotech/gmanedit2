@@ -1453,9 +1453,8 @@ on_home_page1_activate                 (GtkMenuItem     *menuitem,
 
 	p=fork();
 	if (p==0)
-//		execlp("netscape","netscape","http://gmanedit.sourceforge.net",NULL);		
-		if (execlp(cad,cad,"http://gmanedit.sourceforge.net",NULL) == -1)
-			mensaje(_("Cannot be opened this Internet Browser"),"error");	
+	if (execlp(cad,cad,"http://sourceforge.net/projects/gmanedit2",NULL) == -1)
+			mensaje(_("Can not open Internet Browser"),"error");	
 }
 
 
