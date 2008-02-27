@@ -21,4 +21,4 @@ desktop_DATA = $(DESKTOP_FILES)
 
 ACLOCAL_AMFLAGS = -I m4
 
-EXTRA_DIST = config.rpath $(DESKTOP_FILES)
+EXTRA_DIST = config.rpath $(DESKTOP_FILES) gmanedit.1
