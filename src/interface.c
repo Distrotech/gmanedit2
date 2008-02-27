@@ -1197,7 +1197,7 @@ create_wbuscar (void)
 
   wbuscar = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_object_set_data (GTK_OBJECT (wbuscar), "wbuscar", wbuscar);
-  gtk_window_set_title (GTK_WINDOW (wbuscar), _("Search and replace"));
+  gtk_window_set_title (GTK_WINDOW (wbuscar), _("Gmanedit - Search and replace"));
   gtk_window_set_position (GTK_WINDOW (wbuscar), GTK_WIN_POS_CENTER);
   GdkPixbuf *icon_pixbuf = create_image ("gmanedit_icon.png");
   gtk_window_set_icon (GTK_WINDOW (wbuscar), icon_pixbuf);
@@ -1328,7 +1328,7 @@ create_about (void)
   GdkPixbuf *icon_pixbuf = create_image ("gmanedit.png");
 
   about = gnome_about_new ("Gmanedit", VERSION,
-	"G.P.U.L. 2000-2001 Sergio Rua\n2008 Joop Stakenborg",
+	"2000-2001 Sergio Rua\n2008 Joop Stakenborg",
 	_("Man Pages Editor"), authors, doc, translators, icon_pixbuf);
   icon_pixbuf = create_image ("gmanedit_icon.png");
   gtk_window_set_icon (GTK_WINDOW (about), icon_pixbuf);
@@ -1348,7 +1348,7 @@ create_exit_dialog (void)
   GtkWidget *bdialog_yes;
   GtkWidget *bdialog_no;
 
-  exit_dialog = gnome_dialog_new (_("Exit"), NULL);
+  exit_dialog = gnome_dialog_new (_("Gmanedit - Exit"), NULL);
   gtk_object_set_data (GTK_OBJECT (exit_dialog), "exit_dialog", exit_dialog);
   gtk_window_set_position (GTK_WINDOW (exit_dialog), GTK_WIN_POS_CENTER);
   gtk_window_set_policy (GTK_WINDOW (exit_dialog), FALSE, FALSE, FALSE);
@@ -1421,7 +1421,7 @@ create_wpreferences (void)
 
   wpreferences = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_object_set_data (GTK_OBJECT (wpreferences), "wpreferences", wpreferences);
-  gtk_window_set_title (GTK_WINDOW (wpreferences), _("Preferences"));
+  gtk_window_set_title (GTK_WINDOW (wpreferences), _("Gmanedit - Preferences"));
   gtk_window_set_position (GTK_WINDOW (wpreferences), GTK_WIN_POS_CENTER);
   gtk_window_set_modal (GTK_WINDOW (wpreferences), TRUE);
   gtk_window_set_default_size (GTK_WINDOW (wpreferences), 150, 87);
@@ -1625,7 +1625,7 @@ create_wizard (void)
 
   wizard = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_object_set_data (GTK_OBJECT (wizard), "wizard", wizard);
-  gtk_window_set_title (GTK_WINDOW (wizard), _("Wizard"));
+  gtk_window_set_title (GTK_WINDOW (wizard), _("Gmanedit - Wizard"));
   gtk_window_set_position (GTK_WINDOW (wizard), GTK_WIN_POS_CENTER);
   gtk_window_set_modal (GTK_WINDOW (wizard), TRUE);
   gtk_window_set_policy (GTK_WINDOW (wizard), FALSE, FALSE, FALSE);
