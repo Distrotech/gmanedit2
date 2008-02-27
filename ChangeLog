@@ -1,39 +1,42 @@
-gmanedit (0.3.3-1)
+gmanedit (0.4)
+
+  * Gnome2 port of the original program, new maintainer.
+  * Desktop file and manual page added.
+  * All of the windows and dialogs now have an icon.
+
+gmanedit (0.3.3)
 
   * Added translation to Català
 
-gmanedit (0.3.2-1)
+gmanedit (0.3.2)
 
   * Bug fixed on exec commands
 
-gmanedit (0.3.1-1)
+gmanedit (0.3.1)
 
   * Bug fixed on preferences option. Thanks to Takeshi Aihana
 
-gmanedit (0.3-1)
+gmanedit (0.3)
 
   * Drag & Drop function added
   * Label Comments added
   * Bug fixed
 
-gmanedit (0.2-1)
+gmanedit (0.2)
 
   * Page creation with Wizard
   * Translation to Japanese
 
-gmanedit (0.1.2-1)
+gmanedit (0.1.2)
 
   * Multilanguges support added
   * Tranlatios to Galician and Korean added
 
-gmanedit (0.1.1-1)
+gmanedit (0.1.1)
 
   * New upstream release
 
-gmanedit (0.1-1)
+gmanedit (0.1)
 
   * Initial Release.
 
-
-AUTHOR:
-Sergio Rua <srua@debian.org>

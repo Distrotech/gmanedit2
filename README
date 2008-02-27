@@ -2,8 +2,14 @@
 			---------------------
 
 	Gmanedit is an GNOME/Gtk Editor for Manual pages on Linux/Unix
-	systems.
+	systems. The original code was written in 2001 by Sergio Rua and
+        the program would run on the GNOME version 1 desktop environment.
 
+        Nothing happened since then and Sergio seems to be unreachable,
+        so I decided to port the program to the GNOME version 2 and revive
+        the project. What you see is a first version which has the same
+        functionality as the old version, although it still uses some of
+        the deprecated Gnome widgets.
 
-	Homepage: http://gmanedit.sourceforge.net
-	FTP: ftp://gmanedit.sourceforge.net/pub/gmanedit
+	Homepage: http://sourceforge.net/projects/gmanedit2
+
