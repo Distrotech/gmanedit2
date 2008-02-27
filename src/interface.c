@@ -537,6 +537,8 @@ create_wprincipal (void)
   gtk_object_set_data (GTK_OBJECT (wprincipal), "wprincipal", wprincipal);
   gtk_widget_set_usize (wprincipal, 640, 500);
   gtk_window_set_title (GTK_WINDOW (wprincipal), _("GNOME manpages editor"));
+  GdkPixbuf *icon_pixbuf = create_image ("gmanedit_icon.png");
+  gtk_window_set_icon (GTK_WINDOW (wprincipal), icon_pixbuf);
 
   vbox1 = gtk_vbox_new (FALSE, 0);
   gtk_widget_ref (vbox1);
