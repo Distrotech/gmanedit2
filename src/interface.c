@@ -49,7 +49,7 @@ static GnomeUIInfo edicion1_menu_uiinfo[] =
     GNOME_APP_PIXMAP_NONE, NULL,
     GDK_E, (GdkModifierType) GDK_CONTROL_MASK, NULL
   },
-  GNOMEUIINFO_MENU_FIND_ITEM (on_buscar_e_reemprazar1_activate, NULL),
+//  GNOMEUIINFO_MENU_FIND_ITEM (on_buscar_e_reemprazar1_activate, NULL),
   GNOMEUIINFO_END
 };
 
@@ -536,7 +536,7 @@ create_wprincipal (void)
   wprincipal = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_object_set_data (GTK_OBJECT (wprincipal), "wprincipal", wprincipal);
   gtk_widget_set_usize (wprincipal, 640, 500);
-  gtk_window_set_title (GTK_WINDOW (wprincipal), _("GNOME manpages editor"));
+  gtk_window_set_title (GTK_WINDOW (wprincipal), _("Gmanedit - Gnome manpages editor"));
   GdkPixbuf *icon_pixbuf = create_image ("gmanedit_icon.png");
   gtk_window_set_icon (GTK_WINDOW (wprincipal), icon_pixbuf);
 
@@ -1101,9 +1101,11 @@ create_fileselection (void)
   GtkWidget *ok_button1;
   GtkWidget *cancel_button1;
 
-  fileselection = gtk_file_selection_new (_("Select file"));
+  fileselection = gtk_file_selection_new (_("Gmanedit - Select file"));
   gtk_object_set_data (GTK_OBJECT (fileselection), "fileselection", fileselection);
   gtk_container_set_border_width (GTK_CONTAINER (fileselection), 10);
+  GdkPixbuf *icon_pixbuf = create_image ("gmanedit_icon.png");
+  gtk_window_set_icon (GTK_WINDOW (fileselection), icon_pixbuf);
 
   ok_button1 = GTK_FILE_SELECTION (fileselection)->ok_button;
   gtk_object_set_data (GTK_OBJECT (fileselection), "ok_button1", ok_button1);
@@ -1133,9 +1135,11 @@ create_save_file (void)
   GtkWidget *ok_button2;
   GtkWidget *cancel_button2;
 
-  save_file = gtk_file_selection_new (_("Saving file"));
+  save_file = gtk_file_selection_new (_("Gmanedit - Saving file"));
   gtk_object_set_data (GTK_OBJECT (save_file), "save_file", save_file);
   gtk_container_set_border_width (GTK_CONTAINER (save_file), 10);
+  GdkPixbuf *icon_pixbuf = create_image ("gmanedit_icon.png");
+  gtk_window_set_icon (GTK_WINDOW (save_file), icon_pixbuf);
 
   ok_button2 = GTK_FILE_SELECTION (save_file)->ok_button;
   gtk_object_set_data (GTK_OBJECT (save_file), "ok_button2", ok_button2);
@@ -1184,6 +1188,8 @@ create_wbuscar (void)
   gtk_object_set_data (GTK_OBJECT (wbuscar), "wbuscar", wbuscar);
   gtk_window_set_title (GTK_WINDOW (wbuscar), _("Search and replace"));
   gtk_window_set_position (GTK_WINDOW (wbuscar), GTK_WIN_POS_CENTER);
+  GdkPixbuf *icon_pixbuf = create_image ("gmanedit_icon.png");
+  gtk_window_set_icon (GTK_WINDOW (wbuscar), icon_pixbuf);
 
   vbox2 = gtk_vbox_new (FALSE, 0);
   gtk_widget_ref (vbox2);
@@ -1313,6 +1319,9 @@ create_about (void)
   about = gnome_about_new ("Gmanedit", VERSION,
 	"G.P.U.L. 2000-2001 Sergio Rua\n2008 Joop Stakenborg",
 	_("Man Pages Editor"), authors, doc, translators, icon_pixbuf);
+  icon_pixbuf = create_image ("gmanedit_icon.png");
+  gtk_window_set_icon (GTK_WINDOW (about), icon_pixbuf);
+
   gtk_object_set_data (GTK_OBJECT (about), "about", about);
 
   return about;
@@ -1332,6 +1341,8 @@ create_exit_dialog (void)
   gtk_object_set_data (GTK_OBJECT (exit_dialog), "exit_dialog", exit_dialog);
   gtk_window_set_position (GTK_WINDOW (exit_dialog), GTK_WIN_POS_CENTER);
   gtk_window_set_policy (GTK_WINDOW (exit_dialog), FALSE, FALSE, FALSE);
+  GdkPixbuf *icon_pixbuf = create_image ("gmanedit_icon.png");
+  gtk_window_set_icon (GTK_WINDOW (exit_dialog), icon_pixbuf);
 
   dialog_vbox1 = GNOME_DIALOG (exit_dialog)->vbox;
   gtk_object_set_data (GTK_OBJECT (exit_dialog), "dialog_vbox1", dialog_vbox1);
@@ -1403,6 +1414,8 @@ create_wpreferences (void)
   gtk_window_set_position (GTK_WINDOW (wpreferences), GTK_WIN_POS_CENTER);
   gtk_window_set_modal (GTK_WINDOW (wpreferences), TRUE);
   gtk_window_set_default_size (GTK_WINDOW (wpreferences), 150, 87);
+  GdkPixbuf *icon_pixbuf = create_image ("gmanedit_icon.png");
+  gtk_window_set_icon (GTK_WINDOW (wpreferences), icon_pixbuf);
 
   vbox3 = gtk_vbox_new (FALSE, 0);
   gtk_widget_ref (vbox3);
@@ -1605,6 +1618,8 @@ create_wizard (void)
   gtk_window_set_position (GTK_WINDOW (wizard), GTK_WIN_POS_CENTER);
   gtk_window_set_modal (GTK_WINDOW (wizard), TRUE);
   gtk_window_set_policy (GTK_WINDOW (wizard), FALSE, FALSE, FALSE);
+  icon_pixbuf = create_image ("gmanedit_icon.png");
+  gtk_window_set_icon (GTK_WINDOW (wizard), icon_pixbuf);
 
 
   icon_pixbuf = create_image ("gmanedit.png");
