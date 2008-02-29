@@ -1598,6 +1598,12 @@ create_wizard (void)
   GtkWidget *chbugs;
   GtkTooltips *tooltips;
   GdkPixbuf *icon_pixbuf;
+  time_t fech;
+  struct tm *fecha;
+	gchar cad[30];
+	gchar *meses[]={_("January"),_("February"),_("Mars"),_("April"),
+        		_("May"),_("June"),_("Jule"),_("August"),
+        		_("September"),_("October"),_("November"),_("December")};
 
   tooltips = gtk_tooltips_new ();
 
@@ -1644,6 +1650,15 @@ create_wizard (void)
   gtk_fixed_put (GTK_FIXED (fixed1), mdate, 248, 80);
   gtk_widget_set_usize (mdate, 158, 26);
   gtk_tooltips_set_tip (tooltips, mdate, _("Creation date (default today)"), NULL);
+  time(&fech);
+  fecha=localtime(&fech);
+	
+	if (fecha!=NULL)
+	{
+		sprintf(cad,"%s %d, %d",meses[fecha->tm_mon],fecha->tm_mday,fecha->tm_year+1900);			
+		gtk_entry_set_text(GTK_ENTRY(mdate),cad);
+	}
+
 
   mtitle = gtk_entry_new ();
   gtk_widget_ref (mtitle);

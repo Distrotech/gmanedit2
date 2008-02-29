@@ -17,20 +17,20 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
-#include <gtk/gtk.h>
 #include <stdio.h>
 #include <errno.h>
 #include <string.h>
 #include <unistd.h>
 #include <stdlib.h>
 #include <time.h>
-#include <gnome.h>
 #include <zlib.h>
 #include <sys/types.h>
 #include <signal.h>
 #include <unistd.h>
 #include <argz.h>
 #include <sys/wait.h>
+
+#include <gtk/gtk.h>
 
 #include "callbacks.h"
 #include "interface.h"
@@ -39,7 +39,7 @@
 #define BUFFER_SIZE 8192
 #define GTK_ENABLE_BROKEN
 
-
+extern GtkWidget *wprincipal;
 GtkWidget *open_file=NULL;
 GtkWidget *save_file=NULL;
 GtkWidget *buscar=NULL;
@@ -54,7 +54,7 @@ gint in_gzip=0;
 
 /* Funciones */
 static void save_as(GtkWidget *main_window);
-static void mensaje (gchar *msg,gchar *tipo);
+static void mensaje (gchar *msg,gint tipo);
 static gchar *ReadConfFromFile(gchar *variable);
 static void insert_label(const gchar *base,const gchar *text_info, GtkWidget *item);
 static void help_without_gnome(GtkWidget *wid);
@@ -77,10 +77,6 @@ void
 on_bexit_clicked                       (GtkButton       *button,
                                         gpointer         user_data)
 {
-	GtkWidget *main_window;
-
-	main_window=lookup_widget(GTK_WIDGET(button),"wprincipal");
-
 	if (exit_dialog==NULL)
 		exit_dialog=create_exit_dialog();
 
@@ -188,17 +184,13 @@ void
 on_bsave_clicked                       (GtkButton       *button,
                                         gpointer         user_data)
 {
-	GtkWidget *main_window;
-	
-	main_window=lookup_widget(GTK_WIDGET(button),"wprincipal");
-
 	if (save_file == NULL)
 		save_file=create_save_file();
 		
 	gtk_object_set_data(GTK_OBJECT(save_file),MainWindowKey,button);
 
 	if (filename!=NULL)  /* Si ya tiene nombre asignado */
-		save_as(main_window);
+		save_as(wprincipal);
 	else			
 		gtk_widget_show(save_file);
 		
@@ -250,17 +242,13 @@ void
 on_gardar1_activate                    (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
-	GtkWidget *main_window;
-	
-	main_window=lookup_widget(GTK_WIDGET(menuitem),"wprincipal");
-
 	if (save_file == NULL)
 		save_file=create_save_file();
 		
 	gtk_object_set_data(GTK_OBJECT(save_file),MainWindowKey,menuitem);
 
 	if (filename!=NULL)  /* Si ya tiene nombre asignado */
-		save_as(main_window);
+		save_as(wprincipal);
 	else			
 		gtk_widget_show(save_file);
 		
@@ -273,10 +261,6 @@ void
 on_gardar_como1_activate               (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
-	GtkWidget *main_window;
-
-	main_window=lookup_widget(GTK_WIDGET(menuitem),"wprincipal");
-
 	if (save_file == NULL)
 		save_file=create_save_file();
 		
@@ -382,7 +366,7 @@ static void save_as(GtkWidget *main_window)
 	else
 	{
   	  gtk_statusbar_push(GTK_STATUSBAR(statusbar),1,_("File NOT saved."));		
-  	  mensaje(strerror(errno),"error");
+  	  mensaje(strerror(errno),GTK_MESSAGE_ERROR);
 	}
 	if (in_gzip)
 	    gzclose(f);
@@ -852,7 +836,7 @@ on_paxina_creada1_activate             (GtkMenuItem     *menuitem,
 	     fclose(f);
 	}
 	else
-	     mensaje(strerror(errno),"error");
+	     mensaje(strerror(errno),GTK_MESSAGE_ERROR);
 
 
 	if (bytes_written>0)
@@ -966,7 +950,7 @@ on_data1_activate                      (GtkMenuItem     *menuitem,
 		gtk_statusbar_push (GTK_STATUSBAR (statusbar), 1, _("Date inserted."));    
 	}
 	else
-		mensaje(_("Cannot get system date!"),"error");		
+		mensaje(_("Cannot get system date!"),GTK_MESSAGE_ERROR);		
 }
 
 void
@@ -980,13 +964,13 @@ on_about2_activate                     (GtkMenuItem     *menuitem,
 }
 
 static void
-mensaje (gchar *msg,gchar *tipo)
+mensaje (gchar *msg,gint tipo)
 {
 	GtkWidget *msgbox;
 	
-	msgbox=gnome_message_box_new(msg,tipo,NULL);
-	gnome_dialog_append_button(GNOME_DIALOG(msgbox),GNOME_STOCK_BUTTON_OK);
-	gtk_widget_show(msgbox);
+	msgbox=gtk_message_dialog_new(GTK_WINDOW(wprincipal),GTK_DIALOG_MODAL,tipo, GTK_BUTTONS_OK, msg,NULL);
+	gtk_dialog_run (GTK_DIALOG (msgbox));
+    gtk_widget_destroy (msgbox);
 }
 
 void
@@ -1043,7 +1027,7 @@ on_bpok_clicked                        (GtkButton       *button,
 		fclose(p);	
 	}
 	else
-		mensaje(strerror(errno),"error");
+		mensaje(strerror(errno),GTK_MESSAGE_ERROR);
 	gtk_widget_hide(prefs);
 }
 
@@ -1373,38 +1357,6 @@ void insert_label(const gchar *base,const gchar *text_info, GtkWidget *item)
 	gtk_statusbar_push (GTK_STATUSBAR (statusbar), 1, _(text_info));
 }
 
-gboolean
-on_dwelcome_next                       (GnomeDruidPage  *gnomedruidpage,
-                                        gpointer         arg1,
-                                        gpointer         user_data)
-{
-/* Date will be inserted into the edit box to man page date */
-	GtkWidget *edate;
-	time_t *fech;
-	struct tm *fecha;
-	gchar cad[30];
-	gchar *meses[]={_("January"),_("February"),_("Mars"),_("April"),
-        		_("May"),_("June"),_("Jule"),_("August"),
-        		_("September"),_("October"),_("November"),_("December")};
-
-
-	edate=lookup_widget(GTK_WIDGET(gnomedruidpage),"mdate");
-	gtk_entry_set_text(GTK_ENTRY(edate),"Month day, year");
-	return(FALSE);
-
-     	time(fech);
-	fecha=localtime(fech);
-	
-	if (fecha!=NULL)
-	{
-		sprintf(cad,"%s %d, %d",meses[fecha->tm_mon],fecha->tm_mday,fecha->tm_year+1900);			
-		gtk_entry_set_text(GTK_ENTRY(edate),cad);
-	}
-
-	return FALSE;
-}
-
-
 void
 on_home_page1_activate                 (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
@@ -1421,7 +1373,7 @@ on_home_page1_activate                 (GtkMenuItem     *menuitem,
 	p=fork();
 	if (p==0)
 	if (execlp(cad,cad,"http://sourceforge.net/projects/gmanedit2",NULL) == -1)
-			mensaje(_("Can not open Internet Browser"),"error");	
+			mensaje(_("Can not open Internet Browser"),GTK_MESSAGE_ERROR);	
 }
 
 
@@ -1528,7 +1480,7 @@ static void open_man_file(GtkWidget *main_window)
   	  gzclose(f);
 	}
 	else
-		mensaje(strerror(errno),"error");
+		mensaje(strerror(errno),GTK_MESSAGE_ERROR);
 }
 
 void
@@ -1569,10 +1521,6 @@ on_wprincipal_delete_event             (GtkWidget       *widget,
                                         GdkEvent        *event,
                                         gpointer         user_data)
 {
-        GtkWidget *main_window;
-
-	main_window=lookup_widget(widget,"wprincipal");
-
 	if (exit_dialog==NULL)
 		exit_dialog=create_exit_dialog();
 

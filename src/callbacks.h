@@ -810,10 +810,6 @@ void
 on_cancel_button2_clicked              (GtkButton       *button,
                                         gpointer         user_data);
 
-gint
-on_about_close                         (GnomeDialog     *gnomedialog,
-                                        gpointer         user_data);
-
 void
 on_save_file_destroy                   (GtkObject       *object,
                                         gpointer         user_data);
@@ -1132,11 +1128,6 @@ on_assistant_cancel                    (GtkAssistant *assistant,
 
 void
 on_dthe_end_finish                     (GtkAssistant *assistant,
-                                        gpointer         user_data);
-
-gboolean
-on_dwelcome_next                       (GnomeDruidPage  *gnomedruidpage,
-                                        gpointer         arg1,
                                         gpointer         user_data);
 
 void

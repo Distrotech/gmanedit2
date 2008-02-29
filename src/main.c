@@ -31,6 +31,8 @@ enum {
           TARGET_MAN
 };
 
+GtkWidget *wprincipal;
+
 static GtkTargetEntry tabla[]={
         { "STRING", 0, TARGET_STRING },
         { "text/plain", 0, TARGET_STRING },
@@ -42,7 +44,6 @@ static GtkTargetEntry tabla[]={
 int
 main (int argc, char *argv[])
 {
-  GtkWidget *wprincipal;
   GtkWidget *text;
 
 #ifdef ENABLE_NLS
