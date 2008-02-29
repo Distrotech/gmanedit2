@@ -1,5 +1,6 @@
 gmanedit (0.4.1)
   * Moved from GnomeDruid to GtkAssistant for the wizard pages.
+  * Fixed display of the date in the second page of the wizard.
 
 gmanedit (0.4)
 
