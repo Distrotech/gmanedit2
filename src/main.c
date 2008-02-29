@@ -17,12 +17,12 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
-#include <gnome.h>
+#include <libintl.h>
 #include <gtk/gtk.h>
-#include <gdk/gdk.h>
 
 #include "interface.h"
 #include "support.h"
+
 #define cuantos (sizeof(tabla)/sizeof(GtkTargetEntry))
 
 enum {
@@ -54,7 +54,6 @@ main (int argc, char *argv[])
 
   gtk_set_locale ();
   gtk_init (&argc, &argv);
-  gnome_init("gmanedit",VERSION,argc,argv);
 
   /*
    * The following code was added by Glade to create one of each component

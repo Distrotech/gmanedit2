@@ -22,13 +22,9 @@
 #include <unistd.h>
 #include <string.h>
 
-#include <gnome.h>
+#include <gtk/gtk.h>
 
 #include "support.h"
-
-/* This is an internally used function to create pixmaps. */
-static GtkWidget* create_dummy_pixmap  (GtkWidget       *widget,
-                                        gboolean         gnome_pixmap);
 
 GtkWidget*
 lookup_widget                          (GtkWidget       *widget,
@@ -53,17 +49,6 @@ lookup_widget                          (GtkWidget       *widget,
     g_warning ("Widget not found: %s", widget_name);
   return found_widget;
 }
-
-/* This is a dummy pixmap we use when a pixmap can't be found. */
-static char *dummy_pixmap_xpm[] = {
-/* columns rows colors chars-per-pixel */
-"1 1 1 1",
-"  c None",
-/* pixels */
-" ",
-" "
-};
-
 
 static GList *pixmaps_directories = NULL;
 /* Use this function to set the directory containing installed pixmaps. */

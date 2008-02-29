@@ -17,6 +17,17 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
+#include <libintl.h>
+
+#undef _
+#define _(String) dgettext (PACKAGE, String)
+
+#ifdef gettext_noop
+	#define N_(String) gettext_noop (String)
+#else
+	#define N_(String) (String)
+#endif
+
 GtkWidget*  lookup_widget              (GtkWidget       *widget,
                                         const gchar     *widget_name);
 
