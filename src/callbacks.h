@@ -1111,27 +1111,11 @@ on_new_wizard_page1_activate           (GtkMenuItem     *menuitem,
                                         gpointer         user_data);
 
 void
-on_druid_cancel                        (GnomeDruid      *gnomedruid,
-                                        gpointer         user_data);
-
-gboolean
-on_dstep1_next                         (GnomeDruidPage  *gnomedruidpage,
-                                        gpointer         arg1,
-                                        gpointer         user_data);
-
-gboolean
-on_dstep2_next                         (GnomeDruidPage  *gnomedruidpage,
-                                        gpointer         arg1,
-                                        gpointer         user_data);
-
-gboolean
-on_dstep3_next                         (GnomeDruidPage  *gnomedruidpage,
-                                        gpointer         arg1,
+on_assistant_cancel                    (GtkAssistant *assistant,
                                         gpointer         user_data);
 
 void
-on_dthe_end_finish                     (GnomeDruidPage  *gnomedruidpage,
-                                        gpointer         arg1,
+on_dthe_end_finish                     (GtkAssistant *assistant,
                                         gpointer         user_data);
 
 gboolean

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gman 0.3\n"
 "Report-Msgid-Bugs-To: pg4i@amsat.org\n"
-"POT-Creation-Date: 2008-02-27 15:17+0100\n"
+"POT-Creation-Date: 2008-02-27 15:27+0100\n"
 "PO-Revision-Date: 2000-08-30 17:59+09:00\n"
 "Last-Translator: Takeshi Aihana <aihana@muc.biglobe.ne.jp>\n"
 "Language-Team: Japanese <translation@gnome.gr.jp>\n"
@@ -317,7 +317,7 @@ msgstr "貼り付け"
 msgid "Paste from clipboard"
 msgstr "クリップボードから貼り付けます"
 
-#: src/interface.c:1042 src/interface.c:1351
+#: src/interface.c:1042
 msgid "Exit"
 msgstr "終了"
 
@@ -336,7 +336,8 @@ msgid "Gmanedit - Saving file"
 msgstr "ファイルを保存"
 
 #: src/interface.c:1200
-msgid "Search and replace"
+#, fuzzy
+msgid "Gmanedit - Search and replace"
 msgstr "検索と置換"
 
 #: src/interface.c:1219
@@ -369,13 +370,19 @@ msgstr "閉じる(_C)"
 msgid "Man Pages Editor"
 msgstr "Man ページエディタ。"
 
+#: src/interface.c:1351
+#, fuzzy
+msgid "Gmanedit - Exit"
+msgstr "ファイルを選択"
+
 #: src/interface.c:1362
 msgid "Exit from gmanedit?"
 msgstr "Gmanedit を終了しますか?"
 
 #: src/interface.c:1424
-msgid "Preferences"
-msgstr "設定"
+#, fuzzy
+msgid "Gmanedit - Preferences"
+msgstr "ファイルを選択"
 
 #: src/interface.c:1452
 #, fuzzy
@@ -424,8 +431,9 @@ msgid "Use yelp"
 msgstr ""
 
 #: src/interface.c:1628
-msgid "Wizard"
-msgstr "ウィザード"
+#, fuzzy
+msgid "Gmanedit - Wizard"
+msgstr "ファイルを選択"
 
 #: src/interface.c:1655
 msgid "Welcome"
@@ -1106,6 +1114,12 @@ msgstr "Pixmap 形式ファイルが見つかりませんでした: %s"
 #, c-format
 msgid "Failed to load pixbuf file: %s: %s\n"
 msgstr ""
+
+#~ msgid "Preferences"
+#~ msgstr "設定"
+
+#~ msgid "Wizard"
+#~ msgstr "ウィザード"
 
 #, fuzzy
 #~ msgid "G.P.U.L. 2000-2001 Sergio Rua"

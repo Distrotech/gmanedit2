@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gmanedit 0.3\n"
 "Report-Msgid-Bugs-To: pg4i@amsat.org\n"
-"POT-Creation-Date: 2008-02-27 15:17+0100\n"
+"POT-Creation-Date: 2008-02-27 15:27+0100\n"
 "PO-Revision-Date: 20-06-2000 00:00+0200\n"
 "Last-Translator: Sergio Rua <srua@iname.com>\n"
 "Language-Team: Galician <trasno@ceu.fi.udc.es>\n"
@@ -316,7 +316,7 @@ msgstr "Pegar"
 msgid "Paste from clipboard"
 msgstr "Pegar dende o portapapeis"
 
-#: src/interface.c:1042 src/interface.c:1351
+#: src/interface.c:1042
 msgid "Exit"
 msgstr "Saír"
 
@@ -335,7 +335,8 @@ msgid "Gmanedit - Saving file"
 msgstr "Salvando ó ficheiro"
 
 #: src/interface.c:1200
-msgid "Search and replace"
+#, fuzzy
+msgid "Gmanedit - Search and replace"
 msgstr "Buscar é reemprazar"
 
 #: src/interface.c:1219
@@ -368,13 +369,19 @@ msgstr "_Pechar"
 msgid "Man Pages Editor"
 msgstr "Título da páxina:"
 
+#: src/interface.c:1351
+#, fuzzy
+msgid "Gmanedit - Exit"
+msgstr "Escolle ficheiro"
+
 #: src/interface.c:1362
 msgid "Exit from gmanedit?"
 msgstr "¿Saír do gmanedit?"
 
 #: src/interface.c:1424
-msgid "Preferences"
-msgstr "Preferencias"
+#, fuzzy
+msgid "Gmanedit - Preferences"
+msgstr "Escolle ficheiro"
 
 #: src/interface.c:1452
 #, fuzzy
@@ -423,8 +430,9 @@ msgid "Use yelp"
 msgstr ""
 
 #: src/interface.c:1628
-msgid "Wizard"
-msgstr "Asistente"
+#, fuzzy
+msgid "Gmanedit - Wizard"
+msgstr "Escolle ficheiro"
 
 #: src/interface.c:1655
 msgid "Welcome"
@@ -1107,6 +1115,12 @@ msgstr "Non se puido atopar o pixmap: %s"
 #, c-format
 msgid "Failed to load pixbuf file: %s: %s\n"
 msgstr ""
+
+#~ msgid "Preferences"
+#~ msgstr "Preferencias"
+
+#~ msgid "Wizard"
+#~ msgstr "Asistente"
 
 #~ msgid "Use gnome-help-browser"
 #~ msgstr "Empregar gnome-help-browser"

@@ -5523,6 +5523,10 @@ _ACEOF
 fi
 
 
+if test "${ac_cv_c_compiler_gnu}" = "yes"; then
+  CFLAGS="${CFLAGS} -Wall"
+fi
+
 
 
 if test "x$ac_cv_env_PKG_CONFIG_set" != "xset"; then

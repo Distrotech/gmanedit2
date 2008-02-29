@@ -1,3 +1,6 @@
+gmanedit (0.4.1)
+  * Moved from GnomeDruid to GtkAssistant for the wizard pages.
+
 gmanedit (0.4)
 
   * Gnome2 port of the original program, new maintainer.

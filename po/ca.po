@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.3.3\n"
 "Report-Msgid-Bugs-To: pg4i@amsat.org\n"
-"POT-Creation-Date: 2008-02-27 15:17+0100\n"
+"POT-Creation-Date: 2008-02-27 15:27+0100\n"
 "PO-Revision-Date: 2002-06-30 03:38+0200\n"
 "Last-Translator: Jordi Mallach <jordi@sindominio.net>\n"
 "Language-Team: Catalan <ca@dodds.net>\n"
@@ -317,7 +317,7 @@ msgstr "Engantxa"
 msgid "Paste from clipboard"
 msgstr "Engantxa des del portapapers"
 
-#: src/interface.c:1042 src/interface.c:1351
+#: src/interface.c:1042
 msgid "Exit"
 msgstr "Surt"
 
@@ -336,7 +336,8 @@ msgid "Gmanedit - Saving file"
 msgstr "S'està desant el fixter"
 
 #: src/interface.c:1200
-msgid "Search and replace"
+#, fuzzy
+msgid "Gmanedit - Search and replace"
 msgstr "Cerca i reemplaça"
 
 #: src/interface.c:1219
@@ -369,13 +370,19 @@ msgstr "_Tanca"
 msgid "Man Pages Editor"
 msgstr "Editor de pàgines de manual."
 
+#: src/interface.c:1351
+#, fuzzy
+msgid "Gmanedit - Exit"
+msgstr "Seleccioneu el fitxer"
+
 #: src/interface.c:1362
 msgid "Exit from gmanedit?"
 msgstr "Sortir de gmanedit?"
 
 #: src/interface.c:1424
-msgid "Preferences"
-msgstr "Preferències"
+#, fuzzy
+msgid "Gmanedit - Preferences"
+msgstr "Seleccioneu el fitxer"
 
 #: src/interface.c:1452
 #, fuzzy
@@ -424,8 +431,9 @@ msgid "Use yelp"
 msgstr ""
 
 #: src/interface.c:1628
-msgid "Wizard"
-msgstr "Asistent"
+#, fuzzy
+msgid "Gmanedit - Wizard"
+msgstr "Seleccioneu el fitxer"
 
 #: src/interface.c:1655
 msgid "Welcome"
@@ -1106,6 +1114,12 @@ msgstr "No es pot trobar el fitxer de pixmap: %s"
 #, c-format
 msgid "Failed to load pixbuf file: %s: %s\n"
 msgstr ""
+
+#~ msgid "Preferences"
+#~ msgstr "Preferències"
+
+#~ msgid "Wizard"
+#~ msgstr "Asistent"
 
 #, fuzzy
 #~ msgid "G.P.U.L. 2000-2001 Sergio Rua"

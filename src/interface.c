@@ -23,12 +23,13 @@
 #include <string.h>
 
 #include <gnome.h>
+#include <gtk/gtk.h>
 
 #include "callbacks.h"
 #include "interface.h"
 #include "support.h"
 
-#define GTK_ENABLE_BROKEN
+#define GTK_ENABLE_BROKEN 1
 
 static GnomeUIInfo mficheiro1_menu_uiinfo[] =
 {
@@ -1549,16 +1550,6 @@ create_wizard (void)
 {
 
   GtkWidget *wizard;
-  GtkWidget *druid;
-  GtkWidget *dwelcome;
-  GdkColor dwelcome_bg_color = { 0, 6425, 6425, 28784 };
-  GdkColor dwelcome_textbox_color = { 0, 65535, 65535, 65535 };
-  GdkColor dwelcome_logo_bg_color = { 0, 65535, 65535, 65535 };
-  GdkColor dwelcome_title_color = { 0, 65535, 65535, 65535 };
-  GtkWidget *dstep1;
-  GdkColor dstep1_bg_color = { 0, 6425, 6425, 28784 };
-  GdkColor dstep1_logo_bg_color = { 0, 65535, 65535, 65535 };
-  GdkColor dstep1_title_color = { 0, 65535, 65535, 65535 };
   GtkWidget *druid_vbox2;
   GtkWidget *fixed1;
   GtkWidget *mname;
@@ -1569,10 +1560,6 @@ create_wizard (void)
   GtkWidget *label15;
   GtkWidget *label16;
   GtkWidget *label1;
-  GtkWidget *dstep2;
-  GdkColor dstep2_bg_color = { 0, 6425, 6425, 28784 };
-  GdkColor dstep2_logo_bg_color = { 0, 65535, 65535, 65535 };
-  GdkColor dstep2_title_color = { 0, 65535, 65535, 65535 };
   GtkWidget *druid_vbox3;
   GtkWidget *fixed2;
   GtkWidget *label8;
@@ -1589,10 +1576,6 @@ create_wizard (void)
   GtkWidget *combo1;
   GList *combo1_items = NULL;
   GtkWidget *snumber;
-  GtkWidget *dstep3;
-  GdkColor dstep3_bg_color = { 0, 6425, 6425, 28784 };
-  GdkColor dstep3_logo_bg_color = { 0, 65535, 65535, 65535 };
-  GdkColor dstep3_title_color = { 0, 65535, 65535, 65535 };
   GtkWidget *druid_vbox1;
   GtkWidget *fixed3;
   GtkWidget *label13;
@@ -1613,18 +1596,12 @@ create_wizard (void)
   GtkWidget *chconformingto;
   GtkWidget *chnotes;
   GtkWidget *chbugs;
-  GtkWidget *dthe_end;
-  GdkColor dthe_end_bg_color = { 0, 6425, 6425, 28784 };
-  GdkColor dthe_end_textbox_color = { 0, 65535, 65535, 65535 };
-  GdkColor dthe_end_logo_bg_color = { 0, 65535, 65535, 65535 };
-  GdkColor dthe_end_title_color = { 0, 65535, 65535, 65535 };
   GtkTooltips *tooltips;
   GdkPixbuf *icon_pixbuf;
 
   tooltips = gtk_tooltips_new ();
 
-  wizard = gtk_window_new (GTK_WINDOW_TOPLEVEL);
-  gtk_object_set_data (GTK_OBJECT (wizard), "wizard", wizard);
+  wizard = gtk_assistant_new ();
   gtk_window_set_title (GTK_WINDOW (wizard), _("Gmanedit - Wizard"));
   gtk_window_set_position (GTK_WINDOW (wizard), GTK_WIN_POS_CENTER);
   gtk_window_set_modal (GTK_WINDOW (wizard), TRUE);
@@ -1633,51 +1610,19 @@ create_wizard (void)
   gtk_window_set_icon (GTK_WINDOW (wizard), icon_pixbuf);
 
 
-  icon_pixbuf = create_image ("gmanedit.png");
-  druid = gnome_druid_new ();
-  gtk_widget_ref (druid);
-  gtk_object_set_data_full (GTK_OBJECT (wizard), "druid", druid,
-                            (GtkDestroyNotify) gtk_widget_unref);
-  gtk_widget_show (druid);
-  gtk_container_add (GTK_CONTAINER (wizard), druid);
+  GtkWidget *labelbegin = gtk_label_new (_("Welcome to the Gmanedit Man Pages Wizard. Follow the next steps to build a Basic Man Page"));
+  gtk_label_set_line_wrap (GTK_LABEL(labelbegin), TRUE);
+  gtk_widget_show (labelbegin);
+  gtk_assistant_append_page (GTK_ASSISTANT (wizard), labelbegin);
+  gtk_assistant_set_page_title (GTK_ASSISTANT (wizard), labelbegin, _("Welcome"));
+  gtk_assistant_set_page_type (GTK_ASSISTANT (wizard), labelbegin, GTK_ASSISTANT_PAGE_INTRO);
+  gtk_assistant_set_page_complete (GTK_ASSISTANT (wizard), labelbegin, TRUE);
 
-  dwelcome = gnome_druid_page_edge_new (GNOME_EDGE_START);
-  gtk_widget_ref (dwelcome);
-  gtk_object_set_data_full (GTK_OBJECT (wizard), "dwelcome", dwelcome,
-                            (GtkDestroyNotify) gtk_widget_unref);
-  gtk_widget_show (dwelcome);
-  gnome_druid_append_page (GNOME_DRUID (druid), GNOME_DRUID_PAGE (dwelcome));
-  gnome_druid_set_page (GNOME_DRUID (druid), GNOME_DRUID_PAGE (dwelcome));
-  gnome_druid_page_edge_set_bg_color (GNOME_DRUID_PAGE_EDGE (dwelcome), &dwelcome_bg_color);
-  gnome_druid_page_edge_set_textbox_color (GNOME_DRUID_PAGE_EDGE (dwelcome), &dwelcome_textbox_color);
-  gnome_druid_page_edge_set_logo_bg_color (GNOME_DRUID_PAGE_EDGE (dwelcome), &dwelcome_logo_bg_color);
-  gnome_druid_page_edge_set_title_color (GNOME_DRUID_PAGE_EDGE (dwelcome), &dwelcome_title_color);
-  gnome_druid_page_edge_set_title (GNOME_DRUID_PAGE_EDGE (dwelcome), _("Welcome"));
-  gnome_druid_page_edge_set_text (GNOME_DRUID_PAGE_EDGE (dwelcome), _("Welcome to the Gmanedit Man Pages Wizard. \nFollow the next steps to build a Basic Man Page."));
-  gnome_druid_page_edge_set_logo (GNOME_DRUID_PAGE_EDGE (dwelcome), icon_pixbuf);
-
-  dstep1 = gnome_druid_page_standard_new ();
-  gtk_widget_ref (dstep1);
-  gtk_object_set_data_full (GTK_OBJECT (wizard), "dstep1", dstep1,
-                            (GtkDestroyNotify) gtk_widget_unref);
-  gtk_widget_show_all (dstep1);
-  gnome_druid_append_page (GNOME_DRUID (druid), GNOME_DRUID_PAGE (dstep1));
-  gnome_druid_page_standard_set_bg_color (GNOME_DRUID_PAGE_STANDARD (dstep1), &dstep1_bg_color);
-  gnome_druid_page_standard_set_logo_bg_color (GNOME_DRUID_PAGE_STANDARD (dstep1), &dstep1_logo_bg_color);
-  gnome_druid_page_standard_set_title_color (GNOME_DRUID_PAGE_STANDARD (dstep1), &dstep1_title_color);
-  gnome_druid_page_standard_set_title (GNOME_DRUID_PAGE_STANDARD (dstep1), _("Step 1: Basic Information"));
-  gnome_druid_page_standard_set_logo (GNOME_DRUID_PAGE_STANDARD (dstep1), icon_pixbuf);
-
-  druid_vbox2 = GNOME_DRUID_PAGE_STANDARD (dstep1)->vbox;
-  gtk_widget_ref (druid_vbox2);
-  gtk_object_set_data_full (GTK_OBJECT (wizard), "druid_vbox2", druid_vbox2,
-                            (GtkDestroyNotify) gtk_widget_unref);
+  druid_vbox2 = gtk_vbox_new (FALSE, 0);
   gtk_widget_show (druid_vbox2);
 
   fixed1 = gtk_fixed_new ();
   gtk_widget_ref (fixed1);
-  gtk_object_set_data_full (GTK_OBJECT (wizard), "fixed1", fixed1,
-                            (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (fixed1);
   gtk_box_pack_start (GTK_BOX (druid_vbox2), fixed1, TRUE, TRUE, 0);
 
@@ -1687,9 +1632,9 @@ create_wizard (void)
                             (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (mname);
   gtk_fixed_put (GTK_FIXED (fixed1), mname, 248, 24);
-  gtk_widget_set_uposition (mname, 248, 24);
   gtk_widget_set_usize (mname, 158, 26);
   gtk_tooltips_set_tip (tooltips, mname, _("Short name to the man page (example: gmanedit)"), NULL);
+  
 
   mdate = gtk_entry_new ();
   gtk_widget_ref (mdate);
@@ -1697,7 +1642,6 @@ create_wizard (void)
                             (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (mdate);
   gtk_fixed_put (GTK_FIXED (fixed1), mdate, 248, 80);
-  gtk_widget_set_uposition (mdate, 248, 80);
   gtk_widget_set_usize (mdate, 158, 26);
   gtk_tooltips_set_tip (tooltips, mdate, _("Creation date (default today)"), NULL);
 
@@ -1707,7 +1651,6 @@ create_wizard (void)
                             (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (mtitle);
   gtk_fixed_put (GTK_FIXED (fixed1), mtitle, 248, 136);
-  gtk_widget_set_uposition (mtitle, 248, 136);
   gtk_widget_set_usize (mtitle, 158, 26);
   gtk_tooltips_set_tip (tooltips, mtitle, _("Long man page name or title"), NULL);
 
@@ -1717,7 +1660,6 @@ create_wizard (void)
                             (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (mauthor);
   gtk_fixed_put (GTK_FIXED (fixed1), mauthor, 248, 192);
-  gtk_widget_set_uposition (mauthor, 248, 192);
   gtk_widget_set_usize (mauthor, 158, 26);
   gtk_tooltips_set_tip (tooltips, mauthor, _("First_Name Last_Name <my@email.com>"), NULL);
 
@@ -1727,7 +1669,6 @@ create_wizard (void)
                             (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (label14);
   gtk_fixed_put (GTK_FIXED (fixed1), label14, 64, 80);
-  gtk_widget_set_uposition (label14, 64, 80);
   gtk_widget_set_usize (label14, 176, 24);
   gtk_label_set_line_wrap (GTK_LABEL (label14), TRUE);
 
@@ -1737,7 +1678,6 @@ create_wizard (void)
                             (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (label15);
   gtk_fixed_put (GTK_FIXED (fixed1), label15, 64, 136);
-  gtk_widget_set_uposition (label15, 64, 136);
   gtk_widget_set_usize (label15, 176, 24);
   gtk_label_set_line_wrap (GTK_LABEL (label15), TRUE);
 
@@ -1747,9 +1687,9 @@ create_wizard (void)
                             (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (label16);
   gtk_fixed_put (GTK_FIXED (fixed1), label16, 64, 192);
-  gtk_widget_set_uposition (label16, 64, 192);
   gtk_widget_set_usize (label16, 120, 24);
   gtk_label_set_line_wrap (GTK_LABEL (label16), TRUE);
+
 
   label1 = gtk_label_new (_("Man page Name:"));
   gtk_widget_ref (label1);
@@ -1757,26 +1697,16 @@ create_wizard (void)
                             (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (label1);
   gtk_fixed_put (GTK_FIXED (fixed1), label1, 64, 24);
-  gtk_widget_set_uposition (label1, 64, 24);
   gtk_widget_set_usize (label1, 184, 24);
   gtk_label_set_line_wrap (GTK_LABEL (label1), TRUE);
 
-  dstep2 = gnome_druid_page_standard_new ();
-  gtk_widget_ref (dstep2);
-  gtk_object_set_data_full (GTK_OBJECT (wizard), "dstep2", dstep2,
-                            (GtkDestroyNotify) gtk_widget_unref);
-  gtk_widget_show_all (dstep2);
-  gnome_druid_append_page (GNOME_DRUID (druid), GNOME_DRUID_PAGE (dstep2));
-  gnome_druid_page_standard_set_bg_color (GNOME_DRUID_PAGE_STANDARD (dstep2), &dstep2_bg_color);
-  gnome_druid_page_standard_set_logo_bg_color (GNOME_DRUID_PAGE_STANDARD (dstep2), &dstep2_logo_bg_color);
-  gnome_druid_page_standard_set_title_color (GNOME_DRUID_PAGE_STANDARD (dstep2), &dstep2_title_color);
-  gnome_druid_page_standard_set_title (GNOME_DRUID_PAGE_STANDARD (dstep2), _("Step 2: Section number"));
-  gnome_druid_page_standard_set_logo (GNOME_DRUID_PAGE_STANDARD (dstep2), icon_pixbuf);
 
-  druid_vbox3 = GNOME_DRUID_PAGE_STANDARD (dstep2)->vbox;
-  gtk_widget_ref (druid_vbox3);
-  gtk_object_set_data_full (GTK_OBJECT (wizard), "druid_vbox3", druid_vbox3,
-                            (GtkDestroyNotify) gtk_widget_unref);
+  gtk_assistant_append_page (GTK_ASSISTANT (wizard), druid_vbox2);
+  gtk_assistant_set_page_title (GTK_ASSISTANT (wizard), druid_vbox2, _("Step 1: Basic Information"));
+  gtk_assistant_set_page_type (GTK_ASSISTANT (wizard), druid_vbox2, GTK_ASSISTANT_PAGE_CONTENT);
+  gtk_assistant_set_page_complete (GTK_ASSISTANT (wizard), druid_vbox2, TRUE);
+
+  druid_vbox3 = gtk_vbox_new (FALSE, 0);
   gtk_widget_show (druid_vbox3);
 
   fixed2 = gtk_fixed_new ();
@@ -1792,7 +1722,6 @@ create_wizard (void)
                             (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (label8);
   gtk_fixed_put (GTK_FIXED (fixed2), label8, 32, 136);
-  gtk_widget_set_uposition (label8, 32, 136);
   gtk_widget_set_usize (label8, 224, 40);
   gtk_label_set_line_wrap (GTK_LABEL (label8), TRUE);
 
@@ -1802,7 +1731,6 @@ create_wizard (void)
                             (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (label2);
   gtk_fixed_put (GTK_FIXED (fixed2), label2, 56, 208);
-  gtk_widget_set_uposition (label2, 56, 208);
   gtk_widget_set_usize (label2, 144, 24);
 
   label9 = gtk_label_new (_("Section 6: Games"));
@@ -1811,7 +1739,6 @@ create_wizard (void)
                             (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (label9);
   gtk_fixed_put (GTK_FIXED (fixed2), label9, 264, 40);
-  gtk_widget_set_uposition (label9, 264, 40);
   gtk_widget_set_usize (label9, 184, 24);
   gtk_label_set_line_wrap (GTK_LABEL (label9), TRUE);
 
@@ -1821,7 +1748,6 @@ create_wizard (void)
                             (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (label10);
   gtk_fixed_put (GTK_FIXED (fixed2), label10, 264, 64);
-  gtk_widget_set_uposition (label10, 264, 64);
   gtk_widget_set_usize (label10, 240, 40);
   gtk_label_set_line_wrap (GTK_LABEL (label10), TRUE);
 
@@ -1831,7 +1757,6 @@ create_wizard (void)
                             (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (label11);
   gtk_fixed_put (GTK_FIXED (fixed2), label11, 264, 104);
-  gtk_widget_set_uposition (label11, 264, 104);
   gtk_widget_set_usize (label11, 240, 40);
   gtk_label_set_line_wrap (GTK_LABEL (label11), TRUE);
 
@@ -1841,7 +1766,6 @@ create_wizard (void)
                             (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (label12);
   gtk_fixed_put (GTK_FIXED (fixed2), label12, 264, 152);
-  gtk_widget_set_uposition (label12, 264, 152);
   gtk_widget_set_usize (label12, 240, 24);
 
   label7 = gtk_label_new (_("Section 4: Special files"));
@@ -1850,7 +1774,6 @@ create_wizard (void)
                             (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (label7);
   gtk_fixed_put (GTK_FIXED (fixed2), label7, 0, 112);
-  gtk_widget_set_uposition (label7, 0, 112);
   gtk_widget_set_usize (label7, 232, 24);
 
   label6 = gtk_label_new (_("Section 3: Library calls"));
@@ -1859,7 +1782,6 @@ create_wizard (void)
                             (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (label6);
   gtk_fixed_put (GTK_FIXED (fixed2), label6, 0, 88);
-  gtk_widget_set_uposition (label6, 0, 88);
   gtk_widget_set_usize (label6, 232, 24);
 
   label5 = gtk_label_new (_("Section 2: System calls"));
@@ -1868,7 +1790,6 @@ create_wizard (void)
                             (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (label5);
   gtk_fixed_put (GTK_FIXED (fixed2), label5, 0, 64);
-  gtk_widget_set_uposition (label5, 0, 64);
   gtk_widget_set_usize (label5, 240, 24);
 
   label4 = gtk_label_new (_("Section 1: Commands"));
@@ -1877,7 +1798,6 @@ create_wizard (void)
                             (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (label4);
   gtk_fixed_put (GTK_FIXED (fixed2), label4, 0, 40);
-  gtk_widget_set_uposition (label4, 0, 40);
   gtk_widget_set_usize (label4, 232, 24);
 
   label3 = gtk_label_new (_("There are 9 sections for man pages. Select one:"));
@@ -1886,7 +1806,6 @@ create_wizard (void)
                             (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (label3);
   gtk_fixed_put (GTK_FIXED (fixed2), label3, 0, 16);
-  gtk_widget_set_uposition (label3, 0, 16);
   gtk_widget_set_usize (label3, 504, 16);
 
   combo1 = gtk_combo_new ();
@@ -1895,7 +1814,6 @@ create_wizard (void)
                             (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (combo1);
   gtk_fixed_put (GTK_FIXED (fixed2), combo1, 240, 208);
-  gtk_widget_set_uposition (combo1, 240, 208);
   gtk_widget_set_usize (combo1, 175, 26);
   GTK_WIDGET_SET_FLAGS (combo1, GTK_CAN_FOCUS);
   gtk_combo_set_value_in_list (GTK_COMBO (combo1), TRUE, FALSE);
@@ -1919,21 +1837,12 @@ create_wizard (void)
   gtk_tooltips_set_tip (tooltips, snumber, _("Select section number"), NULL);
   gtk_entry_set_text (GTK_ENTRY (snumber), _("1"));
 
-  dstep3 = gnome_druid_page_standard_new ();
-  gtk_widget_ref (dstep3);
-  gtk_object_set_data_full (GTK_OBJECT (wizard), "dstep3", dstep3,
-                            (GtkDestroyNotify) gtk_widget_unref);
-  gtk_widget_show_all (dstep3);
-  gnome_druid_append_page (GNOME_DRUID (druid), GNOME_DRUID_PAGE (dstep3));
-  gnome_druid_page_standard_set_bg_color (GNOME_DRUID_PAGE_STANDARD (dstep3), &dstep3_bg_color);
-  gnome_druid_page_standard_set_logo_bg_color (GNOME_DRUID_PAGE_STANDARD (dstep3), &dstep3_logo_bg_color);
-  gnome_druid_page_standard_set_title_color (GNOME_DRUID_PAGE_STANDARD (dstep3), &dstep3_title_color);
-  gnome_druid_page_standard_set_title (GNOME_DRUID_PAGE_STANDARD (dstep3), _("Step 3: Man Sections"));
-  gnome_druid_page_standard_set_logo (GNOME_DRUID_PAGE_STANDARD (dstep3), icon_pixbuf);
-  druid_vbox1 = GNOME_DRUID_PAGE_STANDARD (dstep3)->vbox;
-  gtk_widget_ref (druid_vbox1);
-  gtk_object_set_data_full (GTK_OBJECT (wizard), "druid_vbox1", druid_vbox1,
-                            (GtkDestroyNotify) gtk_widget_unref);
+  gtk_assistant_append_page (GTK_ASSISTANT (wizard), druid_vbox3);
+  gtk_assistant_set_page_title (GTK_ASSISTANT (wizard), druid_vbox3, _("Step 2: Section number"));
+  gtk_assistant_set_page_type (GTK_ASSISTANT (wizard), druid_vbox3, GTK_ASSISTANT_PAGE_CONTENT);
+  gtk_assistant_set_page_complete (GTK_ASSISTANT (wizard), druid_vbox3, TRUE);
+
+  druid_vbox1 = gtk_vbox_new (FALSE, 0);
   gtk_widget_show (druid_vbox1);
 
   fixed3 = gtk_fixed_new ();
@@ -1949,7 +1858,6 @@ create_wizard (void)
                             (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (label13);
   gtk_fixed_put (GTK_FIXED (fixed3), label13, 64, 16);
-  gtk_widget_set_uposition (label13, 64, 16);
   gtk_widget_set_usize (label13, 344, 24);
 
   cherrorh = gtk_check_button_new_with_label (_("ERROR HANDLING"));
@@ -1958,7 +1866,6 @@ create_wizard (void)
                             (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (cherrorh);
   gtk_fixed_put (GTK_FIXED (fixed3), cherrorh, 16, 184);
-  gtk_widget_set_uposition (cherrorh, 16, 184);
   gtk_widget_set_usize (cherrorh, 176, 24);
 
   chenvironment = gtk_check_button_new_with_label (_("ENVIRONMENT"));
@@ -1967,7 +1874,6 @@ create_wizard (void)
                             (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (chenvironment);
   gtk_fixed_put (GTK_FIXED (fixed3), chenvironment, 192, 184);
-  gtk_widget_set_uposition (chenvironment, 192, 184);
   gtk_widget_set_usize (chenvironment, 152, 24);
 
   chfiles = gtk_check_button_new_with_label (_("FILES"));
@@ -1976,7 +1882,6 @@ create_wizard (void)
                             (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (chfiles);
   gtk_fixed_put (GTK_FIXED (fixed3), chfiles, 192, 152);
-  gtk_widget_set_uposition (chfiles, 192, 152);
   gtk_widget_set_usize (chfiles, 121, 28);
 
   chusage = gtk_check_button_new_with_label (_("USAGE"));
@@ -1985,7 +1890,6 @@ create_wizard (void)
                             (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (chusage);
   gtk_fixed_put (GTK_FIXED (fixed3), chusage, 192, 120);
-  gtk_widget_set_uposition (chusage, 192, 120);
   gtk_widget_set_usize (chusage, 121, 28);
 
   cherrors = gtk_check_button_new_with_label (_("ERRORS"));
@@ -1994,7 +1898,6 @@ create_wizard (void)
                             (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (cherrors);
   gtk_fixed_put (GTK_FIXED (fixed3), cherrors, 192, 56);
-  gtk_widget_set_uposition (cherrors, 192, 56);
   gtk_widget_set_usize (cherrors, 121, 28);
 
   chsynopsis = gtk_check_button_new_with_label (_("SYNOPSIS"));
@@ -2003,7 +1906,6 @@ create_wizard (void)
                             (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (chsynopsis);
   gtk_fixed_put (GTK_FIXED (fixed3), chsynopsis, 16, 88);
-  gtk_widget_set_uposition (chsynopsis, 16, 88);
   gtk_widget_set_usize (chsynopsis, 121, 28);
   gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (chsynopsis), TRUE);
 
@@ -2013,7 +1915,6 @@ create_wizard (void)
                             (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (chdescription);
   gtk_fixed_put (GTK_FIXED (fixed3), chdescription, 16, 120);
-  gtk_widget_set_uposition (chdescription, 16, 120);
   gtk_widget_set_usize (chdescription, 136, 24);
   gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (chdescription), TRUE);
 
@@ -2023,7 +1924,6 @@ create_wizard (void)
                             (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (choptions);
   gtk_fixed_put (GTK_FIXED (fixed3), choptions, 192, 88);
-  gtk_widget_set_uposition (choptions, 192, 88);
   gtk_widget_set_usize (choptions, 121, 28);
   gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (choptions), TRUE);
 
@@ -2033,7 +1933,6 @@ create_wizard (void)
                             (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (chname);
   gtk_fixed_put (GTK_FIXED (fixed3), chname, 16, 56);
-  gtk_widget_set_uposition (chname, 16, 56);
   gtk_widget_set_usize (chname, 121, 28);
   gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (chname), TRUE);
 
@@ -2043,7 +1942,6 @@ create_wizard (void)
                             (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (chseealso);
   gtk_fixed_put (GTK_FIXED (fixed3), chseealso, 112, 208);
-  gtk_widget_set_uposition (chseealso, 112, 208);
   gtk_widget_set_usize (chseealso, 121, 28);
   gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (chseealso), TRUE);
 
@@ -2053,7 +1951,6 @@ create_wizard (void)
                             (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (chauthor);
   gtk_fixed_put (GTK_FIXED (fixed3), chauthor, 272, 208);
-  gtk_widget_set_uposition (chauthor, 272, 208);
   gtk_widget_set_usize (chauthor, 121, 28);
   gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (chauthor), TRUE);
 
@@ -2063,7 +1960,6 @@ create_wizard (void)
                             (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (chreturnvalues);
   gtk_fixed_put (GTK_FIXED (fixed3), chreturnvalues, 16, 152);
-  gtk_widget_set_uposition (chreturnvalues, 16, 152);
   gtk_widget_set_usize (chreturnvalues, 160, 32);
 
   chdiagnostics = gtk_check_button_new_with_label (_("DIAGNOSTICS"));
@@ -2072,7 +1968,6 @@ create_wizard (void)
                             (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (chdiagnostics);
   gtk_fixed_put (GTK_FIXED (fixed3), chdiagnostics, 336, 56);
-  gtk_widget_set_uposition (chdiagnostics, 336, 56);
   gtk_widget_set_usize (chdiagnostics, 144, 24);
 
   chsecurity = gtk_check_button_new_with_label (_("SECURITY"));
@@ -2081,7 +1976,6 @@ create_wizard (void)
                             (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (chsecurity);
   gtk_fixed_put (GTK_FIXED (fixed3), chsecurity, 336, 88);
-  gtk_widget_set_uposition (chsecurity, 336, 88);
   gtk_widget_set_usize (chsecurity, 121, 28);
 
   chconformingto = gtk_check_button_new_with_label (_("CONFORMING TO"));
@@ -2090,7 +1984,6 @@ create_wizard (void)
                             (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (chconformingto);
   gtk_fixed_put (GTK_FIXED (fixed3), chconformingto, 336, 120);
-  gtk_widget_set_uposition (chconformingto, 336, 120);
   gtk_widget_set_usize (chconformingto, 168, 32);
 
   chnotes = gtk_check_button_new_with_label (_("NOTES"));
@@ -2099,7 +1992,6 @@ create_wizard (void)
                             (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (chnotes);
   gtk_fixed_put (GTK_FIXED (fixed3), chnotes, 336, 152);
-  gtk_widget_set_uposition (chnotes, 336, 152);
   gtk_widget_set_usize (chnotes, 121, 28);
 
   chbugs = gtk_check_button_new_with_label (_("BUGS"));
@@ -2108,45 +2000,28 @@ create_wizard (void)
                             (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (chbugs);
   gtk_fixed_put (GTK_FIXED (fixed3), chbugs, 336, 184);
-  gtk_widget_set_uposition (chbugs, 336, 184);
   gtk_widget_set_usize (chbugs, 121, 28);
   gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (chbugs), TRUE);
 
-  dthe_end = gnome_druid_page_edge_new (GNOME_EDGE_FINISH);
-  gtk_widget_ref (dthe_end);
-  gtk_object_set_data_full (GTK_OBJECT (wizard), "dthe_end", dthe_end,
-                            (GtkDestroyNotify) gtk_widget_unref);
-  gtk_widget_show (dthe_end);
-  gnome_druid_append_page (GNOME_DRUID (druid), GNOME_DRUID_PAGE (dthe_end));
-  gnome_druid_page_edge_set_bg_color (GNOME_DRUID_PAGE_EDGE (dthe_end), &dthe_end_bg_color);
-  gnome_druid_page_edge_set_textbox_color (GNOME_DRUID_PAGE_EDGE (dthe_end), &dthe_end_textbox_color);
-  gnome_druid_page_edge_set_logo_bg_color (GNOME_DRUID_PAGE_EDGE (dthe_end), &dthe_end_logo_bg_color);
-  gnome_druid_page_edge_set_title_color (GNOME_DRUID_PAGE_EDGE (dthe_end), &dthe_end_title_color);
-  gnome_druid_page_edge_set_title (GNOME_DRUID_PAGE_EDGE (dthe_end), _("The End"));
-  gnome_druid_page_edge_set_text (GNOME_DRUID_PAGE_EDGE (dthe_end), _("Thank you for using me!\nYou can now edit the man page with\ngmanedit to change and complete the\ntext."));
-  gnome_druid_page_edge_set_logo (GNOME_DRUID_PAGE_EDGE (dthe_end), icon_pixbuf);
+  gtk_assistant_append_page (GTK_ASSISTANT (wizard), druid_vbox1);
+  gtk_assistant_set_page_title (GTK_ASSISTANT (wizard), druid_vbox1, _("Step 3: Man Sections"));
+  gtk_assistant_set_page_type (GTK_ASSISTANT (wizard), druid_vbox1, GTK_ASSISTANT_PAGE_CONTENT);
+  gtk_assistant_set_page_complete (GTK_ASSISTANT (wizard), druid_vbox1, TRUE);
 
-  gtk_signal_connect (GTK_OBJECT (druid), "cancel",
-                      GTK_SIGNAL_FUNC (on_druid_cancel),
-                      NULL);
-  gtk_signal_connect (GTK_OBJECT (dwelcome), "next",
-                      GTK_SIGNAL_FUNC (on_dwelcome_next),
-                      NULL);
-  gtk_signal_connect (GTK_OBJECT (dstep1), "next",
-                      GTK_SIGNAL_FUNC (on_dstep1_next),
-                      NULL);
-  gtk_signal_connect (GTK_OBJECT (dstep2), "next",
-                      GTK_SIGNAL_FUNC (on_dstep2_next),
-                      NULL);
-  gtk_signal_connect (GTK_OBJECT (dstep3), "next",
-                      GTK_SIGNAL_FUNC (on_dstep3_next),
-                      NULL);
-  gtk_signal_connect (GTK_OBJECT (dthe_end), "finish",
-                      GTK_SIGNAL_FUNC (on_dthe_end_finish),
-                      NULL);
 
-  gtk_object_set_data (GTK_OBJECT (wizard), "tooltips", tooltips);
+  GtkWidget *labelend = gtk_label_new (_("Thank you for using me! You can now edit the man page with gmanedit to change and complete the text"));
+  gtk_label_set_line_wrap (GTK_LABEL(labelend), TRUE);
+  gtk_widget_show (labelend);
+  gtk_assistant_append_page (GTK_ASSISTANT (wizard), labelend);
+  gtk_assistant_set_page_title (GTK_ASSISTANT (wizard), labelend, _("The End"));
+  gtk_assistant_set_page_type (GTK_ASSISTANT (wizard), labelend, GTK_ASSISTANT_PAGE_CONFIRM);
+  gtk_assistant_set_page_complete (GTK_ASSISTANT (wizard), labelend, TRUE);
 
+  g_signal_connect (G_OBJECT (wizard), "close",
+                    G_CALLBACK (on_dthe_end_finish), NULL);
+  
+  g_signal_connect (G_OBJECT (wizard), "cancel",
+                    G_CALLBACK (on_assistant_cancel), NULL);
   return wizard;
 }
 

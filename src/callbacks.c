@@ -56,7 +56,7 @@ gint in_gzip=0;
 static void save_as(GtkWidget *main_window);
 static void mensaje (gchar *msg,gchar *tipo);
 static gchar *ReadConfFromFile(gchar *variable);
-void insert_label(const gchar *base,const gchar *text_info, GtkWidget *menuitem);
+static void insert_label(const gchar *base,const gchar *text_info, GtkWidget *item);
 static void help_without_gnome(GtkWidget *wid);
 static void help_with_gnome(GtkWidget *wid);
 static void open_man_file(GtkWidget *wid);
@@ -1187,48 +1187,16 @@ on_new_wizard_page1_activate           (GtkMenuItem     *menuitem,
 	gtk_object_set_data(GTK_OBJECT(wizard),MainWindowKey,menuitem);
 }
 
-
 void
-on_druid_cancel                        (GnomeDruid      *gnomedruid,
+on_assistant_cancel                    (GtkAssistant *assistant,
                                         gpointer         user_data)
 {
-	gtk_widget_destroy(wizard);
-	wizard=NULL;
-}
-
-
-gboolean
-on_dstep1_next                         (GnomeDruidPage  *gnomedruidpage,
-                                        gpointer         arg1,
-                                        gpointer         user_data)
-{
-     return FALSE;
-}
-
-
-gboolean
-on_dstep2_next                         (GnomeDruidPage  *gnomedruidpage,
-                                        gpointer         arg1,
-                                        gpointer         user_data)
-{
-
-  return FALSE;
-}
-
-
-gboolean
-on_dstep3_next                         (GnomeDruidPage  *gnomedruidpage,
-                                        gpointer         arg1,
-                                        gpointer         user_data)
-{
-
-  return FALSE;
+	gtk_widget_destroy (GTK_WIDGET(assistant));
 }
 
 
 void
-on_dthe_end_finish                     (GnomeDruidPage  *gnomedruidpage,
-                                        gpointer         arg1,
+on_dthe_end_finish                     (GtkAssistant *assistant,
                                         gpointer         user_data)
 {
    GtkWidget *ch,*text,*druid,*main_window;
@@ -1237,28 +1205,28 @@ on_dthe_end_finish                     (GnomeDruidPage  *gnomedruidpage,
 
 
 /* Init for main_window */
-   druid = gtk_widget_get_toplevel (GTK_WIDGET (gnomedruidpage));
+   druid = gtk_widget_get_toplevel (GTK_WIDGET (assistant));
    main_window = gtk_object_get_data (GTK_OBJECT (druid), MainWindowKey);
 
 
 /* First, I get man page name from step 1 */
-   text = lookup_widget(GTK_WIDGET(gnomedruidpage), "mname");
+   text = lookup_widget(GTK_WIDGET(assistant), "mname");
    nombre = gtk_editable_get_chars(GTK_EDITABLE(text),0,-1);
 
 /* Date from step 1 */
-   text = lookup_widget(GTK_WIDGET(gnomedruidpage), "mdate");
+   text = lookup_widget(GTK_WIDGET(assistant), "mdate");
    date = gtk_editable_get_chars(GTK_EDITABLE(text),0,-1);
 
 /* Title from step 1 */
-   text = lookup_widget(GTK_WIDGET(gnomedruidpage), "mtitle");
+   text = lookup_widget(GTK_WIDGET(assistant), "mtitle");
    title = gtk_editable_get_chars(GTK_EDITABLE(text),0,-1);
 
 /* Author from step 1 */
-   text = lookup_widget(GTK_WIDGET(gnomedruidpage), "mauthor");
+   text = lookup_widget(GTK_WIDGET(assistant), "mauthor");
    author = gtk_editable_get_chars(GTK_EDITABLE(text),0,-1);
 
 /* Section number from combo */
-   text = lookup_widget(GTK_WIDGET(gnomedruidpage), "snumber");
+   text = lookup_widget(GTK_WIDGET(assistant), "snumber");
    snumber = gtk_editable_get_chars(GTK_EDITABLE(text),0,-1);
 
 /* Page Start */
@@ -1276,7 +1244,7 @@ http://gmanedit.sourceforge.net\n.\\\"Sergio Rua <srua@gpul.org>\n.\\\"\n");
    strcat(cadena,"\"\n\n");
    
 /* Section NAME */
-   ch = lookup_widget (GTK_WIDGET (gnomedruidpage), "chname");
+   ch = lookup_widget (GTK_WIDGET (assistant), "chname");
    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
    {
 	strcat(cadena,_(".SH NAME\n"));   
@@ -1285,7 +1253,7 @@ http://gmanedit.sourceforge.net\n.\\\"Sergio Rua <srua@gpul.org>\n.\\\"\n");
    }
 
 /* Section SYNOPSIS */
-   ch = lookup_widget (GTK_WIDGET (gnomedruidpage), "chsynopsis");
+   ch = lookup_widget (GTK_WIDGET (assistant), "chsynopsis");
    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
    {
 	strcat(cadena,_(".SH SYNOPSIS\n.B "));   
@@ -1294,7 +1262,7 @@ http://gmanedit.sourceforge.net\n.\\\"Sergio Rua <srua@gpul.org>\n.\\\"\n");
    }
 
 /* Section DESCRIPTION */
-   ch = lookup_widget (GTK_WIDGET (gnomedruidpage), "chdescription");
+   ch = lookup_widget (GTK_WIDGET (assistant), "chdescription");
    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
    {
 	strcat(cadena,_(".SH DESCRIPTION\nThis manual page explains the\n.B "));   
@@ -1305,74 +1273,74 @@ http://gmanedit.sourceforge.net\n.\\\"Sergio Rua <srua@gpul.org>\n.\\\"\n");
    }
 
 /* Section OPTIONS */
-   ch = lookup_widget (GTK_WIDGET (gnomedruidpage), "choptions");
+   ch = lookup_widget (GTK_WIDGET (assistant), "choptions");
    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
 	strcat(cadena,_(".SH OPTIONS\n.B\n.IP -OPTION\nThis option...\n\n"));   
 
 /* Section USAGE */
-   ch = lookup_widget (GTK_WIDGET (gnomedruidpage), "chusage");
+   ch = lookup_widget (GTK_WIDGET (assistant), "chusage");
    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
 	strcat(cadena,_(".SH USAGE\n\n"));   
 
 /* Section FILES */
-   ch = lookup_widget (GTK_WIDGET (gnomedruidpage), "chfiles");
+   ch = lookup_widget (GTK_WIDGET (assistant), "chfiles");
    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
 	strcat(cadena,_(".SH FILES\n\n"));   
 
 /* Section ENVIRONMENT */
-   ch = lookup_widget (GTK_WIDGET (gnomedruidpage), "chenvironment");
+   ch = lookup_widget (GTK_WIDGET (assistant), "chenvironment");
    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
 	strcat(cadena,_(".SH ENVIRONMENT\n\n"));   
 
 /* Section DIAGNOSTICS */
-   ch = lookup_widget (GTK_WIDGET (gnomedruidpage), "chdiagnostics");
+   ch = lookup_widget (GTK_WIDGET (assistant), "chdiagnostics");
    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
 	strcat(cadena,_(".SH DIAGNOSTICS\n\n"));   
 
 /* Section SECURITY */
-   ch = lookup_widget (GTK_WIDGET (gnomedruidpage), "chsecurity");
+   ch = lookup_widget (GTK_WIDGET (assistant), "chsecurity");
    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
 	strcat(cadena,_(".SH SECURITY\n\n"));   
 	
 /* Section RETURN VALUES */
-   ch = lookup_widget (GTK_WIDGET (gnomedruidpage), "chreturnvalues");
+   ch = lookup_widget (GTK_WIDGET (assistant), "chreturnvalues");
    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
 	strcat(cadena,".SH RETURN VALUES\n\n");   
 
 /* Section ERROR HANDLING */
-   ch = lookup_widget (GTK_WIDGET (gnomedruidpage), "chreturnvalues");
+   ch = lookup_widget (GTK_WIDGET (assistant), "chreturnvalues");
    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
 	strcat(cadena,_(".SH ERROR HANDLING\n\n"));   
 
 /* Section ERRORS */
-   ch = lookup_widget (GTK_WIDGET (gnomedruidpage), "cherrors");
+   ch = lookup_widget (GTK_WIDGET (assistant), "cherrors");
    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
 	strcat(cadena,_(".SH ERRORS\n\n"));   
 
 /* Section CONFORMING TO */
-   ch = lookup_widget (GTK_WIDGET (gnomedruidpage), "chconformingto");
+   ch = lookup_widget (GTK_WIDGET (assistant), "chconformingto");
    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
 	strcat(cadena,_(".SH CONFORMING TO\n\n"));   
 
 /* Section NOTES */
-   ch = lookup_widget (GTK_WIDGET (gnomedruidpage), "chnotes");
+   ch = lookup_widget (GTK_WIDGET (assistant), "chnotes");
    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
 	strcat(cadena,_(".SH NOTES\n\n"));   
 
 /* Section BUGS */
-   ch = lookup_widget (GTK_WIDGET (gnomedruidpage), "chbugs");
+   ch = lookup_widget (GTK_WIDGET (assistant), "chbugs");
    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
 	strcat(cadena,_(".SH BUGS\n\n"));   
 
 
 /* Section SEE ALSO */
-   ch = lookup_widget (GTK_WIDGET (gnomedruidpage), "chseealso");
+   ch = lookup_widget (GTK_WIDGET (assistant), "chseealso");
    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
 	strcat(cadena,_(".SH SEE ALSO\n\n"));   
 	
 	
 /* Section AUTHOR */
-   ch = lookup_widget (GTK_WIDGET (gnomedruidpage), "chauthor");
+   ch = lookup_widget (GTK_WIDGET (assistant), "chauthor");
    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
    {
 	strcat(cadena,_(".SH AUTHOR\n"));
@@ -1390,16 +1358,17 @@ http://gmanedit.sourceforge.net\n.\\\"Sergio Rua <srua@gpul.org>\n.\\\"\n");
    wizard=NULL;
 }
 
-void insert_label(const gchar *base,const gchar *text_info, GtkWidget *menuitem)
+static
+void insert_label(const gchar *base,const gchar *text_info, GtkWidget *item)
 {
 	GtkWidget *text,*statusbar;
 
-	text=lookup_widget(GTK_WIDGET(menuitem),"text");
+	text=lookup_widget(GTK_WIDGET(item),"text");
 	
 	gtk_text_insert(text,NULL,NULL,NULL,
 				_(base),strlen(base));
 	
-	statusbar = lookup_widget(GTK_WIDGET(menuitem),"statusbar1");
+	statusbar = lookup_widget(GTK_WIDGET(item),"statusbar1");
 	gtk_statusbar_pop (GTK_STATUSBAR (statusbar), 1);
 	gtk_statusbar_push (GTK_STATUSBAR (statusbar), 1, _(text_info));
 }

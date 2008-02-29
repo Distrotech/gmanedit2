@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gmanedit 0.4\n"
 "Report-Msgid-Bugs-To: pg4i@amsat.org\n"
-"POT-Creation-Date: 2008-02-27 15:17+0100\n"
+"POT-Creation-Date: 2008-02-27 15:27+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -316,7 +316,7 @@ msgstr ""
 msgid "Paste from clipboard"
 msgstr ""
 
-#: src/interface.c:1042 src/interface.c:1351
+#: src/interface.c:1042
 msgid "Exit"
 msgstr ""
 
@@ -333,7 +333,7 @@ msgid "Gmanedit - Saving file"
 msgstr ""
 
 #: src/interface.c:1200
-msgid "Search and replace"
+msgid "Gmanedit - Search and replace"
 msgstr ""
 
 #: src/interface.c:1219
@@ -364,12 +364,16 @@ msgstr ""
 msgid "Man Pages Editor"
 msgstr ""
 
+#: src/interface.c:1351
+msgid "Gmanedit - Exit"
+msgstr ""
+
 #: src/interface.c:1362
 msgid "Exit from gmanedit?"
 msgstr ""
 
 #: src/interface.c:1424
-msgid "Preferences"
+msgid "Gmanedit - Preferences"
 msgstr ""
 
 #: src/interface.c:1452
@@ -417,7 +421,7 @@ msgid "Use yelp"
 msgstr ""
 
 #: src/interface.c:1628
-msgid "Wizard"
+msgid "Gmanedit - Wizard"
 msgstr ""
 
 #: src/interface.c:1655
