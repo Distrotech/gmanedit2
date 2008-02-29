@@ -38,9 +38,46 @@ static const GtkActionEntry entries[] = {
   { "Wizard", NULL, N_("New _Wizard page"), NULL, "", on_new_wizard_page1_activate },
   { "Open", GTK_STOCK_OPEN, N_("_Open..."), NULL, "", on_abrir1_activate },
   { "Save", GTK_STOCK_SAVE, N_("_Save"), NULL, "", on_gardar1_activate },
-  { "Saveas", GTK_STOCK_SAVE_AS, N_("Save _As..."), NULL, "", on_gardar_como1_activate },
-  { "Exit", GTK_STOCK_QUIT, N_("_Quit"), NULL, "", on_sair4_activate },
+  { "SaveAs", GTK_STOCK_SAVE_AS, N_("Save _As..."), NULL, "", on_gardar_como1_activate },
+  { "Quit", GTK_STOCK_QUIT, N_("_Quit"), NULL, "", on_sair4_activate },
+  { "EditMenu", NULL, "_Edit" },
+  { "Cut", GTK_STOCK_CUT, N_("Cu_t"), NULL, "", on_cortar1_activate },
+  { "Copy", GTK_STOCK_COPY, N_("_Copy"), NULL, "", on_copiar1_activate },
+  { "Paste", GTK_STOCK_PASTE, N_("_Paste"), NULL, "", on_pegar1_activate },
+  { "SelectAll", GTK_STOCK_SELECT_ALL, N_("_Select All"), NULL, "", on_select_all1_activate },
 };
+
+static const char *ui_description =
+"<ui>"
+"  <menubar name='MainMenu'>"
+"        <menu action='FileMenu'>"
+"               <menuitem action='New'/>"
+"               <menuitem action='Wizard'/>"
+"               <menuitem action='Open'/>"
+"               <menuitem action='Save'/>"
+"               <menuitem action='SaveAs'/>"
+"               <separator name='sep1'/>"
+"               <menuitem action='Quit'/>"
+"        </menu>"
+"        <menu action='EditMenu'>"
+"               <menuitem action='Cut'/>"
+"               <menuitem action='Copy'/>"
+"               <menuitem action='Paste'/>"
+"               <menuitem action='SelectAll'/>"
+"        </menu>"
+"  </menubar>"
+"  <toolbar name='ToolBar'>"
+"        <toolitem action='New'/>"
+"        <toolitem action='Open'/>"
+"        <toolitem action='Save'/>"
+"        <separator name='septool1'/>"
+"        <toolitem action='Cut'/>"
+"        <toolitem action='Copy'/>"
+"        <toolitem action='Paste'/>"
+"        <separator name='septool2'/>"
+"        <toolitem action='Quit'/>"
+"  </toolbar>"
+"</ui>";
 
 static GnomeUIInfo mficheiro1_menu_uiinfo[] =
 {
@@ -569,7 +606,26 @@ create_wprincipal (void)
                             (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (vbox1);
   gtk_container_add (GTK_CONTAINER (wprincipal), vbox1);
-
+  
+  GtkActionGroup *action_group = gtk_action_group_new ("MenuActions");
+  gtk_action_group_set_translation_domain (action_group, PACKAGE);
+  gtk_action_group_add_actions (action_group, entries,
+                G_N_ELEMENTS (entries), wprincipal);
+  GtkUIManager *ui_manager = gtk_ui_manager_new ();
+  gtk_ui_manager_insert_action_group (ui_manager, action_group, 0);
+  GtkAccelGroup *accel_group = gtk_ui_manager_get_accel_group (ui_manager);
+  gtk_window_add_accel_group (GTK_WINDOW (wprincipal), accel_group);
+  
+  gtk_ui_manager_add_ui_from_string (ui_manager, ui_description, -1, NULL);
+  GtkWidget *menubar = gtk_ui_manager_get_widget (ui_manager, "/MainMenu");
+  gtk_box_pack_start (GTK_BOX (vbox1), menubar, FALSE, FALSE, 0);
+  
+  GtkWidget *handlebox = gtk_handle_box_new ();
+  gtk_box_pack_start (GTK_BOX (vbox1), handlebox, FALSE, FALSE, 0);
+  GtkWidget *toolbar = gtk_ui_manager_get_widget (ui_manager, "/ToolBar");
+  gtk_container_add (GTK_CONTAINER (handlebox), toolbar);
+  gtk_widget_show_all (handlebox);
+/*
   menu = gtk_menu_bar_new ();
   gtk_widget_ref (menu);
   gtk_object_set_data_full (GTK_OBJECT (wprincipal), "menu", menu,
@@ -1058,7 +1114,7 @@ create_wprincipal (void)
   gtk_object_set_data_full (GTK_OBJECT (wprincipal), "bexit", bexit,
                             (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (bexit);
-
+*/
   scrolledwindow1 = gtk_scrolled_window_new (NULL, NULL);
   gtk_widget_ref (scrolledwindow1);
   gtk_object_set_data_full (GTK_OBJECT (wprincipal), "scrolledwindow1", scrolledwindow1,
