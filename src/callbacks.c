@@ -944,16 +944,16 @@ on_data1_activate                      (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
 	GtkWidget *text,*statusbar;
-     time_t *fech;
+     time_t fech;
      struct tm *fecha;
      gchar cad[30];
-     gchar *meses[]={_("January"),_("February"),_("Mars"),_("April"),
-        		_("May"),_("June"),_("Jule"),_("August"),
+     gchar *meses[]={_("January"),_("February"),_("March"),_("April"),
+        		_("May"),_("June"),_("July"),_("August"),
         		_("September"),_("October"),_("November"),_("December")};
 
 	
-     time(fech);
-     fecha=localtime(fech);
+     time(&fech);
+     fecha=localtime(&fech);
 	
 	if (fecha!=NULL)
 	{
