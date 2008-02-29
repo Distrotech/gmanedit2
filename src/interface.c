@@ -31,6 +31,17 @@
 
 #define GTK_ENABLE_BROKEN 1
 
+/* Normal items */
+static const GtkActionEntry entries[] = {
+  { "FileMenu", NULL, "_File" },
+  { "New", GTK_STOCK_NEW, N_("_New"), NULL, "", on_novo1_activate },
+  { "Wizard", NULL, N_("New _Wizard page"), NULL, "", on_new_wizard_page1_activate },
+  { "Open", GTK_STOCK_OPEN, N_("_Open..."), NULL, "", on_abrir1_activate },
+  { "Save", GTK_STOCK_SAVE, N_("_Save"), NULL, "", on_gardar1_activate },
+  { "Saveas", GTK_STOCK_SAVE_AS, N_("Save _As..."), NULL, "", on_gardar_como1_activate },
+  { "Exit", GTK_STOCK_QUIT, N_("_Quit"), NULL, "", on_sair4_activate },
+};
+
 static GnomeUIInfo mficheiro1_menu_uiinfo[] =
 {
   GNOMEUIINFO_MENU_NEW_ITEM (N_("_New"), NULL, on_novo1_activate, NULL),
