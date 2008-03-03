@@ -1,27 +1,11 @@
 ## Process this file with automake to produce Makefile.in
 
 SUBDIRS = po src
+pixmapdir = $(datadir)/pixmaps
 
-install-data-local:
-	@$(NORMAL_INSTALL)
-	if test -d ../pixmaps; then \
-	  $(mkinstalldirs) $(datadir)/pixmaps; \
-	  for pixmap in ../pixmaps/*; do \
-	    if test -f $$pixmap; then \
-	      $(INSTALL_DATA) $$pixmap $(datadir)/pixmaps; \
-	    fi \
-	  done \
-	fi
-
-dist-hook:
-	if test -d pixmaps; then \
-	  mkdir $(distdir)/pixmaps; \
-	  for pixmap in pixmaps/*; do \
-	    if test -f $$pixmap; then \
-	      cp -p $$pixmap $(distdir)/pixmaps; \
-	    fi \
-	  done \
-	fi
+dist_pixmap_DATA = \
+	pixmaps/gmanedit_icon.png \
+	pixmaps/gmanedit.png
 
 man_MANS = gmanedit.1
 
@@ -33,3 +17,7 @@ desktop_DATA = $(DESKTOP_FILES)
 ACLOCAL_AMFLAGS = -I m4
 
 EXTRA_DIST = config.rpath $(DESKTOP_FILES) gmanedit.1
+
+uninstall-local:
+	rm -rf $(pkgdatadir)/*
+	rmdir $(pkgdatadir)

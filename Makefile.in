@@ -36,11 +36,11 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-DIST_COMMON = README $(am__configure_deps) $(srcdir)/Makefile.am \
-	$(srcdir)/Makefile.in $(top_srcdir)/configure ABOUT-NLS \
-	AUTHORS COPYING ChangeLog INSTALL NEWS TODO config.guess \
-	config.rpath config.sub depcomp install-sh missing \
-	mkinstalldirs
+DIST_COMMON = README $(am__configure_deps) $(dist_pixmap_DATA) \
+	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
+	$(top_srcdir)/configure ABOUT-NLS AUTHORS COPYING ChangeLog \
+	INSTALL NEWS TODO config.guess config.rpath config.sub depcomp \
+	install-sh missing mkinstalldirs
 subdir = .
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/configure.in
@@ -59,7 +59,8 @@ RECURSIVE_TARGETS = all-recursive check-recursive dvi-recursive \
 	pdf-recursive ps-recursive uninstall-info-recursive \
 	uninstall-recursive
 man1dir = $(mandir)/man1
-am__installdirs = "$(DESTDIR)$(man1dir)" "$(DESTDIR)$(desktopdir)"
+am__installdirs = "$(DESTDIR)$(man1dir)" "$(DESTDIR)$(desktopdir)" \
+	"$(DESTDIR)$(pixmapdir)"
 NROFF = nroff
 MANS = $(man_MANS)
 am__vpath_adj_setup = srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`;
@@ -69,7 +70,8 @@ am__vpath_adj = case $$p in \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 desktopDATA_INSTALL = $(INSTALL_DATA)
-DATA = $(desktop_DATA)
+dist_pixmapDATA_INSTALL = $(INSTALL_DATA)
+DATA = $(desktop_DATA) $(dist_pixmap_DATA)
 ETAGS = etags
 CTAGS = ctags
 DIST_SUBDIRS = $(SUBDIRS)
@@ -191,6 +193,11 @@ sharedstatedir = @sharedstatedir@
 sysconfdir = @sysconfdir@
 target_alias = @target_alias@
 SUBDIRS = po src
+pixmapdir = $(datadir)/pixmaps
+dist_pixmap_DATA = \
+	pixmaps/gmanedit_icon.png \
+	pixmaps/gmanedit.png
+
 man_MANS = gmanedit.1
 DESKTOP_FILES = gmanedit.desktop
 desktopdir = $(datadir)/applications
@@ -295,6 +302,23 @@ uninstall-desktopDATA:
 	  f=$(am__strip_dir) \
 	  echo " rm -f '$(DESTDIR)$(desktopdir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(desktopdir)/$$f"; \
+	done
+install-dist_pixmapDATA: $(dist_pixmap_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(pixmapdir)" || $(mkdir_p) "$(DESTDIR)$(pixmapdir)"
+	@list='$(dist_pixmap_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(dist_pixmapDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(pixmapdir)/$$f'"; \
+	  $(dist_pixmapDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(pixmapdir)/$$f"; \
+	done
+
+uninstall-dist_pixmapDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(dist_pixmap_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(pixmapdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(pixmapdir)/$$f"; \
 	done
 
 # This directory's subdirectories are mostly independent; you can cd
@@ -432,7 +456,7 @@ distclean-tags:
 distdir: $(DISTFILES)
 	$(am__remove_distdir)
 	mkdir $(distdir)
-	$(mkdir_p) $(distdir)/po
+	$(mkdir_p) $(distdir)/pixmaps $(distdir)/po
 	@srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`; \
 	topsrcdirstrip=`echo "$(top_srcdir)" | sed 's|.|.|g'`; \
 	list='$(DISTFILES)'; for file in $$list; do \
@@ -474,9 +498,6 @@ distdir: $(DISTFILES)
 	      || exit 1; \
 	  fi; \
 	done
-	$(MAKE) $(AM_MAKEFLAGS) \
-	  top_distdir="$(top_distdir)" distdir="$(distdir)" \
-	  dist-hook
 	-find $(distdir) -type d ! -perm -777 -exec chmod a+rwx {} \; -o \
 	  ! -type d ! -perm -444 -links 1 -exec chmod a+r {} \; -o \
 	  ! -type d ! -perm -400 -exec chmod a+r {} \; -o \
@@ -579,7 +600,7 @@ check: check-recursive
 all-am: Makefile $(MANS) $(DATA)
 installdirs: installdirs-recursive
 installdirs-am:
-	for dir in "$(DESTDIR)$(man1dir)" "$(DESTDIR)$(desktopdir)"; do \
+	for dir in "$(DESTDIR)$(man1dir)" "$(DESTDIR)$(desktopdir)" "$(DESTDIR)$(pixmapdir)"; do \
 	  test -z "$$dir" || $(mkdir_p) "$$dir"; \
 	done
 install: install-recursive
@@ -625,7 +646,8 @@ info: info-recursive
 
 info-am:
 
-install-data-am: install-data-local install-desktopDATA install-man
+install-data-am: install-desktopDATA install-dist_pixmapDATA \
+	install-man
 
 install-exec-am:
 
@@ -653,7 +675,8 @@ ps: ps-recursive
 
 ps-am:
 
-uninstall-am: uninstall-desktopDATA uninstall-info-am uninstall-man
+uninstall-am: uninstall-desktopDATA uninstall-dist_pixmapDATA \
+	uninstall-info-am uninstall-local uninstall-man
 
 uninstall-info: uninstall-info-recursive
 
@@ -661,42 +684,25 @@ uninstall-man: uninstall-man1
 
 .PHONY: $(RECURSIVE_TARGETS) CTAGS GTAGS all all-am am--refresh check \
 	check-am clean clean-generic clean-recursive ctags \
-	ctags-recursive dist dist-all dist-bzip2 dist-gzip dist-hook \
-	dist-shar dist-tarZ dist-zip distcheck distclean \
-	distclean-generic distclean-recursive distclean-tags \
-	distcleancheck distdir distuninstallcheck dvi dvi-am html \
-	html-am info info-am install install-am install-data \
-	install-data-am install-data-local install-desktopDATA \
-	install-exec install-exec-am install-info install-info-am \
-	install-man install-man1 install-strip installcheck \
-	installcheck-am installdirs installdirs-am maintainer-clean \
+	ctags-recursive dist dist-all dist-bzip2 dist-gzip dist-shar \
+	dist-tarZ dist-zip distcheck distclean distclean-generic \
+	distclean-recursive distclean-tags distcleancheck distdir \
+	distuninstallcheck dvi dvi-am html html-am info info-am \
+	install install-am install-data install-data-am \
+	install-desktopDATA install-dist_pixmapDATA install-exec \
+	install-exec-am install-info install-info-am install-man \
+	install-man1 install-strip installcheck installcheck-am \
+	installdirs installdirs-am maintainer-clean \
 	maintainer-clean-generic maintainer-clean-recursive \
 	mostlyclean mostlyclean-generic mostlyclean-recursive pdf \
 	pdf-am ps ps-am tags tags-recursive uninstall uninstall-am \
-	uninstall-desktopDATA uninstall-info-am uninstall-man \
-	uninstall-man1
+	uninstall-desktopDATA uninstall-dist_pixmapDATA \
+	uninstall-info-am uninstall-local uninstall-man uninstall-man1
 
 
-install-data-local:
-	@$(NORMAL_INSTALL)
-	if test -d ../pixmaps; then \
-	  $(mkinstalldirs) $(datadir)/pixmaps; \
-	  for pixmap in ../pixmaps/*; do \
-	    if test -f $$pixmap; then \
-	      $(INSTALL_DATA) $$pixmap $(datadir)/pixmaps; \
-	    fi \
-	  done \
-	fi
-
-dist-hook:
-	if test -d pixmaps; then \
-	  mkdir $(distdir)/pixmaps; \
-	  for pixmap in pixmaps/*; do \
-	    if test -f $$pixmap; then \
-	      cp -p $$pixmap $(distdir)/pixmaps; \
-	    fi \
-	  done \
-	fi
+uninstall-local:
+	rm -rf $(pkgdatadir)/*
+	rmdir $(pkgdatadir)
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:
