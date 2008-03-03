@@ -1382,6 +1382,7 @@ create_about (void)
   const gchar *authors[] = {
     "Sergio Rua <srua@gpul.org>",
     "Joop Stakenborg <pg4i@amsat.org>",
+    "Anibal Avelar <aavelar@cofradia.org>",
     NULL
   };
   const gchar *doc[] = {
