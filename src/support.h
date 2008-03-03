@@ -31,9 +31,5 @@
 GtkWidget*  lookup_widget              (GtkWidget       *widget,
                                         const gchar     *widget_name);
 
-GtkWidget*  create_pixmap              (GtkWidget       *widget,
-                                        const gchar     *filename,
-                                        gboolean         gnome_pixmap);
-
 GdkPixbuf* create_image            (const gchar     *filename);
 void add_pixmap_directory(const gchar *directory);

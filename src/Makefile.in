@@ -40,7 +40,11 @@ bin_PROGRAMS = gmanedit$(EXEEXT)
 subdir = src
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
-am__aclocal_m4_deps = $(top_srcdir)/configure.in
+am__aclocal_m4_deps = $(top_srcdir)/m4/gettext.m4 \
+	$(top_srcdir)/m4/iconv.m4 $(top_srcdir)/m4/lib-ld.m4 \
+	$(top_srcdir)/m4/lib-link.m4 $(top_srcdir)/m4/lib-prefix.m4 \
+	$(top_srcdir)/m4/nls.m4 $(top_srcdir)/m4/po.m4 \
+	$(top_srcdir)/m4/progtest.m4 $(top_srcdir)/configure.in
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
@@ -88,9 +92,9 @@ EXEEXT = @EXEEXT@
 GETTEXT_MACRO_VERSION = @GETTEXT_MACRO_VERSION@
 GMSGFMT = @GMSGFMT@
 GMSGFMT_015 = @GMSGFMT_015@
-GNOMEUI_CFLAGS = @GNOMEUI_CFLAGS@
-GNOMEUI_LIBS = @GNOMEUI_LIBS@
 GREP = @GREP@
+GTK_CFLAGS = @GTK_CFLAGS@
+GTK_LIBS = @GTK_LIBS@
 INSTALL_DATA = @INSTALL_DATA@
 INSTALL_PROGRAM = @INSTALL_PROGRAM@
 INSTALL_SCRIPT = @INSTALL_SCRIPT@
@@ -171,8 +175,9 @@ sharedstatedir = @sharedstatedir@
 sysconfdir = @sysconfdir@
 target_alias = @target_alias@
 INCLUDES = \
-	@GNOMEUI_CFLAGS@ \
-	-DDATADIR=\""$(datadir)"\"
+	@GTK_CFLAGS@ \
+	-DDATADIR=\""$(datadir)"\" \
+	-DLOCALEDIR=\""$(datadir)/locale"\"
 
 gmanedit_SOURCES = \
 	main.c \
@@ -181,7 +186,7 @@ gmanedit_SOURCES = \
 	callbacks.c callbacks.h
 
 gmanedit_LDADD = \
-	@GNOMEUI_LIBS@
+	@GTK_LIBS@
 
 all: all-am
 

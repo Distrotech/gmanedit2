@@ -13,20 +13,13 @@ if test "${ac_cv_c_compiler_gnu}" = "yes"; then
   CFLAGS="${CFLAGS} -Wall"
 fi
 
-PKG_CHECK_MODULES(GNOMEUI, libgnomeui-2.0)
-AC_SUBST(GNOMEUI_CFLAGS)
-AC_SUBST(GNOMEUI_LIBS)
+PKG_CHECK_MODULES(GTK, gtk+-2.0 >= 2.10.0)
+AC_SUBST(GTK_CFLAGS)
+AC_SUBST(GTK_LIBS)
 
 AM_GNU_GETTEXT([external])
 dnl Add the languages which your application supports here.
 ALL_LINGUAS="gl es ja ca"
-
-dnl Set PACKAGE_LOCALE_DIR in config.h.
-if test "x${prefix}" = "xNONE"; then
-  AC_DEFINE_UNQUOTED(PACKAGE_LOCALE_DIR, "${ac_default_prefix}/${DATADIRNAME}/locale")
-else
-  AC_DEFINE_UNQUOTED(PACKAGE_LOCALE_DIR, "${prefix}/${DATADIRNAME}/locale")
-fi
 
 AC_OUTPUT([
 Makefile

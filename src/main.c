@@ -47,7 +47,7 @@ main (int argc, char *argv[])
   GtkWidget *text;
 
 #ifdef ENABLE_NLS
-  bindtextdomain (PACKAGE, PACKAGE_LOCALE_DIR);
+  bindtextdomain (PACKAGE, LOCALEDIR);
   textdomain (PACKAGE);
 #endif
 

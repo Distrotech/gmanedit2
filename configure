@@ -658,8 +658,8 @@ CPP
 GREP
 EGREP
 PKG_CONFIG
-GNOMEUI_CFLAGS
-GNOMEUI_LIBS
+GTK_CFLAGS
+GTK_LIBS
 USE_NLS
 GETTEXT_MACRO_VERSION
 MSGFMT
@@ -698,8 +698,8 @@ LIBS
 CPPFLAGS
 CPP
 PKG_CONFIG
-GNOMEUI_CFLAGS
-GNOMEUI_LIBS'
+GTK_CFLAGS
+GTK_LIBS'
 
 
 # Initialize some variables set by options.
@@ -1303,10 +1303,8 @@ Some influential environment variables:
               you have headers in a nonstandard directory <include dir>
   CPP         C preprocessor
   PKG_CONFIG  path to pkg-config utility
-  GNOMEUI_CFLAGS
-              C compiler flags for GNOMEUI, overriding pkg-config
-  GNOMEUI_LIBS
-              linker flags for GNOMEUI, overriding pkg-config
+  GTK_CFLAGS  C compiler flags for GTK, overriding pkg-config
+  GTK_LIBS    linker flags for GTK, overriding pkg-config
 
 Use these variables to override the choices made by `configure' or to help
 it to find libraries and programs with nonstandard names/locations.
@@ -5649,20 +5647,20 @@ echo "${ECHO_T}no" >&6; }
 fi
 
 pkg_failed=no
-{ echo "$as_me:$LINENO: checking for GNOMEUI" >&5
-echo $ECHO_N "checking for GNOMEUI... $ECHO_C" >&6; }
+{ echo "$as_me:$LINENO: checking for GTK" >&5
+echo $ECHO_N "checking for GTK... $ECHO_C" >&6; }
 
 if test -n "$PKG_CONFIG"; then
-    if test -n "$GNOMEUI_CFLAGS"; then
-        pkg_cv_GNOMEUI_CFLAGS="$GNOMEUI_CFLAGS"
+    if test -n "$GTK_CFLAGS"; then
+        pkg_cv_GTK_CFLAGS="$GTK_CFLAGS"
     else
         if test -n "$PKG_CONFIG" && \
-    { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"libgnomeui-2.0\"") >&5
-  ($PKG_CONFIG --exists --print-errors "libgnomeui-2.0") 2>&5
+    { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"gtk+-2.0 >= 2.10.0\"") >&5
+  ($PKG_CONFIG --exists --print-errors "gtk+-2.0 >= 2.10.0") 2>&5
   ac_status=$?
   echo "$as_me:$LINENO: \$? = $ac_status" >&5
   (exit $ac_status); }; then
-  pkg_cv_GNOMEUI_CFLAGS=`$PKG_CONFIG --cflags "libgnomeui-2.0" 2>/dev/null`
+  pkg_cv_GTK_CFLAGS=`$PKG_CONFIG --cflags "gtk+-2.0 >= 2.10.0" 2>/dev/null`
 else
   pkg_failed=yes
 fi
@@ -5671,16 +5669,16 @@ else
 	pkg_failed=untried
 fi
 if test -n "$PKG_CONFIG"; then
-    if test -n "$GNOMEUI_LIBS"; then
-        pkg_cv_GNOMEUI_LIBS="$GNOMEUI_LIBS"
+    if test -n "$GTK_LIBS"; then
+        pkg_cv_GTK_LIBS="$GTK_LIBS"
     else
         if test -n "$PKG_CONFIG" && \
-    { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"libgnomeui-2.0\"") >&5
-  ($PKG_CONFIG --exists --print-errors "libgnomeui-2.0") 2>&5
+    { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"gtk+-2.0 >= 2.10.0\"") >&5
+  ($PKG_CONFIG --exists --print-errors "gtk+-2.0 >= 2.10.0") 2>&5
   ac_status=$?
   echo "$as_me:$LINENO: \$? = $ac_status" >&5
   (exit $ac_status); }; then
-  pkg_cv_GNOMEUI_LIBS=`$PKG_CONFIG --libs "libgnomeui-2.0" 2>/dev/null`
+  pkg_cv_GTK_LIBS=`$PKG_CONFIG --libs "gtk+-2.0 >= 2.10.0" 2>/dev/null`
 else
   pkg_failed=yes
 fi
@@ -5699,33 +5697,33 @@ else
         _pkg_short_errors_supported=no
 fi
         if test $_pkg_short_errors_supported = yes; then
-	        GNOMEUI_PKG_ERRORS=`$PKG_CONFIG --short-errors --errors-to-stdout --print-errors "libgnomeui-2.0"`
+	        GTK_PKG_ERRORS=`$PKG_CONFIG --short-errors --errors-to-stdout --print-errors "gtk+-2.0 >= 2.10.0"`
         else
-	        GNOMEUI_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "libgnomeui-2.0"`
+	        GTK_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "gtk+-2.0 >= 2.10.0"`
         fi
 	# Put the nasty error message in config.log where it belongs
-	echo "$GNOMEUI_PKG_ERRORS" >&5
+	echo "$GTK_PKG_ERRORS" >&5
 
-	{ { echo "$as_me:$LINENO: error: Package requirements (libgnomeui-2.0) were not met:
+	{ { echo "$as_me:$LINENO: error: Package requirements (gtk+-2.0 >= 2.10.0) were not met:
 
-$GNOMEUI_PKG_ERRORS
+$GTK_PKG_ERRORS
 
 Consider adjusting the PKG_CONFIG_PATH environment variable if you
 installed software in a non-standard prefix.
 
-Alternatively, you may set the environment variables GNOMEUI_CFLAGS
-and GNOMEUI_LIBS to avoid the need to call pkg-config.
+Alternatively, you may set the environment variables GTK_CFLAGS
+and GTK_LIBS to avoid the need to call pkg-config.
 See the pkg-config man page for more details.
 " >&5
-echo "$as_me: error: Package requirements (libgnomeui-2.0) were not met:
+echo "$as_me: error: Package requirements (gtk+-2.0 >= 2.10.0) were not met:
 
-$GNOMEUI_PKG_ERRORS
+$GTK_PKG_ERRORS
 
 Consider adjusting the PKG_CONFIG_PATH environment variable if you
 installed software in a non-standard prefix.
 
-Alternatively, you may set the environment variables GNOMEUI_CFLAGS
-and GNOMEUI_LIBS to avoid the need to call pkg-config.
+Alternatively, you may set the environment variables GTK_CFLAGS
+and GTK_LIBS to avoid the need to call pkg-config.
 See the pkg-config man page for more details.
 " >&2;}
    { (exit 1); exit 1; }; }
@@ -5734,26 +5732,26 @@ elif test $pkg_failed = untried; then
 is in your PATH or set the PKG_CONFIG environment variable to the full
 path to pkg-config.
 
-Alternatively, you may set the environment variables GNOMEUI_CFLAGS
-and GNOMEUI_LIBS to avoid the need to call pkg-config.
+Alternatively, you may set the environment variables GTK_CFLAGS
+and GTK_LIBS to avoid the need to call pkg-config.
 See the pkg-config man page for more details.
 
-To get pkg-config, see <http://www.freedesktop.org/software/pkgconfig>.
+To get pkg-config, see <http://pkg-config.freedesktop.org/>.
 See \`config.log' for more details." >&5
 echo "$as_me: error: The pkg-config script could not be found or is too old.  Make sure it
 is in your PATH or set the PKG_CONFIG environment variable to the full
 path to pkg-config.
 
-Alternatively, you may set the environment variables GNOMEUI_CFLAGS
-and GNOMEUI_LIBS to avoid the need to call pkg-config.
+Alternatively, you may set the environment variables GTK_CFLAGS
+and GTK_LIBS to avoid the need to call pkg-config.
 See the pkg-config man page for more details.
 
-To get pkg-config, see <http://www.freedesktop.org/software/pkgconfig>.
+To get pkg-config, see <http://pkg-config.freedesktop.org/>.
 See \`config.log' for more details." >&2;}
    { (exit 1); exit 1; }; }
 else
-	GNOMEUI_CFLAGS=$pkg_cv_GNOMEUI_CFLAGS
-	GNOMEUI_LIBS=$pkg_cv_GNOMEUI_LIBS
+	GTK_CFLAGS=$pkg_cv_GTK_CFLAGS
+	GTK_LIBS=$pkg_cv_GTK_LIBS
         { echo "$as_me:$LINENO: result: yes" >&5
 echo "${ECHO_T}yes" >&6; }
 	:
@@ -7972,18 +7970,6 @@ _ACEOF
 
 ALL_LINGUAS="gl es ja ca"
 
-if test "x${prefix}" = "xNONE"; then
-  cat >>confdefs.h <<_ACEOF
-#define PACKAGE_LOCALE_DIR "${ac_default_prefix}/${DATADIRNAME}/locale"
-_ACEOF
-
-else
-  cat >>confdefs.h <<_ACEOF
-#define PACKAGE_LOCALE_DIR "${prefix}/${DATADIRNAME}/locale"
-_ACEOF
-
-fi
-
 ac_config_files="$ac_config_files Makefile src/Makefile po/Makefile.in"
 
 cat >confcache <<\_ACEOF
@@ -8742,8 +8728,8 @@ CPP!$CPP$ac_delim
 GREP!$GREP$ac_delim
 EGREP!$EGREP$ac_delim
 PKG_CONFIG!$PKG_CONFIG$ac_delim
-GNOMEUI_CFLAGS!$GNOMEUI_CFLAGS$ac_delim
-GNOMEUI_LIBS!$GNOMEUI_LIBS$ac_delim
+GTK_CFLAGS!$GTK_CFLAGS$ac_delim
+GTK_LIBS!$GTK_LIBS$ac_delim
 USE_NLS!$USE_NLS$ac_delim
 GETTEXT_MACRO_VERSION!$GETTEXT_MACRO_VERSION$ac_delim
 MSGFMT!$MSGFMT$ac_delim

@@ -23,7 +23,6 @@
 #include <string.h>
 
 #include <gtk/gtk.h>
-#include <gnome.h>
 
 #include "callbacks.h"
 #include "interface.h"
@@ -549,58 +548,30 @@ GtkWidget*
 create_exit_dialog (void)
 {
   GtkWidget *exit_dialog;
-  GtkWidget *dialog_vbox1;
   GtkWidget *label3;
-  GtkWidget *dialog_action_area1;
-  GtkWidget *bdialog_yes;
-  GtkWidget *bdialog_no;
+  GtkWidget *ok_button;
+  GtkWidget *cancel_button;
 
-  exit_dialog = gnome_dialog_new (_("Gmanedit - Exit"), NULL);
-  gtk_object_set_data (GTK_OBJECT (exit_dialog), "exit_dialog", exit_dialog);
-  gtk_window_set_position (GTK_WINDOW (exit_dialog), GTK_WIN_POS_CENTER);
-  gtk_window_set_policy (GTK_WINDOW (exit_dialog), FALSE, FALSE, FALSE);
-  GdkPixbuf *icon_pixbuf = create_image ("gmanedit_icon.png");
-  gtk_window_set_icon (GTK_WINDOW (exit_dialog), icon_pixbuf);
-
-  dialog_vbox1 = GNOME_DIALOG (exit_dialog)->vbox;
-  gtk_object_set_data (GTK_OBJECT (exit_dialog), "dialog_vbox1", dialog_vbox1);
-  gtk_widget_show (dialog_vbox1);
+  exit_dialog = gtk_dialog_new_with_buttons (_("Gmanedit - Exit"),
+  	GTK_WINDOW(wprincipal), GTK_DIALOG_DESTROY_WITH_PARENT, NULL);
 
   label3 = gtk_label_new (_("Exit from gmanedit?"));
-  gtk_widget_ref (label3);
-  gtk_object_set_data_full (GTK_OBJECT (exit_dialog), "label3", label3,
-                            (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (label3);
-  gtk_box_pack_start (GTK_BOX (dialog_vbox1), label3, FALSE, FALSE, 0);
+  gtk_container_add (GTK_CONTAINER (GTK_DIALOG (exit_dialog)->vbox), label3);
+  gtk_misc_set_padding (GTK_MISC (label3), 10, 10);
+  
+  ok_button = gtk_dialog_add_button (GTK_DIALOG (exit_dialog),
+                GTK_STOCK_OK, GTK_RESPONSE_OK);
+  cancel_button = gtk_dialog_add_button (GTK_DIALOG (exit_dialog),
+                GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL);
 
-  dialog_action_area1 = GNOME_DIALOG (exit_dialog)->action_area;
-  gtk_object_set_data (GTK_OBJECT (exit_dialog), "dialog_action_area1", dialog_action_area1);
-  gtk_widget_show (dialog_action_area1);
-  gtk_button_box_set_layout (GTK_BUTTON_BOX (dialog_action_area1), GTK_BUTTONBOX_END);
-  gtk_button_box_set_spacing (GTK_BUTTON_BOX (dialog_action_area1), 8);
-
-  gnome_dialog_append_button (GNOME_DIALOG (exit_dialog), GNOME_STOCK_BUTTON_YES);
-  bdialog_yes = GTK_WIDGET (g_list_last (GNOME_DIALOG (exit_dialog)->buttons)->data);
-  gtk_widget_ref (bdialog_yes);
-  gtk_object_set_data_full (GTK_OBJECT (exit_dialog), "bdialog_yes", bdialog_yes,
-                            (GtkDestroyNotify) gtk_widget_unref);
-  gtk_widget_show (bdialog_yes);
-
-  gnome_dialog_append_button (GNOME_DIALOG (exit_dialog), GNOME_STOCK_BUTTON_NO);
-  bdialog_no = GTK_WIDGET (g_list_last (GNOME_DIALOG (exit_dialog)->buttons)->data);
-  gtk_widget_ref (bdialog_no);
-  gtk_object_set_data_full (GTK_OBJECT (exit_dialog), "bdialog_no", bdialog_no,
-                            (GtkDestroyNotify) gtk_widget_unref);
-  gtk_widget_show (bdialog_no);
-
-  gtk_signal_connect (GTK_OBJECT (bdialog_yes), "clicked",
-                      GTK_SIGNAL_FUNC (on_bdialog_yes_clicked),
+  g_signal_connect (G_OBJECT (ok_button), "clicked",
+                      G_CALLBACK (on_bdialog_yes_clicked),
                       NULL);
-  gtk_signal_connect (GTK_OBJECT (bdialog_no), "clicked",
-                      GTK_SIGNAL_FUNC (on_bdialog_no_clicked),
+  g_signal_connect (G_OBJECT (cancel_button), "clicked",
+                      G_CALLBACK (on_bdialog_no_clicked),
                       NULL);
 
-  gtk_widget_grab_default (bdialog_no);
   return exit_dialog;
 }
 
@@ -626,69 +597,33 @@ create_wpreferences (void)
 
   tooltips = gtk_tooltips_new ();
 
-  wpreferences = gtk_window_new (GTK_WINDOW_TOPLEVEL);
-  gtk_object_set_data (GTK_OBJECT (wpreferences), "wpreferences", wpreferences);
-  gtk_window_set_title (GTK_WINDOW (wpreferences), _("Gmanedit - Preferences"));
-  gtk_window_set_position (GTK_WINDOW (wpreferences), GTK_WIN_POS_CENTER);
-  gtk_window_set_modal (GTK_WINDOW (wpreferences), TRUE);
-  gtk_window_set_default_size (GTK_WINDOW (wpreferences), 150, 87);
-  GdkPixbuf *icon_pixbuf = create_image ("gmanedit_icon.png");
-  gtk_window_set_icon (GTK_WINDOW (wpreferences), icon_pixbuf);
+  wpreferences = gtk_dialog_new_with_buttons (_("Gmanedit - Preferences"),
+  	GTK_WINDOW(wprincipal), GTK_DIALOG_DESTROY_WITH_PARENT, NULL);
 
   vbox3 = gtk_vbox_new (FALSE, 0);
-  gtk_widget_ref (vbox3);
-  gtk_object_set_data_full (GTK_OBJECT (wpreferences), "vbox3", vbox3,
-                            (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (vbox3);
-  gtk_container_add (GTK_CONTAINER (wpreferences), vbox3);
+  gtk_container_add (GTK_CONTAINER (GTK_DIALOG (wpreferences)->vbox), vbox3);
 
   vbox4 = gtk_vbox_new (FALSE, 0);
-  gtk_widget_ref (vbox4);
-  gtk_object_set_data_full (GTK_OBJECT (wpreferences), "vbox4", vbox4,
-                            (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (vbox4);
   gtk_box_pack_start (GTK_BOX (vbox3), vbox4, TRUE, TRUE, 0);
-
   hbox3 = gtk_hbox_new (FALSE, 0);
-  gtk_widget_ref (hbox3);
-  gtk_object_set_data_full (GTK_OBJECT (wpreferences), "hbox3", hbox3,
-                            (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (hbox3);
   gtk_box_pack_start (GTK_BOX (vbox4), hbox3, TRUE, TRUE, 0);
-
   label4 = gtk_label_new (_("Command to test created man pages: "));
-  gtk_widget_ref (label4);
-  gtk_object_set_data_full (GTK_OBJECT (wpreferences), "label4", label4,
-                            (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (label4);
   gtk_box_pack_start (GTK_BOX (hbox3), label4, FALSE, FALSE, 0);
-
   entry_command = gtk_entry_new ();
-  gtk_widget_ref (entry_command);
-  gtk_object_set_data_full (GTK_OBJECT (wpreferences), "entry_command", entry_command,
-                            (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (entry_command);
   gtk_box_pack_start (GTK_BOX (hbox3), entry_command, FALSE, TRUE, 0);
   gtk_entry_set_text (GTK_ENTRY (entry_command), _("xterm -e man "));
-
   hbox4 = gtk_hbox_new (FALSE, 0);
-  gtk_widget_ref (hbox4);
-  gtk_object_set_data_full (GTK_OBJECT (wpreferences), "hbox4", hbox4,
-                            (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (hbox4);
   gtk_box_pack_start (GTK_BOX (vbox4), hbox4, TRUE, TRUE, 0);
-
   label17 = gtk_label_new (_("Internet browser"));
-  gtk_widget_ref (label17);
-  gtk_object_set_data_full (GTK_OBJECT (wpreferences), "label17", label17,
-                            (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (label17);
   gtk_box_pack_start (GTK_BOX (hbox4), label17, FALSE, FALSE, 0);
-
   combo2 = gtk_combo_new ();
-  gtk_widget_ref (combo2);
-  gtk_object_set_data_full (GTK_OBJECT (wpreferences), "combo2", combo2,
-                            (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (combo2);
   gtk_box_pack_start (GTK_BOX (hbox4), combo2, TRUE, TRUE, 0);
   combo2_items = g_list_append (combo2_items, (gpointer) _("netscape"));
@@ -701,52 +636,30 @@ create_wpreferences (void)
   g_list_free (combo2_items);
 
   cbinet = GTK_COMBO (combo2)->entry;
-  gtk_widget_ref (cbinet);
-  gtk_object_set_data_full (GTK_OBJECT (wpreferences), "cbinet", cbinet,
-                            (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (cbinet);
   gtk_tooltips_set_tip (tooltips, cbinet, _("Select your internet browser from this list"), NULL);
   gtk_entry_set_text (GTK_ENTRY (cbinet), _("netscape"));
-
   chgnome_help = gtk_check_button_new_with_label (_("Use yelp"));
-  gtk_widget_ref (chgnome_help);
-  gtk_object_set_data_full (GTK_OBJECT (wpreferences), "chgnome_help", chgnome_help,
-                            (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (chgnome_help);
   gtk_box_pack_start (GTK_BOX (vbox3), chgnome_help, FALSE, FALSE, 0);
-
   hbuttonbox2 = gtk_hbutton_box_new ();
-  gtk_widget_ref (hbuttonbox2);
-  gtk_object_set_data_full (GTK_OBJECT (wpreferences), "hbuttonbox2", hbuttonbox2,
-                            (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (hbuttonbox2);
   gtk_box_pack_start (GTK_BOX (vbox3), hbuttonbox2, TRUE, TRUE, 0);
 
-  bpok = gtk_button_new_from_stock (GNOME_STOCK_BUTTON_OK);
-  gtk_widget_ref (bpok);
-  gtk_object_set_data_full (GTK_OBJECT (wpreferences), "bpok", bpok,
-                            (GtkDestroyNotify) gtk_widget_unref);
-  gtk_widget_show (bpok);
-  gtk_container_add (GTK_CONTAINER (hbuttonbox2), bpok);
+  bpok = gtk_dialog_add_button (GTK_DIALOG (wpreferences),
+                GTK_STOCK_OK, GTK_RESPONSE_OK);
+  bpcancel = gtk_dialog_add_button (GTK_DIALOG (wpreferences),
+                GTK_STOCK_OK, GTK_RESPONSE_OK);
 
-  bpcancel = gtk_button_new_from_stock (GNOME_STOCK_BUTTON_CANCEL);
-  gtk_widget_ref (bpcancel);
-  gtk_object_set_data_full (GTK_OBJECT (wpreferences), "bpcancel", bpcancel,
-                            (GtkDestroyNotify) gtk_widget_unref);
-  gtk_widget_show (bpcancel);
-  gtk_container_add (GTK_CONTAINER (hbuttonbox2), bpcancel);
-
-  gtk_signal_connect (GTK_OBJECT (chgnome_help), "toggled",
-                      GTK_SIGNAL_FUNC (on_chgnome_help_toggled),
+  g_signal_connect (G_OBJECT (chgnome_help), "toggled",
+                      G_CALLBACK (on_chgnome_help_toggled),
                       NULL);
-  gtk_signal_connect (GTK_OBJECT (bpok), "clicked",
-                      GTK_SIGNAL_FUNC (on_bpok_clicked),
+  g_signal_connect (G_OBJECT (bpok), "clicked",
+                      G_CALLBACK (on_bpok_clicked),
                       NULL);
-  gtk_signal_connect (GTK_OBJECT (bpcancel), "clicked",
-                      GTK_SIGNAL_FUNC (on_bpcancel_clicked),
+  g_signal_connect (G_OBJECT (bpcancel), "clicked",
+                      G_CALLBACK (on_bpcancel_clicked),
                       NULL);
-
-  gtk_object_set_data (GTK_OBJECT (wpreferences), "tooltips", tooltips);
 
   return wpreferences;
 }

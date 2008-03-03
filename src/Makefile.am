@@ -1,8 +1,9 @@
 ## Process this file with automake to produce Makefile.in
 
 INCLUDES = \
-	@GNOMEUI_CFLAGS@ \
-	-DDATADIR=\""$(datadir)"\"
+	@GTK_CFLAGS@ \
+	-DDATADIR=\""$(datadir)"\" \
+	-DLOCALEDIR=\""$(datadir)/locale"\"
 
 bin_PROGRAMS = gmanedit
 
@@ -13,5 +14,5 @@ gmanedit_SOURCES = \
 	callbacks.c callbacks.h
 
 gmanedit_LDADD = \
-	@GNOMEUI_LIBS@
+	@GTK_LIBS@
 
