@@ -1,6 +1,6 @@
    These are generic installation instructions for gmanedit.
 
-   You should have the libgnomeui development headers and libraries 
+   You should have the GTK+ development headers and libraries 
    installed on your system. Next, run the configure script in the
    gmanedit source tree:
 

@@ -1,6 +1,11 @@
 gmanedit (0.4.1)
   * Moved from GnomeDruid to GtkAssistant for the wizard pages.
   * Fixed display of the date in the second page of the wizard.
+  * Moved from GnomeUIInfo to GtkAction and GtkUIManager for the
+    menu and Toolbar.
+  * Moved from GnomeDialog to GtkDialog for all the dialogs.
+  * Gmanedit is now without any Gnome dependencies, it builds with the help
+    of GTK+ only. Version 2.10 or higher is needed.
 
 gmanedit (0.4)
 
