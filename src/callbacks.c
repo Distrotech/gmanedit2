@@ -153,7 +153,7 @@ on_pagina_base1_activate               (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
     const gchar *base=_(".\\\"Created with GNOME Manpages Editor\n.\\\"\
-http://gmanedit.sourceforge.net\n.\\\"Sergio Rua <srua@gpul.org>\n.\\\"\n\
+http://sourceforge.net/projects/gmanedit2\n.\\\"Joop Stakenborg <pg4i@amsat.org>\n.\\\"\n\
 .TH program <section number> \"<date>\" \"<title>\"\
 \n\n.SH NAME\n\
 <program> \\-program for...\n\n.SH SYNOPSIS\n.B <program>\n\
@@ -1212,7 +1212,7 @@ on_dthe_end_finish                     (GtkAssistant *assistant,
 
 /* Page Start */
    strcpy(cadena,".\\\"Created with GNOME Manpages Editor Wizard\n.\\\"\
-http://gmanedit.sourceforge.net\n.\\\"Sergio Rua <srua@gpul.org>\n.\\\"\n");
+http://sourceforge.net/projects/gmanedit2\n.\\\"Joop Stakenborg <pg4i@amsat.org>\n.\\\"\n");
    strcat(cadena,".TH ");
    strcat(cadena,nombre);
    strcat(cadena," ");
