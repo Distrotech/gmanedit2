@@ -21,7 +21,7 @@ GtkWidget* create_wprincipal (void);
 GtkWidget* create_fileselection (void);
 GtkWidget* create_save_file (void);
 GtkWidget* create_wbuscar (void);
-GtkWidget* create_about (void);
+void create_about (void);
 GtkWidget* create_exit_dialog (void);
 GtkWidget* create_wpreferences (void);
 GtkWidget* create_wizard (void);

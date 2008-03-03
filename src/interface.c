@@ -22,14 +22,15 @@
 #include <unistd.h>
 #include <string.h>
 
-#include <gnome.h>
 #include <gtk/gtk.h>
+#include <gnome.h>
 
 #include "callbacks.h"
 #include "interface.h"
 #include "support.h"
 
 #define GTK_ENABLE_BROKEN 1
+extern GtkWidget *wprincipal;
 
 static const GtkActionEntry entries[] = {
   { "FileMenu", NULL, "_File" },
@@ -520,35 +521,29 @@ create_wbuscar (void)
   return wbuscar;
 }
 
-GtkWidget*
-create_about (void)
+void create_about (void)
 {
   const gchar *authors[] = {
-    "Sergio Rua <srua@gpul.org>",
+    "Sergio Rua <email unknown>",
     "Joop Stakenborg <pg4i@amsat.org>",
     "Anibal Avelar <aavelar@cofradia.org>",
     NULL
   };
-  const gchar *doc[] = {
-    "Sergio Rua <srua@gpul.org>",
-    NULL
-  };
-  const gchar *translators = "Sergio Rua <srua@gpul.org\n"
+  const gchar *translators = "Sergio Rua <email unknown>\n"
 	"Jordi Mallach <jordi@sindominio.net>\n"
 	"Takeshi Aihana <aihana@muc.biglobe.ne.jp>";
 
-  GtkWidget *about;
   GdkPixbuf *icon_pixbuf = create_image ("gmanedit.png");
 
-  about = gnome_about_new ("Gmanedit", VERSION,
-	"2000-2001 Sergio Rua\n2008 Joop Stakenborg",
-	_("Man Pages Editor"), authors, doc, translators, icon_pixbuf);
-  icon_pixbuf = create_image ("gmanedit_icon.png");
-  gtk_window_set_icon (GTK_WINDOW (about), icon_pixbuf);
-
-  gtk_object_set_data (GTK_OBJECT (about), "about", about);
-
-  return about;
+  gtk_show_about_dialog (GTK_WINDOW(wprincipal),
+  	"authors", authors,
+  	"comments", _("Man Pages Editor"),
+  	"license", "Copyright (C) 2000-2001 Sergio Rua\n2008 Joop Stakenborg <pg4i@amsat.org>",
+  	"website", "http://sourceforge.net/projects/gmanedit2",
+  	"logo", icon_pixbuf,
+  	"translator-credits", translators,
+  	"version", VERSION,
+  	NULL);
 }
 
 GtkWidget*

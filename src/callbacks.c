@@ -957,10 +957,7 @@ void
 on_about2_activate                     (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
-
-     about = create_about();
-     gtk_widget_show(about);
-
+     create_about();
 }
 
 static void
