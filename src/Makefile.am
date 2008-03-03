@@ -6,17 +6,6 @@ INCLUDES = \
 
 bin_PROGRAMS = gmanedit
 
-install-data-local:
-	@$(NORMAL_INSTALL)
-	if test -d ../pixmaps; then \
-	  $(mkinstalldirs) $(datadir)/pixmaps; \
-	  for pixmap in ../pixmaps/*; do \
-	    if test -f $$pixmap; then \
-	      $(INSTALL_DATA) $$pixmap $(datadir)/pixmaps; \
-	    fi \
-	  done \
-	fi
-
 gmanedit_SOURCES = \
 	main.c \
 	support.c support.h \

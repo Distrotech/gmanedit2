@@ -2,6 +2,17 @@
 
 SUBDIRS = po src
 
+install-data-local:
+	@$(NORMAL_INSTALL)
+	if test -d ../pixmaps; then \
+	  $(mkinstalldirs) $(datadir)/pixmaps; \
+	  for pixmap in ../pixmaps/*; do \
+	    if test -f $$pixmap; then \
+	      $(INSTALL_DATA) $$pixmap $(datadir)/pixmaps; \
+	    fi \
+	  done \
+	fi
+
 dist-hook:
 	if test -d pixmaps; then \
 	  mkdir $(distdir)/pixmaps; \
