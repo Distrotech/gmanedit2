@@ -31,7 +31,6 @@
 
 #define GTK_ENABLE_BROKEN 1
 
-/* Normal items */
 static const GtkActionEntry entries[] = {
   { "FileMenu", NULL, "_File" },
   { "New", GTK_STOCK_NEW, N_("_New"), NULL, "", on_novo1_activate },
@@ -45,6 +44,66 @@ static const GtkActionEntry entries[] = {
   { "Copy", GTK_STOCK_COPY, N_("_Copy"), NULL, "", on_copiar1_activate },
   { "Paste", GTK_STOCK_PASTE, N_("_Paste"), NULL, "", on_pegar1_activate },
   { "SelectAll", GTK_STOCK_SELECT_ALL, N_("_Select All"), NULL, "", on_select_all1_activate },
+  { "InsertMenu", NULL, "_Insert" },
+  { "BasicPage", NULL, N_("Basic Page"), NULL, "", on_pagina_base1_activate },
+  { "Title", NULL, N_("Titel"), NULL, "", on_titulo_activate },
+  { "Date", NULL, N_("Date"), NULL, "", on_data1_activate },
+  { "SectionMenu", NULL, "Section" },
+  { "Name", NULL, N_("Name"), NULL, "", on_nome1_activate },
+  { "Synopsis", NULL, N_("Synopsis"), NULL, "", on_sinopsis1_activate },
+  { "Description", NULL, N_("Description"), NULL, "", on_descripcion1_activate },
+  { "Options", NULL, N_("Options"), NULL, "", on_opcions1_activate },
+  { "ReturnValues", NULL, N_("Return values"), NULL, "", on_valores_retornados1_activate },
+  { "ExitStatus", NULL, N_("Exit status"), NULL, "", on_estados_de_saida1_activate },
+  { "Usage", NULL, N_("Usage"), NULL, "", on_uso1_activate },
+  { "File", NULL, N_("File"), NULL, "", on_ficheiro1_activate },
+  { "Environment", NULL, N_("Environment"), NULL, "", on_entorno1_activate },
+  { "Diagnostics", NULL, N_("Diagnostics"), NULL, "", on_diagnostico1_activate },
+  { "Security", NULL, N_("Security"), NULL, "", on_seguridade1_activate },
+  { "Notes", NULL, N_("Notes"), NULL, "", on_notas1_activate },
+  { "Bugs", NULL, N_("Bugs"), NULL, "", on_bugs1_activate },
+  { "Author", NULL, N_("Author"), NULL, "", on_autor1_activate },
+  { "Examples", NULL, N_("Examples"), NULL, "", on_exemplos1_activate },
+  { "SeeAlso", NULL, N_("See also"), NULL, "", on_ver_tamen1_activate },
+  { "ConformingTo", NULL, N_("Conforming to"), NULL, "", on_conforme_a1_activate },
+  { "Other", NULL, N_("Other"), NULL, "", on_otro1_activate },
+  { "JustifyMenu", NULL, "Justify" },
+  { "Left", NULL, N_("Left"), NULL, "", on_xustificacion_a_esquerda1_activate },
+  { "Both", NULL, N_("Both"), NULL, "", on_ambas1_activate },
+  { "FillingMenu", NULL, "Filling" },
+  { "Enable", NULL, N_("Enable"), NULL, "", on_activar1_activate },
+  { "Disable", NULL, N_("Disable"), NULL, "", on_desactivar1_activate },
+  { "LetterTypeMenu", NULL, "Lettertype" },
+  { "Bold", NULL, N_("Bold"), NULL, "", on_bold1_activate },
+  { "BoldRoman", NULL, N_("Bold - Roman"), NULL, "", on_bold_roman1_activate },
+  { "Italic", NULL, N_("Italic"), NULL, "", on_italica1_activate },
+  { "ItalicBold", NULL, N_("Italic - Bold"), NULL, "", on_italica_bold1_activate },
+  { "ItalicRoman", NULL, N_("Italic - Roman"), NULL, "", on_italica_roman1_activate },
+  { "RomanBold", NULL, N_("Roman - Bold"), NULL, "", on_roman_bold1_activate },
+  { "RomanItalic", NULL, N_("Roman - Italic"), NULL, "", on_roman_italic1_activate },
+  { "SmallBold", NULL, N_("Small - Bold"), NULL, "", on_small_bold1_activate },
+  { "Small", NULL, N_("Small"), NULL, "", on_small1_activate },
+  { "ParagraphsMenu", NULL, "Paragraphs" },
+  { "NewParagraph", NULL, N_("New Paragraph"), NULL, "", on_novo_parrafo1_activate },
+  { "ParagraphStart", NULL, N_("Paragraph Start"), NULL, "", on_comezo_parrafo1_activate },
+  { "MarginMenu", NULL, "MarginSection" },
+  { "MarginStart", NULL, N_("Margin start"), NULL, "", on_comezo_marxen1_activate },
+  { "MarginEnd", NULL, N_("Margin end"), NULL, "", on_finaliza_marxen1_activate },
+  { "HypertextMenu", NULL, "Hypertext" },
+  { "AHREF", NULL, N_("A HREF"), NULL, "", on_a_href1_activate },
+  { "ANAME", NULL, N_("A NAME"), NULL, "", on_a_name1_activate },
+  { "OthersMenu", NULL, "Others" },
+  { "DefaultTabs", NULL, N_("Default tabs"), NULL, "", on_tabulador_por_defecto1_activate },
+  { "Subheader", NULL, N_("Subheader"), NULL, "", on_subcabeceira1_activate },
+  { "EmptyLines", NULL, N_("Empty lines"), NULL, "", on_lineas_en_branco1_activate },
+  { "Comments", NULL, N_("Comments"), NULL, "", on_comments1_activate },
+  { "ViewMenu", NULL, "_View" },
+  { "ViewCreatedPage", NULL, N_("View created page"), NULL, "", on_paxina_creada1_activate },
+  { "Preferences", GTK_STOCK_PREFERENCES, N_("_Preferences"), NULL, "", on_opcions_programa1_activate },
+  { "HelpMenu", NULL, "_Help" },
+  { "Help", GTK_STOCK_HELP, N_("H_elp"), NULL, "", on_help1_activate },
+  { "Homepage", NULL, N_("_Home page"), NULL, "", on_home_page1_activate },
+  { "About", GTK_STOCK_ABOUT, N_("_About"), NULL, "", on_about2_activate },
 };
 
 static const char *ui_description =
@@ -65,6 +124,78 @@ static const char *ui_description =
 "               <menuitem action='Paste'/>"
 "               <menuitem action='SelectAll'/>"
 "        </menu>"
+"        <menu action='InsertMenu'>"
+"               <menuitem action='BasicPage'/>"
+"               <menuitem action='Title'/>"
+"               <menuitem action='Date'/>"
+"                     <menu action='SectionMenu'>"
+"                           <menuitem action='Name'/>"
+"                           <menuitem action='Synopsis'/>"
+"                           <menuitem action='Description'/>"
+"                           <menuitem action='Options'/>"
+"                           <menuitem action='ReturnValues'/>"
+"                           <menuitem action='ExitStatus'/>"
+"                           <menuitem action='Usage'/>"
+"                           <menuitem action='File'/>"
+"                           <menuitem action='Environment'/>"
+"                           <menuitem action='Diagnostics'/>"
+"                           <menuitem action='Security'/>"
+"                           <menuitem action='Notes'/>"
+"                           <menuitem action='Bugs'/>"
+"                           <menuitem action='Author'/>"
+"                           <menuitem action='Examples'/>"
+"                           <menuitem action='SeeAlso'/>"
+"                           <menuitem action='ConformingTo'/>"
+"                           <menuitem action='Other'/>"
+"                     </menu>"
+"                     <menu action='JustifyMenu'>"
+"                           <menuitem action='Left'/>"
+"                           <menuitem action='Both'/>"
+"                     </menu>"
+"                     <menu action='FillingMenu'>"
+"                           <menuitem action='Enable'/>"
+"                           <menuitem action='Disable'/>"
+"                     </menu>"
+"                     <menu action='LetterTypeMenu'>"
+"                           <menuitem action='Bold'/>"
+"                           <menuitem action='BoldRoman'/>"
+"                           <menuitem action='Italic'/>"
+"                           <menuitem action='ItalicBold'/>"
+"                           <menuitem action='ItalicRoman'/>"
+"                           <menuitem action='RomanBold'/>"
+"                           <menuitem action='RomanItalic'/>"
+"                           <menuitem action='SmallBold'/>"
+"                           <menuitem action='Small'/>"
+"                     </menu>"
+"                     <menu action='ParagraphsMenu'>"
+"                           <menuitem action='NewParagraph'/>"
+"                           <menuitem action='ParagraphStart'/>"
+"                     </menu>"
+"                     <menu action='MarginMenu'>"
+"                           <menuitem action='MarginStart'/>"
+"                           <menuitem action='MarginEnd'/>"
+"                     </menu>"
+"                     <menu action='HypertextMenu'>"
+"                           <menuitem action='AHREF'/>"
+"                           <menuitem action='ANAME'/>"
+"                     </menu>"
+"                     <menu action='OthersMenu'>"
+"                           <menuitem action='DefaultTabs'/>"
+"                           <menuitem action='Subheader'/>"
+"                           <menuitem action='EmptyLines'/>"
+"                           <menuitem action='Comments'/>"
+"                     </menu>"
+"        </menu>"
+"        <menu action='ViewMenu'>"
+"               <menuitem action='ViewCreatedPage'/>"
+"               <menuitem action='Preferences'/>"
+"               <menuitem action=''/>"
+"        </menu>"
+"        <menu action='HelpMenu'>"
+"               <menuitem action='Help'/>"
+"               <menuitem action='Homepage'/>"
+"               <menuitem action='About'/>"
+"        </menu>"
 "  </menubar>"
 "  <toolbar name='ToolBar'>"
 "        <toolitem action='New'/>"
@@ -79,515 +210,18 @@ static const char *ui_description =
 "  </toolbar>"
 "</ui>";
 
-static GnomeUIInfo mficheiro1_menu_uiinfo[] =
-{
-  GNOMEUIINFO_MENU_NEW_ITEM (N_("_New"), NULL, on_novo1_activate, NULL),
-  {
-    GNOME_APP_UI_ITEM, N_("New _Wizard page"),
-    NULL,
-    (gpointer) on_new_wizard_page1_activate, NULL, NULL,
-    GNOME_APP_PIXMAP_NONE, NULL,
-    GDK_W, (GdkModifierType) GDK_CONTROL_MASK, NULL
-  },
-  GNOMEUIINFO_MENU_OPEN_ITEM (on_abrir1_activate, NULL),
-  GNOMEUIINFO_MENU_SAVE_ITEM (on_gardar1_activate, NULL),
-  GNOMEUIINFO_MENU_SAVE_AS_ITEM (on_gardar_como1_activate, NULL),
-  GNOMEUIINFO_SEPARATOR,
-  GNOMEUIINFO_MENU_EXIT_ITEM (on_sair4_activate, NULL),
-  GNOMEUIINFO_END
-};
-
-static GnomeUIInfo edicion1_menu_uiinfo[] =
-{
-  GNOMEUIINFO_MENU_CUT_ITEM (on_cortar1_activate, NULL),
-  GNOMEUIINFO_MENU_COPY_ITEM (on_copiar1_activate, NULL),
-  GNOMEUIINFO_MENU_PASTE_ITEM (on_pegar1_activate, NULL),
-  {
-    GNOME_APP_UI_ITEM, N_("_Select All"),
-    NULL,
-    (gpointer) on_select_all1_activate, NULL, NULL,
-    GNOME_APP_PIXMAP_NONE, NULL,
-    GDK_E, (GdkModifierType) GDK_CONTROL_MASK, NULL
-  },
-//  GNOMEUIINFO_MENU_FIND_ITEM (on_buscar_e_reemprazar1_activate, NULL),
-  GNOMEUIINFO_END
-};
-
-static GnomeUIInfo seccion1_menu_uiinfo[] =
-{
-  {
-    GNOME_APP_UI_ITEM, N_("Name"),
-    NULL,
-    (gpointer) on_nome1_activate, NULL, NULL,
-    GNOME_APP_PIXMAP_NONE, NULL,
-    0, (GdkModifierType) 0, NULL
-  },
-  {
-    GNOME_APP_UI_ITEM, N_("Synopsis"),
-    NULL,
-    (gpointer) on_sinopsis1_activate, NULL, NULL,
-    GNOME_APP_PIXMAP_NONE, NULL,
-    0, (GdkModifierType) 0, NULL
-  },
-  {
-    GNOME_APP_UI_ITEM, N_("Description"),
-    NULL,
-    (gpointer) on_descripcion1_activate, NULL, NULL,
-    GNOME_APP_PIXMAP_NONE, NULL,
-    0, (GdkModifierType) 0, NULL
-  },
-  {
-    GNOME_APP_UI_ITEM, N_("Options"),
-    NULL,
-    (gpointer) on_opcions1_activate, NULL, NULL,
-    GNOME_APP_PIXMAP_NONE, NULL,
-    0, (GdkModifierType) 0, NULL
-  },
-  {
-    GNOME_APP_UI_ITEM, N_("Return values"),
-    NULL,
-    (gpointer) on_valores_retornados1_activate, NULL, NULL,
-    GNOME_APP_PIXMAP_NONE, NULL,
-    0, (GdkModifierType) 0, NULL
-  },
-  {
-    GNOME_APP_UI_ITEM, N_("Exit status"),
-    NULL,
-    (gpointer) on_estados_de_saida1_activate, NULL, NULL,
-    GNOME_APP_PIXMAP_NONE, NULL,
-    0, (GdkModifierType) 0, NULL
-  },
-  {
-    GNOME_APP_UI_ITEM, N_("Usage"),
-    NULL,
-    (gpointer) on_uso1_activate, NULL, NULL,
-    GNOME_APP_PIXMAP_NONE, NULL,
-    0, (GdkModifierType) 0, NULL
-  },
-  {
-    GNOME_APP_UI_ITEM, N_("File"),
-    NULL,
-    (gpointer) on_ficheiro1_activate, NULL, NULL,
-    GNOME_APP_PIXMAP_NONE, NULL,
-    0, (GdkModifierType) 0, NULL
-  },
-  {
-    GNOME_APP_UI_ITEM, N_("Environment"),
-    NULL,
-    (gpointer) on_entorno1_activate, NULL, NULL,
-    GNOME_APP_PIXMAP_NONE, NULL,
-    0, (GdkModifierType) 0, NULL
-  },
-  {
-    GNOME_APP_UI_ITEM, N_("Diagnostics"),
-    NULL,
-    (gpointer) on_diagnostico1_activate, NULL, NULL,
-    GNOME_APP_PIXMAP_NONE, NULL,
-    0, (GdkModifierType) 0, NULL
-  },
-  {
-    GNOME_APP_UI_ITEM, N_("Security"),
-    NULL,
-    (gpointer) on_seguridade1_activate, NULL, NULL,
-    GNOME_APP_PIXMAP_NONE, NULL,
-    0, (GdkModifierType) 0, NULL
-  },
-  {
-    GNOME_APP_UI_ITEM, N_("Notes"),
-    NULL,
-    (gpointer) on_notas1_activate, NULL, NULL,
-    GNOME_APP_PIXMAP_NONE, NULL,
-    0, (GdkModifierType) 0, NULL
-  },
-  {
-    GNOME_APP_UI_ITEM, N_("Bugs"),
-    NULL,
-    (gpointer) on_bugs1_activate, NULL, NULL,
-    GNOME_APP_PIXMAP_NONE, NULL,
-    0, (GdkModifierType) 0, NULL
-  },
-  {
-    GNOME_APP_UI_ITEM, N_("Author"),
-    NULL,
-    (gpointer) on_autor1_activate, NULL, NULL,
-    GNOME_APP_PIXMAP_NONE, NULL,
-    0, (GdkModifierType) 0, NULL
-  },
-  {
-    GNOME_APP_UI_ITEM, N_("Examples"),
-    NULL,
-    (gpointer) on_exemplos1_activate, NULL, NULL,
-    GNOME_APP_PIXMAP_NONE, NULL,
-    0, (GdkModifierType) 0, NULL
-  },
-  {
-    GNOME_APP_UI_ITEM, N_("See also"),
-    NULL,
-    (gpointer) on_ver_tamen1_activate, NULL, NULL,
-    GNOME_APP_PIXMAP_NONE, NULL,
-    0, (GdkModifierType) 0, NULL
-  },
-  {
-    GNOME_APP_UI_ITEM, N_("Conforming to"),
-    NULL,
-    (gpointer) on_conforme_a1_activate, NULL, NULL,
-    GNOME_APP_PIXMAP_NONE, NULL,
-    0, (GdkModifierType) 0, NULL
-  },
-  GNOMEUIINFO_SEPARATOR,
-  {
-    GNOME_APP_UI_ITEM, N_("Other"),
-    NULL,
-    (gpointer) on_otro1_activate, NULL, NULL,
-    GNOME_APP_PIXMAP_NONE, NULL,
-    0, (GdkModifierType) 0, NULL
-  },
-  GNOMEUIINFO_END
-};
-
-static GnomeUIInfo justificacion_esquerda1_menu_uiinfo[] =
-{
-  {
-    GNOME_APP_UI_ITEM, N_("Left"),
-    NULL,
-    (gpointer) on_xustificacion_a_esquerda1_activate, NULL, NULL,
-    GNOME_APP_PIXMAP_NONE, NULL,
-    GDK_L, (GdkModifierType) GDK_CONTROL_MASK, NULL
-  },
-  {
-    GNOME_APP_UI_ITEM, N_("Both"),
-    NULL,
-    (gpointer) on_ambas1_activate, NULL, NULL,
-    GNOME_APP_PIXMAP_NONE, NULL,
-    0, (GdkModifierType) 0, NULL
-  },
-  GNOMEUIINFO_END
-};
-
-static GnomeUIInfo recheo1_menu_uiinfo[] =
-{
-  {
-    GNOME_APP_UI_ITEM, N_("Enable"),
-    NULL,
-    (gpointer) on_activar1_activate, NULL, NULL,
-    GNOME_APP_PIXMAP_NONE, NULL,
-    0, (GdkModifierType) 0, NULL
-  },
-  {
-    GNOME_APP_UI_ITEM, N_("Disable"),
-    NULL,
-    (gpointer) on_desactivar1_activate, NULL, NULL,
-    GNOME_APP_PIXMAP_NONE, NULL,
-    0, (GdkModifierType) 0, NULL
-  },
-  GNOMEUIINFO_END
-};
-
-static GnomeUIInfo fonte1_menu_uiinfo[] =
-{
-  {
-    GNOME_APP_UI_ITEM, N_("Bold"),
-    NULL,
-    (gpointer) on_bold1_activate, NULL, NULL,
-    GNOME_APP_PIXMAP_NONE, NULL,
-    0, (GdkModifierType) 0, NULL
-  },
-  {
-    GNOME_APP_UI_ITEM, N_("Bold - Roman"),
-    NULL,
-    (gpointer) on_bold_roman1_activate, NULL, NULL,
-    GNOME_APP_PIXMAP_NONE, NULL,
-    0, (GdkModifierType) 0, NULL
-  },
-  {
-    GNOME_APP_UI_ITEM, N_("Italic"),
-    NULL,
-    (gpointer) on_italica1_activate, NULL, NULL,
-    GNOME_APP_PIXMAP_NONE, NULL,
-    0, (GdkModifierType) 0, NULL
-  },
-  {
-    GNOME_APP_UI_ITEM, N_("Italic - Bold"),
-    NULL,
-    (gpointer) on_italica_bold1_activate, NULL, NULL,
-    GNOME_APP_PIXMAP_NONE, NULL,
-    0, (GdkModifierType) 0, NULL
-  },
-  {
-    GNOME_APP_UI_ITEM, N_("Italic - Roman"),
-    NULL,
-    (gpointer) on_italica_roman1_activate, NULL, NULL,
-    GNOME_APP_PIXMAP_NONE, NULL,
-    0, (GdkModifierType) 0, NULL
-  },
-  {
-    GNOME_APP_UI_ITEM, N_("Roman - Bold"),
-    NULL,
-    (gpointer) on_roman_bold1_activate, NULL, NULL,
-    GNOME_APP_PIXMAP_NONE, NULL,
-    0, (GdkModifierType) 0, NULL
-  },
-  {
-    GNOME_APP_UI_ITEM, N_("Roman - Italic"),
-    NULL,
-    (gpointer) on_roman_italic1_activate, NULL, NULL,
-    GNOME_APP_PIXMAP_NONE, NULL,
-    0, (GdkModifierType) 0, NULL
-  },
-  {
-    GNOME_APP_UI_ITEM, N_("Small - Bold"),
-    NULL,
-    (gpointer) on_small_bold1_activate, NULL, NULL,
-    GNOME_APP_PIXMAP_NONE, NULL,
-    0, (GdkModifierType) 0, NULL
-  },
-  {
-    GNOME_APP_UI_ITEM, N_("Small"),
-    NULL,
-    (gpointer) on_small1_activate, NULL, NULL,
-    GNOME_APP_PIXMAP_NONE, NULL,
-    0, (GdkModifierType) 0, NULL
-  },
-  GNOMEUIINFO_END
-};
-
-static GnomeUIInfo parrafos1_menu_uiinfo[] =
-{
-  {
-    GNOME_APP_UI_ITEM, N_("New paragraph"),
-    NULL,
-    (gpointer) on_novo_parrafo1_activate, NULL, NULL,
-    GNOME_APP_PIXMAP_NONE, NULL,
-    0, (GdkModifierType) 0, NULL
-  },
-  {
-    GNOME_APP_UI_ITEM, N_("Paragraph start"),
-    NULL,
-    (gpointer) on_comezo_parrafo1_activate, NULL, NULL,
-    GNOME_APP_PIXMAP_NONE, NULL,
-    0, (GdkModifierType) 0, NULL
-  },
-  GNOMEUIINFO_END
-};
-
-static GnomeUIInfo marxen1_menu_uiinfo[] =
-{
-  {
-    GNOME_APP_UI_ITEM, N_("Margin start"),
-    N_("Start a margin"),
-    (gpointer) on_comezo_marxen1_activate, NULL, NULL,
-    GNOME_APP_PIXMAP_NONE, NULL,
-    0, (GdkModifierType) 0, NULL
-  },
-  {
-    GNOME_APP_UI_ITEM, N_("Margin end"),
-    NULL,
-    (gpointer) on_finaliza_marxen1_activate, NULL, NULL,
-    GNOME_APP_PIXMAP_NONE, NULL,
-    0, (GdkModifierType) 0, NULL
-  },
-  GNOMEUIINFO_END
-};
-
-static GnomeUIInfo hypertext1_menu_uiinfo[] =
-{
-  {
-    GNOME_APP_UI_ITEM, N_("A HREF"),
-    NULL,
-    (gpointer) on_a_href1_activate, NULL, NULL,
-    GNOME_APP_PIXMAP_NONE, NULL,
-    0, (GdkModifierType) 0, NULL
-  },
-  {
-    GNOME_APP_UI_ITEM, N_("A NAME"),
-    NULL,
-    (gpointer) on_a_name1_activate, NULL, NULL,
-    GNOME_APP_PIXMAP_NONE, NULL,
-    0, (GdkModifierType) 0, NULL
-  },
-  GNOMEUIINFO_END
-};
-
-static GnomeUIInfo outros1_menu_uiinfo[] =
-{
-  {
-    GNOME_APP_UI_ITEM, N_("Default tabs"),
-    NULL,
-    (gpointer) on_tabulador_por_defecto1_activate, NULL, NULL,
-    GNOME_APP_PIXMAP_NONE, NULL,
-    0, (GdkModifierType) 0, NULL
-  },
-  {
-    GNOME_APP_UI_ITEM, N_("Subheader"),
-    N_("Like .SH"),
-    (gpointer) on_subcabeceira1_activate, NULL, NULL,
-    GNOME_APP_PIXMAP_NONE, NULL,
-    0, (GdkModifierType) 0, NULL
-  },
-  {
-    GNOME_APP_UI_ITEM, N_("Empty lines"),
-    NULL,
-    (gpointer) on_lineas_en_branco1_activate, NULL, NULL,
-    GNOME_APP_PIXMAP_NONE, NULL,
-    0, (GdkModifierType) 0, NULL
-  },
-  {
-    GNOME_APP_UI_ITEM, N_("Comments"),
-    NULL,
-    (gpointer) on_comments1_activate, NULL, NULL,
-    GNOME_APP_PIXMAP_NONE, NULL,
-    0, (GdkModifierType) 0, NULL
-  },
-  GNOMEUIINFO_END
-};
-
-static GnomeUIInfo insertar1_menu_uiinfo[] =
-{
-  {
-    GNOME_APP_UI_ITEM, N_("Basic page"),
-    NULL,
-    (gpointer) on_pagina_base1_activate, NULL, NULL,
-    GNOME_APP_PIXMAP_NONE, NULL,
-    0, (GdkModifierType) 0, NULL
-  },
-  {
-    GNOME_APP_UI_ITEM, N_("Title"),
-    NULL,
-    (gpointer) on_titulo_activate, NULL, NULL,
-    GNOME_APP_PIXMAP_NONE, NULL,
-    0, (GdkModifierType) 0, NULL
-  },
-  {
-    GNOME_APP_UI_ITEM, N_("Date"),
-    NULL,
-    (gpointer) on_data1_activate, NULL, NULL,
-    GNOME_APP_PIXMAP_NONE, NULL,
-    0, (GdkModifierType) 0, NULL
-  },
-  {
-    GNOME_APP_UI_SUBTREE, N_("Section"),
-    NULL,
-    seccion1_menu_uiinfo, NULL, NULL,
-    GNOME_APP_PIXMAP_NONE, NULL,
-    0, (GdkModifierType) 0, NULL
-  },
-  {
-    GNOME_APP_UI_SUBTREE, N_("Justify"),
-    NULL,
-    justificacion_esquerda1_menu_uiinfo, NULL, NULL,
-    GNOME_APP_PIXMAP_NONE, NULL,
-    0, (GdkModifierType) 0, NULL
-  },
-  {
-    GNOME_APP_UI_SUBTREE, N_("Filling"),
-    NULL,
-    recheo1_menu_uiinfo, NULL, NULL,
-    GNOME_APP_PIXMAP_NONE, NULL,
-    0, (GdkModifierType) 0, NULL
-  },
-  {
-    GNOME_APP_UI_SUBTREE, N_("Font"),
-    NULL,
-    fonte1_menu_uiinfo, NULL, NULL,
-    GNOME_APP_PIXMAP_NONE, NULL,
-    0, (GdkModifierType) 0, NULL
-  },
-  {
-    GNOME_APP_UI_SUBTREE, N_("Paragraphs"),
-    NULL,
-    parrafos1_menu_uiinfo, NULL, NULL,
-    GNOME_APP_PIXMAP_NONE, NULL,
-    0, (GdkModifierType) 0, NULL
-  },
-  {
-    GNOME_APP_UI_SUBTREE, N_("Margin"),
-    NULL,
-    marxen1_menu_uiinfo, NULL, NULL,
-    GNOME_APP_PIXMAP_NONE, NULL,
-    0, (GdkModifierType) 0, NULL
-  },
-  {
-    GNOME_APP_UI_SUBTREE, N_("Hypertext"),
-    N_("Not available"),
-    hypertext1_menu_uiinfo, NULL, NULL,
-    GNOME_APP_PIXMAP_NONE, NULL,
-    0, (GdkModifierType) 0, NULL
-  },
-  {
-    GNOME_APP_UI_SUBTREE, N_("Others"),
-    NULL,
-    outros1_menu_uiinfo, NULL, NULL,
-    GNOME_APP_PIXMAP_NONE, NULL,
-    0, (GdkModifierType) 0, NULL
-  },
-  GNOMEUIINFO_END
-};
-
-static GnomeUIInfo ver1_menu_uiinfo[] =
-{
-  {
-    GNOME_APP_UI_ITEM, N_("View created page"),
-    NULL,
-    (gpointer) on_paxina_creada1_activate, NULL, NULL,
-    GNOME_APP_PIXMAP_NONE, NULL,
-    0, (GdkModifierType) 0, NULL
-  },
-  GNOMEUIINFO_MENU_PREFERENCES_ITEM (on_opcions_programa1_activate, NULL),
-  GNOMEUIINFO_END
-};
-
-static GnomeUIInfo separator2_menu_uiinfo[] =
-{
-  {
-    GNOME_APP_UI_ITEM, N_("H_elp"),
-    NULL,
-    (gpointer) on_help1_activate, NULL, NULL,
-    GNOME_APP_PIXMAP_NONE, NULL,
-    0, (GdkModifierType) 0, NULL
-  },
-  {
-    GNOME_APP_UI_ITEM, N_("_Home Page"),
-    NULL,
-    (gpointer) on_home_page1_activate, NULL, NULL,
-    GNOME_APP_PIXMAP_NONE, NULL,
-    0, (GdkModifierType) 0, NULL
-  },
-  GNOMEUIINFO_MENU_ABOUT_ITEM (on_about2_activate, NULL),
-  GNOMEUIINFO_END
-};
-
-static GnomeUIInfo menu_uiinfo[] =
-{
-  GNOMEUIINFO_MENU_FILE_TREE (mficheiro1_menu_uiinfo),
-  GNOMEUIINFO_MENU_EDIT_TREE (edicion1_menu_uiinfo),
-  {
-    GNOME_APP_UI_SUBTREE, N_("_Insert"),
-    NULL,
-    insertar1_menu_uiinfo, NULL, NULL,
-    GNOME_APP_PIXMAP_NONE, NULL,
-    0, (GdkModifierType) 0, NULL
-  },
-  GNOMEUIINFO_MENU_VIEW_TREE (ver1_menu_uiinfo),
-  GNOMEUIINFO_MENU_HELP_TREE (separator2_menu_uiinfo),
-  GNOMEUIINFO_END
-};
 
 GtkWidget*
 create_wprincipal (void)
 {
   GtkWidget *wprincipal;
   GtkWidget *vbox1;
-  GtkWidget *menu;
-  GtkWidget *toolbar1;
-  GtkWidget *tmp_toolbar_icon;
   GtkWidget *bnew;
   GtkWidget *bopen;
   GtkWidget *bsave;
-  GtkWidget *vseparator1;
   GtkWidget *bcut;
   GtkWidget *bcopy;
   GtkWidget *bpaste;
-  GtkWidget *vseparator2;
   GtkWidget *bexit;
   GtkWidget *scrolledwindow1;
   GtkWidget *text;
@@ -625,496 +259,6 @@ create_wprincipal (void)
   GtkWidget *toolbar = gtk_ui_manager_get_widget (ui_manager, "/ToolBar");
   gtk_container_add (GTK_CONTAINER (handlebox), toolbar);
   gtk_widget_show_all (handlebox);
-/*
-  menu = gtk_menu_bar_new ();
-  gtk_widget_ref (menu);
-  gtk_object_set_data_full (GTK_OBJECT (wprincipal), "menu", menu,
-                            (GtkDestroyNotify) gtk_widget_unref);
-  gtk_widget_show (menu);
-  gtk_box_pack_start (GTK_BOX (vbox1), menu, FALSE, FALSE, 0);
-  gnome_app_fill_menu (GTK_MENU_SHELL (menu), menu_uiinfo,
-                       NULL, FALSE, 0);
-
-  gtk_widget_ref (menu_uiinfo[0].widget);
-  gtk_object_set_data_full (GTK_OBJECT (wprincipal), "mficheiro1",
-                            menu_uiinfo[0].widget,
-                            (GtkDestroyNotify) gtk_widget_unref);
-
-  gtk_widget_ref (mficheiro1_menu_uiinfo[0].widget);
-  gtk_object_set_data_full (GTK_OBJECT (wprincipal), "novo1",
-                            mficheiro1_menu_uiinfo[0].widget,
-                            (GtkDestroyNotify) gtk_widget_unref);
-
-  gtk_widget_ref (mficheiro1_menu_uiinfo[1].widget);
-  gtk_object_set_data_full (GTK_OBJECT (wprincipal), "new_wizard_page1",
-                            mficheiro1_menu_uiinfo[1].widget,
-                            (GtkDestroyNotify) gtk_widget_unref);
-
-  gtk_widget_ref (mficheiro1_menu_uiinfo[2].widget);
-  gtk_object_set_data_full (GTK_OBJECT (wprincipal), "abrir1",
-                            mficheiro1_menu_uiinfo[2].widget,
-                            (GtkDestroyNotify) gtk_widget_unref);
-
-  gtk_widget_ref (mficheiro1_menu_uiinfo[3].widget);
-  gtk_object_set_data_full (GTK_OBJECT (wprincipal), "gardar1",
-                            mficheiro1_menu_uiinfo[3].widget,
-                            (GtkDestroyNotify) gtk_widget_unref);
-
-  gtk_widget_ref (mficheiro1_menu_uiinfo[4].widget);
-  gtk_object_set_data_full (GTK_OBJECT (wprincipal), "gardar_como1",
-                            mficheiro1_menu_uiinfo[4].widget,
-                            (GtkDestroyNotify) gtk_widget_unref);
-
-  gtk_widget_ref (mficheiro1_menu_uiinfo[5].widget);
-  gtk_object_set_data_full (GTK_OBJECT (wprincipal), "separator1",
-                            mficheiro1_menu_uiinfo[5].widget,
-                            (GtkDestroyNotify) gtk_widget_unref);
-
-  gtk_widget_ref (mficheiro1_menu_uiinfo[6].widget);
-  gtk_object_set_data_full (GTK_OBJECT (wprincipal), "sair",
-                            mficheiro1_menu_uiinfo[6].widget,
-                            (GtkDestroyNotify) gtk_widget_unref);
-
-  gtk_widget_ref (menu_uiinfo[1].widget);
-  gtk_object_set_data_full (GTK_OBJECT (wprincipal), "edicion1",
-                            menu_uiinfo[1].widget,
-                            (GtkDestroyNotify) gtk_widget_unref);
-
-  gtk_widget_ref (edicion1_menu_uiinfo[0].widget);
-  gtk_object_set_data_full (GTK_OBJECT (wprincipal), "cortar1",
-                            edicion1_menu_uiinfo[0].widget,
-                            (GtkDestroyNotify) gtk_widget_unref);
-
-  gtk_widget_ref (edicion1_menu_uiinfo[1].widget);
-  gtk_object_set_data_full (GTK_OBJECT (wprincipal), "copiar1",
-                            edicion1_menu_uiinfo[1].widget,
-                            (GtkDestroyNotify) gtk_widget_unref);
-
-  gtk_widget_ref (edicion1_menu_uiinfo[2].widget);
-  gtk_object_set_data_full (GTK_OBJECT (wprincipal), "pegar1",
-                            edicion1_menu_uiinfo[2].widget,
-                            (GtkDestroyNotify) gtk_widget_unref);
-
-  gtk_widget_ref (edicion1_menu_uiinfo[3].widget);
-  gtk_object_set_data_full (GTK_OBJECT (wprincipal), "select_all1",
-                            edicion1_menu_uiinfo[3].widget,
-                            (GtkDestroyNotify) gtk_widget_unref);
-
-  gtk_widget_ref (edicion1_menu_uiinfo[4].widget);
-  gtk_object_set_data_full (GTK_OBJECT (wprincipal), "buscar_e_reemprazar1",
-                            edicion1_menu_uiinfo[4].widget,
-                            (GtkDestroyNotify) gtk_widget_unref);
-
-  gtk_widget_ref (menu_uiinfo[2].widget);
-  gtk_object_set_data_full (GTK_OBJECT (wprincipal), "insertar1",
-                            menu_uiinfo[2].widget,
-                            (GtkDestroyNotify) gtk_widget_unref);
-
-  gtk_widget_ref (insertar1_menu_uiinfo[0].widget);
-  gtk_object_set_data_full (GTK_OBJECT (wprincipal), "pagina_base1",
-                            insertar1_menu_uiinfo[0].widget,
-                            (GtkDestroyNotify) gtk_widget_unref);
-
-  gtk_widget_ref (insertar1_menu_uiinfo[1].widget);
-  gtk_object_set_data_full (GTK_OBJECT (wprincipal), "titulo",
-                            insertar1_menu_uiinfo[1].widget,
-                            (GtkDestroyNotify) gtk_widget_unref);
-
-  gtk_widget_ref (insertar1_menu_uiinfo[2].widget);
-  gtk_object_set_data_full (GTK_OBJECT (wprincipal), "data1",
-                            insertar1_menu_uiinfo[2].widget,
-                            (GtkDestroyNotify) gtk_widget_unref);
-
-  gtk_widget_ref (insertar1_menu_uiinfo[3].widget);
-  gtk_object_set_data_full (GTK_OBJECT (wprincipal), "seccion1",
-                            insertar1_menu_uiinfo[3].widget,
-                            (GtkDestroyNotify) gtk_widget_unref);
-
-  gtk_widget_ref (seccion1_menu_uiinfo[0].widget);
-  gtk_object_set_data_full (GTK_OBJECT (wprincipal), "nome1",
-                            seccion1_menu_uiinfo[0].widget,
-                            (GtkDestroyNotify) gtk_widget_unref);
-
-  gtk_widget_ref (seccion1_menu_uiinfo[1].widget);
-  gtk_object_set_data_full (GTK_OBJECT (wprincipal), "sinopsis1",
-                            seccion1_menu_uiinfo[1].widget,
-                            (GtkDestroyNotify) gtk_widget_unref);
-
-  gtk_widget_ref (seccion1_menu_uiinfo[2].widget);
-  gtk_object_set_data_full (GTK_OBJECT (wprincipal), "descripcion1",
-                            seccion1_menu_uiinfo[2].widget,
-                            (GtkDestroyNotify) gtk_widget_unref);
-
-  gtk_widget_ref (seccion1_menu_uiinfo[3].widget);
-  gtk_object_set_data_full (GTK_OBJECT (wprincipal), "opcions1",
-                            seccion1_menu_uiinfo[3].widget,
-                            (GtkDestroyNotify) gtk_widget_unref);
-
-  gtk_widget_ref (seccion1_menu_uiinfo[4].widget);
-  gtk_object_set_data_full (GTK_OBJECT (wprincipal), "valores_retornados1",
-                            seccion1_menu_uiinfo[4].widget,
-                            (GtkDestroyNotify) gtk_widget_unref);
-
-  gtk_widget_ref (seccion1_menu_uiinfo[5].widget);
-  gtk_object_set_data_full (GTK_OBJECT (wprincipal), "estados_de_saida1",
-                            seccion1_menu_uiinfo[5].widget,
-                            (GtkDestroyNotify) gtk_widget_unref);
-
-  gtk_widget_ref (seccion1_menu_uiinfo[6].widget);
-  gtk_object_set_data_full (GTK_OBJECT (wprincipal), "uso1",
-                            seccion1_menu_uiinfo[6].widget,
-                            (GtkDestroyNotify) gtk_widget_unref);
-
-  gtk_widget_ref (seccion1_menu_uiinfo[7].widget);
-  gtk_object_set_data_full (GTK_OBJECT (wprincipal), "ficheiro1",
-                            seccion1_menu_uiinfo[7].widget,
-                            (GtkDestroyNotify) gtk_widget_unref);
-
-  gtk_widget_ref (seccion1_menu_uiinfo[8].widget);
-  gtk_object_set_data_full (GTK_OBJECT (wprincipal), "entorno1",
-                            seccion1_menu_uiinfo[8].widget,
-                            (GtkDestroyNotify) gtk_widget_unref);
-
-  gtk_widget_ref (seccion1_menu_uiinfo[9].widget);
-  gtk_object_set_data_full (GTK_OBJECT (wprincipal), "diagnostico1",
-                            seccion1_menu_uiinfo[9].widget,
-                            (GtkDestroyNotify) gtk_widget_unref);
-
-  gtk_widget_ref (seccion1_menu_uiinfo[10].widget);
-  gtk_object_set_data_full (GTK_OBJECT (wprincipal), "seguridade1",
-                            seccion1_menu_uiinfo[10].widget,
-                            (GtkDestroyNotify) gtk_widget_unref);
-
-  gtk_widget_ref (seccion1_menu_uiinfo[11].widget);
-  gtk_object_set_data_full (GTK_OBJECT (wprincipal), "notas1",
-                            seccion1_menu_uiinfo[11].widget,
-                            (GtkDestroyNotify) gtk_widget_unref);
-
-  gtk_widget_ref (seccion1_menu_uiinfo[12].widget);
-  gtk_object_set_data_full (GTK_OBJECT (wprincipal), "bugs1",
-                            seccion1_menu_uiinfo[12].widget,
-                            (GtkDestroyNotify) gtk_widget_unref);
-
-  gtk_widget_ref (seccion1_menu_uiinfo[13].widget);
-  gtk_object_set_data_full (GTK_OBJECT (wprincipal), "autor1",
-                            seccion1_menu_uiinfo[13].widget,
-                            (GtkDestroyNotify) gtk_widget_unref);
-
-  gtk_widget_ref (seccion1_menu_uiinfo[14].widget);
-  gtk_object_set_data_full (GTK_OBJECT (wprincipal), "exemplos1",
-                            seccion1_menu_uiinfo[14].widget,
-                            (GtkDestroyNotify) gtk_widget_unref);
-
-  gtk_widget_ref (seccion1_menu_uiinfo[15].widget);
-  gtk_object_set_data_full (GTK_OBJECT (wprincipal), "ver_tamen1",
-                            seccion1_menu_uiinfo[15].widget,
-                            (GtkDestroyNotify) gtk_widget_unref);
-
-  gtk_widget_ref (seccion1_menu_uiinfo[16].widget);
-  gtk_object_set_data_full (GTK_OBJECT (wprincipal), "conforme_a1",
-                            seccion1_menu_uiinfo[16].widget,
-                            (GtkDestroyNotify) gtk_widget_unref);
-
-  gtk_widget_ref (seccion1_menu_uiinfo[17].widget);
-  gtk_object_set_data_full (GTK_OBJECT (wprincipal), "_1",
-                            seccion1_menu_uiinfo[17].widget,
-                            (GtkDestroyNotify) gtk_widget_unref);
-
-  gtk_widget_ref (seccion1_menu_uiinfo[18].widget);
-  gtk_object_set_data_full (GTK_OBJECT (wprincipal), "outro1",
-                            seccion1_menu_uiinfo[18].widget,
-                            (GtkDestroyNotify) gtk_widget_unref);
-
-  gtk_widget_ref (insertar1_menu_uiinfo[4].widget);
-  gtk_object_set_data_full (GTK_OBJECT (wprincipal), "justificacion_esquerda1",
-                            insertar1_menu_uiinfo[4].widget,
-                            (GtkDestroyNotify) gtk_widget_unref);
-
-  gtk_widget_ref (justificacion_esquerda1_menu_uiinfo[0].widget);
-  gtk_object_set_data_full (GTK_OBJECT (wprincipal), "xustificacion_a_esquerda1",
-                            justificacion_esquerda1_menu_uiinfo[0].widget,
-                            (GtkDestroyNotify) gtk_widget_unref);
-
-  gtk_widget_ref (justificacion_esquerda1_menu_uiinfo[1].widget);
-  gtk_object_set_data_full (GTK_OBJECT (wprincipal), "xustificacion_ambas1",
-                            justificacion_esquerda1_menu_uiinfo[1].widget,
-                            (GtkDestroyNotify) gtk_widget_unref);
-
-  gtk_widget_ref (insertar1_menu_uiinfo[5].widget);
-  gtk_object_set_data_full (GTK_OBJECT (wprincipal), "recheo1",
-                            insertar1_menu_uiinfo[5].widget,
-                            (GtkDestroyNotify) gtk_widget_unref);
-
-  gtk_widget_ref (recheo1_menu_uiinfo[0].widget);
-  gtk_object_set_data_full (GTK_OBJECT (wprincipal), "activar1",
-                            recheo1_menu_uiinfo[0].widget,
-                            (GtkDestroyNotify) gtk_widget_unref);
-
-  gtk_widget_ref (recheo1_menu_uiinfo[1].widget);
-  gtk_object_set_data_full (GTK_OBJECT (wprincipal), "desactivar1",
-                            recheo1_menu_uiinfo[1].widget,
-                            (GtkDestroyNotify) gtk_widget_unref);
-
-  gtk_widget_ref (insertar1_menu_uiinfo[6].widget);
-  gtk_object_set_data_full (GTK_OBJECT (wprincipal), "fonte1",
-                            insertar1_menu_uiinfo[6].widget,
-                            (GtkDestroyNotify) gtk_widget_unref);
-
-  gtk_widget_ref (fonte1_menu_uiinfo[0].widget);
-  gtk_object_set_data_full (GTK_OBJECT (wprincipal), "bold1",
-                            fonte1_menu_uiinfo[0].widget,
-                            (GtkDestroyNotify) gtk_widget_unref);
-
-  gtk_widget_ref (fonte1_menu_uiinfo[1].widget);
-  gtk_object_set_data_full (GTK_OBJECT (wprincipal), "bold_roman1",
-                            fonte1_menu_uiinfo[1].widget,
-                            (GtkDestroyNotify) gtk_widget_unref);
-
-  gtk_widget_ref (fonte1_menu_uiinfo[2].widget);
-  gtk_object_set_data_full (GTK_OBJECT (wprincipal), "italica1",
-                            fonte1_menu_uiinfo[2].widget,
-                            (GtkDestroyNotify) gtk_widget_unref);
-
-  gtk_widget_ref (fonte1_menu_uiinfo[3].widget);
-  gtk_object_set_data_full (GTK_OBJECT (wprincipal), "italica_bold1",
-                            fonte1_menu_uiinfo[3].widget,
-                            (GtkDestroyNotify) gtk_widget_unref);
-
-  gtk_widget_ref (fonte1_menu_uiinfo[4].widget);
-  gtk_object_set_data_full (GTK_OBJECT (wprincipal), "italica_roman1",
-                            fonte1_menu_uiinfo[4].widget,
-                            (GtkDestroyNotify) gtk_widget_unref);
-
-  gtk_widget_ref (fonte1_menu_uiinfo[5].widget);
-  gtk_object_set_data_full (GTK_OBJECT (wprincipal), "roman_bold1",
-                            fonte1_menu_uiinfo[5].widget,
-                            (GtkDestroyNotify) gtk_widget_unref);
-
-  gtk_widget_ref (fonte1_menu_uiinfo[6].widget);
-  gtk_object_set_data_full (GTK_OBJECT (wprincipal), "roman_italic1",
-                            fonte1_menu_uiinfo[6].widget,
-                            (GtkDestroyNotify) gtk_widget_unref);
-
-  gtk_widget_ref (fonte1_menu_uiinfo[7].widget);
-  gtk_object_set_data_full (GTK_OBJECT (wprincipal), "small_bold1",
-                            fonte1_menu_uiinfo[7].widget,
-                            (GtkDestroyNotify) gtk_widget_unref);
-
-  gtk_widget_ref (fonte1_menu_uiinfo[8].widget);
-  gtk_object_set_data_full (GTK_OBJECT (wprincipal), "small1",
-                            fonte1_menu_uiinfo[8].widget,
-                            (GtkDestroyNotify) gtk_widget_unref);
-
-  gtk_widget_ref (insertar1_menu_uiinfo[7].widget);
-  gtk_object_set_data_full (GTK_OBJECT (wprincipal), "parrafos1",
-                            insertar1_menu_uiinfo[7].widget,
-                            (GtkDestroyNotify) gtk_widget_unref);
-
-  gtk_widget_ref (parrafos1_menu_uiinfo[0].widget);
-  gtk_object_set_data_full (GTK_OBJECT (wprincipal), "novo_parrafo1",
-                            parrafos1_menu_uiinfo[0].widget,
-                            (GtkDestroyNotify) gtk_widget_unref);
-
-  gtk_widget_ref (parrafos1_menu_uiinfo[1].widget);
-  gtk_object_set_data_full (GTK_OBJECT (wprincipal), "comezo_parrafo1",
-                            parrafos1_menu_uiinfo[1].widget,
-                            (GtkDestroyNotify) gtk_widget_unref);
-
-  gtk_widget_ref (insertar1_menu_uiinfo[8].widget);
-  gtk_object_set_data_full (GTK_OBJECT (wprincipal), "marxen1",
-                            insertar1_menu_uiinfo[8].widget,
-                            (GtkDestroyNotify) gtk_widget_unref);
-
-  gtk_widget_ref (marxen1_menu_uiinfo[0].widget);
-  gtk_object_set_data_full (GTK_OBJECT (wprincipal), "comezo_marxen1",
-                            marxen1_menu_uiinfo[0].widget,
-                            (GtkDestroyNotify) gtk_widget_unref);
-
-  gtk_widget_ref (marxen1_menu_uiinfo[1].widget);
-  gtk_object_set_data_full (GTK_OBJECT (wprincipal), "finaliza_marxen1",
-                            marxen1_menu_uiinfo[1].widget,
-                            (GtkDestroyNotify) gtk_widget_unref);
-
-  gtk_widget_ref (insertar1_menu_uiinfo[9].widget);
-  gtk_object_set_data_full (GTK_OBJECT (wprincipal), "hypertext1",
-                            insertar1_menu_uiinfo[9].widget,
-                            (GtkDestroyNotify) gtk_widget_unref);
-
-  gtk_widget_ref (hypertext1_menu_uiinfo[0].widget);
-  gtk_object_set_data_full (GTK_OBJECT (wprincipal), "a_href1",
-                            hypertext1_menu_uiinfo[0].widget,
-                            (GtkDestroyNotify) gtk_widget_unref);
-
-  gtk_widget_ref (hypertext1_menu_uiinfo[1].widget);
-  gtk_object_set_data_full (GTK_OBJECT (wprincipal), "a_name1",
-                            hypertext1_menu_uiinfo[1].widget,
-                            (GtkDestroyNotify) gtk_widget_unref);
-
-  gtk_widget_ref (insertar1_menu_uiinfo[10].widget);
-  gtk_object_set_data_full (GTK_OBJECT (wprincipal), "outros1",
-                            insertar1_menu_uiinfo[10].widget,
-                            (GtkDestroyNotify) gtk_widget_unref);
-
-  gtk_widget_ref (outros1_menu_uiinfo[0].widget);
-  gtk_object_set_data_full (GTK_OBJECT (wprincipal), "tabulador_por_defecto1",
-                            outros1_menu_uiinfo[0].widget,
-                            (GtkDestroyNotify) gtk_widget_unref);
-
-  gtk_widget_ref (outros1_menu_uiinfo[1].widget);
-  gtk_object_set_data_full (GTK_OBJECT (wprincipal), "subcabeceira1",
-                            outros1_menu_uiinfo[1].widget,
-                            (GtkDestroyNotify) gtk_widget_unref);
-
-  gtk_widget_ref (outros1_menu_uiinfo[2].widget);
-  gtk_object_set_data_full (GTK_OBJECT (wprincipal), "lineas_en_branco1",
-                            outros1_menu_uiinfo[2].widget,
-                            (GtkDestroyNotify) gtk_widget_unref);
-
-  gtk_widget_ref (outros1_menu_uiinfo[3].widget);
-  gtk_object_set_data_full (GTK_OBJECT (wprincipal), "comments1",
-                            outros1_menu_uiinfo[3].widget,
-                            (GtkDestroyNotify) gtk_widget_unref);
-
-  gtk_widget_ref (menu_uiinfo[3].widget);
-  gtk_object_set_data_full (GTK_OBJECT (wprincipal), "ver1",
-                            menu_uiinfo[3].widget,
-                            (GtkDestroyNotify) gtk_widget_unref);
-
-  gtk_widget_ref (ver1_menu_uiinfo[0].widget);
-  gtk_object_set_data_full (GTK_OBJECT (wprincipal), "paxina_creada1",
-                            ver1_menu_uiinfo[0].widget,
-                            (GtkDestroyNotify) gtk_widget_unref);
-
-  gtk_widget_ref (ver1_menu_uiinfo[1].widget);
-  gtk_object_set_data_full (GTK_OBJECT (wprincipal), "opcions_programa1",
-                            ver1_menu_uiinfo[1].widget,
-                            (GtkDestroyNotify) gtk_widget_unref);
-
-  gtk_widget_ref (menu_uiinfo[4].widget);
-  gtk_object_set_data_full (GTK_OBJECT (wprincipal), "separator2",
-                            menu_uiinfo[4].widget,
-                            (GtkDestroyNotify) gtk_widget_unref);
-
-  gtk_widget_ref (separator2_menu_uiinfo[0].widget);
-  gtk_object_set_data_full (GTK_OBJECT (wprincipal), "help1",
-                            separator2_menu_uiinfo[0].widget,
-                            (GtkDestroyNotify) gtk_widget_unref);
-
-  gtk_widget_ref (separator2_menu_uiinfo[1].widget);
-  gtk_object_set_data_full (GTK_OBJECT (wprincipal), "home_page1",
-                            separator2_menu_uiinfo[1].widget,
-                            (GtkDestroyNotify) gtk_widget_unref);
-
-  gtk_widget_ref (separator2_menu_uiinfo[2].widget);
-  gtk_object_set_data_full (GTK_OBJECT (wprincipal), "about2",
-                            separator2_menu_uiinfo[2].widget,
-                            (GtkDestroyNotify) gtk_widget_unref);
-
-  toolbar1 = gtk_toolbar_new ();
-  gtk_widget_ref (toolbar1);
-  gtk_object_set_data_full (GTK_OBJECT (wprincipal), "toolbar1", toolbar1,
-                            (GtkDestroyNotify) gtk_widget_unref);
-  gtk_widget_show (toolbar1);
-  gtk_box_pack_start (GTK_BOX (vbox1), toolbar1, FALSE, FALSE, 0);
-
-  tmp_toolbar_icon = gtk_image_new_from_stock (GNOME_STOCK_PIXMAP_NEW, GTK_ICON_SIZE_SMALL_TOOLBAR);
-  bnew = gtk_toolbar_append_element (GTK_TOOLBAR (toolbar1),
-                                GTK_TOOLBAR_CHILD_BUTTON,
-                                NULL,
-                                _("New"),
-                                _("New page"), NULL,
-                                tmp_toolbar_icon, NULL, NULL);
-  gtk_widget_ref (bnew);
-  gtk_object_set_data_full (GTK_OBJECT (wprincipal), "bnew", bnew,
-                            (GtkDestroyNotify) gtk_widget_unref);
-  gtk_widget_show (bnew);
-
-  tmp_toolbar_icon = gtk_image_new_from_stock (GNOME_STOCK_PIXMAP_OPEN, GTK_ICON_SIZE_SMALL_TOOLBAR);
-  bopen = gtk_toolbar_append_element (GTK_TOOLBAR (toolbar1),
-                                GTK_TOOLBAR_CHILD_BUTTON,
-                                NULL,
-                                _("Open"),
-                                _("Open page"), NULL,
-                                tmp_toolbar_icon, NULL, NULL);
-  gtk_widget_ref (bopen);
-  gtk_object_set_data_full (GTK_OBJECT (wprincipal), "bopen", bopen,
-                            (GtkDestroyNotify) gtk_widget_unref);
-  gtk_widget_show (bopen);
-
-  tmp_toolbar_icon = gtk_image_new_from_stock (GNOME_STOCK_PIXMAP_SAVE, GTK_ICON_SIZE_SMALL_TOOLBAR);
-  bsave = gtk_toolbar_append_element (GTK_TOOLBAR (toolbar1),
-                                GTK_TOOLBAR_CHILD_BUTTON,
-                                NULL,
-                                _("Save"),
-                                _("Save current page"), NULL,
-                                tmp_toolbar_icon, NULL, NULL);
-  gtk_widget_ref (bsave);
-  gtk_object_set_data_full (GTK_OBJECT (wprincipal), "bsave", bsave,
-                            (GtkDestroyNotify) gtk_widget_unref);
-  gtk_widget_show (bsave);
-
-  vseparator1 = gtk_vseparator_new ();
-  gtk_widget_ref (vseparator1);
-  gtk_object_set_data_full (GTK_OBJECT (wprincipal), "vseparator1", vseparator1,
-                            (GtkDestroyNotify) gtk_widget_unref);
-  gtk_widget_show (vseparator1);
-  gtk_toolbar_append_widget (GTK_TOOLBAR (toolbar1), vseparator1, NULL, NULL);
-
-  tmp_toolbar_icon = gtk_image_new_from_stock (GNOME_STOCK_PIXMAP_CUT, GTK_ICON_SIZE_SMALL_TOOLBAR);
-  bcut = gtk_toolbar_append_element (GTK_TOOLBAR (toolbar1),
-                                GTK_TOOLBAR_CHILD_BUTTON,
-                                NULL,
-                                _("Cut"),
-                                _("Cut selected text"), NULL,
-                                tmp_toolbar_icon, NULL, NULL);
-  gtk_widget_ref (bcut);
-  gtk_object_set_data_full (GTK_OBJECT (wprincipal), "bcut", bcut,
-                            (GtkDestroyNotify) gtk_widget_unref);
-  gtk_widget_show (bcut);
-
-  tmp_toolbar_icon = gtk_image_new_from_stock (GNOME_STOCK_PIXMAP_COPY, GTK_ICON_SIZE_SMALL_TOOLBAR);
-  bcopy = gtk_toolbar_append_element (GTK_TOOLBAR (toolbar1),
-                                GTK_TOOLBAR_CHILD_BUTTON,
-                                NULL,
-                                _("Copy"),
-                                _("Copy selected text"), NULL,
-                                tmp_toolbar_icon, NULL, NULL);
-  gtk_widget_ref (bcopy);
-  gtk_object_set_data_full (GTK_OBJECT (wprincipal), "bcopy", bcopy,
-                            (GtkDestroyNotify) gtk_widget_unref);
-  gtk_widget_show (bcopy);
-
-  tmp_toolbar_icon = gtk_image_new_from_stock (GNOME_STOCK_PIXMAP_PASTE, GTK_ICON_SIZE_SMALL_TOOLBAR);
-  bpaste = gtk_toolbar_append_element (GTK_TOOLBAR (toolbar1),
-                                GTK_TOOLBAR_CHILD_BUTTON,
-                                NULL,
-                                _("Paste"),
-                                _("Paste from clipboard"), NULL,
-                                tmp_toolbar_icon, NULL, NULL);
-  gtk_widget_ref (bpaste);
-  gtk_object_set_data_full (GTK_OBJECT (wprincipal), "bpaste", bpaste,
-                            (GtkDestroyNotify) gtk_widget_unref);
-  gtk_widget_show (bpaste);
-
-  vseparator2 = gtk_vseparator_new ();
-  gtk_widget_ref (vseparator2);
-  gtk_object_set_data_full (GTK_OBJECT (wprincipal), "vseparator2", vseparator2,
-                            (GtkDestroyNotify) gtk_widget_unref);
-  gtk_widget_show (vseparator2);
-  gtk_toolbar_append_widget (GTK_TOOLBAR (toolbar1), vseparator2, NULL, NULL);
-
-  tmp_toolbar_icon = gtk_image_new_from_stock (GNOME_STOCK_PIXMAP_EXIT, GTK_ICON_SIZE_SMALL_TOOLBAR);
-  bexit = gtk_toolbar_append_element (GTK_TOOLBAR (toolbar1),
-                                GTK_TOOLBAR_CHILD_BUTTON,
-                                NULL,
-                                _("Exit"),
-                                _("Exit from gmanedit"), NULL,
-                                tmp_toolbar_icon, NULL, NULL);
-  gtk_widget_ref (bexit);
-  gtk_object_set_data_full (GTK_OBJECT (wprincipal), "bexit", bexit,
-                            (GtkDestroyNotify) gtk_widget_unref);
-  gtk_widget_show (bexit);
-*/
   scrolledwindow1 = gtk_scrolled_window_new (NULL, NULL);
   gtk_widget_ref (scrolledwindow1);
   gtk_object_set_data_full (GTK_OBJECT (wprincipal), "scrolledwindow1", scrolledwindow1,
