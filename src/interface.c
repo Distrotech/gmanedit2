@@ -324,27 +324,17 @@ create_fileselection (void)
   GtkWidget *cancel_button1;
 
   fileselection = gtk_file_selection_new (_("Gmanedit - Select file"));
-  gtk_object_set_data (GTK_OBJECT (fileselection), "fileselection", fileselection);
-  gtk_container_set_border_width (GTK_CONTAINER (fileselection), 10);
   GdkPixbuf *icon_pixbuf = create_image ("gmanedit_icon.png");
   gtk_window_set_icon (GTK_WINDOW (fileselection), icon_pixbuf);
 
   ok_button1 = GTK_FILE_SELECTION (fileselection)->ok_button;
-  gtk_object_set_data (GTK_OBJECT (fileselection), "ok_button1", ok_button1);
-  gtk_widget_show (ok_button1);
-
   cancel_button1 = GTK_FILE_SELECTION (fileselection)->cancel_button;
-  gtk_object_set_data (GTK_OBJECT (fileselection), "cancel_button1", cancel_button1);
-  gtk_widget_show (cancel_button1);
 
-  gtk_signal_connect (GTK_OBJECT (fileselection), "destroy",
-                      GTK_SIGNAL_FUNC (on_fileselection_destroy),
+  g_signal_connect (G_OBJECT (ok_button1), "clicked",
+                      G_CALLBACK (on_ok_button1_clicked),
                       NULL);
-  gtk_signal_connect (GTK_OBJECT (ok_button1), "clicked",
-                      GTK_SIGNAL_FUNC (on_ok_button1_clicked),
-                      NULL);
-  gtk_signal_connect (GTK_OBJECT (cancel_button1), "clicked",
-                      GTK_SIGNAL_FUNC (on_cancel_button1_clicked),
+  g_signal_connect (G_OBJECT (cancel_button1), "clicked",
+                      G_CALLBACK (on_cancel_button1_clicked),
                       NULL);
 
   return fileselection;

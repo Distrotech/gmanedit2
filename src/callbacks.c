@@ -170,13 +170,8 @@ void
 on_bopen_clicked                       (GtkButton       *button,
                                         gpointer         user_data)
 {
-     if (open_file == NULL)
-            open_file = create_fileselection ();
-             
-     gtk_object_set_data (GTK_OBJECT (open_file), MainWindowKey, button);
-                      
+     open_file = create_fileselection ();
      gtk_widget_show (open_file);
-     gdk_window_raise (open_file->window);
 }
 
 
@@ -228,13 +223,8 @@ void
 on_abrir1_activate                     (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
-     if (open_file == NULL)
-            open_file = create_fileselection ();
-             
-     gtk_object_set_data (GTK_OBJECT (open_file), MainWindowKey, menuitem);
-                      
+     open_file = create_fileselection ();
      gtk_widget_show (open_file);
-     gdk_window_raise (open_file->window);
 }
 
 
@@ -285,42 +275,31 @@ on_statusbar1_destroy                  (GtkObject       *object,
 
 }
 
-
 void
-on_fileselection_destroy               (GtkObject       *object,
+on_cancel_button1_clicked                  (GtkButton       *button,
                                         gpointer         user_data)
 {
-	gtk_widget_hide(open_file);
+    GtkWidget *filesel = gtk_widget_get_toplevel (GTK_WIDGET (button));
+    gtk_widget_destroy (filesel);
 }
-
 
 void
 on_ok_button1_clicked                  (GtkButton       *button,
                                         gpointer         user_data)
 {
-    GtkWidget *filesel,*main_window;
+    GtkWidget *filesel;
     const gchar *temp;
 
     filesel = gtk_widget_get_toplevel (GTK_WIDGET (button));
-    main_window = gtk_object_get_data (GTK_OBJECT (filesel), MainWindowKey);
 
-    gtk_widget_hide(open_file);
-    temp=gtk_file_selection_get_filename(GTK_FILE_SELECTION(open_file));
-    strcpy (filename, temp);
+    gtk_widget_hide(filesel);
+    temp=gtk_file_selection_get_filename(GTK_FILE_SELECTION(filesel));
+    filename = g_strdup(temp);
 
-    open_man_file(GTK_WIDGET(main_window));
+    open_man_file(GTK_WIDGET(filesel));
 }
 
 
-void
-on_cancel_button1_clicked              (GtkButton       *button,
-                                        gpointer         user_data)
-{
-	gtk_widget_hide(open_file);
-	
-}
-
-                          
 static void save_as(GtkWidget *main_window)
 {
 	GtkWidget *text,*statusbar;
@@ -1437,9 +1416,9 @@ static void help_without_gnome(GtkWidget *wid)
 	gtk_statusbar_push(GTK_STATUSBAR(statusbar),1,_("Man help."));	
 }
 
-static void open_man_file(GtkWidget *main_window)
+static void open_man_file(GtkWidget *widget)
 {
-    	GtkWidget *statusbar,*text;
+    GtkWidget *statusbar,*text;
 	gzFile *f;
 	gchar buffer[BUFFER_SIZE];
 	gint bytes_read;
@@ -1447,11 +1426,11 @@ static void open_man_file(GtkWidget *main_window)
 	char extension[10];
 
 
-	text=lookup_widget(GTK_WIDGET(main_window),"text");
+	text=lookup_widget(GTK_WIDGET(wprincipal),"text");
 	gtk_editable_delete_text(GTK_EDITABLE(text),0,-1);
 	
 /* Barra de estado */
-	statusbar=lookup_widget(GTK_WIDGET(main_window),"statusbar1");
+	statusbar=lookup_widget(GTK_WIDGET(wprincipal),"statusbar1");
 	gtk_statusbar_pop(GTK_STATUSBAR(statusbar),1);
 	gtk_statusbar_push(GTK_STATUSBAR(statusbar),1,_("File opening."));	
 
@@ -1478,6 +1457,7 @@ static void open_man_file(GtkWidget *main_window)
 	}
 	else
 		mensaje(strerror(errno),GTK_MESSAGE_ERROR);
+	gtk_widget_destroy (widget);
 }
 
 void
