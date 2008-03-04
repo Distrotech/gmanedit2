@@ -889,18 +889,18 @@ on_bpok_clicked                        (GtkButton       *button,
 	strcpy(cad2,home);
 	strcat(cad2,"/.gmaneditrc");
 
-	entry=lookup_widget(GTK_WIDGET(button),"entry_command");
+	entry=lookup_widget(prefs,"entry_command");
 	entry_text=gtk_entry_get_text(GTK_ENTRY(entry));
 	strcpy(cad,"# File created by gmanedit preferences option\n\nCOMMAND=");
 	strcat(cad,entry_text);
 	
-	ch = lookup_widget(GTK_WIDGET(button),"chgnome_help");
+	ch = lookup_widget(prefs,"chgnome_help");
 	if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
 	        strcat(cad,"\nUSE_GNOME_HELP_BROWSER=yes\n");
 	else
         	strcat(cad,"\nUSE_GNOME_HELP_BROWSER=no\n");
 
-	ch = lookup_widget(GTK_WIDGET(button), "cbinet");
+	ch = lookup_widget(prefs, "cbinet");
 	browser = gtk_editable_get_chars(GTK_EDITABLE(ch),0,-1);
      
 	strcat(cad,"INTERNET_BROWSER=");
@@ -913,7 +913,7 @@ on_bpok_clicked                        (GtkButton       *button,
 	}
 	else
 		mensaje(strerror(errno),GTK_MESSAGE_ERROR);
-	gtk_widget_hide(prefs);
+	gtk_widget_destroy(prefs);
 }
 
 

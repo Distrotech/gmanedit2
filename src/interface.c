@@ -578,8 +578,11 @@ create_wpreferences (void)
   label4 = gtk_label_new (_("Command to test created man pages: "));
   gtk_widget_show (label4);
   gtk_box_pack_start (GTK_BOX (hbox3), label4, FALSE, FALSE, 0);
+
   entry_command = gtk_entry_new ();
   gtk_widget_show (entry_command);
+  HOOKUP_OBJECT (wpreferences, entry_command, "entry_command");
+
   gtk_box_pack_start (GTK_BOX (hbox3), entry_command, FALSE, TRUE, 0);
   gtk_entry_set_text (GTK_ENTRY (entry_command), _("xterm -e man "));
   hbox4 = gtk_hbox_new (FALSE, 0);
@@ -602,10 +605,15 @@ create_wpreferences (void)
 
   cbinet = GTK_COMBO (combo2)->entry;
   gtk_widget_show (cbinet);
+  HOOKUP_OBJECT (wpreferences, cbinet, "cbinet");
+  
   gtk_tooltips_set_tip (tooltips, cbinet, _("Select your internet browser from this list"), NULL);
   gtk_entry_set_text (GTK_ENTRY (cbinet), _("netscape"));
+
   chgnome_help = gtk_check_button_new_with_label (_("Use yelp"));
   gtk_widget_show (chgnome_help);
+  HOOKUP_OBJECT (wpreferences, chgnome_help, "chgnome_help");
+
   gtk_box_pack_start (GTK_BOX (vbox3), chgnome_help, FALSE, FALSE, 0);
   hbuttonbox2 = gtk_hbutton_box_new ();
   gtk_widget_show (hbuttonbox2);
@@ -614,7 +622,7 @@ create_wpreferences (void)
   bpok = gtk_dialog_add_button (GTK_DIALOG (wpreferences),
                 GTK_STOCK_OK, GTK_RESPONSE_OK);
   bpcancel = gtk_dialog_add_button (GTK_DIALOG (wpreferences),
-                GTK_STOCK_OK, GTK_RESPONSE_OK);
+                GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL);
 
   g_signal_connect (G_OBJECT (chgnome_help), "toggled",
                       G_CALLBACK (on_chgnome_help_toggled),
