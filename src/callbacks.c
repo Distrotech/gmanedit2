@@ -1391,17 +1391,3 @@ on_comments1_activate                  (GtkMenuItem     *menuitem,
 
 	insert_label(comm,"Label Comments Inserted",GTK_WIDGET(menuitem));
 }
-
-gboolean
-on_wprincipal_delete_event             (GtkWidget       *widget,
-                                        GdkEvent        *event,
-                                        gpointer         user_data)
-{
-	if (exit_dialog==NULL)
-		exit_dialog=create_exit_dialog();
-
-	gtk_object_set_data(GTK_OBJECT(exit_dialog),MainWindowKey,widget);
-	gtk_widget_show(exit_dialog);
-        return TRUE;
-}
-
