@@ -66,10 +66,6 @@ on_cancel_button1_clicked              (GtkButton       *button,
                                         gpointer         user_data);
 
 void
-on_save_file_destroy                   (GtkObject       *object,
-                                        gpointer         user_data);
-
-void
 on_ok_button2_clicked                  (GtkButton       *button,
                                         gpointer         user_data);
 

@@ -333,22 +333,12 @@ create_save_file (void)
   GtkWidget *cancel_button2;
 
   save_file = gtk_file_selection_new (_("Gmanedit - Saving file"));
-  g_object_set_data (G_OBJECT (save_file), "save_file", save_file);
-  gtk_container_set_border_width (GTK_CONTAINER (save_file), 10);
   GdkPixbuf *icon_pixbuf = create_image ("gmanedit_icon.png");
   gtk_window_set_icon (GTK_WINDOW (save_file), icon_pixbuf);
 
   ok_button2 = GTK_FILE_SELECTION (save_file)->ok_button;
-  g_object_set_data (G_OBJECT (save_file), "ok_button2", ok_button2);
-  gtk_widget_show (ok_button2);
-
   cancel_button2 = GTK_FILE_SELECTION (save_file)->cancel_button;
-  g_object_set_data (G_OBJECT (save_file), "cancel_button2", cancel_button2);
-  gtk_widget_show (cancel_button2);
 
-  g_signal_connect (G_OBJECT (save_file), "destroy",
-                      G_CALLBACK (on_save_file_destroy),
-                      NULL);
   g_signal_connect (G_OBJECT (ok_button2), "clicked",
                       G_CALLBACK (on_ok_button2_clicked),
                       NULL);

@@ -168,18 +168,13 @@ void
 on_gardar1_activate                    (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
-	if (save_file == NULL)
-		save_file=create_save_file();
-		
-	gtk_object_set_data(GTK_OBJECT(save_file),MainWindowKey,menuitem);
-
-	if (filename!=NULL)  /* Si ya tiene nombre asignado */
+	if (filename!=NULL)
 		save_as(wprincipal);
-	else			
+	else
+	{
+		save_file=create_save_file();
 		gtk_widget_show(save_file);
-		
-	gdk_window_raise(save_file->window);
-
+	}
 }
 
 
@@ -187,13 +182,8 @@ void
 on_gardar_como1_activate               (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
-	if (save_file == NULL)
-		save_file=create_save_file();
-		
-	gtk_object_set_data(GTK_OBJECT(save_file),MainWindowKey,menuitem);
-
-        gtk_widget_show(save_file);		
-	gdk_window_raise(save_file->window);
+	save_file=create_save_file();
+    gtk_widget_show(save_file);		
 }
 
 
@@ -208,8 +198,7 @@ void
 on_cancel_button1_clicked                  (GtkButton       *button,
                                         gpointer         user_data)
 {
-    GtkWidget *filesel = gtk_widget_get_toplevel (GTK_WIDGET (button));
-    gtk_widget_destroy (filesel);
+    gtk_widget_destroy (save_file);
 }
 
 void
@@ -670,27 +659,18 @@ on_lineas_en_branco1_activate          (GtkMenuItem     *menuitem,
 
 
 void
-on_save_file_destroy                   (GtkObject       *object,
-                                        gpointer         user_data)
-{
-	gtk_widget_hide(save_file);
-}
-
-
-void
 on_ok_button2_clicked                  (GtkButton       *button,
                                         gpointer         user_data)
 {
-	GtkWidget *filesel,*main_window;
+	GtkWidget *filesel;
 	const gchar *temp;
 	
 	filesel = gtk_widget_get_toplevel (GTK_WIDGET (button));
-	main_window = gtk_object_get_data (GTK_OBJECT (filesel), MainWindowKey);
 	gtk_widget_hide(save_file);
 	temp=gtk_file_selection_get_filename(GTK_FILE_SELECTION(save_file));
-	strcpy (filename, temp);
+	filename = g_strdup(temp);
 
-	save_as(main_window);
+	save_as(wprincipal);
 }
 
 
@@ -698,7 +678,7 @@ void
 on_cancel_button2_clicked              (GtkButton       *button,
                                         gpointer         user_data)
 {
-	gtk_widget_hide(save_file);
+	gtk_widget_destroy(save_file);
 }
 
 void

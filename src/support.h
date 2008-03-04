@@ -36,6 +36,10 @@
   #define N_(String) (String)
 #endif
 
+#define HOOKUP_OBJECT(component,widget,name) \
+	g_object_set_data_full (G_OBJECT (component), name, \
+	g_object_ref (widget), (GDestroyNotify) g_object_unref)
+
 GtkWidget*  lookup_widget              (GtkWidget       *widget,
                                         const gchar     *widget_name);
 
