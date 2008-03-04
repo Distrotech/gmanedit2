@@ -296,9 +296,6 @@ create_wprincipal (void)
   g_signal_connect (G_OBJECT (text), "drag_data_received",
                       G_CALLBACK (on_text_drag_data_received),
                       NULL);
-  g_signal_connect (G_OBJECT (statusbar1), "destroy",
-                      G_CALLBACK (on_statusbar1_destroy),
-                      NULL);
 
   gtk_widget_grab_focus (text);
   return wprincipal;

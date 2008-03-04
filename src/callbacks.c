@@ -138,14 +138,6 @@ the\n.B <program>\nprogram. This program...\n.PP\n\\fB<program>\\fP is for...\n\
 
 
 void
-on_sair_activate                       (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
-{
-	gtk_main_quit();
-}
-
-
-void
 on_novo1_activate                      (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
@@ -209,14 +201,7 @@ void
 on_sair4_activate                      (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
-	gtk_main_quit();
-}
-
-void
-on_statusbar1_destroy                  (GtkObject       *object,
-                                        gpointer         user_data)
-{
-
+	g_signal_emit_by_name (G_OBJECT (wprincipal), "delete_event");
 }
 
 void

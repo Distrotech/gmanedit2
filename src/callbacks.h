@@ -22,10 +22,6 @@ on_wprincipal_delete                (GtkObject       *object,
                                         gpointer         user_data);
 
 void
-on_statusbar1_destroy                  (GtkObject       *object,
-                                        gpointer         user_data);
-
-void
 on_cortar1_activate                    (GtkMenuItem     *menuitem,
                                         gpointer         user_data);
 
@@ -39,10 +35,6 @@ on_pegar1_activate                     (GtkMenuItem     *menuitem,
 
 void
 on_pagina_base1_activate               (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
-
-void
-on_sair_activate                       (GtkMenuItem     *menuitem,
                                         gpointer         user_data);
 
 void
