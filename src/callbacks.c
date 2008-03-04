@@ -750,8 +750,7 @@ on_opcions_programa1_activate        (GtkMenuItem     *menuitem,
 	GtkWidget *obj;
 	gchar datos[255];
 	
-	if (prefs == NULL)
-		prefs=create_wpreferences();
+	prefs=create_wpreferences();
 	
 /* Window Options with last options */
 /* First: command to view man pages */
@@ -921,7 +920,7 @@ void
 on_bpcancel_clicked                    (GtkButton       *button,
                                         gpointer         user_data)
 {
-	gtk_widget_hide(prefs);
+	gtk_widget_destroy(prefs);
 }
 
 static gchar *ReadConfFromFile(gchar *variable)

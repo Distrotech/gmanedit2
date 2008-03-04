@@ -555,7 +555,6 @@ create_wpreferences (void)
   GList *combo2_items = NULL;
   GtkWidget *cbinet;
   GtkWidget *chgnome_help;
-  GtkWidget *hbuttonbox2;
   GtkWidget *bpok;
   GtkWidget *bpcancel;
   GtkTooltips *tooltips;
@@ -613,11 +612,7 @@ create_wpreferences (void)
   chgnome_help = gtk_check_button_new_with_label (_("Use yelp"));
   gtk_widget_show (chgnome_help);
   HOOKUP_OBJECT (wpreferences, chgnome_help, "chgnome_help");
-
   gtk_box_pack_start (GTK_BOX (vbox3), chgnome_help, FALSE, FALSE, 0);
-  hbuttonbox2 = gtk_hbutton_box_new ();
-  gtk_widget_show (hbuttonbox2);
-  gtk_box_pack_start (GTK_BOX (vbox3), hbuttonbox2, TRUE, TRUE, 0);
 
   bpok = gtk_dialog_add_button (GTK_DIALOG (wpreferences),
                 GTK_STOCK_OK, GTK_RESPONSE_OK);
