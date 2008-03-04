@@ -91,15 +91,15 @@ on_bnew_clicked                        (GtkButton       *button,
 {
 	GtkWidget *text,*statusbar;
 
-	text=lookup_widget(GTK_WIDGET(button),"text");
+	text=lookup_widget(wprincipal,"text");
 	gtk_editable_delete_text(GTK_EDITABLE(text),0,-1);
 	
-	statusbar = lookup_widget(GTK_WIDGET(button),"statusbar1");
+	statusbar = lookup_widget(wprincipal,"statusbar1");
 	gtk_statusbar_pop (GTK_STATUSBAR (statusbar), 1);
 	gtk_statusbar_push (GTK_STATUSBAR (statusbar), 1, _("New File."));
 	
-	filename=NULL;
-        in_gzip=0;
+	if (filename) g_free (filename);
+    in_gzip=0;
 }
 
 void
@@ -207,15 +207,15 @@ on_novo1_activate                      (GtkMenuItem     *menuitem,
 {
 	GtkWidget *text,*statusbar;
 
-	text=lookup_widget(GTK_WIDGET(menuitem),"text");
+	text=lookup_widget(GTK_WIDGET(wprincipal),"text");
 	gtk_editable_delete_text(GTK_EDITABLE(text),0,-1);
 	
-	statusbar = lookup_widget(GTK_WIDGET(menuitem),"statusbar1");
+	statusbar = lookup_widget(GTK_WIDGET(wprincipal),"statusbar1");
 	gtk_statusbar_pop (GTK_STATUSBAR (statusbar), 1);
 	gtk_statusbar_push (GTK_STATUSBAR (statusbar), 1, _("New file."));
 
-	filename=NULL;
-        in_gzip=0;
+	if (filename) g_free(filename);
+    in_gzip=0;
 }
 
 
