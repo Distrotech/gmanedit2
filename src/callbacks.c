@@ -74,35 +74,6 @@ on_wprincipal_delete                  (GtkObject       *object,
 }
 
 void
-on_bexit_clicked                       (GtkButton       *button,
-                                        gpointer         user_data)
-{
-	if (exit_dialog==NULL)
-		exit_dialog=create_exit_dialog();
-
-	gtk_object_set_data(GTK_OBJECT(exit_dialog),MainWindowKey,button);
-	gtk_widget_show(exit_dialog);
-}
-
-
-void
-on_bnew_clicked                        (GtkButton       *button,
-                                        gpointer         user_data)
-{
-	GtkWidget *text,*statusbar;
-
-	text=lookup_widget(wprincipal,"text");
-	gtk_editable_delete_text(GTK_EDITABLE(text),0,-1);
-	
-	statusbar = lookup_widget(wprincipal,"statusbar1");
-	gtk_statusbar_pop (GTK_STATUSBAR (statusbar), 1);
-	gtk_statusbar_push (GTK_STATUSBAR (statusbar), 1, _("New File."));
-	
-	if (filename) g_free (filename);
-    in_gzip=0;
-}
-
-void
 on_cortar1_activate                    (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
@@ -163,33 +134,6 @@ the\n.B <program>\nprogram. This program...\n.PP\n\\fB<program>\\fP is for...\n\
 .SH BUGS\n\n.SH AUTHOR\n");
 
 	insert_label(base,"Page created.",GTK_WIDGET(menuitem));
-}
-
-
-void
-on_bopen_clicked                       (GtkButton       *button,
-                                        gpointer         user_data)
-{
-     open_file = create_fileselection ();
-     gtk_widget_show (open_file);
-}
-
-
-void
-on_bsave_clicked                       (GtkButton       *button,
-                                        gpointer         user_data)
-{
-	if (save_file == NULL)
-		save_file=create_save_file();
-		
-	gtk_object_set_data(GTK_OBJECT(save_file),MainWindowKey,button);
-
-	if (filename!=NULL)  /* Si ya tiene nombre asignado */
-		save_as(wprincipal);
-	else			
-		gtk_widget_show(save_file);
-		
-	gdk_window_raise(save_file->window);
 }
 
 
@@ -1049,51 +993,6 @@ static gchar *ReadConfFromFile(gchar *variable)
   }
   fclose(f);
   return((gchar *)NULL);
-}
-
-void
-on_bcut_clicked                        (GtkButton       *button,
-                                        gpointer         user_data)
-{
-	GtkWidget *text,*statusbar;
-	
-	text = lookup_widget (GTK_WIDGET (button), "text");
-	gtk_editable_cut_clipboard (GTK_EDITABLE (text));
-	    
-	statusbar = lookup_widget (GTK_WIDGET (button), "statusbar1");
-	gtk_statusbar_pop (GTK_STATUSBAR (statusbar), 1);
-	gtk_statusbar_push (GTK_STATUSBAR (statusbar), 1, _("Text cutted."));
-}
-
-
-void
-on_bcopy_clicked                       (GtkButton       *button,
-                                        gpointer         user_data)
-{
-	GtkWidget *text,*statusbar;
-	
-	text = lookup_widget (GTK_WIDGET (button), "text");
-	gtk_editable_copy_clipboard (GTK_EDITABLE (text));
-	    
-	statusbar = lookup_widget (GTK_WIDGET (button), "statusbar1");
-	gtk_statusbar_pop (GTK_STATUSBAR (statusbar), 1);
-	gtk_statusbar_push (GTK_STATUSBAR (statusbar), 1, _("Text cutted."));
-
-}
-
-
-void
-on_bpaste_clicked                      (GtkButton       *button,
-                                        gpointer         user_data)
-{
-	GtkWidget *text,*statusbar;
-	
-	text = lookup_widget (GTK_WIDGET (button), "text");
-	gtk_editable_paste_clipboard (GTK_EDITABLE (text));
-	    
-	statusbar = lookup_widget (GTK_WIDGET (button), "statusbar1");
-	gtk_statusbar_pop (GTK_STATUSBAR (statusbar), 1);
-	gtk_statusbar_push (GTK_STATUSBAR (statusbar), 1, _("Text pasted."));
 }
 
 void

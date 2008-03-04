@@ -46,19 +46,11 @@ on_statusbar1_destroy                  (GtkObject       *object,
                                         gpointer         user_data);
 
 void
-on_bexit_clicked                       (GtkButton       *button,
-                                        gpointer         user_data);
-
-void
 on_statusbar1_destroy                  (GtkObject       *object,
                                         gpointer         user_data);
 
 void
 on_statusbar1_destroy                  (GtkObject       *object,
-                                        gpointer         user_data);
-
-void
-on_bnew_clicked                        (GtkButton       *button,
                                         gpointer         user_data);
 
 void
@@ -79,14 +71,6 @@ on_pegar1_activate                     (GtkMenuItem     *menuitem,
 
 void
 on_pagina_base1_activate               (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
-
-void
-on_bopen_clicked                       (GtkButton       *button,
-                                        gpointer         user_data);
-
-void
-on_bsave_clicked                       (GtkButton       *button,
                                         gpointer         user_data);
 
 void
@@ -1032,18 +1016,6 @@ on_ok_button2_clicked                  (GtkButton       *button,
 
 void
 on_cancel_button2_clicked              (GtkButton       *button,
-                                        gpointer         user_data);
-
-void
-on_bcut_clicked                        (GtkButton       *button,
-                                        gpointer         user_data);
-
-void
-on_bcopy_clicked                       (GtkButton       *button,
-                                        gpointer         user_data);
-
-void
-on_bpaste_clicked                      (GtkButton       *button,
                                         gpointer         user_data);
 
 void
