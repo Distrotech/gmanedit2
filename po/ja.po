@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gman 0.3\n"
 "Report-Msgid-Bugs-To: pg4i@amsat.org\n"
-"POT-Creation-Date: 2008-02-27 15:27+0100\n"
+"POT-Creation-Date: 2008-03-03 14:15+0100\n"
 "PO-Revision-Date: 2000-08-30 17:59+09:00\n"
 "Last-Translator: Takeshi Aihana <aihana@muc.biglobe.ne.jp>\n"
 "Language-Team: Japanese <translation@gnome.gr.jp>\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=euc-jp\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/interface.c:35
+#: src/interface.c:36
 msgid "_New"
 msgstr "新規(_N)"
 
@@ -22,667 +22,658 @@ msgstr "新規(_N)"
 msgid "New _Wizard page"
 msgstr "新規ウィザードページ"
 
-#: src/interface.c:57
+#: src/interface.c:38
+#, fuzzy
+msgid "_Open..."
+msgstr "開く"
+
+#: src/interface.c:39
+#, fuzzy
+msgid "_Save"
+msgstr "保存"
+
+#: src/interface.c:40
+msgid "Save _As..."
+msgstr ""
+
+#: src/interface.c:41
+msgid "_Quit"
+msgstr ""
+
+#: src/interface.c:43
+#, fuzzy
+msgid "Cu_t"
+msgstr "切り取り"
+
+#: src/interface.c:44
+#, fuzzy
+msgid "_Copy"
+msgstr "複写"
+
+#: src/interface.c:45
+#, fuzzy
+msgid "_Paste"
+msgstr "貼り付け"
+
+#: src/interface.c:46
 msgid "_Select All"
 msgstr "全て選択(_S)"
 
-#: src/interface.c:70
-msgid "Name"
-msgstr "名前"
-
-#: src/interface.c:77
-msgid "Synopsis"
-msgstr "書式"
-
-#: src/interface.c:84
-msgid "Description"
-msgstr "説明"
-
-#: src/interface.c:91
-msgid "Options"
-msgstr "オプション"
-
-#: src/interface.c:98
-msgid "Return values"
-msgstr "返り値 (戻り値)"
-
-#: src/interface.c:105
-msgid "Exit status"
-msgstr "返り値 (終了コード)"
-
-#: src/interface.c:112
-msgid "Usage"
-msgstr "用法"
-
-#: src/interface.c:119
-msgid "File"
-msgstr "ファイル"
-
-#: src/interface.c:126
-msgid "Environment"
-msgstr "環境変数"
-
-#: src/interface.c:133
-msgid "Diagnostics"
-msgstr "返り値 (診断用)"
-
-#: src/interface.c:140
-msgid "Security"
-msgstr "セキュリティ"
-
-#: src/interface.c:147
-msgid "Notes"
-msgstr "注意"
-
-#: src/interface.c:154
-msgid "Bugs"
-msgstr "バグ"
-
-#: src/interface.c:161
-msgid "Author"
-msgstr "著者"
-
-#: src/interface.c:168
-msgid "Examples"
-msgstr "例"
-
-#: src/interface.c:175
-msgid "See also"
-msgstr "関連項目"
-
-#: src/interface.c:182
-msgid "Conforming to"
-msgstr "準拠"
-
-#: src/interface.c:190
-msgid "Other"
-msgstr "その他"
-
-#: src/interface.c:202
-msgid "Left"
-msgstr "左寄せ"
-
-#: src/interface.c:209
-msgid "Both"
-msgstr "均等寄せ"
-
-#: src/interface.c:221
-msgid "Enable"
-msgstr "有効"
-
-#: src/interface.c:228
-msgid "Disable"
-msgstr "無効"
-
-#: src/interface.c:240
-msgid "Bold"
-msgstr "太字"
-
-#: src/interface.c:247
-msgid "Bold - Roman"
-msgstr "太字 - ローマン"
-
-#: src/interface.c:254
-msgid "Italic"
-msgstr "斜体"
-
-#: src/interface.c:261
-msgid "Italic - Bold"
-msgstr "斜体 - 太字"
-
-#: src/interface.c:268
-msgid "Italic - Roman"
-msgstr "斜体 - ローマン"
-
-#: src/interface.c:275
-msgid "Roman - Bold"
-msgstr "ローマン - 太字"
-
-#: src/interface.c:282
-msgid "Roman - Italic"
-msgstr "ローマン - 斜体"
-
-#: src/interface.c:289
-msgid "Small - Bold"
-msgstr "小文字 - 太字"
-
-#: src/interface.c:296
-msgid "Small"
-msgstr "小文字"
-
-#: src/interface.c:308
-msgid "New paragraph"
-msgstr "新しい段落"
-
-#: src/interface.c:315
-msgid "Paragraph start"
-msgstr "段落の開始"
-
-#: src/interface.c:327
-msgid "Margin start"
-msgstr "マージンの開始"
-
-#: src/interface.c:328
-msgid "Start a margin"
-msgstr "マージンの開始"
-
-#: src/interface.c:334
-msgid "Margin end"
-msgstr "マージンの終了"
-
-#: src/interface.c:346
-msgid "A HREF"
-msgstr "URLへのリンク"
-
-#: src/interface.c:353
-msgid "A NAME"
-msgstr "NAMEへのリンク"
-
-#: src/interface.c:365
-msgid "Default tabs"
-msgstr "デフォルトタブ"
-
-#: src/interface.c:372
-msgid "Subheader"
-msgstr "サブヘッダ"
-
-#: src/interface.c:373
-msgid "Like .SH"
-msgstr ".SH の様に"
-
-#: src/interface.c:379
-msgid "Empty lines"
-msgstr "空行"
-
-#: src/interface.c:386
-msgid "Comments"
-msgstr "注釈"
-
-#: src/interface.c:398
-msgid "Basic page"
+#: src/interface.c:48
+#, fuzzy
+msgid "Basic Page"
 msgstr "基本ページ"
 
-#: src/interface.c:405
-msgid "Title"
+#: src/interface.c:49
+#, fuzzy
+msgid "Titel"
 msgstr "タイトル"
 
-#: src/interface.c:412
+#: src/interface.c:50
 msgid "Date"
 msgstr "日付"
 
-#: src/interface.c:419
-msgid "Section"
-msgstr "セクション"
+#: src/interface.c:52
+msgid "Name"
+msgstr "名前"
 
-#: src/interface.c:426
-#, fuzzy
-msgid "Justify"
-msgstr "割付け"
+#: src/interface.c:53
+msgid "Synopsis"
+msgstr "書式"
 
-#: src/interface.c:433
-msgid "Filling"
-msgstr "埋め込み"
+#: src/interface.c:54
+msgid "Description"
+msgstr "説明"
 
-#: src/interface.c:440
-msgid "Font"
-msgstr "フォント"
+#: src/interface.c:55
+msgid "Options"
+msgstr "オプション"
 
-#: src/interface.c:447
-msgid "Paragraphs"
-msgstr "段落"
+#: src/interface.c:56
+msgid "Return values"
+msgstr "返り値 (戻り値)"
 
-#: src/interface.c:454
-msgid "Margin"
-msgstr "マージン"
+#: src/interface.c:57
+msgid "Exit status"
+msgstr "返り値 (終了コード)"
 
-#: src/interface.c:461
-msgid "Hypertext"
-msgstr "HTML"
+#: src/interface.c:58
+msgid "Usage"
+msgstr "用法"
 
-#: src/interface.c:462
-msgid "Not available"
-msgstr "有効ではありません"
+#: src/interface.c:59
+msgid "File"
+msgstr "ファイル"
 
-#: src/interface.c:468
-msgid "Others"
+#: src/interface.c:60
+msgid "Environment"
+msgstr "環境変数"
+
+#: src/interface.c:61
+msgid "Diagnostics"
+msgstr "返り値 (診断用)"
+
+#: src/interface.c:62
+msgid "Security"
+msgstr "セキュリティ"
+
+#: src/interface.c:63
+msgid "Notes"
+msgstr "注意"
+
+#: src/interface.c:64
+msgid "Bugs"
+msgstr "バグ"
+
+#: src/interface.c:65
+msgid "Author"
+msgstr "著者"
+
+#: src/interface.c:66
+msgid "Examples"
+msgstr "例"
+
+#: src/interface.c:67
+msgid "See also"
+msgstr "関連項目"
+
+#: src/interface.c:68
+msgid "Conforming to"
+msgstr "準拠"
+
+#: src/interface.c:69
+msgid "Other"
 msgstr "その他"
 
-#: src/interface.c:480
+#: src/interface.c:71
+msgid "Left"
+msgstr "左寄せ"
+
+#: src/interface.c:72
+msgid "Both"
+msgstr "均等寄せ"
+
+#: src/interface.c:74
+msgid "Enable"
+msgstr "有効"
+
+#: src/interface.c:75
+msgid "Disable"
+msgstr "無効"
+
+#: src/interface.c:77
+msgid "Bold"
+msgstr "太字"
+
+#: src/interface.c:78
+msgid "Bold - Roman"
+msgstr "太字 - ローマン"
+
+#: src/interface.c:79
+msgid "Italic"
+msgstr "斜体"
+
+#: src/interface.c:80
+msgid "Italic - Bold"
+msgstr "斜体 - 太字"
+
+#: src/interface.c:81
+msgid "Italic - Roman"
+msgstr "斜体 - ローマン"
+
+#: src/interface.c:82
+msgid "Roman - Bold"
+msgstr "ローマン - 太字"
+
+#: src/interface.c:83
+msgid "Roman - Italic"
+msgstr "ローマン - 斜体"
+
+#: src/interface.c:84
+msgid "Small - Bold"
+msgstr "小文字 - 太字"
+
+#: src/interface.c:85
+msgid "Small"
+msgstr "小文字"
+
+#: src/interface.c:87
+#, fuzzy
+msgid "New Paragraph"
+msgstr "新しい段落"
+
+#: src/interface.c:88
+#, fuzzy
+msgid "Paragraph Start"
+msgstr "段落の開始"
+
+#: src/interface.c:90
+msgid "Margin start"
+msgstr "マージンの開始"
+
+#: src/interface.c:91
+msgid "Margin end"
+msgstr "マージンの終了"
+
+#: src/interface.c:93
+msgid "A HREF"
+msgstr "URLへのリンク"
+
+#: src/interface.c:94
+msgid "A NAME"
+msgstr "NAMEへのリンク"
+
+#: src/interface.c:96
+msgid "Default tabs"
+msgstr "デフォルトタブ"
+
+#: src/interface.c:97
+msgid "Subheader"
+msgstr "サブヘッダ"
+
+#: src/interface.c:98
+msgid "Empty lines"
+msgstr "空行"
+
+#: src/interface.c:99
+msgid "Comments"
+msgstr "注釈"
+
+#: src/interface.c:101
 #, fuzzy
 msgid "View created page"
 msgstr "プレビュー"
 
-#: src/interface.c:493
+#: src/interface.c:102
+#, fuzzy
+msgid "_Preferences"
+msgstr "設定"
+
+#: src/interface.c:104
 msgid "H_elp"
 msgstr "ヘルプ(_E)"
 
-#: src/interface.c:500
-msgid "_Home Page"
+#: src/interface.c:105
+#, fuzzy
+msgid "_Home page"
 msgstr "ホームページ(_H)"
 
-#: src/interface.c:515
-msgid "_Insert"
-msgstr "挿入(_I)"
+#: src/interface.c:106
+msgid "_About"
+msgstr ""
 
-#: src/interface.c:550
+#: src/interface.c:232
 #, fuzzy
 msgid "Gmanedit - Gnome manpages editor"
 msgstr "GNOME Man ページエディタ"
 
-#: src/interface.c:956
-msgid "New"
-msgstr "新規"
-
-#: src/interface.c:957
-msgid "New page"
-msgstr "新規に Man ページを作成します"
-
-#: src/interface.c:968
-msgid "Open"
-msgstr "開く"
-
-#: src/interface.c:969
-msgid "Open page"
-msgstr "既存の Man ページを開きます"
-
-#: src/interface.c:980
-msgid "Save"
-msgstr "保存"
-
-#: src/interface.c:981
-msgid "Save current page"
-msgstr "現在の Man ページを保存します"
-
-#: src/interface.c:999
-msgid "Cut"
-msgstr "切り取り"
-
-#: src/interface.c:1000
-msgid "Cut selected text"
-msgstr "選択部分を切り取ります"
-
-#: src/interface.c:1011
-msgid "Copy"
-msgstr "複写"
-
-#: src/interface.c:1012
-msgid "Copy selected text"
-msgstr "選択部分を複写します"
-
-#: src/interface.c:1023
-msgid "Paste"
-msgstr "貼り付け"
-
-#: src/interface.c:1024
-msgid "Paste from clipboard"
-msgstr "クリップボードから貼り付けます"
-
-#: src/interface.c:1042
-msgid "Exit"
-msgstr "終了"
-
-#: src/interface.c:1043
-msgid "Exit from gmanedit"
-msgstr "Gmanedit を終了します"
-
-#: src/interface.c:1115
+#: src/interface.c:326
 #, fuzzy
 msgid "Gmanedit - Select file"
 msgstr "ファイルを選択"
 
-#: src/interface.c:1149
+#: src/interface.c:360
 #, fuzzy
 msgid "Gmanedit - Saving file"
 msgstr "ファイルを保存"
 
-#: src/interface.c:1200
+#: src/interface.c:411
 #, fuzzy
 msgid "Gmanedit - Search and replace"
 msgstr "検索と置換"
 
-#: src/interface.c:1219
+#: src/interface.c:430
 msgid "Search:         "
 msgstr "検索:"
 
-#: src/interface.c:1232 src/interface.c:1254
+#: src/interface.c:443 src/interface.c:465
 msgid "Option not yet available"
 msgstr "未だ実装されていません"
 
-#: src/interface.c:1241
+#: src/interface.c:452
 msgid "Replace with: "
 msgstr "置換する単語: "
 
-#: src/interface.c:1265
+#: src/interface.c:476
 msgid "_Search"
 msgstr "検索(_S)"
 
-#: src/interface.c:1276
+#: src/interface.c:487
 #, fuzzy
 msgid "_Replace"
 msgstr "置換(_R)"
 
-#: src/interface.c:1287
+#: src/interface.c:498
 msgid "_Close"
 msgstr "閉じる(_C)"
 
-#: src/interface.c:1332
+#: src/interface.c:538
 #, fuzzy
 msgid "Man Pages Editor"
 msgstr "Man ページエディタ。"
 
-#: src/interface.c:1351
+#: src/interface.c:555
 #, fuzzy
 msgid "Gmanedit - Exit"
 msgstr "ファイルを選択"
 
-#: src/interface.c:1362
+#: src/interface.c:558
 msgid "Exit from gmanedit?"
 msgstr "Gmanedit を終了しますか?"
 
-#: src/interface.c:1424
+#: src/interface.c:600
 #, fuzzy
 msgid "Gmanedit - Preferences"
 msgstr "ファイルを選択"
 
-#: src/interface.c:1452
+#: src/interface.c:613
 #, fuzzy
 msgid "Command to test created man pages: "
 msgstr "Man ページをプレビューするコマンド:"
 
-#: src/interface.c:1465
+#: src/interface.c:619
 msgid "xterm -e man "
 msgstr "kterm -e man"
 
-#: src/interface.c:1474
+#: src/interface.c:623
 msgid "Internet browser"
 msgstr "インターネットブラウザ"
 
-#: src/interface.c:1487 src/interface.c:1502
+#: src/interface.c:629 src/interface.c:641
 msgid "netscape"
 msgstr "Netscape"
 
-#: src/interface.c:1488
+#: src/interface.c:630
 msgid "mozilla"
 msgstr "Mozilla"
 
-#: src/interface.c:1489
+#: src/interface.c:631
 msgid "galeon"
 msgstr "galeon"
 
-#: src/interface.c:1490
+#: src/interface.c:632
 #, fuzzy
 msgid "yelp"
 msgstr "ヘルプ(_E)"
 
-#: src/interface.c:1491
+#: src/interface.c:633
 msgid "konqueror"
 msgstr ""
 
-#: src/interface.c:1492
+#: src/interface.c:634
 msgid "nautilus"
 msgstr ""
 
-#: src/interface.c:1501
+#: src/interface.c:640
 msgid "Select your internet browser from this list"
 msgstr "このリストからインターネットブラウザを選択して下さい"
 
-#: src/interface.c:1504
+#: src/interface.c:642
 msgid "Use yelp"
 msgstr ""
 
-#: src/interface.c:1628
+#: src/interface.c:723 src/callbacks.c:934
+msgid "January"
+msgstr " 1月"
+
+#: src/interface.c:723 src/callbacks.c:934
+msgid "February"
+msgstr " 2月"
+
+#: src/interface.c:723
+msgid "Mars"
+msgstr " 3月"
+
+#: src/interface.c:723 src/callbacks.c:934
+msgid "April"
+msgstr " 4月"
+
+#: src/interface.c:724 src/callbacks.c:935
+msgid "May"
+msgstr " 5月"
+
+#: src/interface.c:724 src/callbacks.c:935
+msgid "June"
+msgstr " 6月"
+
+#: src/interface.c:724
+msgid "Jule"
+msgstr " 7月"
+
+#: src/interface.c:724 src/callbacks.c:935
+msgid "August"
+msgstr " 8月"
+
+#: src/interface.c:725 src/callbacks.c:936
+msgid "September"
+msgstr " 9月"
+
+#: src/interface.c:725 src/callbacks.c:936
+msgid "October"
+msgstr "10月"
+
+#: src/interface.c:725 src/callbacks.c:936
+msgid "November"
+msgstr "11月"
+
+#: src/interface.c:725 src/callbacks.c:936
+msgid "December"
+msgstr "12月"
+
+#: src/interface.c:730
 #, fuzzy
 msgid "Gmanedit - Wizard"
 msgstr "ファイルを選択"
 
-#: src/interface.c:1655
-msgid "Welcome"
-msgstr "ようこそ"
-
-#: src/interface.c:1656
+#: src/interface.c:738
+#, fuzzy
 msgid ""
-"Welcome to the Gmanedit Man Pages Wizard. \n"
-"Follow the next steps to build a Basic Man Page."
+"Welcome to the Gmanedit Man Pages Wizard. Follow the next steps to build a "
+"Basic Man Page"
 msgstr ""
 "Gmanedit Man ページウィザードへようこそ。\n"
 "次のステップで基本的な Man ページを作成していきます。"
 
-#: src/interface.c:1668
-msgid "Step 1: Basic Information"
-msgstr "ステップ 1: 基本情報"
+#: src/interface.c:742
+msgid "Welcome"
+msgstr "ようこそ"
 
-#: src/interface.c:1692
+#: src/interface.c:761
 msgid "Short name to the man page (example: gmanedit)"
 msgstr "Man ページに対する短い名前 (例: gmanedit)"
 
-#: src/interface.c:1702
+#: src/interface.c:771
 msgid "Creation date (default today)"
 msgstr "作成日 (デフォルトは今日)"
 
-#: src/interface.c:1712
+#: src/interface.c:789
 msgid "Long man page name or title"
 msgstr "Man ページに対する長い名前またはタイトル"
 
-#: src/interface.c:1722
+#: src/interface.c:798
 msgid "First_Name Last_Name <my@email.com>"
 msgstr "氏名 <my@email.com>"
 
-#: src/interface.c:1724
+#: src/interface.c:800
 msgid "Creation Date:"
 msgstr "作成日:"
 
-#: src/interface.c:1734
+#: src/interface.c:809
 msgid "Man page Title:"
 msgstr "Man ページタイトル: "
 
-#: src/interface.c:1744
+#: src/interface.c:818
 msgid "Author:"
 msgstr "著者:"
 
-#: src/interface.c:1754
+#: src/interface.c:828
 msgid "Man page Name:"
 msgstr "Man ページ名:"
 
-#: src/interface.c:1773
-msgid "Step 2: Section number"
-msgstr "ステップ 2: セクション番号"
+#: src/interface.c:839
+msgid "Step 1: Basic Information"
+msgstr "ステップ 1: 基本情報"
 
-#: src/interface.c:1789
+#: src/interface.c:853
 msgid "Section 5: File format and conventions"
 msgstr "セクション 5: ファイルフォーマット"
 
-#: src/interface.c:1799
+#: src/interface.c:862
 msgid "Section number"
 msgstr "セクション番号"
 
-#: src/interface.c:1808
+#: src/interface.c:870
 msgid "Section 6: Games"
 msgstr "セクション 6: ゲーム"
 
-#: src/interface.c:1818
+#: src/interface.c:879
 msgid "Section 7: Macro packages and Coventions"
 msgstr "セクション 7: マクロパッケージ"
 
-#: src/interface.c:1828
+#: src/interface.c:888
 msgid "Section 8: System management commands"
 msgstr "セクション 8: システム管理コマンド"
 
-#: src/interface.c:1838
+#: src/interface.c:897
 msgid "Section 9: Kernel routines"
 msgstr "セクション 9: カーネル ルーチン"
 
-#: src/interface.c:1847
+#: src/interface.c:905
 msgid "Section 4: Special files"
 msgstr "セクション 4: デバイスファイル"
 
-#: src/interface.c:1856
+#: src/interface.c:913
 msgid "Section 3: Library calls"
 msgstr "セクション 3: Cライブラリ関数"
 
-#: src/interface.c:1865
+#: src/interface.c:921
 msgid "Section 2: System calls"
 msgstr "セクション2: システムコール"
 
-#: src/interface.c:1874
+#: src/interface.c:929
 msgid "Section 1: Commands"
 msgstr "セクション 1: ユーザーコマンド"
 
-#: src/interface.c:1883
+#: src/interface.c:937
 msgid "There are 9 sections for man pages. Select one:"
 msgstr "Man ページには 9 個のセクションがあります。1 つ選択して下さい:"
 
-#: src/interface.c:1902 src/interface.c:1920
+#: src/interface.c:954 src/interface.c:972
 msgid "1"
 msgstr "1"
 
-#: src/interface.c:1903
+#: src/interface.c:955
 msgid "2"
 msgstr "2"
 
-#: src/interface.c:1904
+#: src/interface.c:956
 msgid "3"
 msgstr "3"
 
-#: src/interface.c:1905
+#: src/interface.c:957
 msgid "4"
 msgstr "4"
 
-#: src/interface.c:1906
+#: src/interface.c:958
 msgid "5"
 msgstr "5"
 
-#: src/interface.c:1907
+#: src/interface.c:959
 msgid "6"
 msgstr "6"
 
-#: src/interface.c:1908
+#: src/interface.c:960
 msgid "7"
 msgstr "7"
 
-#: src/interface.c:1909
+#: src/interface.c:961
 msgid "8"
 msgstr "8"
 
-#: src/interface.c:1910
+#: src/interface.c:962
 msgid "9"
 msgstr "9"
 
-#: src/interface.c:1919
+#: src/interface.c:971
 msgid "Select section number"
 msgstr "セクション番号を選択して下さい"
 
-#: src/interface.c:1931
-msgid "Step 3: Man Sections"
-msgstr "ステップ 3: Man 選択"
+#: src/interface.c:975
+msgid "Step 2: Section number"
+msgstr "ステップ 2: セクション番号"
 
-#: src/interface.c:1946
+#: src/interface.c:989
 msgid "What sections would you like include?"
 msgstr "どの項目を挿入しますか?"
 
-#: src/interface.c:1955
+#: src/interface.c:997
 msgid "ERROR HANDLING"
 msgstr "エラーハンドラ"
 
-#: src/interface.c:1964
+#: src/interface.c:1005
 msgid "ENVIRONMENT"
 msgstr "環境変数"
 
-#: src/interface.c:1973
+#: src/interface.c:1013
 msgid "FILES"
 msgstr "ファイル"
 
-#: src/interface.c:1982
+#: src/interface.c:1021
 msgid "USAGE"
 msgstr "用法"
 
-#: src/interface.c:1991
+#: src/interface.c:1029
 msgid "ERRORS"
 msgstr "エラー"
 
-#: src/interface.c:2000
+#: src/interface.c:1037
 msgid "SYNOPSIS"
 msgstr "書式"
 
-#: src/interface.c:2010
+#: src/interface.c:1046
 msgid "DESCRIPTION"
 msgstr "説明"
 
-#: src/interface.c:2020
+#: src/interface.c:1055
 msgid "OPTIONS"
 msgstr "オプション"
 
-#: src/interface.c:2030
+#: src/interface.c:1064
 msgid "NAME"
 msgstr "名前"
 
-#: src/interface.c:2040
+#: src/interface.c:1073
 msgid "SEE ALSO"
 msgstr "関連項目"
 
-#: src/interface.c:2050
+#: src/interface.c:1082
 msgid "AUTHOR"
 msgstr "著者"
 
-#: src/interface.c:2060
+#: src/interface.c:1091
 msgid "RETURN VALUES"
 msgstr "返り値"
 
-#: src/interface.c:2069
+#: src/interface.c:1099
 msgid "DIAGNOSTICS"
 msgstr "返り値 (診断用)"
 
-#: src/interface.c:2078
+#: src/interface.c:1107
 msgid "SECURITY"
 msgstr "セキュリティ"
 
-#: src/interface.c:2087
+#: src/interface.c:1115
 msgid "CONFORMING TO"
 msgstr "準拠"
 
-#: src/interface.c:2096
+#: src/interface.c:1123
 msgid "NOTES"
 msgstr "注意"
 
-#: src/interface.c:2105
+#: src/interface.c:1131
 msgid "BUGS"
 msgstr "バグ"
 
-#: src/interface.c:2125
-msgid "The End"
-msgstr "完了です。"
+#: src/interface.c:1141
+msgid "Step 3: Man Sections"
+msgstr "ステップ 3: Man 選択"
 
-#: src/interface.c:2126
+#: src/interface.c:1146
+#, fuzzy
 msgid ""
-"Thank you for using me!\n"
-"You can now edit the man page with\n"
-"gmanedit to change and complete the\n"
-"text."
+"Thank you for using me! You can now edit the man page with gmanedit to "
+"change and complete the text"
 msgstr ""
 "Gmanedit を使ってくれてありがとう!\n"
 "今すぐに Gmanedit で Man ページの\n"
 "編集がができます。"
 
-#: src/callbacks.c:103
+#: src/interface.c:1150
+msgid "The End"
+msgstr "完了です。"
+
+#: src/callbacks.c:99
 msgid "New File."
 msgstr "新規にファイルを作成しました。"
 
-#: src/callbacks.c:120 src/callbacks.c:1105 src/callbacks.c:1120
+#: src/callbacks.c:116 src/callbacks.c:1086 src/callbacks.c:1101
 msgid "Text cutted."
 msgstr "文字列が切り取られました。"
 
-#: src/callbacks.c:135
+#: src/callbacks.c:131
 msgid "Text copied."
 msgstr "文字列が複写されました。"
 
-#: src/callbacks.c:151 src/callbacks.c:1136
+#: src/callbacks.c:147 src/callbacks.c:1117
 msgid "Text pasted."
 msgstr "文字列が貼り付けられました。"
 
-#: src/callbacks.c:159
+#: src/callbacks.c:155
+#, fuzzy
 msgid ""
 ".\\\"Created with GNOME Manpages Editor\n"
-".\\\"http://gmanedit.sourceforge.net\n"
-".\\\"Sergio Rua <srua@gpul.org>\n"
+".\\\"http://sourceforge.net/projects/gmanedit2\n"
+".\\\"Joop Stakenborg <pg4i@amsat.org>\n"
 ".\\\"\n"
 ".TH program <section number> \"<date>\" \"<title>\"\n"
 "\n"
@@ -744,19 +735,19 @@ msgstr ""
 "\n"
 ".SH 著者\n"
 
-#: src/callbacks.c:228
+#: src/callbacks.c:220
 msgid "New file."
 msgstr "新規ファイルです。"
 
-#: src/callbacks.c:380
+#: src/callbacks.c:364
 msgid "File saved."
 msgstr "ファイルが保存されました。"
 
-#: src/callbacks.c:384
+#: src/callbacks.c:368
 msgid "File NOT saved."
 msgstr "ファイルは保存されていません。"
 
-#: src/callbacks.c:397
+#: src/callbacks.c:381
 msgid ""
 ".TH program <section number> \"<date>\" \"<title>\"\n"
 "\n"
@@ -764,7 +755,7 @@ msgstr ""
 ".TH プログラム <セクション番号> \"<日付>\" \"<タイトル>\"\n"
 "\n"
 
-#: src/callbacks.c:408
+#: src/callbacks.c:392
 msgid ""
 ".SH NAME program\n"
 "<program> \\- program for... \n"
@@ -772,83 +763,83 @@ msgstr ""
 ".SH 名前 プログラム\n"
 "<プログラム> -プログラム用のオプション... \n"
 
-#: src/callbacks.c:418
+#: src/callbacks.c:402
 msgid ".SH SYNOPSIS\n"
 msgstr ".SH 書式\n"
 
-#: src/callbacks.c:428
+#: src/callbacks.c:412
 msgid ".SH DESCRIPTION\n"
 msgstr ".SH 説明\n"
 
-#: src/callbacks.c:438
+#: src/callbacks.c:422
 msgid ".SH OPTIONS\n"
 msgstr ".SH オプション\n"
 
-#: src/callbacks.c:448
+#: src/callbacks.c:432
 msgid ".SH RETURN VALUES\n"
 msgstr ".SH 返り値\n"
 
-#: src/callbacks.c:458
+#: src/callbacks.c:442
 msgid ".SH EXIT STATUS\n"
 msgstr ".SH 返り値 (終了コード)\n"
 
-#: src/callbacks.c:467
+#: src/callbacks.c:451
 msgid ".SH USAGE\n"
 msgstr ".SH 用法\n"
 
-#: src/callbacks.c:477
+#: src/callbacks.c:461
 msgid ".SH FILES\n"
 msgstr ".SH ファイル\n"
 
-#: src/callbacks.c:486
+#: src/callbacks.c:470
 msgid ".SH ENVIRONMENT\n"
 msgstr ".SH 環境変数\n"
 
-#: src/callbacks.c:495
+#: src/callbacks.c:479
 msgid ".SH DIAGNOSTICS\n"
 msgstr ".SH 返り値 (診断用)\n"
 
-#: src/callbacks.c:504
+#: src/callbacks.c:488
 msgid ".SH SECURITY\n"
 msgstr ".SH セキュリティ\n"
 
-#: src/callbacks.c:513
+#: src/callbacks.c:497
 msgid ".SH NOTES\n"
 msgstr ".SH 注意\n"
 
-#: src/callbacks.c:522
+#: src/callbacks.c:506
 msgid ".SH BUGS\n"
 msgstr ".SH バグ\n"
 
-#: src/callbacks.c:531 src/callbacks.c:1378
+#: src/callbacks.c:515 src/callbacks.c:1327
 msgid ".SH AUTHOR\n"
 msgstr ".SH 著者\n"
 
-#: src/callbacks.c:540
+#: src/callbacks.c:524
 msgid ".SH EXAMPLES\n"
 msgstr ".SH 例\n"
 
-#: src/callbacks.c:550
+#: src/callbacks.c:534
 msgid ".SH SEE ALSO\n"
 msgstr ".SH 関連項目\n"
 
-#: src/callbacks.c:559
+#: src/callbacks.c:543
 msgid ".SH CONFORMING TO\n"
 msgstr ".SH 準拠\n"
 
-#: src/callbacks.c:576
+#: src/callbacks.c:560
 msgid ".SH <SECTION NAME>\n"
 msgstr ".SH <セクション名>\n"
 
-#: src/callbacks.c:711
+#: src/callbacks.c:695
 msgid ".RS <margin position>\n"
 msgstr ".RS <マージン位置>\n"
 
-#: src/callbacks.c:738
+#: src/callbacks.c:722
 msgid ".SS <NAME>\n"
 msgstr ".SS <名前>\n"
 
-#: src/callbacks.c:746
+#: src/callbacks.c:730
 msgid ""
 ".UR <address>\n"
 ".UE\n"
@@ -856,79 +847,41 @@ msgstr ""
 ".UR <アドレス>\n"
 ".UE\n"
 
-#: src/callbacks.c:755
+#: src/callbacks.c:739
 msgid ".UN <address>\n"
 msgstr ".UN <アドレス>\n"
 
-#: src/callbacks.c:846
+#: src/callbacks.c:830
 msgid "Page preview."
 msgstr "現在の Man ページをプレビューします。"
 
-#: src/callbacks.c:950 src/callbacks.c:1417
-msgid "January"
-msgstr " 1月"
+#: src/callbacks.c:934
+#, fuzzy
+msgid "March"
+msgstr "検索(_S)"
 
-#: src/callbacks.c:950 src/callbacks.c:1417
-msgid "February"
-msgstr " 2月"
-
-#: src/callbacks.c:950 src/callbacks.c:1417
-msgid "Mars"
-msgstr " 3月"
-
-#: src/callbacks.c:950 src/callbacks.c:1417
-msgid "April"
-msgstr " 4月"
-
-#: src/callbacks.c:951 src/callbacks.c:1418
-msgid "May"
-msgstr " 5月"
-
-#: src/callbacks.c:951 src/callbacks.c:1418
-msgid "June"
-msgstr " 6月"
-
-#: src/callbacks.c:951 src/callbacks.c:1418
-msgid "Jule"
+#: src/callbacks.c:935
+#, fuzzy
+msgid "July"
 msgstr " 7月"
 
-#: src/callbacks.c:951 src/callbacks.c:1418
-msgid "August"
-msgstr " 8月"
-
-#: src/callbacks.c:952 src/callbacks.c:1419
-msgid "September"
-msgstr " 9月"
-
-#: src/callbacks.c:952 src/callbacks.c:1419
-msgid "October"
-msgstr "10月"
-
-#: src/callbacks.c:952 src/callbacks.c:1419
-msgid "November"
-msgstr "11月"
-
-#: src/callbacks.c:952 src/callbacks.c:1419
-msgid "December"
-msgstr "12月"
-
-#: src/callbacks.c:966
+#: src/callbacks.c:950
 msgid "Date inserted."
 msgstr "日付が挿入されました。"
 
-#: src/callbacks.c:969
+#: src/callbacks.c:953
 msgid "Cannot get system date!"
 msgstr "システム日付が取得できません!"
 
-#: src/callbacks.c:1175
+#: src/callbacks.c:1156
 msgid "Text selected."
 msgstr "文字列が選択されました。"
 
-#: src/callbacks.c:1282
+#: src/callbacks.c:1231
 msgid ".SH NAME\n"
 msgstr ".SS 名前\n"
 
-#: src/callbacks.c:1284
+#: src/callbacks.c:1233
 msgid ""
 " \\-program for...\n"
 "\n"
@@ -936,7 +889,7 @@ msgstr ""
 " \\-プログラム用の...\n"
 "\n"
 
-#: src/callbacks.c:1291
+#: src/callbacks.c:1240
 msgid ""
 ".SH SYNOPSIS\n"
 ".B "
@@ -944,7 +897,7 @@ msgstr ""
 ".SH 書式\n"
 ".B "
 
-#: src/callbacks.c:1293
+#: src/callbacks.c:1242
 msgid ""
 "\n"
 ".RI [ options ]\n"
@@ -956,7 +909,7 @@ msgstr ""
 ".br\n"
 "\n"
 
-#: src/callbacks.c:1300
+#: src/callbacks.c:1249
 msgid ""
 ".SH DESCRIPTION\n"
 "This manual page explains the\n"
@@ -966,7 +919,7 @@ msgstr ""
 "この manual page は以下を説明します\n"
 ".B "
 
-#: src/callbacks.c:1302
+#: src/callbacks.c:1251
 msgid ""
 "\n"
 "program. This program...\n"
@@ -978,7 +931,7 @@ msgstr ""
 ".PP\n"
 "\\fB"
 
-#: src/callbacks.c:1304
+#: src/callbacks.c:1253
 msgid ""
 "\\fP is for...\n"
 "\n"
@@ -986,7 +939,7 @@ msgstr ""
 "\\fP は ....\n"
 "\n"
 
-#: src/callbacks.c:1310
+#: src/callbacks.c:1259
 msgid ""
 ".SH OPTIONS\n"
 ".B\n"
@@ -1000,7 +953,7 @@ msgstr ""
 "これはオプション...\n"
 "\n"
 
-#: src/callbacks.c:1315
+#: src/callbacks.c:1264
 msgid ""
 ".SH USAGE\n"
 "\n"
@@ -1008,7 +961,7 @@ msgstr ""
 ".SH 用法\n"
 "\n"
 
-#: src/callbacks.c:1320
+#: src/callbacks.c:1269
 msgid ""
 ".SH FILES\n"
 "\n"
@@ -1016,7 +969,7 @@ msgstr ""
 ".SH ファイル\n"
 "\n"
 
-#: src/callbacks.c:1325
+#: src/callbacks.c:1274
 msgid ""
 ".SH ENVIRONMENT\n"
 "\n"
@@ -1024,7 +977,7 @@ msgstr ""
 ".SH 環境変数\n"
 "\n"
 
-#: src/callbacks.c:1330
+#: src/callbacks.c:1279
 msgid ""
 ".SH DIAGNOSTICS\n"
 "\n"
@@ -1032,7 +985,7 @@ msgstr ""
 ".SH 返り値 (診断用)\n"
 "\n"
 
-#: src/callbacks.c:1335
+#: src/callbacks.c:1284
 msgid ""
 ".SH SECURITY\n"
 "\n"
@@ -1040,7 +993,7 @@ msgstr ""
 ".SH セキュリティ\n"
 "\n"
 
-#: src/callbacks.c:1345
+#: src/callbacks.c:1294
 msgid ""
 ".SH ERROR HANDLING\n"
 "\n"
@@ -1048,7 +1001,7 @@ msgstr ""
 ".SH エラーハンドラ\n"
 "\n"
 
-#: src/callbacks.c:1350
+#: src/callbacks.c:1299
 msgid ""
 ".SH ERRORS\n"
 "\n"
@@ -1056,7 +1009,7 @@ msgstr ""
 ".SH エラー\n"
 "\n"
 
-#: src/callbacks.c:1355
+#: src/callbacks.c:1304
 msgid ""
 ".SH CONFORMING TO\n"
 "\n"
@@ -1064,7 +1017,7 @@ msgstr ""
 ".SH 準拠\n"
 "\n"
 
-#: src/callbacks.c:1360
+#: src/callbacks.c:1309
 msgid ""
 ".SH NOTES\n"
 "\n"
@@ -1072,7 +1025,7 @@ msgstr ""
 ".SH 注意\n"
 "\n"
 
-#: src/callbacks.c:1365
+#: src/callbacks.c:1314
 msgid ""
 ".SH BUGS\n"
 "\n"
@@ -1080,7 +1033,7 @@ msgstr ""
 ".SH バグ\n"
 "\n"
 
-#: src/callbacks.c:1371
+#: src/callbacks.c:1320
 msgid ""
 ".SH SEE ALSO\n"
 "\n"
@@ -1088,35 +1041,96 @@ msgstr ""
 ".SH 関連項目\n"
 "\n"
 
-#: src/callbacks.c:1386
+#: src/callbacks.c:1335
 msgid "Wizard page created"
 msgstr "ウィザードページが作成されました。"
 
-#: src/callbacks.c:1455
+#: src/callbacks.c:1373
 #, fuzzy
 msgid "Can not open Internet Browser"
 msgstr "このインターネットブラウザが開けません。"
 
-#: src/callbacks.c:1489 src/callbacks.c:1519
+#: src/callbacks.c:1407 src/callbacks.c:1437
 msgid "Man help."
 msgstr "マニュアルのヘルプです。"
 
-#: src/callbacks.c:1538
+#: src/callbacks.c:1456
 msgid "File opening."
 msgstr "ファイルを開いています。"
 
-#: src/support.c:108
+#: src/support.c:93
 #, c-format
 msgid "Couldn't find pixmap file: %s"
 msgstr "Pixmap 形式ファイルが見つかりませんでした: %s"
 
-#: src/support.c:115
+#: src/support.c:100
 #, c-format
 msgid "Failed to load pixbuf file: %s: %s\n"
 msgstr ""
 
-#~ msgid "Preferences"
-#~ msgstr "設定"
+#~ msgid "Start a margin"
+#~ msgstr "マージンの開始"
+
+#~ msgid "Like .SH"
+#~ msgstr ".SH の様に"
+
+#~ msgid "Section"
+#~ msgstr "セクション"
+
+#, fuzzy
+#~ msgid "Justify"
+#~ msgstr "割付け"
+
+#~ msgid "Filling"
+#~ msgstr "埋め込み"
+
+#~ msgid "Font"
+#~ msgstr "フォント"
+
+#~ msgid "Paragraphs"
+#~ msgstr "段落"
+
+#~ msgid "Margin"
+#~ msgstr "マージン"
+
+#~ msgid "Hypertext"
+#~ msgstr "HTML"
+
+#~ msgid "Not available"
+#~ msgstr "有効ではありません"
+
+#~ msgid "Others"
+#~ msgstr "その他"
+
+#~ msgid "_Insert"
+#~ msgstr "挿入(_I)"
+
+#~ msgid "New"
+#~ msgstr "新規"
+
+#~ msgid "New page"
+#~ msgstr "新規に Man ページを作成します"
+
+#~ msgid "Open page"
+#~ msgstr "既存の Man ページを開きます"
+
+#~ msgid "Save current page"
+#~ msgstr "現在の Man ページを保存します"
+
+#~ msgid "Cut selected text"
+#~ msgstr "選択部分を切り取ります"
+
+#~ msgid "Copy selected text"
+#~ msgstr "選択部分を複写します"
+
+#~ msgid "Paste from clipboard"
+#~ msgstr "クリップボードから貼り付けます"
+
+#~ msgid "Exit"
+#~ msgstr "終了"
+
+#~ msgid "Exit from gmanedit"
+#~ msgstr "Gmanedit を終了します"
 
 #~ msgid "Wizard"
 #~ msgstr "ウィザード"

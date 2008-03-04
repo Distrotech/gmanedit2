@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.3.3\n"
 "Report-Msgid-Bugs-To: pg4i@amsat.org\n"
-"POT-Creation-Date: 2008-02-27 15:27+0100\n"
+"POT-Creation-Date: 2008-03-03 14:15+0100\n"
 "PO-Revision-Date: 2002-06-30 03:38+0200\n"
 "Last-Translator: Jordi Mallach <jordi@sindominio.net>\n"
 "Language-Team: Catalan <ca@dodds.net>\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/interface.c:35
+#: src/interface.c:36
 msgid "_New"
 msgstr "_Nou"
 
@@ -22,668 +22,659 @@ msgstr "_Nou"
 msgid "New _Wizard page"
 msgstr "Nova pàgina amb _asistent"
 
-#: src/interface.c:57
+#: src/interface.c:38
+#, fuzzy
+msgid "_Open..."
+msgstr "Obre"
+
+#: src/interface.c:39
+#, fuzzy
+msgid "_Save"
+msgstr "Desa"
+
+#: src/interface.c:40
+msgid "Save _As..."
+msgstr ""
+
+#: src/interface.c:41
+msgid "_Quit"
+msgstr ""
+
+#: src/interface.c:43
+#, fuzzy
+msgid "Cu_t"
+msgstr "Talla"
+
+#: src/interface.c:44
+#, fuzzy
+msgid "_Copy"
+msgstr "Copia"
+
+#: src/interface.c:45
+#, fuzzy
+msgid "_Paste"
+msgstr "Engantxa"
+
+#: src/interface.c:46
 msgid "_Select All"
 msgstr "_Seleccionar tot"
 
-#: src/interface.c:70
-msgid "Name"
-msgstr "Nom"
-
-#: src/interface.c:77
-msgid "Synopsis"
-msgstr "Sinopsi"
-
-#: src/interface.c:84
-msgid "Description"
-msgstr "Descripció"
-
-#: src/interface.c:91
-msgid "Options"
-msgstr "Opcions"
-
-#: src/interface.c:98
-msgid "Return values"
-msgstr "Valors de retorn"
-
-#: src/interface.c:105
-msgid "Exit status"
-msgstr "Estats de sortida"
-
-#: src/interface.c:112
-msgid "Usage"
-msgstr "Ús"
-
-#: src/interface.c:119
-msgid "File"
-msgstr "Fitxer"
-
-#: src/interface.c:126
-msgid "Environment"
-msgstr "Entorn"
-
-#: src/interface.c:133
-msgid "Diagnostics"
-msgstr "Diagnòstics"
-
-#: src/interface.c:140
-msgid "Security"
-msgstr "Seguretat"
-
-#: src/interface.c:147
-msgid "Notes"
-msgstr "Notes"
-
-#: src/interface.c:154
-msgid "Bugs"
-msgstr "Errades"
-
-#: src/interface.c:161
-msgid "Author"
-msgstr "Autor"
-
-#: src/interface.c:168
-msgid "Examples"
-msgstr "Exemples"
-
-#: src/interface.c:175
-msgid "See also"
-msgstr "Veure també"
-
-#: src/interface.c:182
-msgid "Conforming to"
-msgstr "Conform a"
-
-#: src/interface.c:190
-msgid "Other"
-msgstr "Altre"
-
-#: src/interface.c:202
-msgid "Left"
-msgstr "Esquerra"
-
-#: src/interface.c:209
-msgid "Both"
-msgstr "Dreta"
-
-#: src/interface.c:221
-msgid "Enable"
-msgstr "Habilita"
-
-#: src/interface.c:228
-msgid "Disable"
-msgstr "Deshabilita"
-
-#: src/interface.c:240
-msgid "Bold"
-msgstr "Negreta"
-
-#: src/interface.c:247
-msgid "Bold - Roman"
-msgstr "Negreta - Roman"
-
-#: src/interface.c:254
-msgid "Italic"
-msgstr "Cursiva"
-
-#: src/interface.c:261
-msgid "Italic - Bold"
-msgstr "Cursiva - Negreta"
-
-#: src/interface.c:268
-msgid "Italic - Roman"
-msgstr "Cursiva - Roman"
-
-#: src/interface.c:275
-msgid "Roman - Bold"
-msgstr "Roman - Negreta"
-
-#: src/interface.c:282
-msgid "Roman - Italic"
-msgstr "Roman - Cursiva"
-
-#: src/interface.c:289
-msgid "Small - Bold"
-msgstr "Petita - Negreta"
-
-#: src/interface.c:296
-msgid "Small"
-msgstr "Petita"
-
-#: src/interface.c:308
-msgid "New paragraph"
-msgstr "Nou paràgraf"
-
-#: src/interface.c:315
-msgid "Paragraph start"
-msgstr "Inici del paràgraf"
-
-#: src/interface.c:327
-msgid "Margin start"
-msgstr "Inici del marge"
-
-#: src/interface.c:328
-msgid "Start a margin"
-msgstr "Inicia un marge"
-
-#: src/interface.c:334
-msgid "Margin end"
-msgstr "Final del marge"
-
-#: src/interface.c:346
-msgid "A HREF"
-msgstr "A HREF"
-
-#: src/interface.c:353
-msgid "A NAME"
-msgstr "A NAME"
-
-#: src/interface.c:365
-msgid "Default tabs"
-msgstr "Tabulador per defecte"
-
-#: src/interface.c:372
-msgid "Subheader"
-msgstr "Subcapçalera"
-
-#: src/interface.c:373
-msgid "Like .SH"
-msgstr "Com .SH"
-
-#: src/interface.c:379
-msgid "Empty lines"
-msgstr "Línies buïdes"
-
-#: src/interface.c:386
-msgid "Comments"
-msgstr "Comentaris"
-
-#: src/interface.c:398
-msgid "Basic page"
+#: src/interface.c:48
+#, fuzzy
+msgid "Basic Page"
 msgstr "Pàgina bàsica"
 
-#: src/interface.c:405
-msgid "Title"
+#: src/interface.c:49
+#, fuzzy
+msgid "Titel"
 msgstr "Títol"
 
-#: src/interface.c:412
+#: src/interface.c:50
 msgid "Date"
 msgstr "Data"
 
-#: src/interface.c:419
-msgid "Section"
-msgstr "Secció"
+#: src/interface.c:52
+msgid "Name"
+msgstr "Nom"
 
-#: src/interface.c:426
+#: src/interface.c:53
+msgid "Synopsis"
+msgstr "Sinopsi"
+
+#: src/interface.c:54
+msgid "Description"
+msgstr "Descripció"
+
+#: src/interface.c:55
+msgid "Options"
+msgstr "Opcions"
+
+#: src/interface.c:56
+msgid "Return values"
+msgstr "Valors de retorn"
+
+#: src/interface.c:57
+msgid "Exit status"
+msgstr "Estats de sortida"
+
+#: src/interface.c:58
+msgid "Usage"
+msgstr "Ús"
+
+#: src/interface.c:59
+msgid "File"
+msgstr "Fitxer"
+
+#: src/interface.c:60
+msgid "Environment"
+msgstr "Entorn"
+
+#: src/interface.c:61
+msgid "Diagnostics"
+msgstr "Diagnòstics"
+
+#: src/interface.c:62
+msgid "Security"
+msgstr "Seguretat"
+
+#: src/interface.c:63
+msgid "Notes"
+msgstr "Notes"
+
+#: src/interface.c:64
+msgid "Bugs"
+msgstr "Errades"
+
+#: src/interface.c:65
+msgid "Author"
+msgstr "Autor"
+
+#: src/interface.c:66
+msgid "Examples"
+msgstr "Exemples"
+
+#: src/interface.c:67
+msgid "See also"
+msgstr "Veure també"
+
+#: src/interface.c:68
+msgid "Conforming to"
+msgstr "Conform a"
+
+#: src/interface.c:69
+msgid "Other"
+msgstr "Altre"
+
+#: src/interface.c:71
+msgid "Left"
+msgstr "Esquerra"
+
+#: src/interface.c:72
+msgid "Both"
+msgstr "Dreta"
+
+#: src/interface.c:74
+msgid "Enable"
+msgstr "Habilita"
+
+#: src/interface.c:75
+msgid "Disable"
+msgstr "Deshabilita"
+
+#: src/interface.c:77
+msgid "Bold"
+msgstr "Negreta"
+
+#: src/interface.c:78
+msgid "Bold - Roman"
+msgstr "Negreta - Roman"
+
+#: src/interface.c:79
+msgid "Italic"
+msgstr "Cursiva"
+
+#: src/interface.c:80
+msgid "Italic - Bold"
+msgstr "Cursiva - Negreta"
+
+#: src/interface.c:81
+msgid "Italic - Roman"
+msgstr "Cursiva - Roman"
+
+#: src/interface.c:82
+msgid "Roman - Bold"
+msgstr "Roman - Negreta"
+
+#: src/interface.c:83
+msgid "Roman - Italic"
+msgstr "Roman - Cursiva"
+
+#: src/interface.c:84
+msgid "Small - Bold"
+msgstr "Petita - Negreta"
+
+#: src/interface.c:85
+msgid "Small"
+msgstr "Petita"
+
+#: src/interface.c:87
 #, fuzzy
-msgid "Justify"
-msgstr "Justifica"
+msgid "New Paragraph"
+msgstr "Nou paràgraf"
 
-#: src/interface.c:433
-msgid "Filling"
-msgstr "Farcit"
+#: src/interface.c:88
+#, fuzzy
+msgid "Paragraph Start"
+msgstr "Inici del paràgraf"
 
-#: src/interface.c:440
-msgid "Font"
-msgstr "Font"
+#: src/interface.c:90
+msgid "Margin start"
+msgstr "Inici del marge"
 
-#: src/interface.c:447
-msgid "Paragraphs"
-msgstr "Paràgraf"
+#: src/interface.c:91
+msgid "Margin end"
+msgstr "Final del marge"
 
-#: src/interface.c:454
-msgid "Margin"
-msgstr "Marge"
+#: src/interface.c:93
+msgid "A HREF"
+msgstr "A HREF"
 
-#: src/interface.c:461
-msgid "Hypertext"
-msgstr "Hipertext"
+#: src/interface.c:94
+msgid "A NAME"
+msgstr "A NAME"
 
-#: src/interface.c:462
-msgid "Not available"
-msgstr "No disponible"
+#: src/interface.c:96
+msgid "Default tabs"
+msgstr "Tabulador per defecte"
 
-#: src/interface.c:468
-msgid "Others"
-msgstr "Altres"
+#: src/interface.c:97
+msgid "Subheader"
+msgstr "Subcapçalera"
 
-#: src/interface.c:480
+#: src/interface.c:98
+msgid "Empty lines"
+msgstr "Línies buïdes"
+
+#: src/interface.c:99
+msgid "Comments"
+msgstr "Comentaris"
+
+#: src/interface.c:101
 #, fuzzy
 msgid "View created page"
 msgstr "Pàgina creada"
 
-#: src/interface.c:493
+#: src/interface.c:102
+#, fuzzy
+msgid "_Preferences"
+msgstr "Preferències"
+
+#: src/interface.c:104
 msgid "H_elp"
 msgstr "A_juda"
 
-#: src/interface.c:500
-msgid "_Home Page"
+#: src/interface.c:105
+#, fuzzy
+msgid "_Home page"
 msgstr "_Pàgina principal"
 
-#: src/interface.c:515
-msgid "_Insert"
-msgstr "_Inserta"
+#: src/interface.c:106
+msgid "_About"
+msgstr ""
 
-#: src/interface.c:550
+#: src/interface.c:232
 #, fuzzy
 msgid "Gmanedit - Gnome manpages editor"
 msgstr "Editor de pàgines de manual del GNOME"
 
-#: src/interface.c:956
-msgid "New"
-msgstr "Nou"
-
-#: src/interface.c:957
-msgid "New page"
-msgstr "Nova pàgina"
-
-#: src/interface.c:968
-msgid "Open"
-msgstr "Obre"
-
-#: src/interface.c:969
-msgid "Open page"
-msgstr "Obre pàgina"
-
-#: src/interface.c:980
-msgid "Save"
-msgstr "Desa"
-
-#: src/interface.c:981
-msgid "Save current page"
-msgstr "Desa la pàgina actual"
-
-#: src/interface.c:999
-msgid "Cut"
-msgstr "Talla"
-
-#: src/interface.c:1000
-msgid "Cut selected text"
-msgstr "Talla el texte seleccionat"
-
-#: src/interface.c:1011
-msgid "Copy"
-msgstr "Copia"
-
-#: src/interface.c:1012
-msgid "Copy selected text"
-msgstr "Copia el texte seleccionat"
-
-#: src/interface.c:1023
-msgid "Paste"
-msgstr "Engantxa"
-
-#: src/interface.c:1024
-msgid "Paste from clipboard"
-msgstr "Engantxa des del portapapers"
-
-#: src/interface.c:1042
-msgid "Exit"
-msgstr "Surt"
-
-#: src/interface.c:1043
-msgid "Exit from gmanedit"
-msgstr "Sortir de gmanedit?"
-
-#: src/interface.c:1115
+#: src/interface.c:326
 #, fuzzy
 msgid "Gmanedit - Select file"
 msgstr "Seleccioneu el fitxer"
 
-#: src/interface.c:1149
+#: src/interface.c:360
 #, fuzzy
 msgid "Gmanedit - Saving file"
 msgstr "S'està desant el fixter"
 
-#: src/interface.c:1200
+#: src/interface.c:411
 #, fuzzy
 msgid "Gmanedit - Search and replace"
 msgstr "Cerca i reemplaça"
 
-#: src/interface.c:1219
+#: src/interface.c:430
 msgid "Search:         "
 msgstr "Cerca:          "
 
-#: src/interface.c:1232 src/interface.c:1254
+#: src/interface.c:443 src/interface.c:465
 msgid "Option not yet available"
 msgstr "Opció encara no disponible"
 
-#: src/interface.c:1241
+#: src/interface.c:452
 msgid "Replace with: "
 msgstr "Reemplaça amb: "
 
-#: src/interface.c:1265
+#: src/interface.c:476
 msgid "_Search"
 msgstr "_Buscar"
 
-#: src/interface.c:1276
+#: src/interface.c:487
 #, fuzzy
 msgid "_Replace"
 msgstr "_Reemplaça"
 
-#: src/interface.c:1287
+#: src/interface.c:498
 msgid "_Close"
 msgstr "_Tanca"
 
-#: src/interface.c:1332
+#: src/interface.c:538
 #, fuzzy
 msgid "Man Pages Editor"
 msgstr "Editor de pàgines de manual."
 
-#: src/interface.c:1351
+#: src/interface.c:555
 #, fuzzy
 msgid "Gmanedit - Exit"
 msgstr "Seleccioneu el fitxer"
 
-#: src/interface.c:1362
+#: src/interface.c:558
 msgid "Exit from gmanedit?"
 msgstr "Sortir de gmanedit?"
 
-#: src/interface.c:1424
+#: src/interface.c:600
 #, fuzzy
 msgid "Gmanedit - Preferences"
 msgstr "Seleccioneu el fitxer"
 
-#: src/interface.c:1452
+#: src/interface.c:613
 #, fuzzy
 msgid "Command to test created man pages: "
 msgstr "Ordre per a testejar les pàgines creades"
 
-#: src/interface.c:1465
+#: src/interface.c:619
 msgid "xterm -e man "
 msgstr "xterm -e man "
 
-#: src/interface.c:1474
+#: src/interface.c:623
 msgid "Internet browser"
 msgstr "Navegador d'Internet"
 
-#: src/interface.c:1487 src/interface.c:1502
+#: src/interface.c:629 src/interface.c:641
 msgid "netscape"
 msgstr "netscape"
 
-#: src/interface.c:1488
+#: src/interface.c:630
 msgid "mozilla"
 msgstr "mozilla"
 
-#: src/interface.c:1489
+#: src/interface.c:631
 msgid "galeon"
 msgstr "galeon"
 
-#: src/interface.c:1490
+#: src/interface.c:632
 #, fuzzy
 msgid "yelp"
 msgstr "A_juda"
 
-#: src/interface.c:1491
+#: src/interface.c:633
 msgid "konqueror"
 msgstr ""
 
-#: src/interface.c:1492
+#: src/interface.c:634
 msgid "nautilus"
 msgstr ""
 
-#: src/interface.c:1501
+#: src/interface.c:640
 msgid "Select your internet browser from this list"
 msgstr "Sel·leccioneu el vostre navegador de la llista"
 
-#: src/interface.c:1504
+#: src/interface.c:642
 msgid "Use yelp"
 msgstr ""
 
-#: src/interface.c:1628
+#: src/interface.c:723 src/callbacks.c:934
+msgid "January"
+msgstr "Gener"
+
+#: src/interface.c:723 src/callbacks.c:934
+msgid "February"
+msgstr "Febrer"
+
+#: src/interface.c:723
+msgid "Mars"
+msgstr "Març"
+
+#: src/interface.c:723 src/callbacks.c:934
+msgid "April"
+msgstr "Abril"
+
+#: src/interface.c:724 src/callbacks.c:935
+msgid "May"
+msgstr "Maig"
+
+#: src/interface.c:724 src/callbacks.c:935
+msgid "June"
+msgstr "Juny"
+
+#: src/interface.c:724
+msgid "Jule"
+msgstr "Juliol"
+
+#: src/interface.c:724 src/callbacks.c:935
+msgid "August"
+msgstr "Agost"
+
+#: src/interface.c:725 src/callbacks.c:936
+msgid "September"
+msgstr "Setembre"
+
+#: src/interface.c:725 src/callbacks.c:936
+msgid "October"
+msgstr "Octubre"
+
+#: src/interface.c:725 src/callbacks.c:936
+msgid "November"
+msgstr "Novembre"
+
+#: src/interface.c:725 src/callbacks.c:936
+msgid "December"
+msgstr "Desembre"
+
+#: src/interface.c:730
 #, fuzzy
 msgid "Gmanedit - Wizard"
 msgstr "Seleccioneu el fitxer"
 
-#: src/interface.c:1655
-msgid "Welcome"
-msgstr "Benvingut"
-
-#: src/interface.c:1656
+#: src/interface.c:738
+#, fuzzy
 msgid ""
-"Welcome to the Gmanedit Man Pages Wizard. \n"
-"Follow the next steps to build a Basic Man Page."
+"Welcome to the Gmanedit Man Pages Wizard. Follow the next steps to build a "
+"Basic Man Page"
 msgstr ""
 "Benvinguts al asistent de pàgines de manual\n"
 "de Gmanedit. Seguiu els passos per a crear\n"
 "una pàgina de manual bàsica."
 
-#: src/interface.c:1668
-msgid "Step 1: Basic Information"
-msgstr "Pas 1: Informació bàsica"
+#: src/interface.c:742
+msgid "Welcome"
+msgstr "Benvingut"
 
-#: src/interface.c:1692
+#: src/interface.c:761
 msgid "Short name to the man page (example: gmanedit)"
 msgstr "Nom curt per a la pàgina de manual (exemple: gmanedit)"
 
-#: src/interface.c:1702
+#: src/interface.c:771
 msgid "Creation date (default today)"
 msgstr "Data de creació (per defecte avuí)"
 
-#: src/interface.c:1712
+#: src/interface.c:789
 msgid "Long man page name or title"
 msgstr "Nom llarg o títol per a la pàgina"
 
-#: src/interface.c:1722
+#: src/interface.c:798
 msgid "First_Name Last_Name <my@email.com>"
 msgstr "Nom Cognoms <nom@domini.com>"
 
-#: src/interface.c:1724
+#: src/interface.c:800
 msgid "Creation Date:"
 msgstr "Data de creació:"
 
-#: src/interface.c:1734
+#: src/interface.c:809
 msgid "Man page Title:"
 msgstr "Títol de la pàgina:"
 
-#: src/interface.c:1744
+#: src/interface.c:818
 msgid "Author:"
 msgstr "Autor:"
 
-#: src/interface.c:1754
+#: src/interface.c:828
 msgid "Man page Name:"
 msgstr "Nom de la pàgina:"
 
-#: src/interface.c:1773
-msgid "Step 2: Section number"
-msgstr "Pas 2: nombre de secció"
+#: src/interface.c:839
+msgid "Step 1: Basic Information"
+msgstr "Pas 1: Informació bàsica"
 
-#: src/interface.c:1789
+#: src/interface.c:853
 msgid "Section 5: File format and conventions"
 msgstr "Secció 5: Format de fitxers i convencions"
 
-#: src/interface.c:1799
+#: src/interface.c:862
 msgid "Section number"
 msgstr "Nombre de secció"
 
-#: src/interface.c:1808
+#: src/interface.c:870
 msgid "Section 6: Games"
 msgstr "Secció 6: Jocs"
 
-#: src/interface.c:1818
+#: src/interface.c:879
 msgid "Section 7: Macro packages and Coventions"
 msgstr "Secció 7: Macro paquets i convencions"
 
-#: src/interface.c:1828
+#: src/interface.c:888
 msgid "Section 8: System management commands"
 msgstr "Secció 8: Ordres del maneig del sistema"
 
-#: src/interface.c:1838
+#: src/interface.c:897
 msgid "Section 9: Kernel routines"
 msgstr "Secció 9: Rutines del nucli"
 
-#: src/interface.c:1847
+#: src/interface.c:905
 msgid "Section 4: Special files"
 msgstr "Secció 4: Fitxers especials"
 
-#: src/interface.c:1856
+#: src/interface.c:913
 msgid "Section 3: Library calls"
 msgstr "Secció 3: Cridades a biblioteques"
 
-#: src/interface.c:1865
+#: src/interface.c:921
 msgid "Section 2: System calls"
 msgstr "Secció 2: Cridades del sistema"
 
-#: src/interface.c:1874
+#: src/interface.c:929
 msgid "Section 1: Commands"
 msgstr "Secció 1: Ordres"
 
-#: src/interface.c:1883
+#: src/interface.c:937
 msgid "There are 9 sections for man pages. Select one:"
 msgstr "Hi ha 9 seccions per a les pàgines de manual. Seleccioneu una:"
 
-#: src/interface.c:1902 src/interface.c:1920
+#: src/interface.c:954 src/interface.c:972
 msgid "1"
 msgstr "1"
 
-#: src/interface.c:1903
+#: src/interface.c:955
 msgid "2"
 msgstr "2"
 
-#: src/interface.c:1904
+#: src/interface.c:956
 msgid "3"
 msgstr "3"
 
-#: src/interface.c:1905
+#: src/interface.c:957
 msgid "4"
 msgstr "4"
 
-#: src/interface.c:1906
+#: src/interface.c:958
 msgid "5"
 msgstr "5"
 
-#: src/interface.c:1907
+#: src/interface.c:959
 msgid "6"
 msgstr "6"
 
-#: src/interface.c:1908
+#: src/interface.c:960
 msgid "7"
 msgstr "7"
 
-#: src/interface.c:1909
+#: src/interface.c:961
 msgid "8"
 msgstr "8"
 
-#: src/interface.c:1910
+#: src/interface.c:962
 msgid "9"
 msgstr "9"
 
-#: src/interface.c:1919
+#: src/interface.c:971
 msgid "Select section number"
 msgstr "Seleccioneu un nombre de secció"
 
-#: src/interface.c:1931
-msgid "Step 3: Man Sections"
-msgstr "Pas 3: Seccions del Manual"
+#: src/interface.c:975
+msgid "Step 2: Section number"
+msgstr "Pas 2: nombre de secció"
 
-#: src/interface.c:1946
+#: src/interface.c:989
 msgid "What sections would you like include?"
 msgstr "Quines seccions voleu incloure?"
 
-#: src/interface.c:1955
+#: src/interface.c:997
 msgid "ERROR HANDLING"
 msgstr "GESTIÓ D'ERRORS"
 
-#: src/interface.c:1964
+#: src/interface.c:1005
 msgid "ENVIRONMENT"
 msgstr "ENTORN"
 
-#: src/interface.c:1973
+#: src/interface.c:1013
 msgid "FILES"
 msgstr "FITXERS"
 
-#: src/interface.c:1982
+#: src/interface.c:1021
 msgid "USAGE"
 msgstr "ÚS"
 
-#: src/interface.c:1991
+#: src/interface.c:1029
 msgid "ERRORS"
 msgstr "ERRORS"
 
-#: src/interface.c:2000
+#: src/interface.c:1037
 msgid "SYNOPSIS"
 msgstr "SINOPSI"
 
-#: src/interface.c:2010
+#: src/interface.c:1046
 msgid "DESCRIPTION"
 msgstr "DESCRIPCIÓ"
 
-#: src/interface.c:2020
+#: src/interface.c:1055
 msgid "OPTIONS"
 msgstr "OPCIONS"
 
-#: src/interface.c:2030
+#: src/interface.c:1064
 msgid "NAME"
 msgstr "NOM"
 
-#: src/interface.c:2040
+#: src/interface.c:1073
 msgid "SEE ALSO"
 msgstr "VEGEU TAMBÉ"
 
-#: src/interface.c:2050
+#: src/interface.c:1082
 msgid "AUTHOR"
 msgstr "AUTOR"
 
-#: src/interface.c:2060
+#: src/interface.c:1091
 msgid "RETURN VALUES"
 msgstr "VALORS DE RETORN"
 
-#: src/interface.c:2069
+#: src/interface.c:1099
 msgid "DIAGNOSTICS"
 msgstr "DIAGNÒSTICS"
 
-#: src/interface.c:2078
+#: src/interface.c:1107
 msgid "SECURITY"
 msgstr "SEGURETAT"
 
-#: src/interface.c:2087
+#: src/interface.c:1115
 msgid "CONFORMING TO"
 msgstr "CONFORMANT A"
 
-#: src/interface.c:2096
+#: src/interface.c:1123
 msgid "NOTES"
 msgstr "NOTES"
 
-#: src/interface.c:2105
+#: src/interface.c:1131
 msgid "BUGS"
 msgstr "ERRADES"
 
-#: src/interface.c:2125
-msgid "The End"
-msgstr "Fí"
+#: src/interface.c:1141
+msgid "Step 3: Man Sections"
+msgstr "Pas 3: Seccions del Manual"
 
-#: src/interface.c:2126
+#: src/interface.c:1146
+#, fuzzy
 msgid ""
-"Thank you for using me!\n"
-"You can now edit the man page with\n"
-"gmanedit to change and complete the\n"
-"text."
+"Thank you for using me! You can now edit the man page with gmanedit to "
+"change and complete the text"
 msgstr ""
 "Gracies per utilitzar-me!\n"
 "Ara podeu editar la pàgina de manual amb\n"
 "gmanedit per canviar i completar el text."
 
-#: src/callbacks.c:103
+#: src/interface.c:1150
+msgid "The End"
+msgstr "Fí"
+
+#: src/callbacks.c:99
 msgid "New File."
 msgstr "Nou fitxer."
 
-#: src/callbacks.c:120 src/callbacks.c:1105 src/callbacks.c:1120
+#: src/callbacks.c:116 src/callbacks.c:1086 src/callbacks.c:1101
 msgid "Text cutted."
 msgstr "Text tallat."
 
-#: src/callbacks.c:135
+#: src/callbacks.c:131
 msgid "Text copied."
 msgstr "Text copiat."
 
-#: src/callbacks.c:151 src/callbacks.c:1136
+#: src/callbacks.c:147 src/callbacks.c:1117
 msgid "Text pasted."
 msgstr "Text enganxat."
 
-#: src/callbacks.c:159
+#: src/callbacks.c:155
+#, fuzzy
 msgid ""
 ".\\\"Created with GNOME Manpages Editor\n"
-".\\\"http://gmanedit.sourceforge.net\n"
-".\\\"Sergio Rua <srua@gpul.org>\n"
+".\\\"http://sourceforge.net/projects/gmanedit2\n"
+".\\\"Joop Stakenborg <pg4i@amsat.org>\n"
 ".\\\"\n"
 ".TH program <section number> \"<date>\" \"<title>\"\n"
 "\n"
@@ -745,19 +736,19 @@ msgstr ""
 "\n"
 ".SH AUTOR\n"
 
-#: src/callbacks.c:228
+#: src/callbacks.c:220
 msgid "New file."
 msgstr "Nou fitxer."
 
-#: src/callbacks.c:380
+#: src/callbacks.c:364
 msgid "File saved."
 msgstr "Fitxer desat."
 
-#: src/callbacks.c:384
+#: src/callbacks.c:368
 msgid "File NOT saved."
 msgstr "Fitxer NO desat."
 
-#: src/callbacks.c:397
+#: src/callbacks.c:381
 msgid ""
 ".TH program <section number> \"<date>\" \"<title>\"\n"
 "\n"
@@ -765,7 +756,7 @@ msgstr ""
 ".TH programa <nombre de secció> \"<data>\" \"<títol>\"\n"
 "\n"
 
-#: src/callbacks.c:408
+#: src/callbacks.c:392
 msgid ""
 ".SH NAME program\n"
 "<program> \\- program for... \n"
@@ -773,83 +764,83 @@ msgstr ""
 ".SH NOM programa\n"
 "<programa> \\- programa per a...\n"
 
-#: src/callbacks.c:418
+#: src/callbacks.c:402
 msgid ".SH SYNOPSIS\n"
 msgstr ".SH SINOPSI\n"
 
-#: src/callbacks.c:428
+#: src/callbacks.c:412
 msgid ".SH DESCRIPTION\n"
 msgstr ".SH DESCRIPCIÓ\n"
 
-#: src/callbacks.c:438
+#: src/callbacks.c:422
 msgid ".SH OPTIONS\n"
 msgstr ".SH OPCIONS\n"
 
-#: src/callbacks.c:448
+#: src/callbacks.c:432
 msgid ".SH RETURN VALUES\n"
 msgstr ".SH VALORS DE RETORN\n"
 
-#: src/callbacks.c:458
+#: src/callbacks.c:442
 msgid ".SH EXIT STATUS\n"
 msgstr ".SH ESTATS DE SORTIDA\n"
 
-#: src/callbacks.c:467
+#: src/callbacks.c:451
 msgid ".SH USAGE\n"
 msgstr ".SH ÚS\n"
 
-#: src/callbacks.c:477
+#: src/callbacks.c:461
 msgid ".SH FILES\n"
 msgstr ".SH FITXERS\n"
 
-#: src/callbacks.c:486
+#: src/callbacks.c:470
 msgid ".SH ENVIRONMENT\n"
 msgstr ".SH ENTORN\n"
 
-#: src/callbacks.c:495
+#: src/callbacks.c:479
 msgid ".SH DIAGNOSTICS\n"
 msgstr ".SH DIAGNÒSTICS\n"
 
-#: src/callbacks.c:504
+#: src/callbacks.c:488
 msgid ".SH SECURITY\n"
 msgstr ".SH SEGURETAT\n"
 
-#: src/callbacks.c:513
+#: src/callbacks.c:497
 msgid ".SH NOTES\n"
 msgstr ".SH NOTES\n"
 
-#: src/callbacks.c:522
+#: src/callbacks.c:506
 msgid ".SH BUGS\n"
 msgstr ".SH ERRADES\n"
 
-#: src/callbacks.c:531 src/callbacks.c:1378
+#: src/callbacks.c:515 src/callbacks.c:1327
 msgid ".SH AUTHOR\n"
 msgstr ".SH AUTORS\n"
 
-#: src/callbacks.c:540
+#: src/callbacks.c:524
 msgid ".SH EXAMPLES\n"
 msgstr ".SH EXEMPLES\n"
 
-#: src/callbacks.c:550
+#: src/callbacks.c:534
 msgid ".SH SEE ALSO\n"
 msgstr ".SH VEURE TAMBÉ\n"
 
-#: src/callbacks.c:559
+#: src/callbacks.c:543
 msgid ".SH CONFORMING TO\n"
 msgstr ".SH CONFORM A\n"
 
-#: src/callbacks.c:576
+#: src/callbacks.c:560
 msgid ".SH <SECTION NAME>\n"
 msgstr ".SH <NOM DE SECCIÓ>\n"
 
-#: src/callbacks.c:711
+#: src/callbacks.c:695
 msgid ".RS <margin position>\n"
 msgstr ".RS <posició del marge>\n"
 
-#: src/callbacks.c:738
+#: src/callbacks.c:722
 msgid ".SS <NAME>\n"
 msgstr ".SS <NOM>\n"
 
-#: src/callbacks.c:746
+#: src/callbacks.c:730
 msgid ""
 ".UR <address>\n"
 ".UE\n"
@@ -857,79 +848,41 @@ msgstr ""
 ".UR <adreça>\n"
 ".UE\n"
 
-#: src/callbacks.c:755
+#: src/callbacks.c:739
 msgid ".UN <address>\n"
 msgstr ".UN <adreça>\n"
 
-#: src/callbacks.c:846
+#: src/callbacks.c:830
 msgid "Page preview."
 msgstr "Previsualització"
 
-#: src/callbacks.c:950 src/callbacks.c:1417
-msgid "January"
-msgstr "Gener"
+#: src/callbacks.c:934
+#, fuzzy
+msgid "March"
+msgstr "_Buscar"
 
-#: src/callbacks.c:950 src/callbacks.c:1417
-msgid "February"
-msgstr "Febrer"
-
-#: src/callbacks.c:950 src/callbacks.c:1417
-msgid "Mars"
-msgstr "Març"
-
-#: src/callbacks.c:950 src/callbacks.c:1417
-msgid "April"
-msgstr "Abril"
-
-#: src/callbacks.c:951 src/callbacks.c:1418
-msgid "May"
-msgstr "Maig"
-
-#: src/callbacks.c:951 src/callbacks.c:1418
-msgid "June"
-msgstr "Juny"
-
-#: src/callbacks.c:951 src/callbacks.c:1418
-msgid "Jule"
+#: src/callbacks.c:935
+#, fuzzy
+msgid "July"
 msgstr "Juliol"
 
-#: src/callbacks.c:951 src/callbacks.c:1418
-msgid "August"
-msgstr "Agost"
-
-#: src/callbacks.c:952 src/callbacks.c:1419
-msgid "September"
-msgstr "Setembre"
-
-#: src/callbacks.c:952 src/callbacks.c:1419
-msgid "October"
-msgstr "Octubre"
-
-#: src/callbacks.c:952 src/callbacks.c:1419
-msgid "November"
-msgstr "Novembre"
-
-#: src/callbacks.c:952 src/callbacks.c:1419
-msgid "December"
-msgstr "Desembre"
-
-#: src/callbacks.c:966
+#: src/callbacks.c:950
 msgid "Date inserted."
 msgstr "Data insertada."
 
-#: src/callbacks.c:969
+#: src/callbacks.c:953
 msgid "Cannot get system date!"
 msgstr "No es pot obtindre la data del sistema!"
 
-#: src/callbacks.c:1175
+#: src/callbacks.c:1156
 msgid "Text selected."
 msgstr "Text seleccionat"
 
-#: src/callbacks.c:1282
+#: src/callbacks.c:1231
 msgid ".SH NAME\n"
 msgstr ".SH NOM\n"
 
-#: src/callbacks.c:1284
+#: src/callbacks.c:1233
 msgid ""
 " \\-program for...\n"
 "\n"
@@ -937,7 +890,7 @@ msgstr ""
 " \\-programa per a...\n"
 "\n"
 
-#: src/callbacks.c:1291
+#: src/callbacks.c:1240
 msgid ""
 ".SH SYNOPSIS\n"
 ".B "
@@ -945,7 +898,7 @@ msgstr ""
 ".SH SINOPSI\n"
 ".B "
 
-#: src/callbacks.c:1293
+#: src/callbacks.c:1242
 msgid ""
 "\n"
 ".RI [ options ]\n"
@@ -957,7 +910,7 @@ msgstr ""
 ".br\n"
 "\n"
 
-#: src/callbacks.c:1300
+#: src/callbacks.c:1249
 msgid ""
 ".SH DESCRIPTION\n"
 "This manual page explains the\n"
@@ -967,7 +920,7 @@ msgstr ""
 "Aquesta pàgina de manual explica el\n"
 ".B "
 
-#: src/callbacks.c:1302
+#: src/callbacks.c:1251
 msgid ""
 "\n"
 "program. This program...\n"
@@ -978,7 +931,7 @@ msgstr ""
 "programa. Aquest programa...\n"
 "\\fB"
 
-#: src/callbacks.c:1304
+#: src/callbacks.c:1253
 msgid ""
 "\\fP is for...\n"
 "\n"
@@ -986,7 +939,7 @@ msgstr ""
 "\\fP és per a...\n"
 "\n"
 
-#: src/callbacks.c:1310
+#: src/callbacks.c:1259
 msgid ""
 ".SH OPTIONS\n"
 ".B\n"
@@ -1000,7 +953,7 @@ msgstr ""
 "Aquesta opció...\n"
 "\n"
 
-#: src/callbacks.c:1315
+#: src/callbacks.c:1264
 msgid ""
 ".SH USAGE\n"
 "\n"
@@ -1008,7 +961,7 @@ msgstr ""
 ".SH ÚS\n"
 "\n"
 
-#: src/callbacks.c:1320
+#: src/callbacks.c:1269
 msgid ""
 ".SH FILES\n"
 "\n"
@@ -1016,7 +969,7 @@ msgstr ""
 ".SH FITXERS\n"
 "\n"
 
-#: src/callbacks.c:1325
+#: src/callbacks.c:1274
 msgid ""
 ".SH ENVIRONMENT\n"
 "\n"
@@ -1024,7 +977,7 @@ msgstr ""
 ".SH ENTORN\n"
 "\n"
 
-#: src/callbacks.c:1330
+#: src/callbacks.c:1279
 msgid ""
 ".SH DIAGNOSTICS\n"
 "\n"
@@ -1032,7 +985,7 @@ msgstr ""
 ".SH DIAGNÓSTICS\n"
 "\n"
 
-#: src/callbacks.c:1335
+#: src/callbacks.c:1284
 msgid ""
 ".SH SECURITY\n"
 "\n"
@@ -1040,7 +993,7 @@ msgstr ""
 ".SH SEGURETAT\n"
 "\n"
 
-#: src/callbacks.c:1345
+#: src/callbacks.c:1294
 msgid ""
 ".SH ERROR HANDLING\n"
 "\n"
@@ -1048,7 +1001,7 @@ msgstr ""
 ".SH GESTIÓ D'ERRORS\n"
 "\n"
 
-#: src/callbacks.c:1350
+#: src/callbacks.c:1299
 msgid ""
 ".SH ERRORS\n"
 "\n"
@@ -1056,7 +1009,7 @@ msgstr ""
 ".SH ERRADES\n"
 "\n"
 
-#: src/callbacks.c:1355
+#: src/callbacks.c:1304
 msgid ""
 ".SH CONFORMING TO\n"
 "\n"
@@ -1064,7 +1017,7 @@ msgstr ""
 ".SH CONFORM A\n"
 "\n"
 
-#: src/callbacks.c:1360
+#: src/callbacks.c:1309
 msgid ""
 ".SH NOTES\n"
 "\n"
@@ -1072,7 +1025,7 @@ msgstr ""
 ".SH NOTES\n"
 "\n"
 
-#: src/callbacks.c:1365
+#: src/callbacks.c:1314
 msgid ""
 ".SH BUGS\n"
 "\n"
@@ -1080,7 +1033,7 @@ msgstr ""
 ".SH ERRATES\n"
 "\n"
 
-#: src/callbacks.c:1371
+#: src/callbacks.c:1320
 msgid ""
 ".SH SEE ALSO\n"
 "\n"
@@ -1088,35 +1041,96 @@ msgstr ""
 ".SH VEURE TAMBÉ\n"
 "\n"
 
-#: src/callbacks.c:1386
+#: src/callbacks.c:1335
 msgid "Wizard page created"
 msgstr "Pàgina de l'assistent creada"
 
-#: src/callbacks.c:1455
+#: src/callbacks.c:1373
 #, fuzzy
 msgid "Can not open Internet Browser"
 msgstr "Aquest navegador no es pot obrir"
 
-#: src/callbacks.c:1489 src/callbacks.c:1519
+#: src/callbacks.c:1407 src/callbacks.c:1437
 msgid "Man help."
 msgstr "Ajuda de «man»."
 
-#: src/callbacks.c:1538
+#: src/callbacks.c:1456
 msgid "File opening."
 msgstr "S'està obrint el fitxer."
 
-#: src/support.c:108
+#: src/support.c:93
 #, c-format
 msgid "Couldn't find pixmap file: %s"
 msgstr "No es pot trobar el fitxer de pixmap: %s"
 
-#: src/support.c:115
+#: src/support.c:100
 #, c-format
 msgid "Failed to load pixbuf file: %s: %s\n"
 msgstr ""
 
-#~ msgid "Preferences"
-#~ msgstr "Preferències"
+#~ msgid "Start a margin"
+#~ msgstr "Inicia un marge"
+
+#~ msgid "Like .SH"
+#~ msgstr "Com .SH"
+
+#~ msgid "Section"
+#~ msgstr "Secció"
+
+#, fuzzy
+#~ msgid "Justify"
+#~ msgstr "Justifica"
+
+#~ msgid "Filling"
+#~ msgstr "Farcit"
+
+#~ msgid "Font"
+#~ msgstr "Font"
+
+#~ msgid "Paragraphs"
+#~ msgstr "Paràgraf"
+
+#~ msgid "Margin"
+#~ msgstr "Marge"
+
+#~ msgid "Hypertext"
+#~ msgstr "Hipertext"
+
+#~ msgid "Not available"
+#~ msgstr "No disponible"
+
+#~ msgid "Others"
+#~ msgstr "Altres"
+
+#~ msgid "_Insert"
+#~ msgstr "_Inserta"
+
+#~ msgid "New"
+#~ msgstr "Nou"
+
+#~ msgid "New page"
+#~ msgstr "Nova pàgina"
+
+#~ msgid "Open page"
+#~ msgstr "Obre pàgina"
+
+#~ msgid "Save current page"
+#~ msgstr "Desa la pàgina actual"
+
+#~ msgid "Cut selected text"
+#~ msgstr "Talla el texte seleccionat"
+
+#~ msgid "Copy selected text"
+#~ msgstr "Copia el texte seleccionat"
+
+#~ msgid "Paste from clipboard"
+#~ msgstr "Engantxa des del portapapers"
+
+#~ msgid "Exit"
+#~ msgstr "Surt"
+
+#~ msgid "Exit from gmanedit"
+#~ msgstr "Sortir de gmanedit?"
 
 #~ msgid "Wizard"
 #~ msgstr "Asistent"
