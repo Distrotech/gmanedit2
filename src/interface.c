@@ -1,6 +1,7 @@
 /*
  *  Copyright 2000-2001: Sergio Rua <srua@debian.org>
  *  Copyright 2008 Joop Stakenborg <pg4i@amsat.org>
+ *  Copyright 2008 Anibal Avelar <aavelar@cofradia.org>
  * 
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -302,49 +303,35 @@ create_wprincipal (void)
 }
 
 GtkWidget*
-create_fileselection (void)
+create_fileselection (GtkWidget *parent)
 {
   GtkWidget *fileselection;
-  GtkWidget *ok_button1;
-  GtkWidget *cancel_button1;
 
-  fileselection = gtk_file_selection_new (_("Gmanedit - Select file"));
+  fileselection = gtk_file_chooser_dialog_new (_("Gmanedit - Select file"),
+				      GTK_WINDOW (parent),
+				      GTK_FILE_CHOOSER_ACTION_OPEN,
+				      GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
+				      GTK_STOCK_OPEN, GTK_RESPONSE_ACCEPT,
+				      NULL);
   GdkPixbuf *icon_pixbuf = create_image ("gmanedit_icon.png");
   gtk_window_set_icon (GTK_WINDOW (fileselection), icon_pixbuf);
-
-  ok_button1 = GTK_FILE_SELECTION (fileselection)->ok_button;
-  cancel_button1 = GTK_FILE_SELECTION (fileselection)->cancel_button;
-
-  g_signal_connect (G_OBJECT (ok_button1), "clicked",
-                      G_CALLBACK (on_ok_button1_clicked),
-                      NULL);
-  g_signal_connect (G_OBJECT (cancel_button1), "clicked",
-                      G_CALLBACK (on_cancel_button1_clicked),
-                      NULL);
 
   return fileselection;
 }
 
 GtkWidget*
-create_save_file (void)
+create_save_file (GtkWidget *parent)
 {
   GtkWidget *save_file;
-  GtkWidget *ok_button2;
-  GtkWidget *cancel_button2;
 
-  save_file = gtk_file_selection_new (_("Gmanedit - Saving file"));
+  save_file = gtk_file_chooser_dialog_new (_("Gmanedit - Saving file"),
+				      GTK_WINDOW (parent),
+				      GTK_FILE_CHOOSER_ACTION_OPEN,
+				      GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
+				      GTK_STOCK_OPEN, GTK_RESPONSE_ACCEPT,
+				      NULL);
   GdkPixbuf *icon_pixbuf = create_image ("gmanedit_icon.png");
   gtk_window_set_icon (GTK_WINDOW (save_file), icon_pixbuf);
-
-  ok_button2 = GTK_FILE_SELECTION (save_file)->ok_button;
-  cancel_button2 = GTK_FILE_SELECTION (save_file)->cancel_button;
-
-  g_signal_connect (G_OBJECT (ok_button2), "clicked",
-                      G_CALLBACK (on_ok_button2_clicked),
-                      NULL);
-  g_signal_connect (G_OBJECT (cancel_button2), "clicked",
-                      G_CALLBACK (on_cancel_button2_clicked),
-                      NULL);
 
   return save_file;
 }

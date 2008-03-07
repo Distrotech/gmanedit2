@@ -1,6 +1,7 @@
 /*
  *  Copyright 2000-2001: Sergio Rua <srua@debian.org>
  *  Copyright 2008 Joop Stakenborg <pg4i@amsat.org>
+ *  Copyright 2008 Anibal Avelar <aavelar@cofradia.org>
  * 
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -159,8 +160,19 @@ void
 on_abrir1_activate                     (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
-     open_file = create_fileselection ();
+     const gchar *temp;
+     open_file = create_fileselection (GTK_WIDGET(wprincipal));
      gtk_widget_show (open_file);
+     if (gtk_dialog_run (GTK_DIALOG (open_file)) == GTK_RESPONSE_ACCEPT)
+     {
+       
+       temp = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (open_file));
+       filename = g_strdup(temp);
+       gtk_widget_hide(open_file);
+       open_man_file(GTK_WIDGET(open_file));
+     }else{
+       gtk_widget_destroy (open_file);
+     }
 }
 
 
@@ -168,12 +180,22 @@ void
 on_gardar1_activate                    (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
+        const gchar *temp;
 	if (filename!=NULL)
 		save_as(wprincipal);
 	else
 	{
-		save_file=create_save_file();
+		save_file=create_save_file(GTK_WIDGET(wprincipal));
 		gtk_widget_show(save_file);
+                if (gtk_dialog_run (GTK_DIALOG (save_file)) == GTK_RESPONSE_ACCEPT)
+                {
+                 temp = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (save_file));
+                 filename = g_strdup(temp);
+                 gtk_widget_hide(save_file);
+                 save_as(wprincipal);
+                }else{
+                 gtk_widget_destroy (save_file);
+                }
 	}
 }
 
@@ -182,8 +204,18 @@ void
 on_gardar_como1_activate               (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
-	save_file=create_save_file();
-    gtk_widget_show(save_file);		
+        const gchar *temp;
+	save_file=create_save_file(GTK_WIDGET(wprincipal));
+        gtk_widget_show(save_file);
+        if (gtk_dialog_run (GTK_DIALOG (save_file)) == GTK_RESPONSE_ACCEPT)
+                {
+                 temp = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (save_file));
+                 filename = g_strdup(temp);
+                 gtk_widget_hide(save_file);
+                 save_as(wprincipal);
+        }else{
+                 gtk_widget_destroy (save_file);
+        }		
 }
 
 
@@ -193,30 +225,6 @@ on_sair4_activate                      (GtkMenuItem     *menuitem,
 {
 	g_signal_emit_by_name (G_OBJECT (wprincipal), "delete_event");
 }
-
-void
-on_cancel_button1_clicked                  (GtkButton       *button,
-                                        gpointer         user_data)
-{
-    gtk_widget_destroy (save_file);
-}
-
-void
-on_ok_button1_clicked                  (GtkButton       *button,
-                                        gpointer         user_data)
-{
-    GtkWidget *filesel;
-    const gchar *temp;
-
-    filesel = gtk_widget_get_toplevel (GTK_WIDGET (button));
-
-    gtk_widget_hide(filesel);
-    temp=gtk_file_selection_get_filename(GTK_FILE_SELECTION(filesel));
-    filename = g_strdup(temp);
-
-    open_man_file(GTK_WIDGET(filesel));
-}
-
 
 static void save_as(GtkWidget *main_window)
 {
@@ -238,7 +246,7 @@ static void save_as(GtkWidget *main_window)
 
 
 	
-	gtk_object_set_data(GTK_OBJECT(save_file),MainWindowKey,main_window);
+	//gtk_object_set_data(GTK_OBJECT(save_file),MainWindowKey,main_window);
 	text=lookup_widget(GTK_WIDGET(main_window),"text");
 	
 /* Barra de estado */
@@ -654,31 +662,6 @@ on_lineas_en_branco1_activate          (GtkMenuItem     *menuitem,
 {
 	const gchar *base=".SP <n>\n";
 	insert_label(base,"Insert \"n\"+1 empty lines.",wprincipal);
-}
-
-
-
-void
-on_ok_button2_clicked                  (GtkButton       *button,
-                                        gpointer         user_data)
-{
-	GtkWidget *filesel;
-	const gchar *temp;
-	
-	filesel = gtk_widget_get_toplevel (GTK_WIDGET (button));
-	gtk_widget_hide(save_file);
-	temp=gtk_file_selection_get_filename(GTK_FILE_SELECTION(save_file));
-	filename = g_strdup(temp);
-
-	save_as(wprincipal);
-}
-
-
-void
-on_cancel_button2_clicked              (GtkButton       *button,
-                                        gpointer         user_data)
-{
-	gtk_widget_destroy(save_file);
 }
 
 void
