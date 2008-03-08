@@ -14,8 +14,8 @@
  *  GNU Library General Public License for more details.
  *
  *  You should have received a copy of the GNU Library General Public License
- *  along with this program; if not, write to the Free Software
- *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+ *  along with this program; if not, write to the Free Software Foundation,
+ *  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02111-1307, USA.
  */
 
 #include <sys/types.h>
@@ -483,12 +483,31 @@ void create_about (void)
 	"Jordi Mallach <jordi@sindominio.net>\n"
 	"Takeshi Aihana <aihana@muc.biglobe.ne.jp>";
 
+  const gchar *license =
+    "Copyright 2000, 2001 Sergio Rua <email unknown>\n"
+    "Copyright 2008 Joop Stakenborg <pg4i@amsat.org>\n"
+    "Copyright 2008 Anibal Avelar <aavelar@cofradia.org>\n"
+    "\n"
+    "This program is free software; you can redistribute it and/or modify\n"
+    "it under the terms of the GNU General Public License as published by\n"
+    "the Free Software Foundation; either version 2 of the License, or\n"
+    "(at your option) any later version.\n"
+    "\n"
+    "This program is distributed in the hope that it will be useful,\n"
+    "but WITHOUT ANY WARRANTY; without even the implied warranty of\n"
+    "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n"
+    "GNU Library General Public License for more details.\n"
+    "\n"
+    "You should have received a copy of the GNU Library General Public License\n"
+    "along with this program; if not, write to the Free Software Foundation,\n"
+    "Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.";
+
   GdkPixbuf *icon_pixbuf = create_image ("gmanedit.png");
 
   gtk_show_about_dialog (GTK_WINDOW(wprincipal),
   	"authors", authors,
   	"comments", _("Man Pages Editor"),
-  	"license", "Copyright (C) 2000-2001 Sergio Rua\n2008 Joop Stakenborg <pg4i@amsat.org>",
+  	"license", license,
   	"website", "http://sourceforge.net/projects/gmanedit2",
   	"logo", icon_pixbuf,
   	"translator-credits", translators,
