@@ -79,8 +79,8 @@ on_cortar1_activate                    (GtkMenuItem     *menuitem,
 	GtkWidget *text,*statusbar;
 	
 	text = lookup_widget (GTK_WIDGET (wprincipal), "text");
-	gtk_editable_cut_clipboard (GTK_EDITABLE (text));
-	    
+	GtkTextBuffer *b = gtk_text_view_get_buffer (GTK_TEXT_VIEW(text));
+	gtk_text_buffer_cut_clipboard (b, gtk_clipboard_get(GDK_SELECTION_CLIPBOARD), TRUE);
 	statusbar = lookup_widget (GTK_WIDGET (wprincipal), "statusbar1");
 	gtk_statusbar_pop (GTK_STATUSBAR (statusbar), 1);
 	gtk_statusbar_push (GTK_STATUSBAR (statusbar), 1, _("Text cutted."));
@@ -94,8 +94,8 @@ on_copiar1_activate                    (GtkMenuItem     *menuitem,
 	GtkWidget *text,*statusbar;
 	
 	text = lookup_widget (GTK_WIDGET (wprincipal), "text");
-	gtk_editable_copy_clipboard (GTK_EDITABLE (text));
-	    
+	GtkTextBuffer *b = gtk_text_view_get_buffer (GTK_TEXT_VIEW(text));
+	gtk_text_buffer_copy_clipboard (b,  gtk_clipboard_get(GDK_SELECTION_CLIPBOARD));
 	statusbar = lookup_widget (GTK_WIDGET (wprincipal), "statusbar1");
 	gtk_statusbar_pop (GTK_STATUSBAR (statusbar), 1);
 	gtk_statusbar_push (GTK_STATUSBAR (statusbar), 1, _("Text copied."));
@@ -110,7 +110,8 @@ on_pegar1_activate                     (GtkMenuItem     *menuitem,
 	GtkWidget *text,*statusbar;
 	
 	text = lookup_widget (GTK_WIDGET (wprincipal), "text");
-	gtk_editable_paste_clipboard (GTK_EDITABLE (text));
+	GtkTextBuffer *b = gtk_text_view_get_buffer (GTK_TEXT_VIEW(text));
+	gtk_text_buffer_paste_clipboard (b, gtk_clipboard_get(GDK_SELECTION_CLIPBOARD), NULL, TRUE);
 	    
 	statusbar = lookup_widget (GTK_WIDGET (wprincipal), "statusbar1");
 	gtk_statusbar_pop (GTK_STATUSBAR (statusbar), 1);
