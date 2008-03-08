@@ -29,7 +29,6 @@
 #include "interface.h"
 #include "support.h"
 
-#define GTK_ENABLE_BROKEN 1
 extern GtkWidget *wprincipal;
 GtkUIManager *ui_manager;
 

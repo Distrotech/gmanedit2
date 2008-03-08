@@ -38,7 +38,6 @@
 #include "support.h"
 
 #define BUFFER_SIZE 8192
-#define GTK_ENABLE_BROKEN
 
 extern GtkWidget *wprincipal;
 GtkWidget *open_file=NULL;
@@ -49,7 +48,6 @@ GtkWidget *exit_dialog=NULL;
 GtkWidget *prefs=NULL;
 GtkWidget *wizard=NULL;
 
-static const gchar *MainWindowKey = "MainWindowKey";
 gchar *filename=NULL;
 gint in_gzip=0;
 
@@ -145,9 +143,8 @@ on_novo1_activate                      (GtkMenuItem     *menuitem,
 	GtkWidget *text,*statusbar;
 
 	text=lookup_widget(GTK_WIDGET(wprincipal),"text");
-	if (GTK_IS_EDITABLE (text)){
-	  gtk_editable_delete_text(GTK_EDITABLE(text),0,-1);
-	}
+	GtkTextBuffer *b = gtk_text_view_get_buffer (GTK_TEXT_VIEW(text));
+	gtk_text_buffer_set_text (b, "", -1);
 	statusbar = lookup_widget(GTK_WIDGET(wprincipal),"statusbar1");
 	gtk_statusbar_pop (GTK_STATUSBAR (statusbar), 1);
 	gtk_statusbar_push (GTK_STATUSBAR (statusbar), 1, _("New file."));
@@ -995,7 +992,6 @@ on_new_wizard_page1_activate           (GtkMenuItem     *menuitem,
 	if (wizard == NULL)
 		wizard=create_wizard();
 	gtk_widget_show(wizard);
-	gtk_object_set_data(GTK_OBJECT(wizard),MainWindowKey,menuitem);
 }
 
 void
@@ -1010,15 +1006,13 @@ void
 on_dthe_end_finish                     (GtkAssistant *assistant,
                                         gpointer         user_data)
 {
-   GtkWidget *ch,*text,*druid,*main_window;
+   GtkWidget *ch,*text,*druid;
    gchar *nombre,*snumber,*date,*title,*author;
    gchar cadena[500];
 
 
 /* Init for main_window */
    druid = gtk_widget_get_toplevel (GTK_WIDGET (assistant));
-   main_window = gtk_object_get_data (GTK_OBJECT (druid), MainWindowKey);
-
 
 /* First, I get man page name from step 1 */
    text = lookup_widget(GTK_WIDGET(assistant), "mname");
@@ -1162,7 +1156,7 @@ http://sourceforge.net/projects/gmanedit2\n.\\\"Joop Stakenborg <pg4i@amsat.org>
    gtk_widget_hide(wizard);
    
 /* Insert all into gmanedit */
-   insert_label(cadena,_("Wizard page created"),main_window);
+   insert_label(cadena,_("Wizard page created"),wprincipal);
 
 /* Wizard closed */
    gtk_widget_destroy(wizard);
