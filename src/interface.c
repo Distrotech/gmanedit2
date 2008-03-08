@@ -216,28 +216,18 @@ create_wprincipal (void)
 {
   GtkWidget *wprincipal;
   GtkWidget *vbox1;
-  GtkWidget *bnew;
-  GtkWidget *bopen;
-  GtkWidget *bsave;
-  GtkWidget *bcut;
-  GtkWidget *bcopy;
-  GtkWidget *bpaste;
-  GtkWidget *bexit;
   GtkWidget *scrolledwindow1;
   GtkWidget *text;
   GtkWidget *statusbar1;
 
   wprincipal = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   g_object_set_data (G_OBJECT (wprincipal), "wprincipal", wprincipal);
-  gtk_widget_set_usize (wprincipal, 640, 500);
+  gtk_widget_set_size_request (wprincipal, 640, 500);
   gtk_window_set_title (GTK_WINDOW (wprincipal), _("Gmanedit - Gnome manpages editor"));
   GdkPixbuf *icon_pixbuf = create_image ("gmanedit_icon.png");
   gtk_window_set_icon (GTK_WINDOW (wprincipal), icon_pixbuf);
 
   vbox1 = gtk_vbox_new (FALSE, 0);
-  gtk_widget_ref (vbox1);
-  g_object_set_data_full (G_OBJECT (wprincipal), "vbox1", vbox1,
-                            (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (vbox1);
   gtk_container_add (GTK_CONTAINER (wprincipal), vbox1);
   
@@ -260,37 +250,21 @@ create_wprincipal (void)
   gtk_container_add (GTK_CONTAINER (handlebox), toolbar);
   gtk_widget_show_all (handlebox);
   scrolledwindow1 = gtk_scrolled_window_new (NULL, NULL);
-  gtk_widget_ref (scrolledwindow1);
-  g_object_set_data_full (G_OBJECT (wprincipal), "scrolledwindow1", scrolledwindow1,
-                            (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (scrolledwindow1);
   gtk_box_pack_start (GTK_BOX (vbox1), scrolledwindow1, TRUE, TRUE, 0);
   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolledwindow1), GTK_POLICY_NEVER, GTK_POLICY_ALWAYS);
 
   text = GTK_WIDGET(gtk_text_view_new());
-  gtk_widget_ref (text);
-  g_object_set_data_full (G_OBJECT (wprincipal), "text", text,
-                            (GtkDestroyNotify) gtk_widget_unref);
+  HOOKUP_OBJECT (wprincipal, text, "text");
   gtk_widget_show (text);
   gtk_container_add (GTK_CONTAINER (scrolledwindow1), text);
-  /*gtk_text_set_editable (GTK_EDITABLE (text), TRUE);*/
   gtk_text_view_set_editable(GTK_TEXT_VIEW(text), TRUE);
 
   statusbar1 = gtk_statusbar_new ();
-  gtk_widget_ref (statusbar1);
-  g_object_set_data_full (G_OBJECT (wprincipal), "statusbar1", statusbar1,
-                            (GtkDestroyNotify) gtk_widget_unref);
+  HOOKUP_OBJECT (wprincipal, statusbar1, "statusbar1");
   gtk_widget_show (statusbar1);
   gtk_box_pack_start (GTK_BOX (vbox1), statusbar1, FALSE, FALSE, 0);
 
-  bnew = gtk_ui_manager_get_widget (ui_manager, "/MainMenu/Toolbar/New");
-  bopen = gtk_ui_manager_get_widget (ui_manager, "/MainMenu/Toolbar/Open");
-  bsave = gtk_ui_manager_get_widget (ui_manager, "/MainMenu/Toolbar/Save");
-  bcut = gtk_ui_manager_get_widget (ui_manager, "/MainMenu/Toolbar/Cut");
-  bcopy = gtk_ui_manager_get_widget (ui_manager, "/MainMenu/Toolbar/Copy");
-  bpaste = gtk_ui_manager_get_widget (ui_manager, "/MainMenu/Toolbar/Paste");
-  bexit = gtk_ui_manager_get_widget (ui_manager, "/MainMenu/Toolbar/Quit");
-  
   g_signal_connect (G_OBJECT (wprincipal), "delete_event",
                       G_CALLBACK (on_wprincipal_delete),
                       NULL);
@@ -366,60 +340,38 @@ create_wbuscar (void)
   gtk_window_set_icon (GTK_WINDOW (wbuscar), icon_pixbuf);
 
   vbox2 = gtk_vbox_new (FALSE, 0);
-  gtk_widget_ref (vbox2);
-  g_object_set_data_full (G_OBJECT (wbuscar), "vbox2", vbox2,
-                            (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (vbox2);
   gtk_container_add (GTK_CONTAINER (wbuscar), vbox2);
 
   hbox1 = gtk_hbox_new (FALSE, 0);
-  gtk_widget_ref (hbox1);
-  g_object_set_data_full (G_OBJECT (wbuscar), "hbox1", hbox1,
-                            (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (hbox1);
   gtk_box_pack_start (GTK_BOX (vbox2), hbox1, FALSE, FALSE, 0);
 
   label1 = gtk_label_new (_("Search:         "));
-  gtk_widget_ref (label1);
-  g_object_set_data_full (G_OBJECT (wbuscar), "label1", label1,
-                            (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (label1);
   gtk_box_pack_start (GTK_BOX (hbox1), label1, FALSE, FALSE, 0);
 
   buscar = gtk_entry_new ();
-  gtk_widget_ref (buscar);
-  g_object_set_data_full (G_OBJECT (wbuscar), "buscar", buscar,
-                            (GtkDestroyNotify) gtk_widget_unref);
+  HOOKUP_OBJECT (wbuscar, buscar, "buscar");
   gtk_widget_show (buscar);
   gtk_box_pack_start (GTK_BOX (hbox1), buscar, TRUE, TRUE, 0);
   gtk_entry_set_text (GTK_ENTRY (buscar), _("Option not yet available"));
 
   hbox2 = gtk_hbox_new (FALSE, 0);
-  gtk_widget_ref (hbox2);
-  g_object_set_data_full (G_OBJECT (wbuscar), "hbox2", hbox2,
-                            (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (hbox2);
   gtk_box_pack_start (GTK_BOX (vbox2), hbox2, TRUE, TRUE, 0);
 
   label2 = gtk_label_new (_("Replace with: "));
-  gtk_widget_ref (label2);
-  g_object_set_data_full (G_OBJECT (wbuscar), "label2", label2,
-                            (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (label2);
   gtk_box_pack_start (GTK_BOX (hbox2), label2, FALSE, FALSE, 0);
 
   reemprazar = gtk_entry_new ();
-  gtk_widget_ref (reemprazar);
-  g_object_set_data_full (G_OBJECT (wbuscar), "reemprazar", reemprazar,
-                            (GtkDestroyNotify) gtk_widget_unref);
+  HOOKUP_OBJECT (wbuscar, reemprazar, "reemprazar");
   gtk_widget_show (reemprazar);
   gtk_box_pack_start (GTK_BOX (hbox2), reemprazar, TRUE, TRUE, 0);
   gtk_entry_set_text (GTK_ENTRY (reemprazar), _("Option not yet available"));
 
   hbuttonbox1 = gtk_hbutton_box_new ();
-  gtk_widget_ref (hbuttonbox1);
-  g_object_set_data_full (G_OBJECT (wbuscar), "hbuttonbox1", hbuttonbox1,
-                            (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (hbuttonbox1);
   gtk_box_pack_start (GTK_BOX (vbox2), hbuttonbox1, TRUE, TRUE, 0);
 
@@ -428,9 +380,7 @@ create_wbuscar (void)
                                    _("_Search"));
   gtk_widget_add_accelerator (bbuscar, "clicked", accel_group,
                               bbuscar_key, GDK_MOD1_MASK, (GtkAccelFlags) 0);
-  gtk_widget_ref (bbuscar);
-  g_object_set_data_full (G_OBJECT (wbuscar), "bbuscar", bbuscar,
-                            (GtkDestroyNotify) gtk_widget_unref);
+  HOOKUP_OBJECT (wbuscar, bbuscar, "bbuscar");
   gtk_widget_show (bbuscar);
   gtk_container_add (GTK_CONTAINER (hbuttonbox1), bbuscar);
 
@@ -439,9 +389,7 @@ create_wbuscar (void)
                                    _("_Replace"));
   gtk_widget_add_accelerator (breemprazar, "clicked", accel_group,
                               breemprazar_key, GDK_MOD1_MASK, (GtkAccelFlags) 0);
-  gtk_widget_ref (breemprazar);
-  g_object_set_data_full (G_OBJECT (wbuscar), "breemprazar", breemprazar,
-                            (GtkDestroyNotify) gtk_widget_unref);
+  HOOKUP_OBJECT (wbuscar, breemprazar, "breemprazar");
   gtk_widget_show (breemprazar);
   gtk_container_add (GTK_CONTAINER (hbuttonbox1), breemprazar);
 
@@ -450,9 +398,7 @@ create_wbuscar (void)
                                    _("_Close"));
   gtk_widget_add_accelerator (bpechar, "clicked", accel_group,
                               bpechar_key, GDK_MOD1_MASK, (GtkAccelFlags) 0);
-  gtk_widget_ref (bpechar);
-  g_object_set_data_full (G_OBJECT (wbuscar), "bpechar", bpechar,
-                            (GtkDestroyNotify) gtk_widget_unref);
+  HOOKUP_OBJECT (wbuscar, bpechar, "bpechar");
   gtk_widget_show (bpechar);
   gtk_container_add (GTK_CONTAINER (hbuttonbox1), bpechar);
 
@@ -721,14 +667,11 @@ create_wizard (void)
   gtk_widget_show (druid_vbox2);
 
   fixed1 = gtk_fixed_new ();
-  gtk_widget_ref (fixed1);
   gtk_widget_show (fixed1);
   gtk_box_pack_start (GTK_BOX (druid_vbox2), fixed1, TRUE, TRUE, 0);
 
   mname = gtk_entry_new ();
-  gtk_widget_ref (mname);
-  g_object_set_data_full (G_OBJECT (wizard), "mname", mname,
-                            (GtkDestroyNotify) gtk_widget_unref);
+  HOOKUP_OBJECT (wizard, mname, "mname");
   gtk_widget_show (mname);
   gtk_fixed_put (GTK_FIXED (fixed1), mname, 248, 24);
   gtk_widget_set_usize (mname, 158, 26);
@@ -736,9 +679,7 @@ create_wizard (void)
   
 
   mdate = gtk_entry_new ();
-  gtk_widget_ref (mdate);
-  g_object_set_data_full (G_OBJECT (wizard), "mdate", mdate,
-                            (GtkDestroyNotify) gtk_widget_unref);
+  HOOKUP_OBJECT (wizard, mdate, "mdate");
   gtk_widget_show (mdate);
   gtk_fixed_put (GTK_FIXED (fixed1), mdate, 248, 80);
   gtk_widget_set_usize (mdate, 158, 26);
@@ -754,45 +695,32 @@ create_wizard (void)
 
 
   mtitle = gtk_entry_new ();
-  gtk_widget_ref (mtitle);
-  g_object_set_data_full (G_OBJECT (wizard), "mtitle", mtitle,
-                            (GtkDestroyNotify) gtk_widget_unref);
+  HOOKUP_OBJECT (wizard, mtitle, "mtitle");
   gtk_widget_show (mtitle);
   gtk_fixed_put (GTK_FIXED (fixed1), mtitle, 248, 136);
   gtk_widget_set_usize (mtitle, 158, 26);
   gtk_tooltips_set_tip (tooltips, mtitle, _("Long man page name or title"), NULL);
 
   mauthor = gtk_entry_new ();
-  gtk_widget_ref (mauthor);
-  g_object_set_data_full (G_OBJECT (wizard), "mauthor", mauthor,
-                            (GtkDestroyNotify) gtk_widget_unref);
+  HOOKUP_OBJECT (wizard, mauthor, "mauthor");
   gtk_widget_show (mauthor);
   gtk_fixed_put (GTK_FIXED (fixed1), mauthor, 248, 192);
   gtk_widget_set_usize (mauthor, 158, 26);
   gtk_tooltips_set_tip (tooltips, mauthor, _("First_Name Last_Name <my@email.com>"), NULL);
 
   label14 = gtk_label_new (_("Creation Date:"));
-  gtk_widget_ref (label14);
-  g_object_set_data_full (G_OBJECT (wizard), "label14", label14,
-                            (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (label14);
   gtk_fixed_put (GTK_FIXED (fixed1), label14, 64, 80);
   gtk_widget_set_usize (label14, 176, 24);
   gtk_label_set_line_wrap (GTK_LABEL (label14), TRUE);
 
   label15 = gtk_label_new (_("Man page Title:"));
-  gtk_widget_ref (label15);
-  g_object_set_data_full (G_OBJECT (wizard), "label15", label15,
-                            (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (label15);
   gtk_fixed_put (GTK_FIXED (fixed1), label15, 64, 136);
   gtk_widget_set_usize (label15, 176, 24);
   gtk_label_set_line_wrap (GTK_LABEL (label15), TRUE);
 
   label16 = gtk_label_new (_("Author:"));
-  gtk_widget_ref (label16);
-  g_object_set_data_full (G_OBJECT (wizard), "label16", label16,
-                            (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (label16);
   gtk_fixed_put (GTK_FIXED (fixed1), label16, 64, 192);
   gtk_widget_set_usize (label16, 120, 24);
@@ -800,9 +728,6 @@ create_wizard (void)
 
 
   label1 = gtk_label_new (_("Man page Name:"));
-  gtk_widget_ref (label1);
-  g_object_set_data_full (G_OBJECT (wizard), "label1", label1,
-                            (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (label1);
   gtk_fixed_put (GTK_FIXED (fixed1), label1, 64, 24);
   gtk_widget_set_usize (label1, 184, 24);
@@ -818,108 +743,69 @@ create_wizard (void)
   gtk_widget_show (druid_vbox3);
 
   fixed2 = gtk_fixed_new ();
-  gtk_widget_ref (fixed2);
-  g_object_set_data_full (G_OBJECT (wizard), "fixed2", fixed2,
-                            (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (fixed2);
   gtk_box_pack_start (GTK_BOX (druid_vbox3), fixed2, TRUE, TRUE, 0);
 
   label8 = gtk_label_new (_("Section 5: File format and conventions"));
-  gtk_widget_ref (label8);
-  g_object_set_data_full (G_OBJECT (wizard), "label8", label8,
-                            (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (label8);
   gtk_fixed_put (GTK_FIXED (fixed2), label8, 32, 136);
   gtk_widget_set_usize (label8, 224, 40);
   gtk_label_set_line_wrap (GTK_LABEL (label8), TRUE);
 
   label2 = gtk_label_new (_("Section number"));
-  gtk_widget_ref (label2);
-  g_object_set_data_full (G_OBJECT (wizard), "label2", label2,
-                            (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (label2);
   gtk_fixed_put (GTK_FIXED (fixed2), label2, 56, 208);
   gtk_widget_set_usize (label2, 144, 24);
 
   label9 = gtk_label_new (_("Section 6: Games"));
-  gtk_widget_ref (label9);
-  g_object_set_data_full (G_OBJECT (wizard), "label9", label9,
-                            (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (label9);
   gtk_fixed_put (GTK_FIXED (fixed2), label9, 264, 40);
   gtk_widget_set_usize (label9, 184, 24);
   gtk_label_set_line_wrap (GTK_LABEL (label9), TRUE);
 
   label10 = gtk_label_new (_("Section 7: Macro packages and Coventions"));
-  gtk_widget_ref (label10);
-  g_object_set_data_full (G_OBJECT (wizard), "label10", label10,
-                            (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (label10);
   gtk_fixed_put (GTK_FIXED (fixed2), label10, 264, 64);
   gtk_widget_set_usize (label10, 240, 40);
   gtk_label_set_line_wrap (GTK_LABEL (label10), TRUE);
 
   label11 = gtk_label_new (_("Section 8: System management commands"));
-  gtk_widget_ref (label11);
-  g_object_set_data_full (G_OBJECT (wizard), "label11", label11,
-                            (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (label11);
   gtk_fixed_put (GTK_FIXED (fixed2), label11, 264, 104);
   gtk_widget_set_usize (label11, 240, 40);
   gtk_label_set_line_wrap (GTK_LABEL (label11), TRUE);
 
   label12 = gtk_label_new (_("Section 9: Kernel routines"));
-  gtk_widget_ref (label12);
-  g_object_set_data_full (G_OBJECT (wizard), "label12", label12,
-                            (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (label12);
   gtk_fixed_put (GTK_FIXED (fixed2), label12, 264, 152);
   gtk_widget_set_usize (label12, 240, 24);
 
   label7 = gtk_label_new (_("Section 4: Special files"));
-  gtk_widget_ref (label7);
-  g_object_set_data_full (G_OBJECT (wizard), "label7", label7,
-                            (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (label7);
   gtk_fixed_put (GTK_FIXED (fixed2), label7, 0, 112);
   gtk_widget_set_usize (label7, 232, 24);
 
   label6 = gtk_label_new (_("Section 3: Library calls"));
-  gtk_widget_ref (label6);
-  g_object_set_data_full (G_OBJECT (wizard), "label6", label6,
-                            (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (label6);
   gtk_fixed_put (GTK_FIXED (fixed2), label6, 0, 88);
   gtk_widget_set_usize (label6, 232, 24);
 
   label5 = gtk_label_new (_("Section 2: System calls"));
-  gtk_widget_ref (label5);
-  g_object_set_data_full (G_OBJECT (wizard), "label5", label5,
-                            (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (label5);
   gtk_fixed_put (GTK_FIXED (fixed2), label5, 0, 64);
   gtk_widget_set_usize (label5, 240, 24);
 
   label4 = gtk_label_new (_("Section 1: Commands"));
-  gtk_widget_ref (label4);
-  g_object_set_data_full (G_OBJECT (wizard), "label4", label4,
-                            (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (label4);
   gtk_fixed_put (GTK_FIXED (fixed2), label4, 0, 40);
   gtk_widget_set_usize (label4, 232, 24);
 
   label3 = gtk_label_new (_("There are 9 sections for man pages. Select one:"));
-  gtk_widget_ref (label3);
-  g_object_set_data_full (G_OBJECT (wizard), "label3", label3,
-                            (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (label3);
   gtk_fixed_put (GTK_FIXED (fixed2), label3, 0, 16);
   gtk_widget_set_usize (label3, 504, 16);
 
   combo1 = gtk_combo_new ();
-  gtk_widget_ref (combo1);
-  g_object_set_data_full (G_OBJECT (wizard), "combo1", combo1,
-                            (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (combo1);
   gtk_fixed_put (GTK_FIXED (fixed2), combo1, 240, 208);
   gtk_widget_set_usize (combo1, 175, 26);
@@ -938,9 +824,6 @@ create_wizard (void)
   g_list_free (combo1_items);
 
   snumber = GTK_COMBO (combo1)->entry;
-  gtk_widget_ref (snumber);
-  g_object_set_data_full (G_OBJECT (wizard), "snumber", snumber,
-                            (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (snumber);
   gtk_tooltips_set_tip (tooltips, snumber, _("Select section number"), NULL);
   gtk_entry_set_text (GTK_ENTRY (snumber), _("1"));
@@ -954,158 +837,101 @@ create_wizard (void)
   gtk_widget_show (druid_vbox1);
 
   fixed3 = gtk_fixed_new ();
-  gtk_widget_ref (fixed3);
-  g_object_set_data_full (G_OBJECT (wizard), "fixed3", fixed3,
-                            (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (fixed3);
   gtk_box_pack_start (GTK_BOX (druid_vbox1), fixed3, TRUE, TRUE, 0);
 
   label13 = gtk_label_new (_("What sections would you like include?"));
-  gtk_widget_ref (label13);
-  g_object_set_data_full (G_OBJECT (wizard), "label13", label13,
-                            (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (label13);
   gtk_fixed_put (GTK_FIXED (fixed3), label13, 64, 16);
   gtk_widget_set_usize (label13, 344, 24);
 
   cherrorh = gtk_check_button_new_with_label (_("ERROR HANDLING"));
-  gtk_widget_ref (cherrorh);
-  g_object_set_data_full (G_OBJECT (wizard), "cherrorh", cherrorh,
-                            (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (cherrorh);
   gtk_fixed_put (GTK_FIXED (fixed3), cherrorh, 16, 184);
   gtk_widget_set_usize (cherrorh, 176, 24);
 
   chenvironment = gtk_check_button_new_with_label (_("ENVIRONMENT"));
-  gtk_widget_ref (chenvironment);
-  g_object_set_data_full (G_OBJECT (wizard), "chenvironment", chenvironment,
-                            (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (chenvironment);
   gtk_fixed_put (GTK_FIXED (fixed3), chenvironment, 192, 184);
   gtk_widget_set_usize (chenvironment, 152, 24);
 
   chfiles = gtk_check_button_new_with_label (_("FILES"));
-  gtk_widget_ref (chfiles);
-  g_object_set_data_full (G_OBJECT (wizard), "chfiles", chfiles,
-                            (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (chfiles);
   gtk_fixed_put (GTK_FIXED (fixed3), chfiles, 192, 152);
   gtk_widget_set_usize (chfiles, 121, 28);
 
   chusage = gtk_check_button_new_with_label (_("USAGE"));
-  gtk_widget_ref (chusage);
-  g_object_set_data_full (G_OBJECT (wizard), "chusage", chusage,
-                            (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (chusage);
   gtk_fixed_put (GTK_FIXED (fixed3), chusage, 192, 120);
   gtk_widget_set_usize (chusage, 121, 28);
 
   cherrors = gtk_check_button_new_with_label (_("ERRORS"));
-  gtk_widget_ref (cherrors);
-  g_object_set_data_full (G_OBJECT (wizard), "cherrors", cherrors,
-                            (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (cherrors);
   gtk_fixed_put (GTK_FIXED (fixed3), cherrors, 192, 56);
   gtk_widget_set_usize (cherrors, 121, 28);
 
   chsynopsis = gtk_check_button_new_with_label (_("SYNOPSIS"));
-  gtk_widget_ref (chsynopsis);
-  g_object_set_data_full (G_OBJECT (wizard), "chsynopsis", chsynopsis,
-                            (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (chsynopsis);
   gtk_fixed_put (GTK_FIXED (fixed3), chsynopsis, 16, 88);
   gtk_widget_set_usize (chsynopsis, 121, 28);
   gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (chsynopsis), TRUE);
 
   chdescription = gtk_check_button_new_with_label (_("DESCRIPTION"));
-  gtk_widget_ref (chdescription);
-  g_object_set_data_full (G_OBJECT (wizard), "chdescription", chdescription,
-                            (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (chdescription);
   gtk_fixed_put (GTK_FIXED (fixed3), chdescription, 16, 120);
   gtk_widget_set_usize (chdescription, 136, 24);
   gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (chdescription), TRUE);
 
   choptions = gtk_check_button_new_with_label (_("OPTIONS"));
-  gtk_widget_ref (choptions);
-  g_object_set_data_full (G_OBJECT (wizard), "choptions", choptions,
-                            (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (choptions);
   gtk_fixed_put (GTK_FIXED (fixed3), choptions, 192, 88);
   gtk_widget_set_usize (choptions, 121, 28);
   gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (choptions), TRUE);
 
   chname = gtk_check_button_new_with_label (_("NAME"));
-  gtk_widget_ref (chname);
-  g_object_set_data_full (G_OBJECT (wizard), "chname", chname,
-                            (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (chname);
   gtk_fixed_put (GTK_FIXED (fixed3), chname, 16, 56);
   gtk_widget_set_usize (chname, 121, 28);
   gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (chname), TRUE);
 
   chseealso = gtk_check_button_new_with_label (_("SEE ALSO"));
-  gtk_widget_ref (chseealso);
-  g_object_set_data_full (G_OBJECT (wizard), "chseealso", chseealso,
-                            (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (chseealso);
   gtk_fixed_put (GTK_FIXED (fixed3), chseealso, 112, 208);
   gtk_widget_set_usize (chseealso, 121, 28);
   gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (chseealso), TRUE);
 
   chauthor = gtk_check_button_new_with_label (_("AUTHOR"));
-  gtk_widget_ref (chauthor);
-  g_object_set_data_full (G_OBJECT (wizard), "chauthor", chauthor,
-                            (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (chauthor);
   gtk_fixed_put (GTK_FIXED (fixed3), chauthor, 272, 208);
   gtk_widget_set_usize (chauthor, 121, 28);
   gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (chauthor), TRUE);
 
   chreturnvalues = gtk_check_button_new_with_label (_("RETURN VALUES"));
-  gtk_widget_ref (chreturnvalues);
-  g_object_set_data_full (G_OBJECT (wizard), "chreturnvalues", chreturnvalues,
-                            (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (chreturnvalues);
   gtk_fixed_put (GTK_FIXED (fixed3), chreturnvalues, 16, 152);
   gtk_widget_set_usize (chreturnvalues, 160, 32);
 
   chdiagnostics = gtk_check_button_new_with_label (_("DIAGNOSTICS"));
-  gtk_widget_ref (chdiagnostics);
-  g_object_set_data_full (G_OBJECT (wizard), "chdiagnostics", chdiagnostics,
-                            (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (chdiagnostics);
   gtk_fixed_put (GTK_FIXED (fixed3), chdiagnostics, 336, 56);
   gtk_widget_set_usize (chdiagnostics, 144, 24);
 
   chsecurity = gtk_check_button_new_with_label (_("SECURITY"));
-  gtk_widget_ref (chsecurity);
-  g_object_set_data_full (G_OBJECT (wizard), "chsecurity", chsecurity,
-                            (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (chsecurity);
   gtk_fixed_put (GTK_FIXED (fixed3), chsecurity, 336, 88);
   gtk_widget_set_usize (chsecurity, 121, 28);
 
   chconformingto = gtk_check_button_new_with_label (_("CONFORMING TO"));
-  gtk_widget_ref (chconformingto);
-  g_object_set_data_full (G_OBJECT (wizard), "chconformingto", chconformingto,
-                            (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (chconformingto);
   gtk_fixed_put (GTK_FIXED (fixed3), chconformingto, 336, 120);
   gtk_widget_set_usize (chconformingto, 168, 32);
 
   chnotes = gtk_check_button_new_with_label (_("NOTES"));
-  gtk_widget_ref (chnotes);
-  g_object_set_data_full (G_OBJECT (wizard), "chnotes", chnotes,
-                            (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (chnotes);
   gtk_fixed_put (GTK_FIXED (fixed3), chnotes, 336, 152);
   gtk_widget_set_usize (chnotes, 121, 28);
 
   chbugs = gtk_check_button_new_with_label (_("BUGS"));
-  gtk_widget_ref (chbugs);
-  g_object_set_data_full (G_OBJECT (wizard), "chbugs", chbugs,
-                            (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (chbugs);
   gtk_fixed_put (GTK_FIXED (fixed3), chbugs, 336, 184);
   gtk_widget_set_usize (chbugs, 121, 28);

@@ -4,6 +4,8 @@ gmanedit (0.4.1)
   * Moved from GnomeUIInfo to GtkAction and GtkUIManager for the
     menu and Toolbar.
   * Moved from GnomeDialog to GtkDialog for all the dialogs.
+  * Moved from GtkText to GtkTextView for the editor.
+  * Moved to GtkFileChooser for Open and Save As dialogs.
   * Gmanedit is now without any Gnome dependencies, it builds with the help
     of GTK+ only. Version 2.10 or higher is needed.
 
