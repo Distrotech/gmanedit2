@@ -675,8 +675,8 @@ create_wizard (void)
   time_t fech;
   struct tm *fecha;
 	gchar cad[30];
-	gchar *meses[]={_("January"),_("February"),_("Mars"),_("April"),
-        		_("May"),_("June"),_("Jule"),_("August"),
+	gchar *meses[]={_("January"),_("February"),_("March"),_("April"),
+        		_("May"),_("June"),_("July"),_("August"),
         		_("September"),_("October"),_("November"),_("December")};
 
   tooltips = gtk_tooltips_new ();
