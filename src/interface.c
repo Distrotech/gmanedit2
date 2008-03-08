@@ -268,13 +268,14 @@ create_wprincipal (void)
   gtk_box_pack_start (GTK_BOX (vbox1), scrolledwindow1, TRUE, TRUE, 0);
   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolledwindow1), GTK_POLICY_NEVER, GTK_POLICY_ALWAYS);
 
-  text = GTK_WIDGET(gtk_text_new (NULL, NULL));
+  text = GTK_WIDGET(gtk_text_view_new());
   gtk_widget_ref (text);
   g_object_set_data_full (G_OBJECT (wprincipal), "text", text,
                             (GtkDestroyNotify) gtk_widget_unref);
   gtk_widget_show (text);
   gtk_container_add (GTK_CONTAINER (scrolledwindow1), text);
-  gtk_text_set_editable (GTK_EDITABLE (text), TRUE);
+  /*gtk_text_set_editable (GTK_EDITABLE (text), TRUE);*/
+  gtk_text_view_set_editable(GTK_TEXT_VIEW(text), TRUE);
 
   statusbar1 = gtk_statusbar_new ();
   gtk_widget_ref (statusbar1);

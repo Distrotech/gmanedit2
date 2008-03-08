@@ -145,14 +145,16 @@ on_novo1_activate                      (GtkMenuItem     *menuitem,
 	GtkWidget *text,*statusbar;
 
 	text=lookup_widget(GTK_WIDGET(wprincipal),"text");
-	gtk_editable_delete_text(GTK_EDITABLE(text),0,-1);
-	
+	if (GTK_IS_EDITABLE (text)){
+	  gtk_editable_delete_text(GTK_EDITABLE(text),0,-1);
+	}
 	statusbar = lookup_widget(GTK_WIDGET(wprincipal),"statusbar1");
 	gtk_statusbar_pop (GTK_STATUSBAR (statusbar), 1);
 	gtk_statusbar_push (GTK_STATUSBAR (statusbar), 1, _("New file."));
 
-	if (filename) g_free(filename);
-    in_gzip=0;
+	/*if (filename) 
+          g_free(filename);*/
+        in_gzip=0;
 }
 
 
@@ -797,7 +799,8 @@ void
 on_data1_activate                      (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
-	GtkWidget *text,*statusbar;
+     GtkWidget *text,*statusbar;
+     GtkTextBuffer*  buffer;
      time_t fech;
      struct tm *fecha;
      gchar cad[30];
@@ -813,8 +816,10 @@ on_data1_activate                      (GtkMenuItem     *menuitem,
 	{
 		sprintf(cad,"%d %s %d",fecha->tm_mday,meses[fecha->tm_mon],fecha->tm_year+1900);
 		text=lookup_widget(wprincipal,"text");	
-		gtk_text_insert(text,NULL,NULL,NULL,cad,strlen(cad));
-	
+		if (GTK_IS_TEXT_VIEW (text)){
+                  buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (text));
+                  gtk_text_buffer_insert_at_cursor( buffer, cad ,strlen(cad));
+	        }
 		statusbar = lookup_widget(wprincipal,"statusbar1");
 		gtk_statusbar_pop (GTK_STATUSBAR (statusbar), 1);
 		gtk_statusbar_push (GTK_STATUSBAR (statusbar), 1, _("Date inserted."));    
@@ -1168,11 +1173,14 @@ static
 void insert_label(const gchar *base,const gchar *text_info, GtkWidget *item)
 {
 	GtkWidget *text,*statusbar;
+        GtkTextBuffer *buffer;
 
 	text=lookup_widget(GTK_WIDGET(item),"text");
 	
-	gtk_text_insert(text,NULL,NULL,NULL,
-				_(base),strlen(base));
+        if (GTK_IS_TEXT_VIEW (text)){
+          buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (text));
+          gtk_text_buffer_insert_at_cursor( buffer, _(base) ,strlen(base));
+        }
 	
 	statusbar = lookup_widget(GTK_WIDGET(item),"statusbar1");
 	gtk_statusbar_pop (GTK_STATUSBAR (statusbar), 1);
@@ -1264,7 +1272,8 @@ static void help_without_gnome(GtkWidget *wid)
 
 static void open_man_file(GtkWidget *widget)
 {
-    GtkWidget *statusbar,*text;
+        GtkWidget *statusbar,*text;
+        GtkTextBuffer*  buff;
 	gzFile *f;
 	gchar buffer[BUFFER_SIZE];
 	gint bytes_read;
@@ -1273,7 +1282,9 @@ static void open_man_file(GtkWidget *widget)
 
 
 	text=lookup_widget(GTK_WIDGET(wprincipal),"text");
-	gtk_editable_delete_text(GTK_EDITABLE(text),0,-1);
+        if (GTK_IS_EDITABLE (text)){
+	  gtk_editable_delete_text(GTK_EDITABLE(text),0,-1);
+        }
 	
 /* Barra de estado */
 	statusbar=lookup_widget(GTK_WIDGET(wprincipal),"statusbar1");
@@ -1295,9 +1306,10 @@ static void open_man_file(GtkWidget *widget)
 	  while(!gzeof(f))
 	  {
 		bytes_read=gzread(f,buffer,BUFFER_SIZE);
-		if (bytes_read>0)
-		gtk_text_insert(text,NULL,NULL,NULL,
-				buffer,bytes_read);
+		if (bytes_read>0){  
+                    buff = gtk_text_view_get_buffer (GTK_TEXT_VIEW (text));
+                    gtk_text_buffer_insert_at_cursor( buff, buffer ,bytes_read);
+                } 
 	  }
   	  gzclose(f);
 	}
