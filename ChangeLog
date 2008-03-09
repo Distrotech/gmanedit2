@@ -12,6 +12,7 @@ gmanedit (0.4.1)
     manual.
   * Gmanedit is now without any Gnome dependencies, it builds with the help
     of GTK+ only. Version 2.10 or higher is needed.
+  * New developer: Anibal Avelar <aavelar@cofradia.org>.
 
 gmanedit (0.4)
 
