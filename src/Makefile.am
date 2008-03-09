@@ -3,7 +3,11 @@
 INCLUDES = \
 	@GTK_CFLAGS@ \
 	-DDATADIR=\""$(datadir)"\" \
-	-DLOCALEDIR=\""$(datadir)/locale"\"
+	-DLOCALEDIR=\""$(datadir)/locale"\" \
+	-DG_DISABLE_DEPRECATED \
+	-DGDK_DISABLE_DEPRECATED \
+	-DGDK_PIXBUF_DISABLE_DEPRECATED \
+	-DGTK_DISABLE_DEPRECATED
 
 bin_PROGRAMS = gmanedit
 

@@ -322,15 +322,9 @@ create_wbuscar (void)
   GtkWidget *label2;
   GtkWidget *reemprazar;
   GtkWidget *hbuttonbox1;
-  guint bbuscar_key;
   GtkWidget *bbuscar;
-  guint breemprazar_key;
   GtkWidget *breemprazar;
-  guint bpechar_key;
   GtkWidget *bpechar;
-  GtkAccelGroup *accel_group;
-
-  accel_group = gtk_accel_group_new ();
 
   wbuscar = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   g_object_set_data (G_OBJECT (wbuscar), "wbuscar", wbuscar);
@@ -375,29 +369,17 @@ create_wbuscar (void)
   gtk_widget_show (hbuttonbox1);
   gtk_box_pack_start (GTK_BOX (vbox2), hbuttonbox1, TRUE, TRUE, 0);
 
-  bbuscar = gtk_button_new_with_label ("");
-  bbuscar_key = gtk_label_parse_uline (GTK_LABEL (GTK_BIN (bbuscar)->child),
-                                   _("_Search"));
-  gtk_widget_add_accelerator (bbuscar, "clicked", accel_group,
-                              bbuscar_key, GDK_MOD1_MASK, (GtkAccelFlags) 0);
+  bbuscar = gtk_button_new_with_mnemonic ("_Search");
   HOOKUP_OBJECT (wbuscar, bbuscar, "bbuscar");
   gtk_widget_show (bbuscar);
   gtk_container_add (GTK_CONTAINER (hbuttonbox1), bbuscar);
 
-  breemprazar = gtk_button_new_with_label ("");
-  breemprazar_key = gtk_label_parse_uline (GTK_LABEL (GTK_BIN (breemprazar)->child),
-                                   _("_Replace"));
-  gtk_widget_add_accelerator (breemprazar, "clicked", accel_group,
-                              breemprazar_key, GDK_MOD1_MASK, (GtkAccelFlags) 0);
+  breemprazar = gtk_button_new_with_label ("_Replace");
   HOOKUP_OBJECT (wbuscar, breemprazar, "breemprazar");
   gtk_widget_show (breemprazar);
   gtk_container_add (GTK_CONTAINER (hbuttonbox1), breemprazar);
 
-  bpechar = gtk_button_new_with_label ("");
-  bpechar_key = gtk_label_parse_uline (GTK_LABEL (GTK_BIN (bpechar)->child),
-                                   _("_Close"));
-  gtk_widget_add_accelerator (bpechar, "clicked", accel_group,
-                              bpechar_key, GDK_MOD1_MASK, (GtkAccelFlags) 0);
+  bpechar = gtk_button_new_with_label ("_Close");
   HOOKUP_OBJECT (wbuscar, bpechar, "bpechar");
   gtk_widget_show (bpechar);
   gtk_container_add (GTK_CONTAINER (hbuttonbox1), bpechar);
@@ -411,9 +393,6 @@ create_wbuscar (void)
   g_signal_connect (G_OBJECT (bpechar), "clicked",
                       G_CALLBACK (on_bpechar_clicked),
                       NULL);
-
-  gtk_window_add_accel_group (GTK_WINDOW (wbuscar), accel_group);
-
   return wbuscar;
 }
 
@@ -504,14 +483,13 @@ create_wpreferences (void)
   GtkWidget *hbox4;
   GtkWidget *label17;
   GtkWidget *combo2;
-  GList *combo2_items = NULL;
-  GtkWidget *cbinet;
+//  GtkWidget *cbinet;
   GtkWidget *chgnome_help;
   GtkWidget *bpok;
   GtkWidget *bpcancel;
-  GtkTooltips *tooltips;
+//  GtkTooltips *tooltips;
 
-  tooltips = gtk_tooltips_new ();
+//  tooltips = gtk_tooltips_new ();
 
   wpreferences = gtk_dialog_new_with_buttons (_("Gmanedit - Preferences"),
   	GTK_WINDOW(wprincipal), GTK_DIALOG_DESTROY_WITH_PARENT, NULL);
@@ -542,24 +520,19 @@ create_wpreferences (void)
   label17 = gtk_label_new (_("Internet browser"));
   gtk_widget_show (label17);
   gtk_box_pack_start (GTK_BOX (hbox4), label17, FALSE, FALSE, 0);
-  combo2 = gtk_combo_new ();
+  combo2 = gtk_combo_box_entry_new_text ();
   gtk_widget_show (combo2);
   gtk_box_pack_start (GTK_BOX (hbox4), combo2, TRUE, TRUE, 0);
-  combo2_items = g_list_append (combo2_items, (gpointer) _("netscape"));
-  combo2_items = g_list_append (combo2_items, (gpointer) _("mozilla"));
-  combo2_items = g_list_append (combo2_items, (gpointer) _("galeon"));
-  combo2_items = g_list_append (combo2_items, (gpointer) _("yelp"));
-  combo2_items = g_list_append (combo2_items, (gpointer) _("konqueror"));
-  combo2_items = g_list_append (combo2_items, (gpointer) _("nautilus"));
-  gtk_combo_set_popdown_strings (GTK_COMBO (combo2), combo2_items);
-  g_list_free (combo2_items);
+  gtk_combo_box_append_text (GTK_COMBO_BOX(combo2), "netscape");
+  gtk_combo_box_append_text (GTK_COMBO_BOX(combo2), "mozilla");
+  gtk_combo_box_append_text (GTK_COMBO_BOX(combo2), "firefox");
+  gtk_combo_box_append_text (GTK_COMBO_BOX(combo2), "galeon");
+  gtk_combo_box_append_text (GTK_COMBO_BOX(combo2), "yelp");
+  gtk_combo_box_append_text (GTK_COMBO_BOX(combo2), "konqueror");
+  gtk_combo_box_append_text (GTK_COMBO_BOX(combo2), "nautilus");
+  HOOKUP_OBJECT (wpreferences, combo2, "combo2");
 
-  cbinet = GTK_COMBO (combo2)->entry;
-  gtk_widget_show (cbinet);
-  HOOKUP_OBJECT (wpreferences, cbinet, "cbinet");
-  
-  gtk_tooltips_set_tip (tooltips, cbinet, _("Select your internet browser from this list"), NULL);
-  gtk_entry_set_text (GTK_ENTRY (cbinet), _("netscape"));
+//  gtk_tooltips_set_tip (tooltips, cbinet, _("Select your internet browser from this list"), NULL);
 
   chgnome_help = gtk_check_button_new_with_label (_("Use yelp"));
   gtk_widget_show (chgnome_help);
@@ -606,15 +579,13 @@ create_wizard (void)
   GtkWidget *label9;
   GtkWidget *label10;
   GtkWidget *label11;
-  GtkWidget *label12;
   GtkWidget *label7;
   GtkWidget *label6;
   GtkWidget *label5;
   GtkWidget *label4;
   GtkWidget *label3;
   GtkWidget *combo1;
-  GList *combo1_items = NULL;
-  GtkWidget *snumber;
+//  GtkWidget *snumber;
   GtkWidget *druid_vbox1;
   GtkWidget *fixed3;
   GtkWidget *label13;
@@ -635,7 +606,7 @@ create_wizard (void)
   GtkWidget *chconformingto;
   GtkWidget *chnotes;
   GtkWidget *chbugs;
-  GtkTooltips *tooltips;
+//  GtkTooltips *tooltips;
   GdkPixbuf *icon_pixbuf;
   time_t fech;
   struct tm *fecha;
@@ -644,16 +615,12 @@ create_wizard (void)
         		_("May"),_("June"),_("July"),_("August"),
         		_("September"),_("October"),_("November"),_("December")};
 
-  tooltips = gtk_tooltips_new ();
+//  tooltips = gtk_tooltips_new ();
 
   wizard = gtk_assistant_new ();
   gtk_window_set_title (GTK_WINDOW (wizard), _("Gmanedit - Wizard"));
-  gtk_window_set_position (GTK_WINDOW (wizard), GTK_WIN_POS_CENTER);
-  gtk_window_set_modal (GTK_WINDOW (wizard), TRUE);
-  gtk_window_set_policy (GTK_WINDOW (wizard), FALSE, FALSE, FALSE);
   icon_pixbuf = create_image ("gmanedit_icon.png");
   gtk_window_set_icon (GTK_WINDOW (wizard), icon_pixbuf);
-
 
   GtkWidget *labelbegin = gtk_label_new (_("Welcome to the Gmanedit Man Pages Wizard. Follow the next steps to build a Basic Man Page"));
   gtk_label_set_line_wrap (GTK_LABEL(labelbegin), TRUE);
@@ -674,16 +641,15 @@ create_wizard (void)
   HOOKUP_OBJECT (wizard, mname, "mname");
   gtk_widget_show (mname);
   gtk_fixed_put (GTK_FIXED (fixed1), mname, 248, 24);
-  gtk_widget_set_usize (mname, 158, 26);
-  gtk_tooltips_set_tip (tooltips, mname, _("Short name to the man page (example: gmanedit)"), NULL);
+  gtk_widget_set_size_request (mname, 158, 26);
+//  gtk_tooltips_set_tip (tooltips, mname, _("Short name to the man page (example: gmanedit)"), NULL);
   
-
   mdate = gtk_entry_new ();
   HOOKUP_OBJECT (wizard, mdate, "mdate");
   gtk_widget_show (mdate);
   gtk_fixed_put (GTK_FIXED (fixed1), mdate, 248, 80);
-  gtk_widget_set_usize (mdate, 158, 26);
-  gtk_tooltips_set_tip (tooltips, mdate, _("Creation date (default today)"), NULL);
+  gtk_widget_set_size_request (mdate, 158, 26);
+//  gtk_tooltips_set_tip (tooltips, mdate, _("Creation date (default today)"), NULL);
   time(&fech);
   fecha=localtime(&fech);
 	
@@ -693,46 +659,43 @@ create_wizard (void)
 		gtk_entry_set_text(GTK_ENTRY(mdate),cad);
 	}
 
-
   mtitle = gtk_entry_new ();
   HOOKUP_OBJECT (wizard, mtitle, "mtitle");
   gtk_widget_show (mtitle);
   gtk_fixed_put (GTK_FIXED (fixed1), mtitle, 248, 136);
-  gtk_widget_set_usize (mtitle, 158, 26);
-  gtk_tooltips_set_tip (tooltips, mtitle, _("Long man page name or title"), NULL);
+  gtk_widget_set_size_request (mtitle, 158, 26);
+//  gtk_tooltips_set_tip (tooltips, mtitle, _("Long man page name or title"), NULL);
 
   mauthor = gtk_entry_new ();
   HOOKUP_OBJECT (wizard, mauthor, "mauthor");
   gtk_widget_show (mauthor);
   gtk_fixed_put (GTK_FIXED (fixed1), mauthor, 248, 192);
-  gtk_widget_set_usize (mauthor, 158, 26);
-  gtk_tooltips_set_tip (tooltips, mauthor, _("First_Name Last_Name <my@email.com>"), NULL);
+  gtk_widget_set_size_request (mauthor, 158, 26);
+//  gtk_tooltips_set_tip (tooltips, mauthor, _("First_Name Last_Name <my@email.com>"), NULL);
 
   label14 = gtk_label_new (_("Creation Date:"));
   gtk_widget_show (label14);
   gtk_fixed_put (GTK_FIXED (fixed1), label14, 64, 80);
-  gtk_widget_set_usize (label14, 176, 24);
+  gtk_widget_set_size_request (label14, 176, 24);
   gtk_label_set_line_wrap (GTK_LABEL (label14), TRUE);
 
   label15 = gtk_label_new (_("Man page Title:"));
   gtk_widget_show (label15);
   gtk_fixed_put (GTK_FIXED (fixed1), label15, 64, 136);
-  gtk_widget_set_usize (label15, 176, 24);
+  gtk_widget_set_size_request (label15, 176, 24);
   gtk_label_set_line_wrap (GTK_LABEL (label15), TRUE);
 
   label16 = gtk_label_new (_("Author:"));
   gtk_widget_show (label16);
   gtk_fixed_put (GTK_FIXED (fixed1), label16, 64, 192);
-  gtk_widget_set_usize (label16, 120, 24);
+  gtk_widget_set_size_request (label16, 120, 24);
   gtk_label_set_line_wrap (GTK_LABEL (label16), TRUE);
-
 
   label1 = gtk_label_new (_("Man page Name:"));
   gtk_widget_show (label1);
   gtk_fixed_put (GTK_FIXED (fixed1), label1, 64, 24);
-  gtk_widget_set_usize (label1, 184, 24);
+  gtk_widget_set_size_request (label1, 184, 24);
   gtk_label_set_line_wrap (GTK_LABEL (label1), TRUE);
-
 
   gtk_assistant_append_page (GTK_ASSISTANT (wizard), druid_vbox2);
   gtk_assistant_set_page_title (GTK_ASSISTANT (wizard), druid_vbox2, _("Step 1: Basic Information"));
@@ -746,87 +709,77 @@ create_wizard (void)
   gtk_widget_show (fixed2);
   gtk_box_pack_start (GTK_BOX (druid_vbox3), fixed2, TRUE, TRUE, 0);
 
-  label8 = gtk_label_new (_("Section 5: File format and conventions"));
+  label8 = gtk_label_new (_("Section 5: File formats and conventions"));
   gtk_widget_show (label8);
   gtk_fixed_put (GTK_FIXED (fixed2), label8, 32, 136);
-  gtk_widget_set_usize (label8, 224, 40);
+  gtk_widget_set_size_request (label8, 224, 40);
   gtk_label_set_line_wrap (GTK_LABEL (label8), TRUE);
 
   label2 = gtk_label_new (_("Section number"));
   gtk_widget_show (label2);
   gtk_fixed_put (GTK_FIXED (fixed2), label2, 56, 208);
-  gtk_widget_set_usize (label2, 144, 24);
+  gtk_widget_set_size_request (label2, 144, 24);
 
   label9 = gtk_label_new (_("Section 6: Games"));
   gtk_widget_show (label9);
   gtk_fixed_put (GTK_FIXED (fixed2), label9, 264, 40);
-  gtk_widget_set_usize (label9, 184, 24);
+  gtk_widget_set_size_request (label9, 184, 24);
   gtk_label_set_line_wrap (GTK_LABEL (label9), TRUE);
 
-  label10 = gtk_label_new (_("Section 7: Macro packages and Coventions"));
+  label10 = gtk_label_new (_("Section 7: Conventions and miscellaneous"));
   gtk_widget_show (label10);
   gtk_fixed_put (GTK_FIXED (fixed2), label10, 264, 64);
-  gtk_widget_set_usize (label10, 240, 40);
+  gtk_widget_set_size_request (label10, 240, 40);
   gtk_label_set_line_wrap (GTK_LABEL (label10), TRUE);
 
   label11 = gtk_label_new (_("Section 8: System management commands"));
   gtk_widget_show (label11);
   gtk_fixed_put (GTK_FIXED (fixed2), label11, 264, 104);
-  gtk_widget_set_usize (label11, 240, 40);
+  gtk_widget_set_size_request (label11, 240, 40);
   gtk_label_set_line_wrap (GTK_LABEL (label11), TRUE);
 
-  label12 = gtk_label_new (_("Section 9: Kernel routines"));
-  gtk_widget_show (label12);
-  gtk_fixed_put (GTK_FIXED (fixed2), label12, 264, 152);
-  gtk_widget_set_usize (label12, 240, 24);
-
-  label7 = gtk_label_new (_("Section 4: Special files"));
+  label7 = gtk_label_new (_("Section 4: Special files (devices)"));
   gtk_widget_show (label7);
   gtk_fixed_put (GTK_FIXED (fixed2), label7, 0, 112);
-  gtk_widget_set_usize (label7, 232, 24);
+  gtk_widget_set_size_request (label7, 232, 24);
 
   label6 = gtk_label_new (_("Section 3: Library calls"));
   gtk_widget_show (label6);
   gtk_fixed_put (GTK_FIXED (fixed2), label6, 0, 88);
-  gtk_widget_set_usize (label6, 232, 24);
+  gtk_widget_set_size_request (label6, 232, 24);
 
   label5 = gtk_label_new (_("Section 2: System calls"));
   gtk_widget_show (label5);
   gtk_fixed_put (GTK_FIXED (fixed2), label5, 0, 64);
-  gtk_widget_set_usize (label5, 240, 24);
+  gtk_widget_set_size_request (label5, 240, 24);
 
   label4 = gtk_label_new (_("Section 1: Commands"));
   gtk_widget_show (label4);
   gtk_fixed_put (GTK_FIXED (fixed2), label4, 0, 40);
-  gtk_widget_set_usize (label4, 232, 24);
+  gtk_widget_set_size_request (label4, 232, 24);
 
-  label3 = gtk_label_new (_("There are 9 sections for man pages. Select one:"));
+  label3 = gtk_label_new (_("There are 8 sections for man pages. Select one:"));
   gtk_widget_show (label3);
   gtk_fixed_put (GTK_FIXED (fixed2), label3, 0, 16);
-  gtk_widget_set_usize (label3, 504, 16);
+  gtk_widget_set_size_request (label3, 504, 16);
 
-  combo1 = gtk_combo_new ();
+  combo1 = gtk_combo_box_new_text ();
   gtk_widget_show (combo1);
   gtk_fixed_put (GTK_FIXED (fixed2), combo1, 240, 208);
-  gtk_widget_set_usize (combo1, 175, 26);
-  GTK_WIDGET_SET_FLAGS (combo1, GTK_CAN_FOCUS);
-  gtk_combo_set_value_in_list (GTK_COMBO (combo1), TRUE, FALSE);
-  combo1_items = g_list_append (combo1_items, (gpointer) _("1"));
-  combo1_items = g_list_append (combo1_items, (gpointer) _("2"));
-  combo1_items = g_list_append (combo1_items, (gpointer) _("3"));
-  combo1_items = g_list_append (combo1_items, (gpointer) _("4"));
-  combo1_items = g_list_append (combo1_items, (gpointer) _("5"));
-  combo1_items = g_list_append (combo1_items, (gpointer) _("6"));
-  combo1_items = g_list_append (combo1_items, (gpointer) _("7"));
-  combo1_items = g_list_append (combo1_items, (gpointer) _("8"));
-  combo1_items = g_list_append (combo1_items, (gpointer) _("9"));
-  gtk_combo_set_popdown_strings (GTK_COMBO (combo1), combo1_items);
-  g_list_free (combo1_items);
+  gtk_widget_set_size_request (combo1, 175, 26);
+  gtk_combo_box_append_text (GTK_COMBO_BOX(combo1), "1");
+  gtk_combo_box_append_text (GTK_COMBO_BOX(combo1), "2");
+  gtk_combo_box_append_text (GTK_COMBO_BOX(combo1), "3");
+  gtk_combo_box_append_text (GTK_COMBO_BOX(combo1), "4");
+  gtk_combo_box_append_text (GTK_COMBO_BOX(combo1), "5");
+  gtk_combo_box_append_text (GTK_COMBO_BOX(combo1), "6");
+  gtk_combo_box_append_text (GTK_COMBO_BOX(combo1), "7");
+  gtk_combo_box_append_text (GTK_COMBO_BOX(combo1), "8");
+  gtk_combo_box_append_text (GTK_COMBO_BOX(combo1), "9");
+  gtk_combo_box_set_active (GTK_COMBO_BOX(combo1), 0);
+  HOOKUP_OBJECT (wizard, combo1, "combo1");
 
-  snumber = GTK_COMBO (combo1)->entry;
-  gtk_widget_show (snumber);
-  gtk_tooltips_set_tip (tooltips, snumber, _("Select section number"), NULL);
-  gtk_entry_set_text (GTK_ENTRY (snumber), _("1"));
+//  gtk_tooltips_set_tip (tooltips, snumber, _("Select section number"), NULL);
 
   gtk_assistant_append_page (GTK_ASSISTANT (wizard), druid_vbox3);
   gtk_assistant_set_page_title (GTK_ASSISTANT (wizard), druid_vbox3, _("Step 2: Section number"));
@@ -843,99 +796,115 @@ create_wizard (void)
   label13 = gtk_label_new (_("What sections would you like include?"));
   gtk_widget_show (label13);
   gtk_fixed_put (GTK_FIXED (fixed3), label13, 64, 16);
-  gtk_widget_set_usize (label13, 344, 24);
+  gtk_widget_set_size_request (label13, 344, 24);
 
   cherrorh = gtk_check_button_new_with_label (_("ERROR HANDLING"));
   gtk_widget_show (cherrorh);
   gtk_fixed_put (GTK_FIXED (fixed3), cherrorh, 16, 184);
-  gtk_widget_set_usize (cherrorh, 176, 24);
+  gtk_widget_set_size_request (cherrorh, 176, 24);
 
   chenvironment = gtk_check_button_new_with_label (_("ENVIRONMENT"));
   gtk_widget_show (chenvironment);
   gtk_fixed_put (GTK_FIXED (fixed3), chenvironment, 192, 184);
-  gtk_widget_set_usize (chenvironment, 152, 24);
+  gtk_widget_set_size_request (chenvironment, 152, 24);
+  HOOKUP_OBJECT (wizard, chenvironment, "chenvironment");
 
   chfiles = gtk_check_button_new_with_label (_("FILES"));
   gtk_widget_show (chfiles);
   gtk_fixed_put (GTK_FIXED (fixed3), chfiles, 192, 152);
-  gtk_widget_set_usize (chfiles, 121, 28);
+  gtk_widget_set_size_request (chfiles, 121, 28);
+  HOOKUP_OBJECT (wizard, chfiles, "chfiles");
 
   chusage = gtk_check_button_new_with_label (_("USAGE"));
   gtk_widget_show (chusage);
   gtk_fixed_put (GTK_FIXED (fixed3), chusage, 192, 120);
-  gtk_widget_set_usize (chusage, 121, 28);
+  gtk_widget_set_size_request (chusage, 121, 28);
+  HOOKUP_OBJECT (wizard, chusage, "chusage");
 
   cherrors = gtk_check_button_new_with_label (_("ERRORS"));
   gtk_widget_show (cherrors);
   gtk_fixed_put (GTK_FIXED (fixed3), cherrors, 192, 56);
-  gtk_widget_set_usize (cherrors, 121, 28);
+  gtk_widget_set_size_request (cherrors, 121, 28);
+  HOOKUP_OBJECT (wizard, cherrors, "cherrors");
 
   chsynopsis = gtk_check_button_new_with_label (_("SYNOPSIS"));
   gtk_widget_show (chsynopsis);
   gtk_fixed_put (GTK_FIXED (fixed3), chsynopsis, 16, 88);
-  gtk_widget_set_usize (chsynopsis, 121, 28);
+  gtk_widget_set_size_request (chsynopsis, 121, 28);
   gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (chsynopsis), TRUE);
+  HOOKUP_OBJECT (wizard, chsynopsis, "chsynopsis");
 
   chdescription = gtk_check_button_new_with_label (_("DESCRIPTION"));
   gtk_widget_show (chdescription);
   gtk_fixed_put (GTK_FIXED (fixed3), chdescription, 16, 120);
-  gtk_widget_set_usize (chdescription, 136, 24);
+  gtk_widget_set_size_request (chdescription, 136, 24);
   gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (chdescription), TRUE);
+  HOOKUP_OBJECT (wizard, chdescription, "chdescription");
 
   choptions = gtk_check_button_new_with_label (_("OPTIONS"));
   gtk_widget_show (choptions);
   gtk_fixed_put (GTK_FIXED (fixed3), choptions, 192, 88);
-  gtk_widget_set_usize (choptions, 121, 28);
+  gtk_widget_set_size_request (choptions, 121, 28);
   gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (choptions), TRUE);
+  HOOKUP_OBJECT (wizard, choptions, "choptions");
 
   chname = gtk_check_button_new_with_label (_("NAME"));
   gtk_widget_show (chname);
   gtk_fixed_put (GTK_FIXED (fixed3), chname, 16, 56);
-  gtk_widget_set_usize (chname, 121, 28);
+  gtk_widget_set_size_request (chname, 121, 28);
   gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (chname), TRUE);
+  HOOKUP_OBJECT (wizard, chname, "chname");
 
   chseealso = gtk_check_button_new_with_label (_("SEE ALSO"));
   gtk_widget_show (chseealso);
   gtk_fixed_put (GTK_FIXED (fixed3), chseealso, 112, 208);
-  gtk_widget_set_usize (chseealso, 121, 28);
+  gtk_widget_set_size_request (chseealso, 121, 28);
   gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (chseealso), TRUE);
+  HOOKUP_OBJECT (wizard, chseealso, "chseealso");
 
   chauthor = gtk_check_button_new_with_label (_("AUTHOR"));
   gtk_widget_show (chauthor);
   gtk_fixed_put (GTK_FIXED (fixed3), chauthor, 272, 208);
-  gtk_widget_set_usize (chauthor, 121, 28);
+  gtk_widget_set_size_request (chauthor, 121, 28);
   gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (chauthor), TRUE);
+  HOOKUP_OBJECT (wizard, chauthor, "chauthor");
 
   chreturnvalues = gtk_check_button_new_with_label (_("RETURN VALUES"));
   gtk_widget_show (chreturnvalues);
   gtk_fixed_put (GTK_FIXED (fixed3), chreturnvalues, 16, 152);
-  gtk_widget_set_usize (chreturnvalues, 160, 32);
+  gtk_widget_set_size_request (chreturnvalues, 160, 32);
+  HOOKUP_OBJECT (wizard, chreturnvalues, "chreturnvalues");
 
   chdiagnostics = gtk_check_button_new_with_label (_("DIAGNOSTICS"));
   gtk_widget_show (chdiagnostics);
   gtk_fixed_put (GTK_FIXED (fixed3), chdiagnostics, 336, 56);
-  gtk_widget_set_usize (chdiagnostics, 144, 24);
+  gtk_widget_set_size_request (chdiagnostics, 144, 24);
+  HOOKUP_OBJECT (wizard, chdiagnostics, "chdiagnostics");
 
   chsecurity = gtk_check_button_new_with_label (_("SECURITY"));
   gtk_widget_show (chsecurity);
   gtk_fixed_put (GTK_FIXED (fixed3), chsecurity, 336, 88);
-  gtk_widget_set_usize (chsecurity, 121, 28);
+  gtk_widget_set_size_request (chsecurity, 121, 28);
+  HOOKUP_OBJECT (wizard, chsecurity, "chsecurity");
 
   chconformingto = gtk_check_button_new_with_label (_("CONFORMING TO"));
   gtk_widget_show (chconformingto);
   gtk_fixed_put (GTK_FIXED (fixed3), chconformingto, 336, 120);
-  gtk_widget_set_usize (chconformingto, 168, 32);
+  gtk_widget_set_size_request (chconformingto, 168, 32);
+  HOOKUP_OBJECT (wizard, chconformingto, "chconformingto");
 
   chnotes = gtk_check_button_new_with_label (_("NOTES"));
   gtk_widget_show (chnotes);
   gtk_fixed_put (GTK_FIXED (fixed3), chnotes, 336, 152);
-  gtk_widget_set_usize (chnotes, 121, 28);
+  gtk_widget_set_size_request (chnotes, 121, 28);
+  HOOKUP_OBJECT (wizard, chnotes, "chnotes");
 
   chbugs = gtk_check_button_new_with_label (_("BUGS"));
   gtk_widget_show (chbugs);
   gtk_fixed_put (GTK_FIXED (fixed3), chbugs, 336, 184);
-  gtk_widget_set_usize (chbugs, 121, 28);
+  gtk_widget_set_size_request (chbugs, 121, 28);
   gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (chbugs), TRUE);
+  HOOKUP_OBJECT (wizard, chbugs, "chbugs");
 
   gtk_assistant_append_page (GTK_ASSISTANT (wizard), druid_vbox1);
   gtk_assistant_set_page_title (GTK_ASSISTANT (wizard), druid_vbox1, _("Step 3: Man Sections"));

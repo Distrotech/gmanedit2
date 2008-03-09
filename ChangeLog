@@ -1,11 +1,13 @@
 gmanedit (0.4.1)
-  * Moved from GnomeDruid to GtkAssistant for the wizard pages.
+  * Moved from GnomeDruid to GtkAssistant API for the wizard pages.
   * Fixed display of the date in the second page of the wizard.
-  * Moved from GnomeUIInfo to GtkAction and GtkUIManager for the
+  * Moved from GnomeUIInfo to GtkAction and GtkUIManager API for the
     menu and Toolbar.
-  * Moved from GnomeDialog to GtkDialog for all the dialogs.
-  * Moved from GtkText to GtkTextView for the editor.
-  * Moved to GtkFileChooser for Open and Save As dialogs.
+  * Moved from GnomeDialog to GtkDialog API for all the dialogs.
+  * Moved from GtkText to GtkTextView API for the editor.
+  * Moved to GtkFileChooser API for Open and Save As dialogs.
+  * Moved from GtkCombo to GtkComboBox API.
+  * Dropped the Kernel Routines (section 9) in the Wizard pages.
   * Gmanedit is now without any Gnome dependencies, it builds with the help
     of GTK+ only. Version 2.10 or higher is needed.
 

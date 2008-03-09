@@ -746,15 +746,15 @@ on_opcions_programa1_activate        (GtkMenuItem     *menuitem,
 	{
 		strcpy(datos,aux);
 		obj=lookup_widget(GTK_WIDGET(prefs),"entry_command");
-		gtk_entry_set_text(GTK_ENTRY(obj),(gchar *)datos);
+		gtk_entry_set_text(GTK_ENTRY(obj),datos);
 	}
 /* Second: Internet Browser selector */
 	aux=ReadConfFromFile("INTERNET_BROWSER");
 	if (aux != NULL)
 	{
 		strcpy(datos,aux);
-		obj=lookup_widget(GTK_WIDGET(prefs),"cbinet");
-		gtk_entry_set_text(GTK_ENTRY(obj),(gchar *)datos);
+		obj=lookup_widget(GTK_WIDGET(prefs),"combo2");
+		gtk_entry_set_text (GTK_ENTRY (GTK_BIN(obj)->child),datos);
 	}
 
 /* Third: if it use yelp */
@@ -870,8 +870,7 @@ on_bpok_clicked                        (GtkButton       *button,
 	GtkWidget *entry,*ch;
 	const gchar *entry_text=NULL;
 	gchar cad[256],cad2[50];
-	gchar *home,*browser;
-
+	gchar *home, *browser;
 
 /* I get home directory */
 	home=(gchar *)getenv("HOME");
@@ -889,11 +888,12 @@ on_bpok_clicked                        (GtkButton       *button,
 	else
         	strcat(cad,"\nUSE_GNOME_HELP_BROWSER=no\n");
 
-	ch = lookup_widget(prefs, "cbinet");
-	browser = gtk_editable_get_chars(GTK_EDITABLE(ch),0,-1);
-     
+	ch = lookup_widget(prefs, "combo2");
+	browser = gtk_editable_get_chars
+		(GTK_EDITABLE (GTK_BIN(ch)->child), 0, -1);
 	strcat(cad,"INTERNET_BROWSER=");
 	strcat(cad,browser);
+	g_free(browser);
 	
 	if ((p=fopen(cad2,"w"))!=NULL)
 	{
@@ -1017,7 +1017,7 @@ on_dthe_end_finish                     (GtkAssistant *assistant,
    GtkWidget *ch,*text,*druid;
    gchar *nombre,*snumber,*date,*title,*author;
    gchar cadena[500];
-
+   gint number;
 
 /* Init for main_window */
    druid = gtk_widget_get_toplevel (GTK_WIDGET (assistant));
@@ -1039,12 +1039,14 @@ on_dthe_end_finish                     (GtkAssistant *assistant,
    author = gtk_editable_get_chars(GTK_EDITABLE(text),0,-1);
 
 /* Section number from combo */
-   text = lookup_widget(GTK_WIDGET(assistant), "snumber");
-   snumber = gtk_editable_get_chars(GTK_EDITABLE(text),0,-1);
+   ch = lookup_widget(GTK_WIDGET(assistant), "combo1");
+   number = gtk_combo_box_get_active (GTK_COMBO_BOX(ch));
+   snumber = g_strdup_printf ("%d", number+1);
 
 /* Page Start */
-   strcpy(cadena,".\\\"Created with GNOME Manpages Editor Wizard\n.\\\"\
-http://sourceforge.net/projects/gmanedit2\n.\\\"Joop Stakenborg <pg4i@amsat.org>\n.\\\"\n");
+   strcpy(cadena,
+   ".\\\"Created with GNOME Manpages Editor Wizard\n"
+   ".\\\"http://sourceforge.net/projects/gmanedit2\n");
    strcat(cadena,".TH ");
    strcat(cadena,nombre);
    strcat(cadena," ");
