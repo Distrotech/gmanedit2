@@ -123,15 +123,18 @@ void
 on_pagina_base1_activate               (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
-    const gchar *base=_(".\\\"Created with GNOME Manpages Editor\n.\\\"\
-http://sourceforge.net/projects/gmanedit2\n.\\\"Joop Stakenborg <pg4i@amsat.org>\n.\\\"\n\
-.TH program <section number> \"<date>\" \"<title>\"\
-\n\n.SH NAME\n\
-<program> \\-program for...\n\n.SH SYNOPSIS\n.B <program>\n\
-.RI [ options ]\n.br\n\n.SH DESCRIPTION\nThis manual page explains \
-the\n.B <program>\nprogram. This program...\n.PP\n\\fB<program>\\fP is for...\n\
-\n.SH OPTIONS\n.B\n.IP OPTION\nThis option...\n\n.SH LICENCE\n\n\
-.SH BUGS\n\n.SH AUTHOR\n");
+    const gchar *base=_(
+    ".\\\"Created with GNOME Manpages Editor\n"
+	".\\\"http://sourceforge.net/projects/gmanedit2\n\n"
+	".\\\"Replace <program> with the program name, x with the Section Number\n"
+	".TH <program> x \"<date>\" \"\" \"Linux User\'s Manual\"\n\n"
+	".SH NAME\n<program> \\- program for...\n\n."
+	".SH SYNOPSIS\n.B <program>\n.RI [ options ]\n.br\n\n"
+	".SH DESCRIPTION\nThis manual page explains the \\fB<program>\\fP program."
+	" The \\fB<program>\\fP program is for...\n\n"
+	".SH OPTIONS\n.IP \\fB-OPTION\\fP\nThis option...\n\n"
+	".SH NOTES\n\n"
+	".SH SEE ALSO\n");
 
 	insert_label(base,"Page created.",wprincipal);
 }
@@ -283,10 +286,9 @@ void
 on_titulo_activate                     (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
-	const gchar *base=_(".TH program <section number> \"<date>\" \"<title>\"\
-\n\n");
+	const gchar *base=_(".TH <program> <section number> \"<date>\" \"\" \"Linux User\'s Manual\"\n\n");
 
-	insert_label(base,"Title writed.",wprincipal);
+	insert_label(base,"Title written.",wprincipal);
 }
 
 
@@ -294,9 +296,9 @@ void
 on_nome1_activate                      (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
-	const gchar *base=_(".SH NAME program\n<program> \\- program for... \n");
+	const gchar *base=_(".SH NAME\n<program> \\- program for... \n");
 
-        insert_label(base,"Section name writed.",wprincipal);
+        insert_label(base,"Section name written.",wprincipal);
 }
 
 
@@ -306,7 +308,7 @@ on_sinopsis1_activate                  (GtkMenuItem     *menuitem,
 {
 	const gchar *base=_(".SH SYNOPSIS\n");
 
- 	insert_label(base,"Section synopsis writed.",wprincipal);
+ 	insert_label(base,"Section synopsis written.",wprincipal);
 }
 
 
@@ -316,7 +318,7 @@ on_descripcion1_activate               (GtkMenuItem     *menuitem,
 {
 	const gchar *base=_(".SH DESCRIPTION\n");
 
-	insert_label(base,"Section description writed.",wprincipal);
+	insert_label(base,"Section description written.",wprincipal);
 }
 
 
@@ -326,7 +328,7 @@ on_opcions1_activate                   (GtkMenuItem     *menuitem,
 {
 	const gchar *base=_(".SH OPTIONS\n");
 
- 	insert_label(base,"Section options writed.",wprincipal);
+ 	insert_label(base,"Section options written.",wprincipal);
 }
 
 
@@ -336,7 +338,7 @@ on_valores_retornados1_activate        (GtkMenuItem     *menuitem,
 {
 	const gchar *base=_(".SH RETURN VALUES\n");
 
- 	insert_label(base,"Section return values writed.",wprincipal);
+ 	insert_label(base,"Section return values written.",wprincipal);
 }
 
 
@@ -355,7 +357,7 @@ on_uso1_activate                       (GtkMenuItem     *menuitem,
 {
 	const gchar *base=_(".SH USAGE\n");
 
- 	insert_label(base,"Section usage writed.",wprincipal);
+ 	insert_label(base,"Section usage written.",wprincipal);
 }
 
 
@@ -364,7 +366,7 @@ on_ficheiro1_activate                  (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
 	const gchar *base=_(".SH FILES\n");
- 	insert_label(base,"Section files writed.",wprincipal);
+ 	insert_label(base,"Section files written.",wprincipal);
 }
 
 
@@ -373,7 +375,7 @@ on_entorno1_activate                   (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
 	const gchar *base=_(".SH ENVIRONMENT\n");
- 	insert_label(base,"Section environment writed.",wprincipal);
+ 	insert_label(base,"Section environment written.",wprincipal);
 }
 
 
@@ -382,7 +384,7 @@ on_diagnostico1_activate               (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
 	const gchar *base=_(".SH DIAGNOSTICS\n");
- 	insert_label(base,"Section diagnostics writed.",wprincipal);
+ 	insert_label(base,"Section diagnostics written.",wprincipal);
 }
 
 
@@ -391,7 +393,7 @@ on_seguridade1_activate                (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
 	const gchar *base=_(".SH SECURITY\n");
- 	insert_label(base,"Section security writed.",wprincipal);
+ 	insert_label(base,"Section security written.",wprincipal);
 }
 
 
@@ -400,7 +402,7 @@ on_notas1_activate                     (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
 	const gchar *base=_(".SH NOTES\n");
- 	insert_label(base,"Section notes writed.",wprincipal);
+ 	insert_label(base,"Section notes written.",wprincipal);
 }
 
 
@@ -409,7 +411,7 @@ on_bugs1_activate                      (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
 	const gchar *base=_(".SH BUGS\n");
- 	insert_label(base,"Section bugs writed.",wprincipal);
+ 	insert_label(base,"Section bugs written.",wprincipal);
 }
 
 
@@ -418,7 +420,7 @@ on_autor1_activate                     (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
 	const gchar *base=_(".SH AUTHOR\n");
- 	insert_label(base,"Section author writed.",wprincipal);
+ 	insert_label(base,"Section author written.",wprincipal);
 }
 
 
@@ -428,7 +430,7 @@ on_exemplos1_activate                  (GtkMenuItem     *menuitem,
 {
 	const gchar *base=_(".SH EXAMPLES\n");
 
- 	insert_label(base,"Section examples writed.",wprincipal);
+ 	insert_label(base,"Section examples written.",wprincipal);
 }
 
 
@@ -437,7 +439,7 @@ on_ver_tamen1_activate                 (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
 	const gchar *base=_(".SH SEE ALSO\n");
- 	insert_label(base,"Section see also writed.",wprincipal);
+ 	insert_label(base,"Section see also written.",wprincipal);
 }
 
 
@@ -446,7 +448,7 @@ on_conforme_a1_activate                (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
 	const gchar *base=_(".SH CONFORMING TO\n");
- 	insert_label(base,"Section conforming to writed.",wprincipal);
+ 	insert_label(base,"Section conforming to written.",wprincipal);
 }
 
 
@@ -463,7 +465,7 @@ on_otro1_activate                      (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
 	const gchar *base=_(".SH <SECTION NAME>\n");
- 	insert_label(base,"Section <other> writed.",wprincipal);
+ 	insert_label(base,"Section <other> written.",wprincipal);
 }
 
 
