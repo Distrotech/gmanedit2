@@ -7,7 +7,9 @@ gmanedit (0.4.1)
   * Moved from GtkText to GtkTextView API for the editor.
   * Moved to GtkFileChooser API for Open and Save As dialogs.
   * Moved from GtkCombo to GtkComboBox API.
-  * Dropped the Kernel Routines (section 9) in the Wizard pages.
+  * Dropped the Kernel Routines (section 9) in step 2 of the Wizard pages.
+  * Step 3 of the Wizard now has valid sections according to the man-pages
+    manual.
   * Gmanedit is now without any Gnome dependencies, it builds with the help
     of GTK+ only. Version 2.10 or higher is needed.
 

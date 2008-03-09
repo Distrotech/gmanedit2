@@ -585,24 +585,19 @@ create_wizard (void)
   GtkWidget *label4;
   GtkWidget *label3;
   GtkWidget *combo1;
-//  GtkWidget *snumber;
   GtkWidget *druid_vbox1;
   GtkWidget *fixed3;
   GtkWidget *label13;
-  GtkWidget *cherrorh;
+  GtkWidget *chconfiguration;
   GtkWidget *chenvironment;
   GtkWidget *chfiles;
-  GtkWidget *chusage;
   GtkWidget *cherrors;
   GtkWidget *chsynopsis;
   GtkWidget *chdescription;
   GtkWidget *choptions;
   GtkWidget *chname;
   GtkWidget *chseealso;
-  GtkWidget *chauthor;
   GtkWidget *chreturnvalues;
-  GtkWidget *chdiagnostics;
-  GtkWidget *chsecurity;
   GtkWidget *chconformingto;
   GtkWidget *chnotes;
   GtkWidget *chbugs;
@@ -796,115 +791,95 @@ create_wizard (void)
   label13 = gtk_label_new (_("What sections would you like include?"));
   gtk_widget_show (label13);
   gtk_fixed_put (GTK_FIXED (fixed3), label13, 64, 16);
-  gtk_widget_set_size_request (label13, 344, 24);
 
-  cherrorh = gtk_check_button_new_with_label (_("ERROR HANDLING"));
-  gtk_widget_show (cherrorh);
-  gtk_fixed_put (GTK_FIXED (fixed3), cherrorh, 16, 184);
-  gtk_widget_set_size_request (cherrorh, 176, 24);
-
-  chenvironment = gtk_check_button_new_with_label (_("ENVIRONMENT"));
-  gtk_widget_show (chenvironment);
-  gtk_fixed_put (GTK_FIXED (fixed3), chenvironment, 192, 184);
-  gtk_widget_set_size_request (chenvironment, 152, 24);
-  HOOKUP_OBJECT (wizard, chenvironment, "chenvironment");
-
-  chfiles = gtk_check_button_new_with_label (_("FILES"));
-  gtk_widget_show (chfiles);
-  gtk_fixed_put (GTK_FIXED (fixed3), chfiles, 192, 152);
-  gtk_widget_set_size_request (chfiles, 121, 28);
-  HOOKUP_OBJECT (wizard, chfiles, "chfiles");
-
-  chusage = gtk_check_button_new_with_label (_("USAGE"));
-  gtk_widget_show (chusage);
-  gtk_fixed_put (GTK_FIXED (fixed3), chusage, 192, 120);
-  gtk_widget_set_size_request (chusage, 121, 28);
-  HOOKUP_OBJECT (wizard, chusage, "chusage");
-
-  cherrors = gtk_check_button_new_with_label (_("ERRORS"));
-  gtk_widget_show (cherrors);
-  gtk_fixed_put (GTK_FIXED (fixed3), cherrors, 192, 56);
-  gtk_widget_set_size_request (cherrors, 121, 28);
-  HOOKUP_OBJECT (wizard, cherrors, "cherrors");
+  chname = gtk_check_button_new_with_label (_("NAME"));
+  gtk_widget_show (chname);
+  gtk_fixed_put (GTK_FIXED (fixed3), chname, 16, 56);
+  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (chname), TRUE);
+  HOOKUP_OBJECT (wizard, chname, "chname");
 
   chsynopsis = gtk_check_button_new_with_label (_("SYNOPSIS"));
   gtk_widget_show (chsynopsis);
   gtk_fixed_put (GTK_FIXED (fixed3), chsynopsis, 16, 88);
-  gtk_widget_set_size_request (chsynopsis, 121, 28);
   gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (chsynopsis), TRUE);
   HOOKUP_OBJECT (wizard, chsynopsis, "chsynopsis");
 
+  chconfiguration = gtk_check_button_new_with_label (_("CONFIGURATION"));
+  gtk_widget_show (chconfiguration);
+  gtk_fixed_put (GTK_FIXED (fixed3), chconfiguration, 16, 120);
+  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (chconfiguration), TRUE);
+  HOOKUP_OBJECT (wizard, chconfiguration, "chconfiguration");
+
   chdescription = gtk_check_button_new_with_label (_("DESCRIPTION"));
   gtk_widget_show (chdescription);
-  gtk_fixed_put (GTK_FIXED (fixed3), chdescription, 16, 120);
-  gtk_widget_set_size_request (chdescription, 136, 24);
+  gtk_fixed_put (GTK_FIXED (fixed3), chdescription, 16, 152);
   gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (chdescription), TRUE);
   HOOKUP_OBJECT (wizard, chdescription, "chdescription");
 
   choptions = gtk_check_button_new_with_label (_("OPTIONS"));
   gtk_widget_show (choptions);
-  gtk_fixed_put (GTK_FIXED (fixed3), choptions, 192, 88);
-  gtk_widget_set_size_request (choptions, 121, 28);
+  gtk_fixed_put (GTK_FIXED (fixed3), choptions, 16, 184);
   gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (choptions), TRUE);
   HOOKUP_OBJECT (wizard, choptions, "choptions");
 
-  chname = gtk_check_button_new_with_label (_("NAME"));
-  gtk_widget_show (chname);
-  gtk_fixed_put (GTK_FIXED (fixed3), chname, 16, 56);
-  gtk_widget_set_size_request (chname, 121, 28);
-  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (chname), TRUE);
-  HOOKUP_OBJECT (wizard, chname, "chname");
+  GtkWidget *chexitstatus = gtk_check_button_new_with_label (_("EXIT STATUS"));
+  gtk_widget_show (chexitstatus);
+  gtk_fixed_put (GTK_FIXED (fixed3), chexitstatus, 16, 216);
 
-  chseealso = gtk_check_button_new_with_label (_("SEE ALSO"));
-  gtk_widget_show (chseealso);
-  gtk_fixed_put (GTK_FIXED (fixed3), chseealso, 112, 208);
-  gtk_widget_set_size_request (chseealso, 121, 28);
-  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (chseealso), TRUE);
-  HOOKUP_OBJECT (wizard, chseealso, "chseealso");
 
-  chauthor = gtk_check_button_new_with_label (_("AUTHOR"));
-  gtk_widget_show (chauthor);
-  gtk_fixed_put (GTK_FIXED (fixed3), chauthor, 272, 208);
-  gtk_widget_set_size_request (chauthor, 121, 28);
-  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (chauthor), TRUE);
-  HOOKUP_OBJECT (wizard, chauthor, "chauthor");
-
-  chreturnvalues = gtk_check_button_new_with_label (_("RETURN VALUES"));
+  chreturnvalues = gtk_check_button_new_with_label (_("RETURN VALUE"));
   gtk_widget_show (chreturnvalues);
-  gtk_fixed_put (GTK_FIXED (fixed3), chreturnvalues, 16, 152);
-  gtk_widget_set_size_request (chreturnvalues, 160, 32);
+  gtk_fixed_put (GTK_FIXED (fixed3), chreturnvalues, 192, 56);
   HOOKUP_OBJECT (wizard, chreturnvalues, "chreturnvalues");
 
-  chdiagnostics = gtk_check_button_new_with_label (_("DIAGNOSTICS"));
-  gtk_widget_show (chdiagnostics);
-  gtk_fixed_put (GTK_FIXED (fixed3), chdiagnostics, 336, 56);
-  gtk_widget_set_size_request (chdiagnostics, 144, 24);
-  HOOKUP_OBJECT (wizard, chdiagnostics, "chdiagnostics");
+  cherrors = gtk_check_button_new_with_label (_("ERRORS"));
+  gtk_widget_show (cherrors);
+  gtk_fixed_put (GTK_FIXED (fixed3), cherrors, 192, 88);
+  HOOKUP_OBJECT (wizard, cherrors, "cherrors");
 
-  chsecurity = gtk_check_button_new_with_label (_("SECURITY"));
-  gtk_widget_show (chsecurity);
-  gtk_fixed_put (GTK_FIXED (fixed3), chsecurity, 336, 88);
-  gtk_widget_set_size_request (chsecurity, 121, 28);
-  HOOKUP_OBJECT (wizard, chsecurity, "chsecurity");
+  chenvironment = gtk_check_button_new_with_label (_("ENVIRONMENT"));
+  gtk_widget_show (chenvironment);
+  gtk_fixed_put (GTK_FIXED (fixed3), chenvironment, 192, 120);
+  HOOKUP_OBJECT (wizard, chenvironment, "chenvironment");
+
+  chfiles = gtk_check_button_new_with_label (_("FILES"));
+  gtk_widget_show (chfiles);
+  gtk_fixed_put (GTK_FIXED (fixed3), chfiles, 192, 152);
+  HOOKUP_OBJECT (wizard, chfiles, "chfiles");
+
+  GtkWidget *chversions = gtk_check_button_new_with_label (_("VERSIONS"));
+  gtk_widget_show (chversions);
+  gtk_fixed_put (GTK_FIXED (fixed3), chversions, 192, 184);
+  HOOKUP_OBJECT (wizard, chversions, "chversions");
+
 
   chconformingto = gtk_check_button_new_with_label (_("CONFORMING TO"));
   gtk_widget_show (chconformingto);
-  gtk_fixed_put (GTK_FIXED (fixed3), chconformingto, 336, 120);
-  gtk_widget_set_size_request (chconformingto, 168, 32);
+  gtk_fixed_put (GTK_FIXED (fixed3), chconformingto, 336, 56);
   HOOKUP_OBJECT (wizard, chconformingto, "chconformingto");
 
   chnotes = gtk_check_button_new_with_label (_("NOTES"));
   gtk_widget_show (chnotes);
-  gtk_fixed_put (GTK_FIXED (fixed3), chnotes, 336, 152);
-  gtk_widget_set_size_request (chnotes, 121, 28);
+  gtk_fixed_put (GTK_FIXED (fixed3), chnotes, 336, 88);
   HOOKUP_OBJECT (wizard, chnotes, "chnotes");
 
   chbugs = gtk_check_button_new_with_label (_("BUGS"));
   gtk_widget_show (chbugs);
-  gtk_fixed_put (GTK_FIXED (fixed3), chbugs, 336, 184);
-  gtk_widget_set_size_request (chbugs, 121, 28);
+  gtk_fixed_put (GTK_FIXED (fixed3), chbugs, 336, 120);
   gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (chbugs), TRUE);
   HOOKUP_OBJECT (wizard, chbugs, "chbugs");
+
+  GtkWidget *chexample = gtk_check_button_new_with_label (_("EXAMPLE"));
+  gtk_widget_show (chexample);
+  gtk_fixed_put (GTK_FIXED (fixed3), chexample, 336, 152);
+  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (chexample), TRUE);
+  HOOKUP_OBJECT (wizard, chexample, "chexample");
+
+  chseealso = gtk_check_button_new_with_label (_("SEE ALSO"));
+  gtk_widget_show (chseealso);
+  gtk_fixed_put (GTK_FIXED (fixed3), chseealso, 336, 184);
+  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (chseealso), TRUE);
+  HOOKUP_OBJECT (wizard, chseealso, "chseealso");
 
   gtk_assistant_append_page (GTK_ASSISTANT (wizard), druid_vbox1);
   gtk_assistant_set_page_title (GTK_ASSISTANT (wizard), druid_vbox1, _("Step 3: Man Sections"));

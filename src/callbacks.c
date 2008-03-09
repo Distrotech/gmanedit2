@@ -1092,11 +1092,6 @@ on_dthe_end_finish                     (GtkAssistant *assistant,
    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
 	strcat(cadena,_(".SH OPTIONS\n.B\n.IP -OPTION\nThis option...\n\n"));   
 
-/* Section USAGE */
-   ch = lookup_widget (GTK_WIDGET (assistant), "chusage");
-   if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
-	strcat(cadena,_(".SH USAGE\n\n"));   
-
 /* Section FILES */
    ch = lookup_widget (GTK_WIDGET (assistant), "chfiles");
    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
@@ -1107,25 +1102,10 @@ on_dthe_end_finish                     (GtkAssistant *assistant,
    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
 	strcat(cadena,_(".SH ENVIRONMENT\n\n"));   
 
-/* Section DIAGNOSTICS */
-   ch = lookup_widget (GTK_WIDGET (assistant), "chdiagnostics");
-   if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
-	strcat(cadena,_(".SH DIAGNOSTICS\n\n"));   
-
-/* Section SECURITY */
-   ch = lookup_widget (GTK_WIDGET (assistant), "chsecurity");
-   if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
-	strcat(cadena,_(".SH SECURITY\n\n"));   
-	
-/* Section RETURN VALUES */
+/* Section RETURN VALUE */
    ch = lookup_widget (GTK_WIDGET (assistant), "chreturnvalues");
    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
-	strcat(cadena,".SH RETURN VALUES\n\n");   
-
-/* Section ERROR HANDLING */
-   ch = lookup_widget (GTK_WIDGET (assistant), "chreturnvalues");
-   if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
-	strcat(cadena,_(".SH ERROR HANDLING\n\n"));   
+	strcat(cadena,".SH RETURN VALUE\n\n");   
 
 /* Section ERRORS */
    ch = lookup_widget (GTK_WIDGET (assistant), "cherrors");
@@ -1153,15 +1133,6 @@ on_dthe_end_finish                     (GtkAssistant *assistant,
    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
 	strcat(cadena,_(".SH SEE ALSO\n\n"));   
 	
-	
-/* Section AUTHOR */
-   ch = lookup_widget (GTK_WIDGET (assistant), "chauthor");
-   if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
-   {
-	strcat(cadena,_(".SH AUTHOR\n"));
-	strcat(cadena,author);
-   }
-
 /* Hide wizard */
    gtk_widget_hide(wizard);
    
