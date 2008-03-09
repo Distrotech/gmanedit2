@@ -1066,7 +1066,6 @@ on_dthe_end_finish                     (GtkAssistant *assistant,
 	strcat(cadena,nombre);
 	strcat(cadena,_(" \\-program for...\n\n"));
    }
-
 /* Section SYNOPSIS */
    ch = lookup_widget (GTK_WIDGET (assistant), "chsynopsis");
    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
@@ -1075,7 +1074,10 @@ on_dthe_end_finish                     (GtkAssistant *assistant,
 	strcat(cadena,nombre);
 	strcat(cadena,_("\n.RI [ options ]\n.br\n\n"));
    }
-
+/* Section CONFIGURATION */
+   ch = lookup_widget (GTK_WIDGET (assistant), "chconfiguration");
+   if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
+	strcat(cadena,_(".SH CONFIGURATION\n\n"));   
 /* Section DESCRIPTION */
    ch = lookup_widget (GTK_WIDGET (assistant), "chdescription");
    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
@@ -1086,48 +1088,53 @@ on_dthe_end_finish                     (GtkAssistant *assistant,
 	strcat(cadena,nombre);
 	strcat(cadena,_("\\fP is for...\n\n"));
    }
-
 /* Section OPTIONS */
    ch = lookup_widget (GTK_WIDGET (assistant), "choptions");
    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
 	strcat(cadena,_(".SH OPTIONS\n.B\n.IP -OPTION\nThis option...\n\n"));   
-
-/* Section FILES */
-   ch = lookup_widget (GTK_WIDGET (assistant), "chfiles");
+/* Section EXIT STATUS */
+   ch = lookup_widget (GTK_WIDGET (assistant), "chexitstatus");
    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
-	strcat(cadena,_(".SH FILES\n\n"));   
+	strcat(cadena,_(".SH EXIT STATUS\n\n"));   
 
-/* Section ENVIRONMENT */
-   ch = lookup_widget (GTK_WIDGET (assistant), "chenvironment");
-   if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
-	strcat(cadena,_(".SH ENVIRONMENT\n\n"));   
 
 /* Section RETURN VALUE */
    ch = lookup_widget (GTK_WIDGET (assistant), "chreturnvalues");
    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
 	strcat(cadena,".SH RETURN VALUE\n\n");   
-
 /* Section ERRORS */
    ch = lookup_widget (GTK_WIDGET (assistant), "cherrors");
    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
 	strcat(cadena,_(".SH ERRORS\n\n"));   
+/* Section ENVIRONMENT */
+   ch = lookup_widget (GTK_WIDGET (assistant), "chenvironment");
+   if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
+	strcat(cadena,_(".SH ENVIRONMENT\n\n"));   
+/* Section FILES */
+   ch = lookup_widget (GTK_WIDGET (assistant), "chfiles");
+   if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
+	strcat(cadena,_(".SH FILES\n\n"));   
+/* Section VERSIONS */
+   ch = lookup_widget (GTK_WIDGET (assistant), "chversions");
+   if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
+	strcat(cadena,_(".SH VERSIONS\n\n"));   
 
 /* Section CONFORMING TO */
    ch = lookup_widget (GTK_WIDGET (assistant), "chconformingto");
    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
 	strcat(cadena,_(".SH CONFORMING TO\n\n"));   
-
 /* Section NOTES */
    ch = lookup_widget (GTK_WIDGET (assistant), "chnotes");
    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
 	strcat(cadena,_(".SH NOTES\n\n"));   
-
 /* Section BUGS */
    ch = lookup_widget (GTK_WIDGET (assistant), "chbugs");
    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
 	strcat(cadena,_(".SH BUGS\n\n"));   
-
-
+/* Section EXAMPLE */
+   ch = lookup_widget (GTK_WIDGET (assistant), "chexample");
+   if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
+	strcat(cadena,_(".SH EXAMPLE\n\n"));   
 /* Section SEE ALSO */
    ch = lookup_widget (GTK_WIDGET (assistant), "chseealso");
    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)

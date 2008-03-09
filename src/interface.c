@@ -704,63 +704,61 @@ create_wizard (void)
   gtk_widget_show (fixed2);
   gtk_box_pack_start (GTK_BOX (druid_vbox3), fixed2, TRUE, TRUE, 0);
 
-  label8 = gtk_label_new (_("Section 5: File formats and conventions"));
-  gtk_widget_show (label8);
-  gtk_fixed_put (GTK_FIXED (fixed2), label8, 32, 136);
-  gtk_widget_set_size_request (label8, 224, 40);
-  gtk_label_set_line_wrap (GTK_LABEL (label8), TRUE);
-
-  label2 = gtk_label_new (_("Section number"));
-  gtk_widget_show (label2);
-  gtk_fixed_put (GTK_FIXED (fixed2), label2, 56, 208);
-  gtk_widget_set_size_request (label2, 144, 24);
-
-  label9 = gtk_label_new (_("Section 6: Games"));
-  gtk_widget_show (label9);
-  gtk_fixed_put (GTK_FIXED (fixed2), label9, 264, 40);
-  gtk_widget_set_size_request (label9, 184, 24);
-  gtk_label_set_line_wrap (GTK_LABEL (label9), TRUE);
-
-  label10 = gtk_label_new (_("Section 7: Conventions and miscellaneous"));
-  gtk_widget_show (label10);
-  gtk_fixed_put (GTK_FIXED (fixed2), label10, 264, 64);
-  gtk_widget_set_size_request (label10, 240, 40);
-  gtk_label_set_line_wrap (GTK_LABEL (label10), TRUE);
-
-  label11 = gtk_label_new (_("Section 8: System management commands"));
-  gtk_widget_show (label11);
-  gtk_fixed_put (GTK_FIXED (fixed2), label11, 264, 104);
-  gtk_widget_set_size_request (label11, 240, 40);
-  gtk_label_set_line_wrap (GTK_LABEL (label11), TRUE);
-
-  label7 = gtk_label_new (_("Section 4: Special files (devices)"));
-  gtk_widget_show (label7);
-  gtk_fixed_put (GTK_FIXED (fixed2), label7, 0, 112);
-  gtk_widget_set_size_request (label7, 232, 24);
-
-  label6 = gtk_label_new (_("Section 3: Library calls"));
-  gtk_widget_show (label6);
-  gtk_fixed_put (GTK_FIXED (fixed2), label6, 0, 88);
-  gtk_widget_set_size_request (label6, 232, 24);
-
-  label5 = gtk_label_new (_("Section 2: System calls"));
-  gtk_widget_show (label5);
-  gtk_fixed_put (GTK_FIXED (fixed2), label5, 0, 64);
-  gtk_widget_set_size_request (label5, 240, 24);
-
-  label4 = gtk_label_new (_("Section 1: Commands"));
-  gtk_widget_show (label4);
-  gtk_fixed_put (GTK_FIXED (fixed2), label4, 0, 40);
-  gtk_widget_set_size_request (label4, 232, 24);
-
   label3 = gtk_label_new (_("There are 8 sections for man pages. Select one:"));
   gtk_widget_show (label3);
   gtk_fixed_put (GTK_FIXED (fixed2), label3, 0, 16);
   gtk_widget_set_size_request (label3, 504, 16);
 
+
+  label4 = gtk_label_new (_("Section 1: Commands"));
+  gtk_label_set_line_wrap (GTK_LABEL (label4), TRUE);
+  gtk_widget_show (label4);
+  gtk_fixed_put (GTK_FIXED (fixed2), label4, 10, 50);
+
+  label5 = gtk_label_new (_("Section 2: System calls"));
+  gtk_label_set_line_wrap (GTK_LABEL (label5), TRUE);
+  gtk_widget_show (label5);
+  gtk_fixed_put (GTK_FIXED (fixed2), label5, 10, 74);
+
+  label6 = gtk_label_new (_("Section 3: Library calls"));
+  gtk_label_set_line_wrap (GTK_LABEL (label6), TRUE);
+  gtk_widget_show (label6);
+  gtk_fixed_put (GTK_FIXED (fixed2), label6, 10, 98);
+
+  label7 = gtk_label_new (_("Section 4: Special files (devices)"));
+  gtk_label_set_line_wrap (GTK_LABEL (label7), TRUE);
+  gtk_widget_show (label7);
+  gtk_fixed_put (GTK_FIXED (fixed2), label7, 10, 122);
+
+
+  label8 = gtk_label_new (_("Section 5: File formats and conventions"));
+  gtk_label_set_line_wrap (GTK_LABEL (label8), TRUE);
+  gtk_widget_show (label8);
+  gtk_fixed_put (GTK_FIXED (fixed2), label8, 264, 50);
+
+  label9 = gtk_label_new (_("Section 6: Games"));
+  gtk_label_set_line_wrap (GTK_LABEL (label9), TRUE);
+  gtk_widget_show (label9);
+  gtk_fixed_put (GTK_FIXED (fixed2), label9, 264, 74);
+
+  label10 = gtk_label_new (_("Section 7: Conventions and miscellaneous"));
+  gtk_label_set_line_wrap (GTK_LABEL (label10), TRUE);
+  gtk_widget_show (label10);
+  gtk_fixed_put (GTK_FIXED (fixed2), label10, 264, 98);
+
+  label11 = gtk_label_new (_("Section 8: System management commands"));
+  gtk_label_set_line_wrap (GTK_LABEL (label11), TRUE);
+  gtk_widget_show (label11);
+  gtk_fixed_put (GTK_FIXED (fixed2), label11, 264, 122);
+
+
+  label2 = gtk_label_new (_("Section number"));
+  gtk_widget_show (label2);
+  gtk_fixed_put (GTK_FIXED (fixed2), label2, 56, 168);
+
   combo1 = gtk_combo_box_new_text ();
   gtk_widget_show (combo1);
-  gtk_fixed_put (GTK_FIXED (fixed2), combo1, 240, 208);
+  gtk_fixed_put (GTK_FIXED (fixed2), combo1, 240, 168);
   gtk_widget_set_size_request (combo1, 175, 26);
   gtk_combo_box_append_text (GTK_COMBO_BOX(combo1), "1");
   gtk_combo_box_append_text (GTK_COMBO_BOX(combo1), "2");
@@ -804,10 +802,9 @@ create_wizard (void)
   gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (chsynopsis), TRUE);
   HOOKUP_OBJECT (wizard, chsynopsis, "chsynopsis");
 
-  chconfiguration = gtk_check_button_new_with_label (_("CONFIGURATION"));
+  chconfiguration = gtk_check_button_new_with_label (_("CONFIGURATION\n(Section 4)"));
   gtk_widget_show (chconfiguration);
-  gtk_fixed_put (GTK_FIXED (fixed3), chconfiguration, 16, 120);
-  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (chconfiguration), TRUE);
+  gtk_fixed_put (GTK_FIXED (fixed3), chconfiguration, 16, 110);
   HOOKUP_OBJECT (wizard, chconfiguration, "chconfiguration");
 
   chdescription = gtk_check_button_new_with_label (_("DESCRIPTION"));
@@ -816,25 +813,26 @@ create_wizard (void)
   gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (chdescription), TRUE);
   HOOKUP_OBJECT (wizard, chdescription, "chdescription");
 
-  choptions = gtk_check_button_new_with_label (_("OPTIONS"));
+  choptions = gtk_check_button_new_with_label (_("OPTIONS\n(Section 1/8)"));
   gtk_widget_show (choptions);
-  gtk_fixed_put (GTK_FIXED (fixed3), choptions, 16, 184);
+  gtk_fixed_put (GTK_FIXED (fixed3), choptions, 16, 174);
   gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (choptions), TRUE);
   HOOKUP_OBJECT (wizard, choptions, "choptions");
 
-  GtkWidget *chexitstatus = gtk_check_button_new_with_label (_("EXIT STATUS"));
+  GtkWidget *chexitstatus = gtk_check_button_new_with_label (_("EXIT STATUS\n(Section 1/8)"));
   gtk_widget_show (chexitstatus);
-  gtk_fixed_put (GTK_FIXED (fixed3), chexitstatus, 16, 216);
+  gtk_fixed_put (GTK_FIXED (fixed3), chexitstatus, 16, 206);
+  HOOKUP_OBJECT (wizard, chexitstatus, "chexitstatus");
 
 
-  chreturnvalues = gtk_check_button_new_with_label (_("RETURN VALUE"));
+  chreturnvalues = gtk_check_button_new_with_label (_("RETURN VALUE\n(Section 2/3)"));
   gtk_widget_show (chreturnvalues);
-  gtk_fixed_put (GTK_FIXED (fixed3), chreturnvalues, 192, 56);
+  gtk_fixed_put (GTK_FIXED (fixed3), chreturnvalues, 192, 46);
   HOOKUP_OBJECT (wizard, chreturnvalues, "chreturnvalues");
 
-  cherrors = gtk_check_button_new_with_label (_("ERRORS"));
+  cherrors = gtk_check_button_new_with_label (_("ERRORS\n(Section 2/3)"));
   gtk_widget_show (cherrors);
-  gtk_fixed_put (GTK_FIXED (fixed3), cherrors, 192, 88);
+  gtk_fixed_put (GTK_FIXED (fixed3), cherrors, 192, 78);
   HOOKUP_OBJECT (wizard, cherrors, "cherrors");
 
   chenvironment = gtk_check_button_new_with_label (_("ENVIRONMENT"));
@@ -847,9 +845,9 @@ create_wizard (void)
   gtk_fixed_put (GTK_FIXED (fixed3), chfiles, 192, 152);
   HOOKUP_OBJECT (wizard, chfiles, "chfiles");
 
-  GtkWidget *chversions = gtk_check_button_new_with_label (_("VERSIONS"));
+  GtkWidget *chversions = gtk_check_button_new_with_label (_("VERSIONS\n(Section 2/3)"));
   gtk_widget_show (chversions);
-  gtk_fixed_put (GTK_FIXED (fixed3), chversions, 192, 184);
+  gtk_fixed_put (GTK_FIXED (fixed3), chversions, 192, 174);
   HOOKUP_OBJECT (wizard, chversions, "chversions");
 
 
@@ -866,13 +864,11 @@ create_wizard (void)
   chbugs = gtk_check_button_new_with_label (_("BUGS"));
   gtk_widget_show (chbugs);
   gtk_fixed_put (GTK_FIXED (fixed3), chbugs, 336, 120);
-  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (chbugs), TRUE);
   HOOKUP_OBJECT (wizard, chbugs, "chbugs");
 
   GtkWidget *chexample = gtk_check_button_new_with_label (_("EXAMPLE"));
   gtk_widget_show (chexample);
   gtk_fixed_put (GTK_FIXED (fixed3), chexample, 336, 152);
-  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (chexample), TRUE);
   HOOKUP_OBJECT (wizard, chexample, "chexample");
 
   chseealso = gtk_check_button_new_with_label (_("SEE ALSO"));
