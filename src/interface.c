@@ -568,10 +568,8 @@ create_wizard (void)
   GtkWidget *mname;
   GtkWidget *mdate;
   GtkWidget *mtitle;
-  GtkWidget *mauthor;
   GtkWidget *label14;
   GtkWidget *label15;
-  GtkWidget *label16;
   GtkWidget *label1;
   GtkWidget *druid_vbox3;
   GtkWidget *fixed2;
@@ -662,13 +660,6 @@ create_wizard (void)
   gtk_widget_set_size_request (mtitle, 158, 26);
 //  gtk_tooltips_set_tip (tooltips, mtitle, _("Long man page name or title"), NULL);
 
-  mauthor = gtk_entry_new ();
-  HOOKUP_OBJECT (wizard, mauthor, "mauthor");
-  gtk_widget_show (mauthor);
-  gtk_fixed_put (GTK_FIXED (fixed1), mauthor, 248, 192);
-  gtk_widget_set_size_request (mauthor, 158, 26);
-//  gtk_tooltips_set_tip (tooltips, mauthor, _("First_Name Last_Name <my@email.com>"), NULL);
-
   label14 = gtk_label_new (_("Creation Date:"));
   gtk_widget_show (label14);
   gtk_fixed_put (GTK_FIXED (fixed1), label14, 64, 80);
@@ -680,12 +671,6 @@ create_wizard (void)
   gtk_fixed_put (GTK_FIXED (fixed1), label15, 64, 136);
   gtk_widget_set_size_request (label15, 176, 24);
   gtk_label_set_line_wrap (GTK_LABEL (label15), TRUE);
-
-  label16 = gtk_label_new (_("Author:"));
-  gtk_widget_show (label16);
-  gtk_fixed_put (GTK_FIXED (fixed1), label16, 64, 192);
-  gtk_widget_set_size_request (label16, 120, 24);
-  gtk_label_set_line_wrap (GTK_LABEL (label16), TRUE);
 
   label1 = gtk_label_new (_("Man page Name:"));
   gtk_widget_show (label1);
@@ -772,8 +757,6 @@ create_wizard (void)
   gtk_combo_box_append_text (GTK_COMBO_BOX(combo1), "9");
   gtk_combo_box_set_active (GTK_COMBO_BOX(combo1), 0);
   HOOKUP_OBJECT (wizard, combo1, "combo1");
-
-//  gtk_tooltips_set_tip (tooltips, snumber, _("Select section number"), NULL);
 
   gtk_assistant_append_page (GTK_ASSISTANT (wizard), druid_vbox3);
   gtk_assistant_set_page_title (GTK_ASSISTANT (wizard), druid_vbox3, _("Step 2: Section number"));

@@ -1015,7 +1015,7 @@ on_dthe_end_finish                     (GtkAssistant *assistant,
                                         gpointer         user_data)
 {
    GtkWidget *ch,*text,*druid;
-   gchar *nombre,*snumber,*date,*title,*author;
+   gchar *nombre,*snumber,*date,*title;
    gchar cadena[500];
    gint number;
 
@@ -1034,10 +1034,6 @@ on_dthe_end_finish                     (GtkAssistant *assistant,
    text = lookup_widget(GTK_WIDGET(assistant), "mtitle");
    title = gtk_editable_get_chars(GTK_EDITABLE(text),0,-1);
 
-/* Author from step 1 */
-   text = lookup_widget(GTK_WIDGET(assistant), "mauthor");
-   author = gtk_editable_get_chars(GTK_EDITABLE(text),0,-1);
-
 /* Section number from combo */
    ch = lookup_widget(GTK_WIDGET(assistant), "combo1");
    number = gtk_combo_box_get_active (GTK_COMBO_BOX(ch));
@@ -1054,6 +1050,7 @@ on_dthe_end_finish                     (GtkAssistant *assistant,
    strcat(cadena," \"");
    strcat(cadena,date);   
    strcat(cadena,"\" ");
+   strcat(cadena,"\"\" ");
    strcat(cadena,"\"");
    strcat(cadena,title);   
    strcat(cadena,"\"\n\n");
@@ -1064,7 +1061,7 @@ on_dthe_end_finish                     (GtkAssistant *assistant,
    {
 	strcat(cadena,_(".SH NAME\n"));   
 	strcat(cadena,nombre);
-	strcat(cadena,_(" \\-program for...\n\n"));
+	strcat(cadena,_(" \\- program for...\n\n"));
    }
 /* Section SYNOPSIS */
    ch = lookup_widget (GTK_WIDGET (assistant), "chsynopsis");
