@@ -52,22 +52,20 @@ static const GtkActionEntry entries[] = {
   { "SectionMenu", NULL, "Section" },
   { "Name", NULL, N_("Name"), NULL, "", G_CALLBACK(on_nome1_activate) },
   { "Synopsis", NULL, N_("Synopsis"), NULL, "", G_CALLBACK(on_sinopsis1_activate) },
+  { "Configuration", NULL, N_("Configuration"), NULL, "", G_CALLBACK(on_configuration_activate) },
   { "Description", NULL, N_("Description"), NULL, "", G_CALLBACK(on_descripcion1_activate) },
   { "Options", NULL, N_("Options"), NULL, "", G_CALLBACK(on_opcions1_activate) },
-  { "ReturnValues", NULL, N_("Return values"), NULL, "", G_CALLBACK(on_valores_retornados1_activate) },
+  { "ReturnValue", NULL, N_("Return value"), NULL, "", G_CALLBACK(on_valores_retornados1_activate) },
   { "ExitStatus", NULL, N_("Exit status"), NULL, "", G_CALLBACK(on_estados_de_saida1_activate) },
-  { "Usage", NULL, N_("Usage"), NULL, "", G_CALLBACK(on_uso1_activate) },
-  { "File", NULL, N_("File"), NULL, "", G_CALLBACK(on_ficheiro1_activate) },
+  { "Errors", NULL, N_("Errors"), NULL, "", G_CALLBACK(on_errors_activate) },
   { "Environment", NULL, N_("Environment"), NULL, "", G_CALLBACK(on_entorno1_activate) },
-  { "Diagnostics", NULL, N_("Diagnostics"), NULL, "", G_CALLBACK(on_diagnostico1_activate) },
-  { "Security", NULL, N_("Security"), NULL, "", G_CALLBACK(on_seguridade1_activate) },
+  { "Files", NULL, N_("Files"), NULL, "", G_CALLBACK(on_ficheiro1_activate) },
+  { "Versions", NULL, N_("Versions"), NULL, "", G_CALLBACK(on_versions_activate) },
+  { "ConformingTo", NULL, N_("Conforming to"), NULL, "", G_CALLBACK(on_conforme_a1_activate) },
   { "Notes", NULL, N_("Notes"), NULL, "", G_CALLBACK(on_notas1_activate) },
   { "Bugs", NULL, N_("Bugs"), NULL, "", G_CALLBACK(on_bugs1_activate) },
-  { "Author", NULL, N_("Author"), NULL, "", G_CALLBACK(on_autor1_activate) },
-  { "Examples", NULL, N_("Examples"), NULL, "", G_CALLBACK(on_exemplos1_activate) },
+  { "Example", NULL, N_("Example"), NULL, "", G_CALLBACK(on_exemplos1_activate) },
   { "SeeAlso", NULL, N_("See also"), NULL, "", G_CALLBACK(on_ver_tamen1_activate) },
-  { "ConformingTo", NULL, N_("Conforming to"), NULL, "", G_CALLBACK(on_conforme_a1_activate) },
-  { "Other", NULL, N_("Other"), NULL, "", G_CALLBACK(on_otro1_activate) },
   { "JustifyMenu", NULL, "Justify" },
   { "Left", NULL, N_("Left"), NULL, "", G_CALLBACK(on_xustificacion_a_esquerda1_activate) },
   { "Both", NULL, N_("Both"), NULL, "", G_CALLBACK(on_ambas1_activate) },
@@ -132,22 +130,20 @@ static const char *ui_description =
 "                     <menu action='SectionMenu'>"
 "                           <menuitem action='Name'/>"
 "                           <menuitem action='Synopsis'/>"
+"                           <menuitem action='Configuration'/>"
 "                           <menuitem action='Description'/>"
 "                           <menuitem action='Options'/>"
-"                           <menuitem action='ReturnValues'/>"
 "                           <menuitem action='ExitStatus'/>"
-"                           <menuitem action='Usage'/>"
-"                           <menuitem action='File'/>"
+"                           <menuitem action='ReturnValue'/>"
+"                           <menuitem action='Errors'/>"
 "                           <menuitem action='Environment'/>"
-"                           <menuitem action='Diagnostics'/>"
-"                           <menuitem action='Security'/>"
+"                           <menuitem action='Files'/>"
+"                           <menuitem action='Versions'/>"
+"                           <menuitem action='ConformingTo'/>"
 "                           <menuitem action='Notes'/>"
 "                           <menuitem action='Bugs'/>"
-"                           <menuitem action='Author'/>"
-"                           <menuitem action='Examples'/>"
+"                           <menuitem action='Example'/>"
 "                           <menuitem action='SeeAlso'/>"
-"                           <menuitem action='ConformingTo'/>"
-"                           <menuitem action='Other'/>"
 "                     </menu>"
 "                     <menu action='JustifyMenu'>"
 "                           <menuitem action='Left'/>"

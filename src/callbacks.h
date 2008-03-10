@@ -86,6 +86,10 @@ on_sinopsis1_activate                  (GtkMenuItem     *menuitem,
                                         gpointer         user_data);
 
 void
+on_configuration_activate                  (GtkMenuItem     *menuitem,
+                                        gpointer         user_data);
+
+void
 on_descripcion1_activate               (GtkMenuItem     *menuitem,
                                         gpointer         user_data);
 
@@ -102,7 +106,7 @@ on_estados_de_saida1_activate          (GtkMenuItem     *menuitem,
                                         gpointer         user_data);
 
 void
-on_uso1_activate                       (GtkMenuItem     *menuitem,
+on_errors_activate                       (GtkMenuItem     *menuitem,
                                         gpointer         user_data);
 
 void
@@ -114,11 +118,7 @@ on_entorno1_activate                   (GtkMenuItem     *menuitem,
                                         gpointer         user_data);
 
 void
-on_diagnostico1_activate               (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
-
-void
-on_seguridade1_activate                (GtkMenuItem     *menuitem,
+on_versions_activate               (GtkMenuItem     *menuitem,
                                         gpointer         user_data);
 
 void
@@ -127,10 +127,6 @@ on_notas1_activate                     (GtkMenuItem     *menuitem,
 
 void
 on_bugs1_activate                      (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
-
-void
-on_autor1_activate                     (GtkMenuItem     *menuitem,
                                         gpointer         user_data);
 
 void

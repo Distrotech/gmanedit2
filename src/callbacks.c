@@ -311,6 +311,15 @@ on_sinopsis1_activate                  (GtkMenuItem     *menuitem,
 
 
 void
+on_configuration_activate                  (GtkMenuItem     *menuitem,
+                                        gpointer         user_data)
+{
+	const gchar *base=_(".SH CONFIGURATION\n");
+
+ 	insert_label(base,"Section configuration written.");
+}
+
+void
 on_descripcion1_activate               (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
@@ -334,9 +343,9 @@ void
 on_valores_retornados1_activate        (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
-	const gchar *base=_(".SH RETURN VALUES\n");
+	const gchar *base=_(".SH RETURN VALUE\n");
 
- 	insert_label(base,"Section return values written.");
+ 	insert_label(base,"Section return value written.");
 }
 
 
@@ -350,12 +359,12 @@ on_estados_de_saida1_activate          (GtkMenuItem     *menuitem,
 
 
 void
-on_uso1_activate                       (GtkMenuItem     *menuitem,
+on_errors_activate                       (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
-	const gchar *base=_(".SH USAGE\n");
+	const gchar *base=_(".SH ERRORS\n");
 
- 	insert_label(base,"Section usage written.");
+ 	insert_label(base,"Section errors written.");
 }
 
 
@@ -378,20 +387,11 @@ on_entorno1_activate                   (GtkMenuItem     *menuitem,
 
 
 void
-on_diagnostico1_activate               (GtkMenuItem     *menuitem,
+on_versions_activate               (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
-	const gchar *base=_(".SH DIAGNOSTICS\n");
- 	insert_label(base,"Section diagnostics written.");
-}
-
-
-void
-on_seguridade1_activate                (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
-{
-	const gchar *base=_(".SH SECURITY\n");
- 	insert_label(base,"Section security written.");
+	const gchar *base=_(".SH VERSIONS\n");
+ 	insert_label(base,"Section versions written.");
 }
 
 
@@ -414,19 +414,10 @@ on_bugs1_activate                      (GtkMenuItem     *menuitem,
 
 
 void
-on_autor1_activate                     (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
-{
-	const gchar *base=_(".SH AUTHOR\n");
- 	insert_label(base,"Section author written.");
-}
-
-
-void
 on_exemplos1_activate                  (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
-	const gchar *base=_(".SH EXAMPLES\n");
+	const gchar *base=_(".SH EXAMPLE\n");
 
  	insert_label(base,"Section examples written.");
 }
