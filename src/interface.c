@@ -88,13 +88,9 @@ static const GtkActionEntry entries[] = {
   { "MarginMenu", NULL, "MarginSection" },
   { "MarginStart", NULL, N_("Margin start"), NULL, "", G_CALLBACK(on_comezo_marxen1_activate) },
   { "MarginEnd", NULL, N_("Margin end"), NULL, "", G_CALLBACK(on_finaliza_marxen1_activate) },
-  { "HypertextMenu", NULL, "Hypertext" },
-  { "AHREF", NULL, N_("A HREF"), NULL, "", G_CALLBACK(on_a_href1_activate) },
-  { "ANAME", NULL, N_("A NAME"), NULL, "", G_CALLBACK(on_a_name1_activate) },
   { "OthersMenu", NULL, "Others" },
   { "DefaultTabs", NULL, N_("Default tabs"), NULL, "", G_CALLBACK(on_tabulador_por_defecto1_activate) },
   { "Subheader", NULL, N_("Subheader"), NULL, "", G_CALLBACK(on_subcabeceira1_activate) },
-  { "EmptyLines", NULL, N_("Empty lines"), NULL, "", G_CALLBACK(on_lineas_en_branco1_activate) },
   { "Comments", NULL, N_("Comments"), NULL, "", G_CALLBACK(on_comments1_activate) },
   { "ViewMenu", NULL, "_View" },
   { "ViewCreatedPage", NULL, N_("View created page"), NULL, "", G_CALLBACK(on_paxina_creada1_activate) },
@@ -172,14 +168,9 @@ static const char *ui_description =
 "                           <menuitem action='MarginStart'/>"
 "                           <menuitem action='MarginEnd'/>"
 "                     </menu>"
-"                     <menu action='HypertextMenu'>"
-"                           <menuitem action='AHREF'/>"
-"                           <menuitem action='ANAME'/>"
-"                     </menu>"
 "                     <menu action='OthersMenu'>"
 "                           <menuitem action='DefaultTabs'/>"
 "                           <menuitem action='Subheader'/>"
-"                           <menuitem action='EmptyLines'/>"
 "                           <menuitem action='Comments'/>"
 "                     </menu>"
 "        </menu>"

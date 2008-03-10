@@ -620,39 +620,12 @@ on_subcabeceira1_activate              (GtkMenuItem     *menuitem,
 }
 
 void
-on_a_href1_activate                    (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
-{
-	const gchar *base=_(".UR <address>\n.UE\n");
- 	insert_label(base,"Link inserted.");
-}
-
-
-void
-on_a_name1_activate                    (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
-{
-	const gchar *base=_(".UN <address>\n");
-
- 	insert_label(base,"A NAME section inserted.");
-}
-
-
-void
 on_xustificacion_a_esquerda1_activate  (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
 	const gchar *base=".AD L\n";
  	insert_label(base,"Left justifier.");
  	
-}
-
-void
-on_lineas_en_branco1_activate          (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
-{
-	const gchar *base=".SP <n>\n";
-	insert_label(base,"Inserted \"n\"+1 empty lines.");
 }
 
 void

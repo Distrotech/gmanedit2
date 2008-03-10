@@ -235,19 +235,7 @@ on_subcabeceira1_activate              (GtkMenuItem     *menuitem,
                                         gpointer         user_data);
 
 void
-on_a_href1_activate                    (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
-
-void
-on_a_name1_activate                    (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
-
-void
 on_xustificacion_a_esquerda1_activate  (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
-
-void
-on_lineas_en_branco1_activate          (GtkMenuItem     *menuitem,
                                         gpointer         user_data);
 
 void
