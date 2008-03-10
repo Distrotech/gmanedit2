@@ -55,7 +55,7 @@ gint in_gzip=0;
 static void save_as(GtkWidget *main_window);
 static void mensaje (gchar *msg,gint tipo);
 static gchar *ReadConfFromFile(gchar *variable);
-static void insert_label(const gchar *base,const gchar *text_info, GtkWidget *item);
+static void insert_label(const gchar *base,const gchar *text_info);
 static void help_without_gnome(GtkWidget *wid);
 static void help_with_gnome(GtkWidget *wid);
 static void open_man_file(GtkWidget *wid);
@@ -83,7 +83,7 @@ on_cortar1_activate                    (GtkMenuItem     *menuitem,
 	gtk_text_buffer_cut_clipboard (b, gtk_clipboard_get(GDK_SELECTION_CLIPBOARD), TRUE);
 	statusbar = lookup_widget (GTK_WIDGET (wprincipal), "statusbar1");
 	gtk_statusbar_pop (GTK_STATUSBAR (statusbar), 1);
-	gtk_statusbar_push (GTK_STATUSBAR (statusbar), 1, _("Text cutted."));
+	gtk_statusbar_push (GTK_STATUSBAR (statusbar), 1, _("Text cut."));
 }
 
 
@@ -136,7 +136,7 @@ on_pagina_base1_activate               (GtkMenuItem     *menuitem,
 	".SH NOTES\n\n"
 	".SH SEE ALSO\n");
 
-	insert_label(base,"Page created.",wprincipal);
+	insert_label(base,"Page created.");
 }
 
 
@@ -286,7 +286,7 @@ on_titulo_activate                     (GtkMenuItem     *menuitem,
 {
 	const gchar *base=_(".TH <program> <section number> \"<date>\" \"\" \"Linux User\'s Manual\"\n\n");
 
-	insert_label(base,"Title written.",wprincipal);
+	insert_label(base,"Title written.");
 }
 
 
@@ -296,7 +296,7 @@ on_nome1_activate                      (GtkMenuItem     *menuitem,
 {
 	const gchar *base=_(".SH NAME\n<program> \\- program for... \n");
 
-        insert_label(base,"Section name written.",wprincipal);
+        insert_label(base,"Section name written.");
 }
 
 
@@ -306,7 +306,7 @@ on_sinopsis1_activate                  (GtkMenuItem     *menuitem,
 {
 	const gchar *base=_(".SH SYNOPSIS\n");
 
- 	insert_label(base,"Section synopsis written.",wprincipal);
+ 	insert_label(base,"Section synopsis written.");
 }
 
 
@@ -316,7 +316,7 @@ on_descripcion1_activate               (GtkMenuItem     *menuitem,
 {
 	const gchar *base=_(".SH DESCRIPTION\n");
 
-	insert_label(base,"Section description written.",wprincipal);
+	insert_label(base,"Section description written.");
 }
 
 
@@ -326,7 +326,7 @@ on_opcions1_activate                   (GtkMenuItem     *menuitem,
 {
 	const gchar *base=_(".SH OPTIONS\n");
 
- 	insert_label(base,"Section options written.",wprincipal);
+ 	insert_label(base,"Section options written.");
 }
 
 
@@ -336,7 +336,7 @@ on_valores_retornados1_activate        (GtkMenuItem     *menuitem,
 {
 	const gchar *base=_(".SH RETURN VALUES\n");
 
- 	insert_label(base,"Section return values written.",wprincipal);
+ 	insert_label(base,"Section return values written.");
 }
 
 
@@ -345,7 +345,7 @@ on_estados_de_saida1_activate          (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
 	const gchar *base=_(".SH EXIT STATUS\n");
- 	insert_label(base,"Section exit status.",wprincipal);
+ 	insert_label(base,"Section exit status written.");
 }
 
 
@@ -355,7 +355,7 @@ on_uso1_activate                       (GtkMenuItem     *menuitem,
 {
 	const gchar *base=_(".SH USAGE\n");
 
- 	insert_label(base,"Section usage written.",wprincipal);
+ 	insert_label(base,"Section usage written.");
 }
 
 
@@ -364,7 +364,7 @@ on_ficheiro1_activate                  (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
 	const gchar *base=_(".SH FILES\n");
- 	insert_label(base,"Section files written.",wprincipal);
+ 	insert_label(base,"Section files written.");
 }
 
 
@@ -373,7 +373,7 @@ on_entorno1_activate                   (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
 	const gchar *base=_(".SH ENVIRONMENT\n");
- 	insert_label(base,"Section environment written.",wprincipal);
+ 	insert_label(base,"Section environment written.");
 }
 
 
@@ -382,7 +382,7 @@ on_diagnostico1_activate               (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
 	const gchar *base=_(".SH DIAGNOSTICS\n");
- 	insert_label(base,"Section diagnostics written.",wprincipal);
+ 	insert_label(base,"Section diagnostics written.");
 }
 
 
@@ -391,7 +391,7 @@ on_seguridade1_activate                (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
 	const gchar *base=_(".SH SECURITY\n");
- 	insert_label(base,"Section security written.",wprincipal);
+ 	insert_label(base,"Section security written.");
 }
 
 
@@ -400,7 +400,7 @@ on_notas1_activate                     (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
 	const gchar *base=_(".SH NOTES\n");
- 	insert_label(base,"Section notes written.",wprincipal);
+ 	insert_label(base,"Section notes written.");
 }
 
 
@@ -409,7 +409,7 @@ on_bugs1_activate                      (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
 	const gchar *base=_(".SH BUGS\n");
- 	insert_label(base,"Section bugs written.",wprincipal);
+ 	insert_label(base,"Section bugs written.");
 }
 
 
@@ -418,7 +418,7 @@ on_autor1_activate                     (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
 	const gchar *base=_(".SH AUTHOR\n");
- 	insert_label(base,"Section author written.",wprincipal);
+ 	insert_label(base,"Section author written.");
 }
 
 
@@ -428,7 +428,7 @@ on_exemplos1_activate                  (GtkMenuItem     *menuitem,
 {
 	const gchar *base=_(".SH EXAMPLES\n");
 
- 	insert_label(base,"Section examples written.",wprincipal);
+ 	insert_label(base,"Section examples written.");
 }
 
 
@@ -437,7 +437,7 @@ on_ver_tamen1_activate                 (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
 	const gchar *base=_(".SH SEE ALSO\n");
- 	insert_label(base,"Section see also written.",wprincipal);
+ 	insert_label(base,"Section see also written.");
 }
 
 
@@ -446,7 +446,7 @@ on_conforme_a1_activate                (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
 	const gchar *base=_(".SH CONFORMING TO\n");
- 	insert_label(base,"Section conforming to written.",wprincipal);
+ 	insert_label(base,"Section conforming to written.");
 }
 
 
@@ -463,7 +463,7 @@ on_otro1_activate                      (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
 	const gchar *base=_(".SH <SECTION NAME>\n");
- 	insert_label(base,"Section <other> written.",wprincipal);
+ 	insert_label(base,"Section other written.");
 }
 
 
@@ -472,7 +472,7 @@ on_ambas1_activate                     (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
 	const gchar *base=".AD B\n";
- 	insert_label(base,"Right and left justify.",wprincipal);
+ 	insert_label(base,"Right and left justify.");
 }
 
 
@@ -481,7 +481,7 @@ on_activar1_activate                   (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
 	const gchar *base=".FI\n";
- 	insert_label(base,"Filling enabled.",wprincipal);
+ 	insert_label(base,"Filling enabled.");
 }
 
 
@@ -490,7 +490,7 @@ on_desactivar1_activate                (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
 	const gchar *base=".NF\n";
- 	insert_label(base,"Filling disabled.",wprincipal);    
+ 	insert_label(base,"Filling disabled.");    
 }
 
 
@@ -499,7 +499,7 @@ on_bold1_activate                      (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
 	const gchar *base=".B\n";
- 	insert_label(base,"Font Bold selected.",wprincipal);    
+ 	insert_label(base,"Font Bold selected.");    
 }
 
 
@@ -508,7 +508,7 @@ on_bold_roman1_activate                (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
 	const gchar *base=".BR\n";
- 	insert_label(base,"Font Bold-Roman selected.",wprincipal); 
+ 	insert_label(base,"Font Bold-Roman selected."); 
 }
 
 
@@ -517,7 +517,7 @@ on_italica1_activate                   (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
 	const gchar *base=".I\n";
- 	insert_label(base,"Font Italic selected.",wprincipal); 
+ 	insert_label(base,"Font Italic selected."); 
 }
 
 
@@ -526,7 +526,7 @@ on_italica_bold1_activate              (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
 	const gchar *base=".IB\n";
- 	insert_label(base,"Font Italic-Bold selected.",wprincipal); 
+ 	insert_label(base,"Font Italic-Bold selected."); 
 }
 
 
@@ -535,7 +535,7 @@ on_italica_roman1_activate             (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
 	const gchar *base=".IR\n";
- 	insert_label(base,"Font Italic-Roman selected.",wprincipal); 
+ 	insert_label(base,"Font Italic-Roman selected."); 
 }
 
 
@@ -544,7 +544,7 @@ on_roman_bold1_activate                (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
 	const gchar *base=".RB\n";
- 	insert_label(base,"Font Roman-Bold selected.",wprincipal); 
+ 	insert_label(base,"Font Roman-Bold selected."); 
 }
 
 
@@ -553,7 +553,7 @@ on_roman_italic1_activate              (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
 	const gchar *base=".RI\n";
- 	insert_label(base,"Font Roman-Italic selected.",wprincipal); 
+ 	insert_label(base,"Font Roman-Italic selected."); 
 }
 
 
@@ -562,7 +562,7 @@ on_small_bold1_activate                (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
 	const gchar *base=".SB\n";
- 	insert_label(base,"Font Small-Bold selected.",wprincipal); 
+ 	insert_label(base,"Font Small-Bold selected."); 
 }
 
 
@@ -571,7 +571,7 @@ on_small1_activate                     (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
 	const gchar *base=".SM\n";
- 	insert_label(base,"Font Small selected.",wprincipal); 
+ 	insert_label(base,"Font Small selected."); 
 }
 
 
@@ -580,7 +580,7 @@ on_novo_parrafo1_activate              (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
 	const gchar *base=".LP\n";
- 	insert_label(base,"New paragraph.",wprincipal); 
+ 	insert_label(base,"New paragraph."); 
 }
 
 
@@ -589,7 +589,7 @@ on_comezo_parrafo1_activate            (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
 	const gchar *base=".PP\n";
- 	insert_label(base,"Paragraph start",wprincipal); 
+ 	insert_label(base,"Paragraph start."); 
 }
 
 
@@ -598,7 +598,7 @@ on_comezo_marxen1_activate             (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
 	const gchar *base=_(".RS <margin position>\n");
- 	insert_label(base,"Margin position",wprincipal); 
+ 	insert_label(base,"Margin position."); 
 }
 
 
@@ -607,7 +607,7 @@ on_finaliza_marxen1_activate           (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
 	const gchar *base=".RE\n";
- 	insert_label(base,"Relative margin end",wprincipal); 
+ 	insert_label(base,"Relative margin end."); 
 }
 
 
@@ -616,7 +616,7 @@ on_tabulador_por_defecto1_activate     (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
 	const gchar *base=".DT\n";
- 	insert_label(base,"Default tab",wprincipal);
+ 	insert_label(base,"Default tab.");
  }
 
 
@@ -625,7 +625,7 @@ on_subcabeceira1_activate              (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
 	const gchar *base=_(".SS <NAME>\n");
- 	insert_label(base,"Subheader inserted",wprincipal);
+ 	insert_label(base,"Subheader inserted.");
 }
 
 void
@@ -633,7 +633,7 @@ on_a_href1_activate                    (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
 	const gchar *base=_(".UR <address>\n.UE\n");
- 	insert_label(base,"Link inserted",wprincipal);
+ 	insert_label(base,"Link inserted.");
 }
 
 
@@ -643,7 +643,7 @@ on_a_name1_activate                    (GtkMenuItem     *menuitem,
 {
 	const gchar *base=_(".UN <address>\n");
 
- 	insert_label(base,"A NAME section inserted",wprincipal);
+ 	insert_label(base,"A NAME section inserted.");
 }
 
 
@@ -652,7 +652,7 @@ on_xustificacion_a_esquerda1_activate  (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
 	const gchar *base=".AD L\n";
- 	insert_label(base,"Left justifier",wprincipal);
+ 	insert_label(base,"Left justifier.");
  	
 }
 
@@ -661,7 +661,7 @@ on_lineas_en_branco1_activate          (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
 	const gchar *base=".SP <n>\n";
-	insert_label(base,"Insert \"n\"+1 empty lines.",wprincipal);
+	insert_label(base,"Inserted \"n\"+1 empty lines.");
 }
 
 void
@@ -1144,7 +1144,7 @@ on_dthe_end_finish                     (GtkAssistant *assistant,
    gtk_widget_hide(wizard);
    
 /* Insert all into gmanedit */
-   insert_label(cadena,_("Wizard page created"),wprincipal);
+   insert_label(cadena,_("Wizard page created."));
 
 /* Wizard closed */
    gtk_widget_destroy(wizard);
@@ -1152,21 +1152,18 @@ on_dthe_end_finish                     (GtkAssistant *assistant,
 }
 
 static
-void insert_label(const gchar *base,const gchar *text_info, GtkWidget *item)
+void insert_label(const gchar *base,const gchar *text_info)
 {
 	GtkWidget *text,*statusbar;
         GtkTextBuffer *buffer;
 
-	text=lookup_widget(GTK_WIDGET(item),"text");
+	text=lookup_widget(GTK_WIDGET(wprincipal),"text");
+        buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (text));
+        gtk_text_buffer_insert_at_cursor(buffer, base, -1);
 	
-        if (GTK_IS_TEXT_VIEW (text)){
-          buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (text));
-          gtk_text_buffer_insert_at_cursor( buffer, _(base) ,strlen(base));
-        }
-	
-	statusbar = lookup_widget(GTK_WIDGET(item),"statusbar1");
+	statusbar = lookup_widget(GTK_WIDGET(wprincipal),"statusbar1");
 	gtk_statusbar_pop (GTK_STATUSBAR (statusbar), 1);
-	gtk_statusbar_push (GTK_STATUSBAR (statusbar), 1, _(text_info));
+	gtk_statusbar_push (GTK_STATUSBAR (statusbar), 1, text_info);
 }
 
 void
@@ -1185,7 +1182,7 @@ on_home_page1_activate                 (GtkMenuItem     *menuitem,
 	p=fork();
 	if (p==0)
 	if (execlp(cad,cad,"http://sourceforge.net/projects/gmanedit2",NULL) == -1)
-			mensaje(_("Can not open Internet Browser"),GTK_MESSAGE_ERROR);	
+			mensaje(_("Cannot open Internet Browser"),GTK_MESSAGE_ERROR);	
 }
 
 
@@ -1272,7 +1269,7 @@ static void open_man_file(GtkWidget *widget)
 /* Barra de estado */
 	statusbar=lookup_widget(GTK_WIDGET(wprincipal),"statusbar1");
 	gtk_statusbar_pop(GTK_STATUSBAR(statusbar),1);
-	gtk_statusbar_push(GTK_STATUSBAR(statusbar),1,_("File opening."));	
+	gtk_statusbar_push(GTK_STATUSBAR(statusbar),1,_("File opened."));	
 
 /* Ahora abro el fichero */
 
@@ -1338,5 +1335,5 @@ on_comments1_activate                  (GtkMenuItem     *menuitem,
 {
 	const gchar *comm=".\\\" ";
 
-	insert_label(comm,"Label Comments Inserted",wprincipal);
+	insert_label(comm,"Label Comments Inserted.");
 }
