@@ -641,7 +641,7 @@ on_paxina_creada1_activate             (GtkMenuItem     *menuitem,
 /* I read conf file ~/.gmaneditrc */
 	
 	strcpy(temp, "/tmp/gmanedit.XXXXXX");
-	mkstemp (temp);;
+	mkstemp (temp);
 	datos=ReadConfFromFile("COMMAND");
 
 	if (datos==NULL)
@@ -832,6 +832,7 @@ on_bpok_clicked                        (GtkButton       *button,
 	entry_text=gtk_entry_get_text(GTK_ENTRY(entry));
 	strcpy(cad,"# File created by gmanedit preferences option\n\nCOMMAND=");
 	strcat(cad,entry_text);
+	strcat(cad,"\n");
 	
 	ch = lookup_widget(prefs, "combo2");
 	browser = gtk_editable_get_chars
