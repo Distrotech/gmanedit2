@@ -16,6 +16,8 @@ gmanedit (0.4.1)
   * Fixed utf8 errors when reading a file.
   * Extending the BUFFER_SIZE to 131072. Also the buffer uses the malloc 
     function to save memory space.
+  * Support for yelp has been removed, yelp has to many bugs, e.g.
+    "yelp man:man(7)" won't work, it will display man.1.
 
 gmanedit (0.4)
 
