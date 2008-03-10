@@ -52,7 +52,7 @@ gchar *filename=NULL;
 gint in_gzip=0;
 
 /* Funciones */
-static void save_as(GtkWidget *main_window);
+static void save_as(gchar *name);
 static void mensaje (gchar *msg,gint tipo);
 static gchar *ReadConfFromFile(gchar *variable);
 static void insert_label(const gchar *base,const gchar *text_info);
@@ -151,10 +151,7 @@ on_novo1_activate                      (GtkMenuItem     *menuitem,
 	statusbar = lookup_widget(GTK_WIDGET(wprincipal),"statusbar1");
 	gtk_statusbar_pop (GTK_STATUSBAR (statusbar), 1);
 	gtk_statusbar_push (GTK_STATUSBAR (statusbar), 1, _("New file."));
-
-	/*if (filename) 
-          g_free(filename);*/
-        in_gzip=0;
+	in_gzip=0;
 }
 
 
@@ -162,19 +159,19 @@ void
 on_abrir1_activate                     (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
-     const gchar *temp;
-     open_file = create_fileselection (GTK_WIDGET(wprincipal));
-     gtk_widget_show (open_file);
-     if (gtk_dialog_run (GTK_DIALOG (open_file)) == GTK_RESPONSE_ACCEPT)
-     {
-       
-       temp = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (open_file));
-       filename = g_strdup(temp);
-       gtk_widget_hide(open_file);
-       open_man_file(filename);
-     }else{
-       gtk_widget_destroy (open_file);
-     }
+	const gchar *temp;
+
+	open_file = create_fileselection (GTK_WIDGET(wprincipal));
+	gtk_widget_show (open_file);
+	if (gtk_dialog_run (GTK_DIALOG (open_file)) == GTK_RESPONSE_ACCEPT)
+	{
+		temp = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (open_file));
+		filename = g_strdup(temp);
+		gtk_widget_hide(open_file);
+		open_man_file(filename);
+	}
+	else
+		gtk_widget_destroy (open_file);
 }
 
 
@@ -184,7 +181,7 @@ on_gardar1_activate                    (GtkMenuItem     *menuitem,
 {
         const gchar *temp;
 	if (filename!=NULL)
-		save_as(wprincipal);
+		save_as(filename);
 	else
 	{
 		save_file=create_save_file(GTK_WIDGET(wprincipal));
@@ -194,7 +191,7 @@ on_gardar1_activate                    (GtkMenuItem     *menuitem,
                  temp = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (save_file));
                  filename = g_strdup(temp);
                  gtk_widget_hide(save_file);
-                 save_as(wprincipal);
+                 save_as(filename);
                 }else{
                  gtk_widget_destroy (save_file);
                 }
@@ -214,7 +211,7 @@ on_gardar_como1_activate               (GtkMenuItem     *menuitem,
                  temp = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (save_file));
                  filename = g_strdup(temp);
                  gtk_widget_hide(save_file);
-                 save_as(wprincipal);
+                 save_as(filename);
         }else{
                  gtk_widget_destroy (save_file);
         }		
@@ -228,7 +225,7 @@ on_sair4_activate                      (GtkMenuItem     *menuitem,
 	g_signal_emit_by_name (G_OBJECT (wprincipal), "delete_event");
 }
 
-static void save_as(GtkWidget *main_window)
+static void save_as(gchar *name)
 {
 	GtkWidget *text,*statusbar;
 	FILE *f;
@@ -239,26 +236,25 @@ static void save_as(GtkWidget *main_window)
 
 /* Esta comprabación se hace para permitir guardar un fichero comprimido */
 /* sin comprimir */
-	n = strlen(filename)-3;
-        strncpy(extension,filename+n,3);
+	n = strlen(name)-3;
+        strncpy(extension,name+n,3);
         if (!strncmp(extension,".gz",3))
             in_gzip=1;
         else
             in_gzip=0;
 
-	//gtk_object_set_data(GTK_OBJECT(save_file),MainWindowKey,main_window);
-	text=lookup_widget(GTK_WIDGET(main_window),"text");
+	text=lookup_widget(GTK_WIDGET(wprincipal),"text");
 	
 /* Barra de estado */
-	statusbar=lookup_widget(GTK_WIDGET(main_window),"statusbar1");
+	statusbar=lookup_widget(GTK_WIDGET(wprincipal),"statusbar1");
 	gtk_statusbar_pop(GTK_STATUSBAR(statusbar),1);
 
 	datos=gtk_editable_get_chars(GTK_EDITABLE(text),0,-1);
 
 	if (in_gzip)
-		f=gzopen(filename,"wb");
+		f=gzopen(name,"wb");
 	else
-		f=fopen(filename,"w");
+		f=fopen(name,"w");
 	
 	if ((f!=NULL) && (f!=Z_NULL))
 	{
@@ -1167,15 +1163,15 @@ static void open_man_file(gchar *manfile)
 
 /* Ahora abro el fichero */
 
-	n = strlen(filename)-3;
-	strncpy(extension,filename+n,3);
+	n = strlen(manfile)-3;
+	strncpy(extension,manfile+n,3);
 	if (!strncmp(extension,".gz",3))
 	    in_gzip=1;
 	else
 	    in_gzip=0;
 
 
-	if ((f=gzopen((gchar *)filename,"rb"))!=NULL)
+	if ((f=gzopen((gchar *)manfile,"rb"))!=NULL)
 	{
 	  while(!gzeof(f))
 	  {
