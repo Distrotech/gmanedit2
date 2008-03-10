@@ -249,7 +249,11 @@ static void save_as(gchar *name)
 	statusbar=lookup_widget(GTK_WIDGET(wprincipal),"statusbar1");
 	gtk_statusbar_pop(GTK_STATUSBAR(statusbar),1);
 
-	datos=gtk_editable_get_chars(GTK_EDITABLE(text),0,-1);
+	GtkTextBuffer *b = gtk_text_view_get_buffer (GTK_TEXT_VIEW(text));
+	GtkTextIter startiter, enditer;
+	gtk_text_buffer_get_start_iter (b, &startiter);
+	gtk_text_buffer_get_end_iter (b, &enditer);
+	datos=gtk_text_buffer_get_text (b, &startiter, &enditer, FALSE);
 
 	if (in_gzip)
 		f=gzopen(name,"wb");
