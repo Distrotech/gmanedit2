@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gmanedit 0.3\n"
 "Report-Msgid-Bugs-To: pg4i@amsat.org\n"
-"POT-Creation-Date: 2008-03-09 14:07+0100\n"
+"POT-Creation-Date: 2008-03-10 20:58+0100\n"
 "PO-Revision-Date: 20-06-2000 00:00+0200\n"
 "Last-Translator: Sergio Rua <srua@iname.com>\n"
 "Language-Team: Galician <trasno@ceu.fi.udc.es>\n"
@@ -82,309 +82,289 @@ msgid "Synopsis"
 msgstr "Sinopsis"
 
 #: src/interface.c:55
+#, fuzzy
+msgid "Configuration"
+msgstr "Conforme a"
+
+#: src/interface.c:56
 msgid "Description"
 msgstr "Descripción"
 
-#: src/interface.c:56
+#: src/interface.c:57
 msgid "Options"
 msgstr "Opcións"
 
-#: src/interface.c:57
-msgid "Return values"
+#: src/interface.c:58
+#, fuzzy
+msgid "Return value"
 msgstr "Valores devoltos"
 
-#: src/interface.c:58
+#: src/interface.c:59
 msgid "Exit status"
 msgstr "Estados de saída"
 
-#: src/interface.c:59
-msgid "Usage"
-msgstr "Emprego"
-
 #: src/interface.c:60
-msgid "File"
-msgstr "Ficheiro"
+msgid "Errors"
+msgstr ""
 
 #: src/interface.c:61
 msgid "Environment"
 msgstr "Entorno"
 
 #: src/interface.c:62
-msgid "Diagnostics"
-msgstr "Diagnósticos"
+#, fuzzy
+msgid "Files"
+msgstr "Ficheiro"
 
 #: src/interface.c:63
-msgid "Security"
-msgstr "Seguridade"
+msgid "Versions"
+msgstr ""
 
 #: src/interface.c:64
+msgid "Conforming to"
+msgstr "Conforme a"
+
+#: src/interface.c:65
 msgid "Notes"
 msgstr "Notas"
 
-#: src/interface.c:65
+#: src/interface.c:66
 msgid "Bugs"
 msgstr "Erros"
 
-#: src/interface.c:66
-msgid "Author"
-msgstr "Autor"
-
 #: src/interface.c:67
-msgid "Examples"
+#, fuzzy
+msgid "Example"
 msgstr "Exemplos"
 
 #: src/interface.c:68
 msgid "See also"
 msgstr "Ver tamén"
 
-#: src/interface.c:69
-msgid "Conforming to"
-msgstr "Conforme a"
-
 #: src/interface.c:70
-msgid "Other"
-msgstr "Outro"
-
-#: src/interface.c:72
 msgid "Left"
 msgstr "Esquerda"
 
-#: src/interface.c:73
+#: src/interface.c:71
 msgid "Both"
 msgstr "Ambos"
 
-#: src/interface.c:75
+#: src/interface.c:73
 msgid "Enable"
 msgstr "Activar"
 
-#: src/interface.c:76
+#: src/interface.c:74
 msgid "Disable"
 msgstr "Desactivar"
 
-#: src/interface.c:78
+#: src/interface.c:76
 msgid "Bold"
 msgstr ""
 
-#: src/interface.c:79
+#: src/interface.c:77
 msgid "Bold - Roman"
 msgstr ""
 
-#: src/interface.c:80
+#: src/interface.c:78
 msgid "Italic"
 msgstr ""
 
-#: src/interface.c:81
+#: src/interface.c:79
 msgid "Italic - Bold"
 msgstr ""
 
-#: src/interface.c:82
+#: src/interface.c:80
 msgid "Italic - Roman"
 msgstr ""
 
-#: src/interface.c:83
+#: src/interface.c:81
 msgid "Roman - Bold"
 msgstr ""
 
-#: src/interface.c:84
+#: src/interface.c:82
 msgid "Roman - Italic"
 msgstr ""
 
-#: src/interface.c:85
+#: src/interface.c:83
 msgid "Small - Bold"
 msgstr ""
 
-#: src/interface.c:86
+#: src/interface.c:84
 msgid "Small"
 msgstr ""
 
-#: src/interface.c:88
+#: src/interface.c:86
 #, fuzzy
 msgid "New Paragraph"
 msgstr "Novo párrafo"
 
-#: src/interface.c:89
+#: src/interface.c:87
 #, fuzzy
 msgid "Paragraph Start"
 msgstr "Comezo do párrafo"
 
-#: src/interface.c:91
+#: src/interface.c:89
 msgid "Margin start"
 msgstr "Comezo do marxen"
 
-#: src/interface.c:92
+#: src/interface.c:90
 msgid "Margin end"
 msgstr "Fin do marxen"
 
-#: src/interface.c:94
-msgid "A HREF"
-msgstr ""
-
-#: src/interface.c:95
-msgid "A NAME"
-msgstr ""
-
-#: src/interface.c:97
+#: src/interface.c:92
 msgid "Default tabs"
 msgstr "Tabulador por defecto"
 
-#: src/interface.c:98
+#: src/interface.c:93
 msgid "Subheader"
 msgstr "Subcabeceira"
 
-#: src/interface.c:99
-msgid "Empty lines"
-msgstr "Líneas en branco"
-
-#: src/interface.c:100
+#: src/interface.c:94
 msgid "Comments"
 msgstr ""
 
-#: src/interface.c:102
+#: src/interface.c:96
 #, fuzzy
 msgid "View created page"
 msgstr "Páxina creada"
 
-#: src/interface.c:103
+#: src/interface.c:97
 #, fuzzy
 msgid "_Preferences"
 msgstr "Preferencias"
 
-#: src/interface.c:105
+#: src/interface.c:99
 msgid "H_elp"
 msgstr "A_xuda"
 
-#: src/interface.c:106
+#: src/interface.c:100
 #, fuzzy
 msgid "_Home page"
 msgstr "Nova páxina"
 
-#: src/interface.c:107
+#: src/interface.c:101
 msgid "_About"
 msgstr ""
 
-#: src/interface.c:226
+#: src/interface.c:213
 msgid "Gmanedit - Gnome manpages editor"
 msgstr ""
 
-#: src/interface.c:284
+#: src/interface.c:272
 #, fuzzy
 msgid "Gmanedit - Select file"
 msgstr "Escolle ficheiro"
 
-#: src/interface.c:301
+#: src/interface.c:289
 #, fuzzy
 msgid "Gmanedit - Saving file"
 msgstr "Salvando ó ficheiro"
 
-#: src/interface.c:331
+#: src/interface.c:319
 #, fuzzy
 msgid "Gmanedit - Search and replace"
 msgstr "Buscar é reemprazar"
 
-#: src/interface.c:344
+#: src/interface.c:332
 msgid "Search:         "
 msgstr "Buscar:        "
 
-#: src/interface.c:352 src/interface.c:366
+#: src/interface.c:340 src/interface.c:354
 msgid "Option not yet available"
 msgstr "Opción non dispoñible"
 
-#: src/interface.c:358
+#: src/interface.c:346
 msgid "Replace with: "
 msgstr "Reemprazar por: "
 
-#: src/interface.c:434
+#: src/interface.c:422
 #, fuzzy
 msgid "Man Pages Editor"
 msgstr "Título da páxina:"
 
-#: src/interface.c:451
+#: src/interface.c:439
 #, fuzzy
 msgid "Gmanedit - Exit"
 msgstr "Escolle ficheiro"
 
-#: src/interface.c:454
+#: src/interface.c:442
 msgid "Exit from gmanedit?"
 msgstr "¿Saír do gmanedit?"
 
-#: src/interface.c:494
+#: src/interface.c:480
 #, fuzzy
 msgid "Gmanedit - Preferences"
 msgstr "Escolle ficheiro"
 
-#: src/interface.c:507
+#: src/interface.c:493
 #, fuzzy
 msgid "Command to test created man pages: "
 msgstr "Comando para ver as páxinas creadas: "
 
-#: src/interface.c:516
+#: src/interface.c:502
 msgid "xterm -e man "
 msgstr ""
 
-#: src/interface.c:520
+#: src/interface.c:506
 msgid "Internet browser"
 msgstr "Navegador de Internet"
 
-#: src/interface.c:537
-msgid "Use yelp"
-msgstr ""
-
-#: src/interface.c:609 src/callbacks.c:809
+#: src/interface.c:585 src/callbacks.c:760
 msgid "January"
 msgstr "Xaneiro"
 
-#: src/interface.c:609 src/callbacks.c:809
+#: src/interface.c:585 src/callbacks.c:760
 msgid "February"
 msgstr "Febreiro"
 
-#: src/interface.c:609 src/callbacks.c:809
+#: src/interface.c:585 src/callbacks.c:760
 #, fuzzy
 msgid "March"
 msgstr "_Buscar"
 
-#: src/interface.c:609 src/callbacks.c:809
+#: src/interface.c:585 src/callbacks.c:760
 msgid "April"
 msgstr "Abril"
 
-#: src/interface.c:610 src/callbacks.c:810
+#: src/interface.c:586 src/callbacks.c:761
 msgid "May"
 msgstr "Maio"
 
-#: src/interface.c:610 src/callbacks.c:810
+#: src/interface.c:586 src/callbacks.c:761
 msgid "June"
 msgstr "Xuño"
 
-#: src/interface.c:610 src/callbacks.c:810
+#: src/interface.c:586 src/callbacks.c:761
 #, fuzzy
 msgid "July"
 msgstr "Xullo"
 
-#: src/interface.c:610 src/callbacks.c:810
+#: src/interface.c:586 src/callbacks.c:761
 msgid "August"
 msgstr "Agosto"
 
-#: src/interface.c:611 src/callbacks.c:811
+#: src/interface.c:587 src/callbacks.c:762
 msgid "September"
 msgstr "Septembro"
 
-#: src/interface.c:611 src/callbacks.c:811
+#: src/interface.c:587 src/callbacks.c:762
 msgid "October"
 msgstr "Outubro"
 
-#: src/interface.c:611 src/callbacks.c:811
+#: src/interface.c:587 src/callbacks.c:762
 msgid "November"
 msgstr "Novembro"
 
-#: src/interface.c:611 src/callbacks.c:811
+#: src/interface.c:587 src/callbacks.c:762
 msgid "December"
 msgstr "Dicembro"
 
-#: src/interface.c:616
+#: src/interface.c:592
 #, fuzzy
 msgid "Gmanedit - Wizard"
 msgstr "Escolle ficheiro"
 
-#: src/interface.c:620
+#: src/interface.c:596
 #, fuzzy
 msgid ""
 "Welcome to the Gmanedit Man Pages Wizard. Follow the next steps to build a "
@@ -394,164 +374,160 @@ msgstr ""
 "de Gmanedit. Segue os pasos para construir\n"
 "unha páxina man básica."
 
-#: src/interface.c:624
+#: src/interface.c:600
 msgid "Welcome"
 msgstr "Benvido"
 
-#: src/interface.c:671
+#: src/interface.c:640
 msgid "Creation Date:"
 msgstr "Data de creación:"
 
-#: src/interface.c:677
+#: src/interface.c:646
 msgid "Man page Title:"
 msgstr "Título da páxina:"
 
-#: src/interface.c:683
-msgid "Author:"
-msgstr "Autor"
-
-#: src/interface.c:689
+#: src/interface.c:652
 msgid "Man page Name:"
 msgstr "Nome da páxina:"
 
-#: src/interface.c:696
+#: src/interface.c:659
 msgid "Step 1: Basic Information"
 msgstr "Paso 1: Información de base"
 
-#: src/interface.c:707
+#: src/interface.c:670
 #, fuzzy
 msgid "There are 8 sections for man pages. Select one:"
 msgstr "Hai 9 seccións para páxinas do manual. Seleccione unha:"
 
-#: src/interface.c:713
+#: src/interface.c:676
 msgid "Section 1: Commands"
 msgstr "Sección 1: Comandos"
 
-#: src/interface.c:718
+#: src/interface.c:681
 msgid "Section 2: System calls"
 msgstr "Sección 2: Chamadas ó sistema"
 
-#: src/interface.c:723
+#: src/interface.c:686
 msgid "Section 3: Library calls"
 msgstr "Sección 3: Chamadas a librerías"
 
-#: src/interface.c:728
+#: src/interface.c:691
 #, fuzzy
 msgid "Section 4: Special files (devices)"
 msgstr "Sección 4: Ficheiros especiais"
 
-#: src/interface.c:734
+#: src/interface.c:697
 #, fuzzy
 msgid "Section 5: File formats and conventions"
 msgstr "Sección 5: Formato de ficheiros e convencións"
 
-#: src/interface.c:739
+#: src/interface.c:702
 msgid "Section 6: Games"
 msgstr "Sección 6: Xogos"
 
-#: src/interface.c:744
+#: src/interface.c:707
 msgid "Section 7: Conventions and miscellaneous"
 msgstr ""
 
-#: src/interface.c:749
+#: src/interface.c:712
 msgid "Section 8: System management commands"
 msgstr "Sección 8: Comandos para o manexo do sistema"
 
-#: src/interface.c:755
+#: src/interface.c:718
 msgid "Section number"
 msgstr "Número de sección"
 
-#: src/interface.c:778
+#: src/interface.c:739
 msgid "Step 2: Section number"
 msgstr "Paso 2: Número de sección"
 
-#: src/interface.c:789
+#: src/interface.c:750
 msgid "What sections would you like include?"
 msgstr "¿Que seccións quere vostede incluir?"
 
-#: src/interface.c:793
+#: src/interface.c:754
 msgid "NAME"
 msgstr "NOME"
 
-#: src/interface.c:799
+#: src/interface.c:760
 msgid "SYNOPSIS"
 msgstr "SINOPSIS"
 
-#: src/interface.c:805
+#: src/interface.c:766
 msgid ""
 "CONFIGURATION\n"
 "(Section 4)"
 msgstr ""
 
-#: src/interface.c:810
+#: src/interface.c:771
 msgid "DESCRIPTION"
 msgstr "DESCRIPCIÓN"
 
-#: src/interface.c:816
+#: src/interface.c:777
 msgid ""
 "OPTIONS\n"
 "(Section 1/8)"
 msgstr ""
 
-#: src/interface.c:822
+#: src/interface.c:783
 msgid ""
 "EXIT STATUS\n"
 "(Section 1/8)"
 msgstr ""
 
-#: src/interface.c:828
+#: src/interface.c:789
 #, fuzzy
 msgid ""
 "RETURN VALUE\n"
 "(Section 2/3)"
 msgstr "VALORES DEVOLTOS"
 
-#: src/interface.c:833
+#: src/interface.c:794
 msgid ""
 "ERRORS\n"
 "(Section 2/3)"
 msgstr ""
 
-#: src/interface.c:838
+#: src/interface.c:799
 msgid "ENVIRONMENT"
 msgstr "ENTORNO"
 
-#: src/interface.c:843
+#: src/interface.c:804
 msgid "FILES"
 msgstr "FICHEIROS"
 
-#: src/interface.c:848
+#: src/interface.c:809
 msgid ""
 "VERSIONS\n"
 "(Section 2/3)"
 msgstr ""
 
-#: src/interface.c:854
+#: src/interface.c:815
 msgid "CONFORMING TO"
 msgstr "CONFORME A"
 
-#: src/interface.c:859
+#: src/interface.c:820
 msgid "NOTES"
 msgstr "NOTAS"
 
-#: src/interface.c:864
+#: src/interface.c:825
 msgid "BUGS"
 msgstr "BUGS"
 
-#: src/interface.c:869
+#: src/interface.c:830
 #, fuzzy
 msgid "EXAMPLE"
 msgstr ".SH EXEMPLOS\n"
 
-#: src/interface.c:874
+#: src/interface.c:835
 msgid "SEE ALSO"
 msgstr "VER TAMÉN"
 
-#: src/interface.c:881
+#: src/interface.c:842
 msgid "Step 3: Man Sections"
 msgstr "Paso 3: Seccións do manual"
 
-#: src/interface.c:886
+#: src/interface.c:847
 #, fuzzy
 msgid ""
 "Thank you for using me! You can now edit the man page with gmanedit to "
@@ -562,19 +538,20 @@ msgstr ""
 "co gmanedit para cambiar e completar\n"
 "o texto."
 
-#: src/interface.c:890
+#: src/interface.c:851
 msgid "The End"
 msgstr "Fin"
 
-#: src/callbacks.c:86
-msgid "Text cutted."
+#: src/callbacks.c:85
+#, fuzzy
+msgid "Text cut."
 msgstr "Texto cortado."
 
-#: src/callbacks.c:101
+#: src/callbacks.c:100
 msgid "Text copied."
 msgstr "Texto copiado."
 
-#: src/callbacks.c:118
+#: src/callbacks.c:117
 msgid "Text pasted."
 msgstr "Texto pegado."
 
@@ -583,35 +560,29 @@ msgstr "Texto pegado."
 msgid ""
 ".\\\"Created with GNOME Manpages Editor\n"
 ".\\\"http://sourceforge.net/projects/gmanedit2\n"
-".\\\"Joop Stakenborg <pg4i@amsat.org>\n"
-".\\\"\n"
-".TH program <section number> \"<date>\" \"<title>\"\n"
+"\n"
+".\\\"Replace <program> with the program name, x with the Section Number\n"
+".TH <program> x \"<date>\" \"\" \"Linux User's Manual\"\n"
 "\n"
 ".SH NAME\n"
-"<program> \\-program for...\n"
+"<program> \\- program for...\n"
 "\n"
-".SH SYNOPSIS\n"
+"..SH SYNOPSIS\n"
 ".B <program>\n"
 ".RI [ options ]\n"
 ".br\n"
 "\n"
 ".SH DESCRIPTION\n"
-"This manual page explains the\n"
-".B <program>\n"
-"program. This program...\n"
-".PP\n"
-"\\fB<program>\\fP is for...\n"
+"This manual page explains the \\fB<program>\\fP program. The \\fB<program>"
+"\\fP program is for...\n"
 "\n"
 ".SH OPTIONS\n"
-".B\n"
-".IP OPTION\n"
+".IP \\fB-OPTION\\fP\n"
 "This option...\n"
 "\n"
-".SH LICENCE\n"
+".SH NOTES\n"
 "\n"
-".SH BUGS\n"
-"\n"
-".SH AUTHOR\n"
+".SH SEE ALSO\n"
 msgstr ""
 ".\\\"Creada co editor de páxinas man de GNOME (gmanedit)\n"
 ".\\\"http://gmanedit.sourceforge.net\n"
@@ -645,7 +616,7 @@ msgstr ""
 "\n"
 ".SH AUTOR\n"
 
-#: src/callbacks.c:151
+#: src/callbacks.c:153
 msgid "New file."
 msgstr "Novo ficheiro."
 
@@ -658,138 +629,136 @@ msgid "File NOT saved."
 msgstr "Ficheiro NON gardado."
 
 #: src/callbacks.c:286
+#, fuzzy
 msgid ""
-".TH program <section number> \"<date>\" \"<title>\"\n"
+".TH <program> <section number> \"<date>\" \"\" \"Linux User's Manual\"\n"
 "\n"
 msgstr ""
 ".TH programa <nº seccion> \"<data>\" \"<título>\"\n"
 "\n"
 
-#: src/callbacks.c:297
+#: src/callbacks.c:296
+#, fuzzy
 msgid ""
-".SH NAME program\n"
+".SH NAME\n"
 "<program> \\- program for... \n"
 msgstr ""
 ".SH NOME programa\n"
 "<programa> \\- programa para... \n"
 
-#: src/callbacks.c:307
+#: src/callbacks.c:306
 msgid ".SH SYNOPSIS\n"
 msgstr ".SH SINOPSIS\n"
 
-#: src/callbacks.c:317
+#: src/callbacks.c:316
+#, fuzzy
+msgid ".SH CONFIGURATION\n"
+msgstr ""
+".SH CONFORME A\n"
+"\n"
+
+#: src/callbacks.c:325
 msgid ".SH DESCRIPTION\n"
 msgstr ".SH DESCRIPCIÓN\n"
 
-#: src/callbacks.c:327
+#: src/callbacks.c:335
 msgid ".SH OPTIONS\n"
 msgstr ".SH OPCIÓNS\n"
 
-#: src/callbacks.c:337
-msgid ".SH RETURN VALUES\n"
+#: src/callbacks.c:345
+#, fuzzy
+msgid ".SH RETURN VALUE\n"
 msgstr ".SH VALORES DEVOLTOS\n"
 
-#: src/callbacks.c:347
+#: src/callbacks.c:355
 msgid ".SH EXIT STATUS\n"
 msgstr ".SH ESTADOS DE SAÍDA\n"
 
-#: src/callbacks.c:356
-msgid ".SH USAGE\n"
-msgstr ".SH EMPREGO\n"
+#: src/callbacks.c:364
+#, fuzzy
+msgid ".SH ERRORS\n"
+msgstr ""
+".SH ERROS\n"
+"\n"
 
-#: src/callbacks.c:366
+#: src/callbacks.c:374
 msgid ".SH FILES\n"
 msgstr ".SH FICHEIROS\n"
 
-#: src/callbacks.c:375
+#: src/callbacks.c:383
 msgid ".SH ENVIRONMENT\n"
 msgstr ".SH ENTORNO\n"
 
-#: src/callbacks.c:384
-msgid ".SH DIAGNOSTICS\n"
-msgstr ".SH DIAGNÓSTICOS\n"
+#: src/callbacks.c:392
+#, fuzzy
+msgid ".SH VERSIONS\n"
+msgstr ""
+".SH ERROS\n"
+"\n"
 
-#: src/callbacks.c:393
-msgid ".SH SECURITY\n"
-msgstr ".SH SEGURIDADE\n"
-
-#: src/callbacks.c:402
+#: src/callbacks.c:401
 msgid ".SH NOTES\n"
 msgstr ".SH NOTAS\n"
 
-#: src/callbacks.c:411
+#: src/callbacks.c:410
 msgid ".SH BUGS\n"
 msgstr ".SH ERROS\n"
 
-#: src/callbacks.c:420
-msgid ".SH AUTHOR\n"
-msgstr ".SH AUTOR\n"
-
-#: src/callbacks.c:429
-msgid ".SH EXAMPLES\n"
+#: src/callbacks.c:419
+#, fuzzy
+msgid ".SH EXAMPLE\n"
 msgstr ".SH EXEMPLOS\n"
 
-#: src/callbacks.c:439
+#: src/callbacks.c:429
 msgid ".SH SEE ALSO\n"
 msgstr ".SH VER TAMÉN\n"
 
-#: src/callbacks.c:448
+#: src/callbacks.c:438
 msgid ".SH CONFORMING TO\n"
 msgstr ".SH CONFORME A\n"
 
-#: src/callbacks.c:465
+#: src/callbacks.c:455
 msgid ".SH <SECTION NAME>\n"
 msgstr ".SH <NOME DE SECCIÓN>\n"
 
-#: src/callbacks.c:600
+#: src/callbacks.c:590
 msgid ".RS <margin position>\n"
 msgstr ".RS <posición do marxen>\n"
 
-#: src/callbacks.c:627
+#: src/callbacks.c:617
 msgid ".SS <NAME>\n"
 msgstr ".SS <NOME>\n"
 
-#: src/callbacks.c:635
-msgid ""
-".UR <address>\n"
-".UE\n"
-msgstr ""
-".UR <dirección url>\n"
-".UE\n"
-
-#: src/callbacks.c:644
-msgid ".UN <address>\n"
-msgstr ".UN <dirección>\n"
-
-#: src/callbacks.c:701
+#: src/callbacks.c:664
 msgid "Page preview."
 msgstr "Previsualización."
 
-#: src/callbacks.c:827
+#: src/callbacks.c:778
 msgid "Date inserted."
 msgstr "Data insertada."
 
-#: src/callbacks.c:830
+#: src/callbacks.c:781
 msgid "Cannot get system date!"
 msgstr "¡Non se puido obtela data do sistema!"
 
-#: src/callbacks.c:991
+#: src/callbacks.c:926
 msgid "Text selected."
 msgstr "Texto cortado."
 
-#: src/callbacks.c:1065
+#: src/callbacks.c:997
 msgid ".SH NAME\n"
 msgstr ".SH NOME>\n"
 
-#: src/callbacks.c:1067
+#: src/callbacks.c:999
+#, fuzzy
 msgid ""
-" \\-program for...\n"
+" \\- program for...\n"
 "\n"
 msgstr ""
 " \\-programa para...\n"
 "\n"
 
-#: src/callbacks.c:1073
+#: src/callbacks.c:1005
 msgid ""
 ".SH SYNOPSIS\n"
 ".B "
@@ -797,7 +766,7 @@ msgstr ""
 ".SH SINOPSIS\n"
 ".B "
 
-#: src/callbacks.c:1075
+#: src/callbacks.c:1007
 msgid ""
 "\n"
 ".RI [ options ]\n"
@@ -809,7 +778,7 @@ msgstr ""
 ".br\n"
 "\n"
 
-#: src/callbacks.c:1080
+#: src/callbacks.c:1012
 #, fuzzy
 msgid ""
 ".SH CONFIGURATION\n"
@@ -818,7 +787,7 @@ msgstr ""
 ".SH CONFORME A\n"
 "\n"
 
-#: src/callbacks.c:1085
+#: src/callbacks.c:1017
 msgid ""
 ".SH DESCRIPTION\n"
 "This manual page explains the\n"
@@ -828,7 +797,7 @@ msgstr ""
 "Esta páxina do manual explica o\n"
 ".B "
 
-#: src/callbacks.c:1087
+#: src/callbacks.c:1019
 msgid ""
 "\n"
 "program. This program...\n"
@@ -840,7 +809,7 @@ msgstr ""
 ".PP\n"
 "\\fB"
 
-#: src/callbacks.c:1089
+#: src/callbacks.c:1021
 msgid ""
 "\\fP is for...\n"
 "\n"
@@ -848,7 +817,7 @@ msgstr ""
 "\\fP é para...\n"
 "\n"
 
-#: src/callbacks.c:1094
+#: src/callbacks.c:1026
 msgid ""
 ".SH OPTIONS\n"
 ".B\n"
@@ -862,14 +831,14 @@ msgstr ""
 "Esta opción...\n"
 "\n"
 
-#: src/callbacks.c:1098
+#: src/callbacks.c:1030
 #, fuzzy
 msgid ""
 ".SH EXIT STATUS\n"
 "\n"
 msgstr ".SH ESTADOS DE SAÍDA\n"
 
-#: src/callbacks.c:1108
+#: src/callbacks.c:1040
 msgid ""
 ".SH ERRORS\n"
 "\n"
@@ -877,7 +846,7 @@ msgstr ""
 ".SH ERROS\n"
 "\n"
 
-#: src/callbacks.c:1112
+#: src/callbacks.c:1044
 msgid ""
 ".SH ENVIRONMENT\n"
 "\n"
@@ -885,7 +854,7 @@ msgstr ""
 ".SH ENTORNO\n"
 "\n"
 
-#: src/callbacks.c:1116
+#: src/callbacks.c:1048
 msgid ""
 ".SH FILES\n"
 "\n"
@@ -893,7 +862,7 @@ msgstr ""
 ".SH FICHEIROS\n"
 "\n"
 
-#: src/callbacks.c:1120
+#: src/callbacks.c:1052
 #, fuzzy
 msgid ""
 ".SH VERSIONS\n"
@@ -902,7 +871,7 @@ msgstr ""
 ".SH ERROS\n"
 "\n"
 
-#: src/callbacks.c:1125
+#: src/callbacks.c:1057
 msgid ""
 ".SH CONFORMING TO\n"
 "\n"
@@ -910,7 +879,7 @@ msgstr ""
 ".SH CONFORME A\n"
 "\n"
 
-#: src/callbacks.c:1129
+#: src/callbacks.c:1061
 msgid ""
 ".SH NOTES\n"
 "\n"
@@ -918,7 +887,7 @@ msgstr ""
 ".SH NOTAS\n"
 "\n"
 
-#: src/callbacks.c:1133
+#: src/callbacks.c:1065
 msgid ""
 ".SH BUGS\n"
 "\n"
@@ -926,14 +895,14 @@ msgstr ""
 ".SH ERROS\n"
 "\n"
 
-#: src/callbacks.c:1137
+#: src/callbacks.c:1069
 #, fuzzy
 msgid ""
 ".SH EXAMPLE\n"
 "\n"
 msgstr ".SH EXEMPLOS\n"
 
-#: src/callbacks.c:1141
+#: src/callbacks.c:1073
 msgid ""
 ".SH SEE ALSO\n"
 "\n"
@@ -941,21 +910,18 @@ msgstr ""
 ".SH VER TAMÉN\n"
 "\n"
 
-#: src/callbacks.c:1147
-msgid "Wizard page created"
+#: src/callbacks.c:1079
+#, fuzzy
+msgid "Wizard page created."
 msgstr "Nova páxina có Asistente"
 
-#: src/callbacks.c:1188
-#, fuzzy
-msgid "Can not open Internet Browser"
-msgstr "Non se puido abrir o Navegador de Internet"
-
-#: src/callbacks.c:1222 src/callbacks.c:1252
+#: src/callbacks.c:1145
 msgid "Man help."
 msgstr "Axuda de 'man'"
 
-#: src/callbacks.c:1274
-msgid "File opening."
+#: src/callbacks.c:1167
+#, fuzzy
+msgid "File opened."
 msgstr "Apertura ficheiro."
 
 #: src/support.c:93
@@ -967,6 +933,53 @@ msgstr "Non se puido atopar o pixmap: %s"
 #, c-format
 msgid "Failed to load pixbuf file: %s: %s\n"
 msgstr ""
+
+#~ msgid "Usage"
+#~ msgstr "Emprego"
+
+#~ msgid "Diagnostics"
+#~ msgstr "Diagnósticos"
+
+#~ msgid "Security"
+#~ msgstr "Seguridade"
+
+#~ msgid "Author"
+#~ msgstr "Autor"
+
+#~ msgid "Other"
+#~ msgstr "Outro"
+
+#~ msgid "Empty lines"
+#~ msgstr "Líneas en branco"
+
+#~ msgid "Author:"
+#~ msgstr "Autor"
+
+#~ msgid ".SH USAGE\n"
+#~ msgstr ".SH EMPREGO\n"
+
+#~ msgid ".SH DIAGNOSTICS\n"
+#~ msgstr ".SH DIAGNÓSTICOS\n"
+
+#~ msgid ".SH SECURITY\n"
+#~ msgstr ".SH SEGURIDADE\n"
+
+#~ msgid ".SH AUTHOR\n"
+#~ msgstr ".SH AUTOR\n"
+
+#~ msgid ""
+#~ ".UR <address>\n"
+#~ ".UE\n"
+#~ msgstr ""
+#~ ".UR <dirección url>\n"
+#~ ".UE\n"
+
+#~ msgid ".UN <address>\n"
+#~ msgstr ".UN <dirección>\n"
+
+#, fuzzy
+#~ msgid "Can not open Internet Browser"
+#~ msgstr "Non se puido abrir o Navegador de Internet"
 
 #~ msgid "_Search"
 #~ msgstr "_Buscar"
