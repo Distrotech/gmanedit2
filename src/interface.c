@@ -254,7 +254,8 @@ create_wprincipal (void)
   gtk_box_pack_start (GTK_BOX (vbox1), scrolledwindow1, TRUE, TRUE, 0);
   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolledwindow1), GTK_POLICY_NEVER, GTK_POLICY_ALWAYS);
 
-  text = GTK_WIDGET(gtk_text_view_new());
+  text = gtk_text_view_new();
+  gtk_text_view_set_wrap_mode(GTK_TEXT_VIEW(text), GTK_WRAP_WORD);
   HOOKUP_OBJECT (wprincipal, text, "text");
   gtk_widget_show (text);
   gtk_container_add (GTK_CONTAINER (scrolledwindow1), text);

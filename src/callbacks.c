@@ -37,7 +37,7 @@
 #include "interface.h"
 #include "support.h"
 
-#define BUFFER_SIZE 8192
+#define BUFFER_SIZE 131072
 
 extern GtkWidget *wprincipal;
 GtkWidget *open_file=NULL;
@@ -247,8 +247,6 @@ static void save_as(GtkWidget *main_window)
         else
             in_gzip=0;
 
-
-	
 	//gtk_object_set_data(GTK_OBJECT(save_file),MainWindowKey,main_window);
 	text=lookup_widget(GTK_WIDGET(main_window),"text");
 	
@@ -1259,16 +1257,17 @@ static void open_man_file(GtkWidget *widget)
         GtkWidget *statusbar,*text;
         GtkTextBuffer*  buff;
 	gzFile *f;
-	gchar buffer[BUFFER_SIZE];
 	gint bytes_read;
 	int n;
 	char extension[10];
+        gchar *b;
+        gchar * buffer = (gchar*)malloc(BUFFER_SIZE);
 
 
 	text=lookup_widget(GTK_WIDGET(wprincipal),"text");
-        if (GTK_IS_EDITABLE (text)){
-	  gtk_editable_delete_text(GTK_EDITABLE(text),0,-1);
-        }
+       
+        buff = gtk_text_view_get_buffer (GTK_TEXT_VIEW (text));
+        gtk_text_buffer_set_text (buff, "", 0);
 	
 /* Barra de estado */
 	statusbar=lookup_widget(GTK_WIDGET(wprincipal),"statusbar1");
@@ -1290,9 +1289,16 @@ static void open_man_file(GtkWidget *widget)
 	  while(!gzeof(f))
 	  {
 		bytes_read=gzread(f,buffer,BUFFER_SIZE);
-		if (bytes_read>0){  
-                    buff = gtk_text_view_get_buffer (GTK_TEXT_VIEW (text));
-                    gtk_text_buffer_insert_at_cursor( buff, buffer ,bytes_read);
+		if (bytes_read>0){
+		   b = NULL;
+                   if (g_utf8_validate(buffer, -1, NULL) == FALSE)
+		   {
+                     b = g_locale_to_utf8(buffer, -1, NULL, NULL, NULL);
+                   }
+                   if (b != NULL)
+		     strncpy(buffer,b,strlen(b));
+  
+                   gtk_text_buffer_insert_at_cursor(buff, buffer ,bytes_read);
                 } 
 	  }
   	  gzclose(f);
