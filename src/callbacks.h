@@ -319,10 +319,6 @@ on_home_page1_activate                 (GtkMenuItem     *menuitem,
                                         gpointer         user_data);
 
 void
-on_chgnome_help_toggled                (GtkToggleButton *togglebutton,
-                                        gpointer         user_data);
-
-void
 on_text_drag_data_received             (GtkWidget       *widget,
                                         GdkDragContext  *drag_context,
                                         gint             x,

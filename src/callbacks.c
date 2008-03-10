@@ -57,7 +57,6 @@ static void mensaje (gchar *msg,gint tipo);
 static gchar *ReadConfFromFile(gchar *variable);
 static void insert_label(const gchar *base,const gchar *text_info);
 static void help_without_gnome(GtkWidget *wid);
-static void help_with_gnome(GtkWidget *wid);
 static void open_man_file(gchar *manfile);
 
 
@@ -721,18 +720,6 @@ on_opcions_programa1_activate        (GtkMenuItem     *menuitem,
 		gtk_entry_set_text (GTK_ENTRY (GTK_BIN(obj)->child),datos);
 	}
 
-/* Third: if it use yelp */
-	aux=ReadConfFromFile("USE_GNOME_HELP_BROWSER");
-	if (aux != NULL)
-	{
-		strcpy(datos,aux);
-		obj=lookup_widget(GTK_WIDGET(prefs),"chgnome_help");
-		if (!strcmp(datos,"no"))
-			gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(obj),FALSE);
-		else	
-			gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(obj),TRUE);
-	}
-
 	gtk_widget_show(prefs);
 }
 
@@ -846,12 +833,6 @@ on_bpok_clicked                        (GtkButton       *button,
 	strcpy(cad,"# File created by gmanedit preferences option\n\nCOMMAND=");
 	strcat(cad,entry_text);
 	
-	ch = lookup_widget(prefs,"chgnome_help");
-	if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
-	        strcat(cad,"\nUSE_GNOME_HELP_BROWSER=yes\n");
-	else
-        	strcat(cad,"\nUSE_GNOME_HELP_BROWSER=no\n");
-
 	ch = lookup_widget(prefs, "combo2");
 	browser = gtk_editable_get_chars
 		(GTK_EDITABLE (GTK_BIN(ch)->child), 0, -1);
@@ -917,18 +898,7 @@ void
 on_help1_activate                      (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
-	gchar *datos;
-	
-	datos=ReadConfFromFile("USE_GNOME_HELP_BROWSER");
-	if (datos==NULL)
-	{
-		help_without_gnome(wprincipal);
-		return;
-	}
-	if (!strcmp(datos,"yes"))
-		help_with_gnome(wprincipal);
-	else
-		help_without_gnome(wprincipal);		
+	help_without_gnome(wprincipal);
 }
 
 
@@ -1144,35 +1114,6 @@ on_home_page1_activate                 (GtkMenuItem     *menuitem,
 	g_spawn_command_line_sync(cad, NULL, NULL, &exitstatus, NULL);
 }
 
-
-void
-on_chgnome_help_toggled                (GtkToggleButton *togglebutton,
-                                        gpointer         user_data)
-{
-/*	GtkWidget *ch,*text;
-
-	text = lookup_widget(GTK_WIDGET(togglebutton),"entry_command");
-	ch = lookup_widget(GTK_WIDGET(togglebutton),"chgnome_help");
-	if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
-		gtk_entry_set_editable(GTK_ENTRY(text),FALSE);
-	else
-		gtk_entry_set_editable(GTK_ENTRY(text),TRUE);
-*/
-}
-
-static void help_with_gnome(GtkWidget *wid)
-{
-	GtkWidget *statusbar;
-	gint exitstatus;
-
-	g_spawn_command_line_sync("yelp man:man.7", NULL, NULL, &exitstatus, NULL);
-
-/* Barra de estado */
-	statusbar=lookup_widget(GTK_WIDGET(wprincipal),"statusbar1");
-	gtk_statusbar_pop(GTK_STATUSBAR(statusbar),1);
-	gtk_statusbar_push(GTK_STATUSBAR(statusbar),1,_("Man help."));		
-}
-
 static void help_without_gnome(GtkWidget *wid)
 {
 	GtkWidget *statusbar;
@@ -1205,20 +1146,19 @@ static void help_without_gnome(GtkWidget *wid)
 
 static void open_man_file(gchar *manfile)
 {
-        GtkWidget *statusbar,*text;
-        GtkTextBuffer*  buff;
+	GtkWidget *statusbar,*text;
+	GtkTextBuffer *tb;
 	gzFile *f;
 	gint bytes_read;
 	int n;
 	char extension[10];
-        gchar *b;
-        gchar * buffer = (gchar*)malloc(BUFFER_SIZE);
+	gchar *utf8;
+	gchar * buffer = (gchar*)malloc(BUFFER_SIZE);
 
 
 	text=lookup_widget(GTK_WIDGET(wprincipal),"text");
-       
-        buff = gtk_text_view_get_buffer (GTK_TEXT_VIEW (text));
-        gtk_text_buffer_set_text (buff, "", 0);
+	tb = gtk_text_view_get_buffer (GTK_TEXT_VIEW (text));
+	gtk_text_buffer_set_text (tb, "", 0);
 	
 /* Barra de estado */
 	statusbar=lookup_widget(GTK_WIDGET(wprincipal),"statusbar1");
@@ -1240,17 +1180,17 @@ static void open_man_file(gchar *manfile)
 	  while(!gzeof(f))
 	  {
 		bytes_read=gzread(f,buffer,BUFFER_SIZE);
-		if (bytes_read>0){
-		   b = NULL;
-                   if (g_utf8_validate(buffer, -1, NULL) == FALSE)
-		   {
-                     b = g_locale_to_utf8(buffer, -1, NULL, NULL, NULL);
-                   }
-                   if (b != NULL)
-		     strncpy(buffer,b,strlen(b));
-  
-                   gtk_text_buffer_insert_at_cursor(buff, buffer ,bytes_read);
-                } 
+		if (bytes_read>0)
+		{
+			utf8 = NULL;
+			if (g_utf8_validate(buffer, -1, NULL) == FALSE)
+			{
+				utf8 = g_locale_to_utf8(buffer, -1, NULL, NULL, NULL);
+			}
+			if (utf8 != NULL)
+				strncpy(buffer,utf8,strlen(utf8));
+			gtk_text_buffer_insert_at_cursor(tb, buffer ,bytes_read);
+		} 
 	  }
   	  gzclose(f);
 	}

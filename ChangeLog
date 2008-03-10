@@ -13,9 +13,7 @@ gmanedit (0.4.1)
   * Gmanedit is now without any Gnome dependencies, it builds with the help
     of GTK+ only. Version 2.10 or higher is needed.
   * New developer: Anibal Avelar <aavelar@cofradia.org>.
-  * Removed the gtk-error: Gtk-CRITICAL **: gtk_text_buffer_emit_insert: 
-    assertion `g_utf8_validate (text, len, NULL)' failed. 
-  * Fixed some details to the complete migration from GtkText to GtkTextView.
+  * Fixed utf8 errors when reading a file.
   * Extending the BUFFER_SIZE to 131072. Also the buffer uses the malloc 
     function to save memory space.
 

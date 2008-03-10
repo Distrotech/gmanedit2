@@ -471,8 +471,6 @@ create_wpreferences (void)
   GtkWidget *hbox4;
   GtkWidget *label17;
   GtkWidget *combo2;
-//  GtkWidget *cbinet;
-  GtkWidget *chgnome_help;
   GtkWidget *bpok;
   GtkWidget *bpcancel;
 //  GtkTooltips *tooltips;
@@ -522,19 +520,11 @@ create_wpreferences (void)
 
 //  gtk_tooltips_set_tip (tooltips, cbinet, _("Select your internet browser from this list"), NULL);
 
-  chgnome_help = gtk_check_button_new_with_label (_("Use yelp"));
-  gtk_widget_show (chgnome_help);
-  HOOKUP_OBJECT (wpreferences, chgnome_help, "chgnome_help");
-  gtk_box_pack_start (GTK_BOX (vbox3), chgnome_help, FALSE, FALSE, 0);
-
   bpok = gtk_dialog_add_button (GTK_DIALOG (wpreferences),
                 GTK_STOCK_OK, GTK_RESPONSE_OK);
   bpcancel = gtk_dialog_add_button (GTK_DIALOG (wpreferences),
                 GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL);
 
-  g_signal_connect (G_OBJECT (chgnome_help), "toggled",
-                      G_CALLBACK (on_chgnome_help_toggled),
-                      NULL);
   g_signal_connect (G_OBJECT (bpok), "clicked",
                       G_CALLBACK (on_bpok_clicked),
                       NULL);
