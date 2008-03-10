@@ -58,7 +58,7 @@ static gchar *ReadConfFromFile(gchar *variable);
 static void insert_label(const gchar *base,const gchar *text_info);
 static void help_without_gnome(GtkWidget *wid);
 static void help_with_gnome(GtkWidget *wid);
-static void open_man_file(GtkWidget *wid);
+static void open_man_file(gchar *manfile);
 
 
 /* Eventos */
@@ -172,7 +172,7 @@ on_abrir1_activate                     (GtkMenuItem     *menuitem,
        temp = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (open_file));
        filename = g_strdup(temp);
        gtk_widget_hide(open_file);
-       open_man_file(GTK_WIDGET(open_file));
+       open_man_file(filename);
      }else{
        gtk_widget_destroy (open_file);
      }
@@ -1210,7 +1210,7 @@ static void help_without_gnome(GtkWidget *wid)
 	gtk_statusbar_push(GTK_STATUSBAR(statusbar),1,_("Man help."));	
 }
 
-static void open_man_file(GtkWidget *widget)
+static void open_man_file(gchar *manfile)
 {
         GtkWidget *statusbar,*text;
         GtkTextBuffer*  buff;
@@ -1263,7 +1263,7 @@ static void open_man_file(GtkWidget *widget)
 	}
 	else
 		mensaje(strerror(errno),GTK_MESSAGE_ERROR);
-	gtk_widget_destroy (widget);
+	if (open_file) gtk_widget_destroy (open_file);
 }
 
 void
@@ -1282,7 +1282,7 @@ on_text_drag_data_received             (GtkWidget       *widget,
 	    {
 		filename=(gchar *)data->data+5;
 		filename[strlen(filename)-2]='\0';
-		open_man_file(GTK_WIDGET(widget));
+		open_man_file(filename);
 	    }
 
 	}
