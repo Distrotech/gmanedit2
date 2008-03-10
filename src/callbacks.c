@@ -1131,19 +1131,17 @@ void
 on_home_page1_activate                 (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
-	pid_t p;
 	gchar *browser;
-	gchar cad[50];
+	gchar cad[512];
+	gint exitstatus;
 	
 	browser=ReadConfFromFile("INTERNET_BROWSER");
 	if (browser==NULL)
-		browser="netscape";
-	strcpy(cad,browser);
+		browser="mozilla";
+	strcpy(cad, browser);
+	strcat(cad, " http://sourceforge.net/projects/gmanedit2");
 
-	p=fork();
-	if (p==0)
-	if (execlp(cad,cad,"http://sourceforge.net/projects/gmanedit2",NULL) == -1)
-			mensaje(_("Cannot open Internet Browser"),GTK_MESSAGE_ERROR);	
+	g_spawn_command_line_sync(cad, NULL, NULL, &exitstatus, NULL);
 }
 
 
@@ -1165,17 +1163,12 @@ on_chgnome_help_toggled                (GtkToggleButton *togglebutton,
 static void help_with_gnome(GtkWidget *wid)
 {
 	GtkWidget *statusbar;
-	pid_t p;
+	gint exitstatus;
 
-	p=fork();
-	if (p==0)
-	     if (execlp("yelp","yelp","man:man.7",NULL) == -1)
-	     {	     
-		printf("Warning, \"yelp\" not executed\n");
-		exit(0);
-	     }
+	g_spawn_command_line_sync("yelp man:man.7", NULL, NULL, &exitstatus, NULL);
+
 /* Barra de estado */
-	statusbar=lookup_widget(GTK_WIDGET(wid),"statusbar1");
+	statusbar=lookup_widget(GTK_WIDGET(wprincipal),"statusbar1");
 	gtk_statusbar_pop(GTK_STATUSBAR(statusbar),1);
 	gtk_statusbar_push(GTK_STATUSBAR(statusbar),1,_("Man help."));		
 }
@@ -1205,7 +1198,7 @@ static void help_without_gnome(GtkWidget *wid)
 	g_spawn_command_line_sync(command, NULL, NULL, &exitstatus, NULL);
 
 /* Barra de estado */
-	statusbar=lookup_widget(GTK_WIDGET(wid),"statusbar1");
+	statusbar=lookup_widget(GTK_WIDGET(wprincipal),"statusbar1");
 	gtk_statusbar_pop(GTK_STATUSBAR(statusbar),1);
 	gtk_statusbar_push(GTK_STATUSBAR(statusbar),1,_("Man help."));	
 }
