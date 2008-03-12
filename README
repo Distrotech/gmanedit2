@@ -1,9 +1,9 @@
 			         GNOME Manpages Editor
 			         ---------------------
 
-	Gmanedit is an GNOME/Gtk Editor for Manual pages on Linux/Unix
-	systems. The original code was written in 2001 by Sergio Rua and
-    the program would run on the GNOME version 1 desktop environment.
+        Gmanedit is an GNOME/Gtk Editor for Manual pages on Linux/Unix
+        systems. The original code was written in 2001 by Sergio Rua and
+        the program would run on the GNOME version 1 desktop environment.
 
         Nothing happened since then and Sergio seemed to be unreachable,
         so I decided to port the program to the GNOME version 2 and revive
