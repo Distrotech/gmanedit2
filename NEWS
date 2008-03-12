@@ -1,1 +1,2 @@
-This is the first version of the Gnome version 2 port of Gmanedit.
+This release fixes all know bugs. Gmanedit is now without any Gnome
+dependencies, it builds with the help of GTK+ only.
