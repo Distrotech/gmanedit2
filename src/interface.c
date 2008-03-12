@@ -1,5 +1,5 @@
 /*
- *  Copyright 2000-2001: Sergio Rua <srua@debian.org>
+ *  Copyright 2000-2001: Sergio Rua
  *  Copyright 2008 Joop Stakenborg <pg4i@amsat.org>
  *  Copyright 2008 Anibal Avelar <aavelar@cofradia.org>
  * 
@@ -387,17 +387,17 @@ create_wbuscar (void)
 void create_about (void)
 {
   const gchar *authors[] = {
-    "Sergio Rua <email unknown>",
+    "Sergio Rua",
     "Joop Stakenborg <pg4i@amsat.org>",
     "Anibal Avelar <aavelar@cofradia.org>",
     NULL
   };
-  const gchar *translators = "Sergio Rua <email unknown>\n"
+  const gchar *translators = "Sergio Rua\n"
 	"Jordi Mallach <jordi@sindominio.net>\n"
 	"Takeshi Aihana <aihana@muc.biglobe.ne.jp>";
 
   const gchar *license =
-    "Copyright 2000, 2001 Sergio Rua <email unknown>\n"
+    "Copyright 2000, 2001 Sergio Rua\n"
     "Copyright 2008 Joop Stakenborg <pg4i@amsat.org>\n"
     "Copyright 2008 Anibal Avelar <aavelar@cofradia.org>\n"
     "\n"

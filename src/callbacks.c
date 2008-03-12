@@ -1,5 +1,5 @@
 /*
- *  Copyright 2000-2001: Sergio Rua <srua@debian.org>
+ *  Copyright 2000-2001: Sergio Rua
  *  Copyright 2008 Joop Stakenborg <pg4i@amsat.org>
  *  Copyright 2008 Anibal Avelar <aavelar@cofradia.org>
  * 
