@@ -512,6 +512,7 @@ create_wpreferences (void)
   gtk_combo_box_append_text (GTK_COMBO_BOX(combo2), "mozilla");
   gtk_combo_box_append_text (GTK_COMBO_BOX(combo2), "firefox");
   gtk_combo_box_append_text (GTK_COMBO_BOX(combo2), "galeon");
+  gtk_combo_box_append_text (GTK_COMBO_BOX(combo2), "epiphany");
   gtk_combo_box_append_text (GTK_COMBO_BOX(combo2), "konqueror");
   HOOKUP_OBJECT (wpreferences, combo2, "combo2");
 
