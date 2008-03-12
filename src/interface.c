@@ -509,13 +509,10 @@ create_wpreferences (void)
   combo2 = gtk_combo_box_entry_new_text ();
   gtk_widget_show (combo2);
   gtk_box_pack_start (GTK_BOX (hbox4), combo2, TRUE, TRUE, 0);
-  gtk_combo_box_append_text (GTK_COMBO_BOX(combo2), "netscape");
   gtk_combo_box_append_text (GTK_COMBO_BOX(combo2), "mozilla");
   gtk_combo_box_append_text (GTK_COMBO_BOX(combo2), "firefox");
   gtk_combo_box_append_text (GTK_COMBO_BOX(combo2), "galeon");
-  gtk_combo_box_append_text (GTK_COMBO_BOX(combo2), "yelp");
   gtk_combo_box_append_text (GTK_COMBO_BOX(combo2), "konqueror");
-  gtk_combo_box_append_text (GTK_COMBO_BOX(combo2), "nautilus");
   HOOKUP_OBJECT (wpreferences, combo2, "combo2");
 
 //  gtk_tooltips_set_tip (tooltips, cbinet, _("Select your internet browser from this list"), NULL);
@@ -731,7 +728,6 @@ create_wizard (void)
   gtk_combo_box_append_text (GTK_COMBO_BOX(combo1), "6");
   gtk_combo_box_append_text (GTK_COMBO_BOX(combo1), "7");
   gtk_combo_box_append_text (GTK_COMBO_BOX(combo1), "8");
-  gtk_combo_box_append_text (GTK_COMBO_BOX(combo1), "9");
   gtk_combo_box_set_active (GTK_COMBO_BOX(combo1), 0);
   HOOKUP_OBJECT (wizard, combo1, "combo1");
 
