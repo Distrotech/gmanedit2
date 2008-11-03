@@ -3,6 +3,8 @@ gmanedit (0.4.2)
   * Swedish translations by Daniel Nylander, thanks!
   * Patch by François Wendling: Cancelling the wizard now makes it impossible
     to relaunch later.
+  * Another patch by François Wendling, gmanedit would generate non-standard
+    groff code.
 
 gmanedit (0.4.1)
   * Moved from GnomeDruid to GtkAssistant API for the wizard pages.

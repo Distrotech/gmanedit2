@@ -131,9 +131,9 @@ on_pagina_base1_activate               (GtkMenuItem     *menuitem,
 	".SH SYNOPSIS\n.B <program>\n.RI [ options ]\n.br\n\n"
 	".SH DESCRIPTION\nThis manual page explains the \\fB<program>\\fP program."
 	" The \\fB<program>\\fP program is for...\n\n"
-	".SH OPTIONS\n.IP \\fB-OPTION\\fP\nThis option...\n\n"
+	".SH OPTIONS\n.IP \\fB\\-OPTION\\fP\nThis option...\n\n"
 	".SH NOTES\n\n"
-	".SH SEE ALSO\n");
+	".SH \"SEE ALSO\"\n");
 
 	insert_label(base,"Page created.");
 }
@@ -345,7 +345,7 @@ void
 on_valores_retornados1_activate        (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
-	const gchar *base=_(".SH RETURN VALUE\n");
+	const gchar *base=_(".SH \"RETURN VALUE\"\n");
 
  	insert_label(base,"Section return value written.");
 }
@@ -355,7 +355,7 @@ void
 on_estados_de_saida1_activate          (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
-	const gchar *base=_(".SH EXIT STATUS\n");
+	const gchar *base=_(".SH \"EXIT STATUS\"\n");
  	insert_label(base,"Section exit status written.");
 }
 
@@ -429,7 +429,7 @@ void
 on_ver_tamen1_activate                 (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
-	const gchar *base=_(".SH SEE ALSO\n");
+	const gchar *base=_(".SH \"SEE ALSO\"\n");
  	insert_label(base,"Section see also written.");
 }
 
@@ -438,7 +438,7 @@ void
 on_conforme_a1_activate                (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
-	const gchar *base=_(".SH CONFORMING TO\n");
+	const gchar *base=_(".SH \"CONFORMING TO\"\n");
  	insert_label(base,"Section conforming to written.");
 }
 
@@ -455,7 +455,7 @@ void
 on_otro1_activate                      (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
-	const gchar *base=_(".SH <SECTION NAME>\n");
+	const gchar *base=_(".SH \"<SECTION NAME>\"\n");
  	insert_label(base,"Section other written.");
 }
 
@@ -617,7 +617,7 @@ void
 on_subcabeceira1_activate              (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
-	const gchar *base=_(".SS <NAME>\n");
+	const gchar *base=_(".SS \"<NAME>\"\n");
  	insert_label(base,"Subheader inserted.");
 }
 
@@ -1026,13 +1026,13 @@ on_dthe_end_finish                     (GtkAssistant *assistant,
 /* Section EXIT STATUS */
    ch = lookup_widget (GTK_WIDGET (assistant), "chexitstatus");
    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
-	strcat(cadena,_(".SH EXIT STATUS\n\n"));   
+	strcat(cadena,_(".SH \"EXIT STATUS\"\n\n"));   
 
 
 /* Section RETURN VALUE */
    ch = lookup_widget (GTK_WIDGET (assistant), "chreturnvalues");
    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
-	strcat(cadena,".SH RETURN VALUE\n\n");   
+	strcat(cadena,".SH \"RETURN VALUE\"\n\n");   
 /* Section ERRORS */
    ch = lookup_widget (GTK_WIDGET (assistant), "cherrors");
    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
@@ -1053,7 +1053,7 @@ on_dthe_end_finish                     (GtkAssistant *assistant,
 /* Section CONFORMING TO */
    ch = lookup_widget (GTK_WIDGET (assistant), "chconformingto");
    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
-	strcat(cadena,_(".SH CONFORMING TO\n\n"));   
+	strcat(cadena,_(".SH \"CONFORMING TO\"\n\n"));   
 /* Section NOTES */
    ch = lookup_widget (GTK_WIDGET (assistant), "chnotes");
    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
@@ -1069,7 +1069,7 @@ on_dthe_end_finish                     (GtkAssistant *assistant,
 /* Section SEE ALSO */
    ch = lookup_widget (GTK_WIDGET (assistant), "chseealso");
    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
-	strcat(cadena,_(".SH SEE ALSO\n\n"));   
+	strcat(cadena,_(".SH \"SEE ALSO\"\n\n"));   
 	
 /* Hide wizard */
    gtk_widget_hide(wizard);
