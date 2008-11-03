@@ -940,6 +940,7 @@ on_assistant_cancel                    (GtkAssistant *assistant,
                                         gpointer         user_data)
 {
 	gtk_widget_destroy (GTK_WIDGET(assistant));
+	wizard = NULL;
 }
 
 

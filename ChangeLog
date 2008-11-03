@@ -1,6 +1,8 @@
 gmanedit (0.4.2)
   * Fix several buffer overflows.
   * Swedish translations by Daniel Nylander, thanks!
+  * Patch by François Wendling: Cancelling the wizard now makes it impossible
+    to relaunch later.
 
 gmanedit (0.4.1)
   * Moved from GnomeDruid to GtkAssistant API for the wizard pages.
