@@ -648,16 +648,9 @@ on_paxina_creada1_activate             (GtkMenuItem     *menuitem,
 	datos=ReadConfFromFile("COMMAND");
 
 	if (datos==NULL)
-	{
-		strcpy(command,"xterm -e man -l ");
-		strcat(command,temp);
-	}
+		snprintf(command, sizeof command, "xterm -e man -l %s", temp);
 	else
-	{
-		strcpy(command,datos);
-		strcat(command," -l ");
-		strcat(command,temp);
-	}	
+		snprintf(command, sizeof command, "%s -l %s", datos, temp);
 
 	text=lookup_widget(wprincipal,"text");
 	
@@ -707,14 +700,16 @@ on_opcions_programa1_activate        (GtkMenuItem     *menuitem,
 	aux=ReadConfFromFile("COMMAND");
 	if (aux != NULL)
 	{
-		strcpy(datos,aux);
+		strncpy(datos,aux, sizeof datos - 1);
+		datos[sizeof(datos) - 1] = 0;
 		obj=lookup_widget(GTK_WIDGET(prefs),"entry_command");
 		gtk_entry_set_text(GTK_ENTRY(obj),datos);
 	}
 	aux=ReadConfFromFile("INTERNET_BROWSER");
 	if (aux != NULL)
 	{
-		strcpy(datos,aux);
+		strncpy(datos,aux, sizeof(datos) - 1);
+		datos[sizeof(datos) - 1] = 0;
 		obj=lookup_widget(GTK_WIDGET(prefs),"combo2");
 		if (!strcmp(datos, "mozilla"))
 			 gtk_combo_box_set_active (GTK_COMBO_BOX(obj), 0);
@@ -834,14 +829,9 @@ on_bpok_clicked                        (GtkButton       *button,
 
 	entry=lookup_widget(prefs,"entry_command");
 	entry_text=gtk_entry_get_text(GTK_ENTRY(entry));
-	strcpy(buf,"# File created by gmanedit preferences option\n\nCOMMAND=");
-	strcat(buf,entry_text);
-	strcat(buf,"\n");
-	
 	ch = lookup_widget(prefs, "combo2");
 	browser = gtk_combo_box_get_active_text (GTK_COMBO_BOX (ch));
-	strcat(buf,"INTERNET_BROWSER=");
-	strcat(buf,browser);
+	snprintf(buf, sizeof buf, "# File created by gmanedit preferences option\n\nCOMMAND=%s\nINTERNET_BROWSER=%s", entry_text, browser);
 	g_free(browser);
 	
 	if ((p=fopen(rcname,"w"))!=NULL)
@@ -1108,8 +1098,7 @@ on_home_page1_activate                 (GtkMenuItem     *menuitem,
 	browser=ReadConfFromFile("INTERNET_BROWSER");
 	if (browser==NULL)
 		browser="mozilla";
-	strcpy(buf, browser);
-	strcat(buf, " http://sourceforge.net/projects/gmanedit2");
+	snprintf(buf, sizeof buf, "%s http://sourceforge.net/projects/gmanedit2", browser);
 
 	g_spawn_command_line_sync(buf, NULL, NULL, &exitstatus, NULL);
 }
@@ -1121,20 +1110,13 @@ static void help_without_gnome(GtkWidget *wid)
 	gchar temp[10],command[1024];
 	gint exitstatus;
 
-// I read conf file ~/.gmaneditrc
 	strcpy(temp," 7 man");
 	datos=ReadConfFromFile("COMMAND");
 
 	if (datos==NULL)
-	{
-		strcpy(command,"xterm -e man");
-		strcat(command,temp);
-	}
+		snprintf(command, sizeof command, "xterm -e man -l %s", temp);
 	else
-	{
-		strcpy(command,datos);
-		strcat(command,temp);
-	}
+		snprintf(command, sizeof command, "%s -l %s", datos, temp);
 
 	g_spawn_command_line_sync(command, NULL, NULL, &exitstatus, NULL);
 
@@ -1187,8 +1169,10 @@ static void open_man_file(gchar *manfile)
 			{
 				utf8 = g_locale_to_utf8(buffer, -1, NULL, NULL, NULL);
 			}
-			if (utf8 != NULL)
-				strncpy(buffer,utf8,strlen(utf8));
+			if (utf8 != NULL){
+				strncpy(buffer,utf8, BUFFER_SIZE - 1);
+				buffer[BUFFER_SIZE - 1] = 0;
+			}
 			gtk_text_buffer_insert_at_cursor(tb, buffer ,bytes_read);
 		} 
 	  }

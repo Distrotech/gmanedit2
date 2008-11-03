@@ -1,10 +1,12 @@
 gmanedit (0.4.2)
-  * Fix several buffer overflows.
+  * Fix several buffer overflows and crashes.
   * Swedish translations by Daniel Nylander, thanks!
   * Patch by François Wendling: Cancelling the wizard now makes it impossible
     to relaunch later.
   * Another patch by François Wendling, gmanedit would generate non-standard
     groff code.
+  * Several buffer overflow fixes by Nico Golde on behalf of the Debian
+    Security Team.
 
 gmanedit (0.4.1)
   * Moved from GnomeDruid to GtkAssistant API for the wizard pages.
