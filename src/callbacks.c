@@ -222,7 +222,10 @@ void
 on_sair4_activate                      (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
-	g_signal_emit_by_name (G_OBJECT (wprincipal), "delete_event");
+	if (exit_dialog==NULL)
+		exit_dialog=create_exit_dialog();
+
+	gtk_widget_show(exit_dialog);
 }
 
 static void save_as(gchar *name)
@@ -701,9 +704,6 @@ on_opcions_programa1_activate        (GtkMenuItem     *menuitem,
 	gchar datos[255];
 	
 	prefs=create_wpreferences();
-	
-/* Window Options with last options */
-/* First: command to view man pages */
 	aux=ReadConfFromFile("COMMAND");
 	if (aux != NULL)
 	{
@@ -711,15 +711,22 @@ on_opcions_programa1_activate        (GtkMenuItem     *menuitem,
 		obj=lookup_widget(GTK_WIDGET(prefs),"entry_command");
 		gtk_entry_set_text(GTK_ENTRY(obj),datos);
 	}
-/* Second: Internet Browser selector */
 	aux=ReadConfFromFile("INTERNET_BROWSER");
 	if (aux != NULL)
 	{
 		strcpy(datos,aux);
 		obj=lookup_widget(GTK_WIDGET(prefs),"combo2");
-		gtk_entry_set_text (GTK_ENTRY (GTK_BIN(obj)->child),datos);
+		if (!strcmp(datos, "mozilla"))
+			 gtk_combo_box_set_active (GTK_COMBO_BOX(obj), 0);
+		else if (!strcmp(datos, "firefox"))
+			 gtk_combo_box_set_active (GTK_COMBO_BOX(obj), 1);
+		else if (!strcmp(datos, "galeon"))
+			 gtk_combo_box_set_active (GTK_COMBO_BOX(obj), 2);
+		else if (!strcmp(datos, "epiphany"))
+			 gtk_combo_box_set_active (GTK_COMBO_BOX(obj), 3);
+		else if (!strcmp(datos, "konqueror"))
+			 gtk_combo_box_set_active (GTK_COMBO_BOX(obj), 4);
 	}
-
 	gtk_widget_show(prefs);
 }
 
@@ -820,34 +827,31 @@ on_bpok_clicked                        (GtkButton       *button,
 	FILE *p;
 	GtkWidget *entry,*ch;
 	const gchar *entry_text=NULL;
-	gchar cad[256],cad2[50];
-	gchar *home, *browser;
+	gchar buf[1024];
+	gchar *rcname, *browser;
 
-/* I get home directory */
-	home=(gchar *)getenv("HOME");
-	strcpy(cad2,home);
-	strcat(cad2,"/.gmaneditrc");
+	rcname = g_build_filename (g_get_home_dir(), G_DIR_SEPARATOR_S, ".gmaneditrc", NULL );
 
 	entry=lookup_widget(prefs,"entry_command");
 	entry_text=gtk_entry_get_text(GTK_ENTRY(entry));
-	strcpy(cad,"# File created by gmanedit preferences option\n\nCOMMAND=");
-	strcat(cad,entry_text);
-	strcat(cad,"\n");
+	strcpy(buf,"# File created by gmanedit preferences option\n\nCOMMAND=");
+	strcat(buf,entry_text);
+	strcat(buf,"\n");
 	
 	ch = lookup_widget(prefs, "combo2");
-	browser = gtk_editable_get_chars
-		(GTK_EDITABLE (GTK_BIN(ch)->child), 0, -1);
-	strcat(cad,"INTERNET_BROWSER=");
-	strcat(cad,browser);
+	browser = gtk_combo_box_get_active_text (GTK_COMBO_BOX (ch));
+	strcat(buf,"INTERNET_BROWSER=");
+	strcat(buf,browser);
 	g_free(browser);
 	
-	if ((p=fopen(cad2,"w"))!=NULL)
+	if ((p=fopen(rcname,"w"))!=NULL)
 	{
-		fprintf(p,"%s\n",cad);
+		fprintf(p,"%s\n",buf);
 		fclose(p);	
 	}
 	else
 		mensaje(strerror(errno),GTK_MESSAGE_ERROR);
+	g_free (rcname);
 	gtk_widget_destroy(prefs);
 }
 
@@ -862,30 +866,24 @@ on_bpcancel_clicked                    (GtkButton       *button,
 static gchar *ReadConfFromFile(gchar *variable)
 {
   FILE *f;
-  gchar readed[100];
-  gchar *home;
+  gchar *rcname;
   gchar *tok;
+  gchar buf[1024];
   
-// Intento de abrir el fichero con la configuración personalizada  
-  home = getenv("HOME");
-  strcpy(readed,home);
-  strcat(readed,"/.gmaneditrc");
-  
-  f = fopen(readed,"r");
-  if (f == NULL)
-  {
-  	return((gchar *)NULL);
-  }  
+  rcname = g_build_filename (g_get_home_dir(), G_DIR_SEPARATOR_S, ".gmaneditrc", NULL );
+  f = fopen(rcname,"r");
+  g_free (rcname);
+
+  if (f == NULL) return((gchar *)NULL);
     
-  while (fgets(readed,80,f) != NULL)
+  while (fgets(buf,80,f) != NULL)
   {
-// Lo siguiente quita los retornos de carro de las líneas leidas
-     if (readed[strlen(readed)-1] == '\n')
-     	readed[strlen(readed)-1] = '\0';
+     if (buf[strlen(buf)-1] == '\n')
+     	buf[strlen(buf)-1] = '\0';
        
-     if ((readed[0] != '#') && (!strncmp(variable,readed,strlen(variable))))
+     if ((buf[0] != '#') && (!strncmp(variable,buf,strlen(variable))))
      {
-        tok = strtok(readed,"=");
+        tok = strtok(buf,"=");
         tok = strtok(NULL,"=");
         fclose(f);
         return(tok);
@@ -1103,23 +1101,23 @@ on_home_page1_activate                 (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
 	gchar *browser;
-	gchar cad[512];
+	gchar buf[1024];
 	gint exitstatus;
 	
 	browser=ReadConfFromFile("INTERNET_BROWSER");
 	if (browser==NULL)
 		browser="mozilla";
-	strcpy(cad, browser);
-	strcat(cad, " http://sourceforge.net/projects/gmanedit2");
+	strcpy(buf, browser);
+	strcat(buf, " http://sourceforge.net/projects/gmanedit2");
 
-	g_spawn_command_line_sync(cad, NULL, NULL, &exitstatus, NULL);
+	g_spawn_command_line_sync(buf, NULL, NULL, &exitstatus, NULL);
 }
 
 static void help_without_gnome(GtkWidget *wid)
 {
 	GtkWidget *statusbar;
 	gchar *datos;
-	gchar temp[10],command[75];
+	gchar temp[10],command[1024];
 	gint exitstatus;
 
 // I read conf file ~/.gmaneditrc

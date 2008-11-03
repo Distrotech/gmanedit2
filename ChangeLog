@@ -1,3 +1,6 @@
+gmanedit (0.4.2)
+  * Fix several buffer overflows.
+
 gmanedit (0.4.1)
   * Moved from GnomeDruid to GtkAssistant API for the wizard pages.
   * Fixed display of the date in the second page of the wizard.
