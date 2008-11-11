@@ -1114,9 +1114,9 @@ static void help_without_gnome(GtkWidget *wid)
 	datos=ReadConfFromFile("COMMAND");
 
 	if (datos==NULL)
-		snprintf(command, sizeof command, "xterm -e man -l %s", temp);
+		snprintf(command, sizeof command, "xterm -e man %s", temp);
 	else
-		snprintf(command, sizeof command, "%s -l %s", datos, temp);
+		snprintf(command, sizeof command, "%s %s", datos, temp);
 
 	g_spawn_command_line_sync(command, NULL, NULL, &exitstatus, NULL);
 
