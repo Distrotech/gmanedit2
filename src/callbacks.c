@@ -143,6 +143,13 @@ on_novo1_activate                      (GtkMenuItem     *menuitem,
     statusbar = lookup_widget(GTK_WIDGET(wprincipal),"statusbar1");
     gtk_statusbar_pop (GTK_STATUSBAR (statusbar), 1);
     gtk_statusbar_push (GTK_STATUSBAR (statusbar), 1, _("New file."));
+
+    /* reset filename */
+    if (filename)
+    {
+        g_free(filename);
+        filename = NULL;
+    }
 }
 
 
@@ -1124,11 +1131,10 @@ on_text_drag_data_received             (GtkWidget       *widget,
     {
         if (!strncmp((gchar *)data->data,"file:",4))
         {
-        filename=(gchar *)data->data+5;
+        filename = g_strdup((gchar *)data->data + 6);
         filename[strlen(filename)-2]='\0';
         open_man_file(filename);
         }
-
     }
     gtk_drag_finish(drag_context, TRUE, FALSE, time);
 }
