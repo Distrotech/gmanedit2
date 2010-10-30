@@ -13,6 +13,8 @@ if test "${ac_cv_c_compiler_gnu}" = "yes"; then
   CFLAGS="${CFLAGS} -Wall"
 fi
 
+AC_SEARCH_LIBS(gzopen, z)
+
 PKG_CHECK_MODULES(GTK, gtk+-2.0 >= 2.10.0)
 AC_SUBST(GTK_CFLAGS)
 AC_SUBST(GTK_LIBS)
