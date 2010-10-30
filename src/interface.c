@@ -462,59 +462,54 @@ GtkWidget*
 create_wpreferences (void)
 {
   GtkWidget *wpreferences;
-  GtkWidget *vbox3;
-  GtkWidget *vbox4;
-  GtkWidget *hbox3;
-  GtkWidget *label4;
+  GtkWidget *table;
+  GtkWidget *label1;
   GtkWidget *entry_command;
-  GtkWidget *hbox4;
-  GtkWidget *label17;
-  GtkWidget *combo2;
+  GtkWidget *label2;
+  GtkWidget *combo;
+  GtkWidget *label3;
+  GtkWidget *button;
   GtkWidget *bpok;
   GtkWidget *bpcancel;
 //  GtkTooltips *tooltips;
 
 //  tooltips = gtk_tooltips_new ();
 
-  wpreferences = gtk_dialog_new_with_buttons (_("Gmanedit - Preferences"),
+    wpreferences = gtk_dialog_new_with_buttons (_("Gmanedit - Preferences"),
     GTK_WINDOW(wprincipal), GTK_DIALOG_DESTROY_WITH_PARENT, NULL);
 
-  vbox3 = gtk_vbox_new (FALSE, 0);
-  gtk_widget_show (vbox3);
-  gtk_container_add (GTK_CONTAINER (GTK_DIALOG (wpreferences)->vbox), vbox3);
+    table = gtk_table_new(3, 2, TRUE);
+    gtk_table_set_row_spacings(GTK_TABLE(table), 2);
+    gtk_table_set_col_spacings(GTK_TABLE(table), 2);
+    gtk_container_add(GTK_CONTAINER (GTK_DIALOG (wpreferences)->vbox), table);
 
-  vbox4 = gtk_vbox_new (FALSE, 0);
-  gtk_widget_show (vbox4);
-  gtk_box_pack_start (GTK_BOX (vbox3), vbox4, TRUE, TRUE, 0);
-  hbox3 = gtk_hbox_new (FALSE, 0);
-  gtk_widget_show (hbox3);
-  gtk_box_pack_start (GTK_BOX (vbox4), hbox3, TRUE, TRUE, 0);
-  label4 = gtk_label_new (_("Command to test created man pages: "));
-  gtk_widget_show (label4);
-  gtk_box_pack_start (GTK_BOX (hbox3), label4, FALSE, FALSE, 0);
+  label1 = gtk_label_new (_("Command to test created man pages: "));
+  gtk_table_attach_defaults(GTK_TABLE(table), label1, 0, 1, 0, 1 );
 
   entry_command = gtk_entry_new ();
-  gtk_widget_show (entry_command);
-  gtk_entry_set_max_length (entry_command, 100);
+  gtk_entry_set_max_length (GTK_ENTRY (entry_command), 100);
   HOOKUP_OBJECT (wpreferences, entry_command, "entry_command");
-
-  gtk_box_pack_start (GTK_BOX (hbox3), entry_command, FALSE, TRUE, 0);
   gtk_entry_set_text (GTK_ENTRY (entry_command), _("xterm -e man "));
-  hbox4 = gtk_hbox_new (FALSE, 0);
-  gtk_widget_show (hbox4);
-  gtk_box_pack_start (GTK_BOX (vbox4), hbox4, TRUE, TRUE, 0);
-  label17 = gtk_label_new (_("Internet browser"));
-  gtk_widget_show (label17);
-  gtk_box_pack_start (GTK_BOX (hbox4), label17, FALSE, FALSE, 0);
-  combo2 = gtk_combo_box_entry_new_text ();
-  gtk_widget_show (combo2);
-  gtk_box_pack_start (GTK_BOX (hbox4), combo2, TRUE, TRUE, 0);
-  gtk_combo_box_append_text (GTK_COMBO_BOX(combo2), "mozilla");
-  gtk_combo_box_append_text (GTK_COMBO_BOX(combo2), "firefox");
-  gtk_combo_box_append_text (GTK_COMBO_BOX(combo2), "galeon");
-  gtk_combo_box_append_text (GTK_COMBO_BOX(combo2), "epiphany");
-  gtk_combo_box_append_text (GTK_COMBO_BOX(combo2), "konqueror");
-  HOOKUP_OBJECT (wpreferences, combo2, "combo2");
+  gtk_table_attach_defaults(GTK_TABLE(table), entry_command, 1, 2, 0, 1 );
+
+  label2 = gtk_label_new (_("Internet browser"));
+  gtk_table_attach_defaults(GTK_TABLE(table), label2, 0, 1, 1, 2 );
+
+  combo = gtk_combo_box_entry_new_text ();
+  gtk_combo_box_append_text (GTK_COMBO_BOX(combo), "mozilla");
+  gtk_combo_box_append_text (GTK_COMBO_BOX(combo), "firefox");
+  gtk_combo_box_append_text (GTK_COMBO_BOX(combo), "galeon");
+  gtk_combo_box_append_text (GTK_COMBO_BOX(combo), "epiphany");
+  gtk_combo_box_append_text (GTK_COMBO_BOX(combo), "konqueror");
+  HOOKUP_OBJECT (wpreferences, combo, "browser");
+  gtk_table_attach_defaults(GTK_TABLE(table), combo, 1, 2, 1, 2 );
+
+    label3 = gtk_label_new (_("Editor Font"));
+    gtk_table_attach_defaults(GTK_TABLE(table), label3, 0, 1, 2, 3 );
+
+    button = gtk_font_button_new();
+    gtk_table_attach_defaults(GTK_TABLE(table), button, 1, 2, 2, 3 );
+    HOOKUP_OBJECT (wpreferences, button, "font");
 
 //  gtk_tooltips_set_tip (tooltips, cbinet, _("Select your internet browser from this list"), NULL);
 
@@ -607,7 +602,7 @@ create_wizard (void)
   gtk_box_pack_start (GTK_BOX (druid_vbox2), fixed1, TRUE, TRUE, 0);
 
   mname = gtk_entry_new ();
-  gtk_entry_set_max_length (mname, 100);
+  gtk_entry_set_max_length (GTK_ENTRY (mname), 100);
   HOOKUP_OBJECT (wizard, mname, "mname");
   gtk_widget_show (mname);
   gtk_fixed_put (GTK_FIXED (fixed1), mname, 248, 24);
@@ -615,7 +610,7 @@ create_wizard (void)
 //  gtk_tooltips_set_tip (tooltips, mname, _("Short name to the man page (example: gmanedit)"), NULL);
 
   mdate = gtk_entry_new ();
-  gtk_entry_set_max_length (mdate, 100);
+  gtk_entry_set_max_length (GTK_ENTRY (mdate), 100);
   HOOKUP_OBJECT (wizard, mdate, "mdate");
   gtk_widget_show (mdate);
   gtk_fixed_put (GTK_FIXED (fixed1), mdate, 248, 80);
@@ -631,7 +626,7 @@ create_wizard (void)
     }
 
   mtitle = gtk_entry_new ();
-  gtk_entry_set_max_length (mtitle, 100);
+  gtk_entry_set_max_length (GTK_ENTRY (mtitle), 100);
   HOOKUP_OBJECT (wizard, mtitle, "mtitle");
   gtk_widget_show (mtitle);
   gtk_fixed_put (GTK_FIXED (fixed1), mtitle, 248, 136);

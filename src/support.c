@@ -167,3 +167,33 @@ void open_man_file(gchar *manfile)
         mensaje(strerror(errno),GTK_MESSAGE_ERROR);
     if (open_file) gtk_widget_destroy (open_file);
 }
+
+const gchar *ReadConfFromFile(const gchar *variable)
+{
+  FILE *f;
+  gchar *rcname;
+  gchar *tok;
+  gchar buf[1024];
+
+  rcname = g_build_filename (g_get_home_dir(), G_DIR_SEPARATOR_S, ".gmaneditrc", NULL );
+  f = fopen(rcname,"r");
+  g_free (rcname);
+
+  if (f == NULL) return((gchar *)NULL);
+
+  while (fgets(buf,80,f) != NULL)
+  {
+     if (buf[strlen(buf)-1] == '\n')
+        buf[strlen(buf)-1] = '\0';
+
+     if ((buf[0] != '#') && (!strncmp(variable,buf,strlen(variable))))
+     {
+        tok = strtok(buf,"=");
+        tok = strtok(NULL,"=");
+        fclose(f);
+        return(tok);
+     }
+  }
+  fclose(f);
+  return((gchar *)NULL);
+}

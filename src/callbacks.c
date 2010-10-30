@@ -49,7 +49,6 @@ gchar *filename=NULL;
 
 /* Funciones */
 static void save_as(gchar *name);
-static gchar *ReadConfFromFile(gchar *variable);
 static void insert_label(const gchar *base,const gchar *text_info);
 static void help_without_gnome(GtkWidget *wid);
 
@@ -629,7 +628,8 @@ on_paxina_creada1_activate             (GtkMenuItem     *menuitem,
     FILE *f;
     gint bytes_written=0;
     gchar temp[30];
-    gchar command[50],*datos;
+    gchar command[50];
+    const gchar *datos;
     gint exitstatus;
 
 /* I read conf file ~/.gmaneditrc */
@@ -680,28 +680,31 @@ on_buscar_e_reemprazar1_activate        (GtkMenuItem     *menuitem,
 }
 
 void
-on_opcions_programa1_activate        (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
+on_opcions_programa1_activate (GtkMenuItem *menuitem,
+                               gpointer  user_data)
 {
-    gchar *aux;
+    const gchar *aux;
     GtkWidget *obj;
     gchar datos[255];
 
-    prefs=create_wpreferences();
-    aux=ReadConfFromFile("COMMAND");
+    prefs = create_wpreferences();
+    aux = ReadConfFromFile("COMMAND");
+
     if (aux != NULL)
     {
         strncpy(datos,aux, sizeof datos - 1);
         datos[sizeof(datos) - 1] = 0;
-        obj=lookup_widget(GTK_WIDGET(prefs),"entry_command");
+        obj = lookup_widget(GTK_WIDGET(prefs),"entry_command");
         gtk_entry_set_text(GTK_ENTRY(obj),datos);
     }
-    aux=ReadConfFromFile("INTERNET_BROWSER");
+
+    aux = ReadConfFromFile("INTERNET_BROWSER");
+
     if (aux != NULL)
     {
         strncpy(datos,aux, sizeof(datos) - 1);
         datos[sizeof(datos) - 1] = 0;
-        obj=lookup_widget(GTK_WIDGET(prefs),"combo2");
+        obj = lookup_widget(GTK_WIDGET(prefs),"browser");
         if (!strcmp(datos, "mozilla"))
              gtk_combo_box_set_active (GTK_COMBO_BOX(obj), 0);
         else if (!strcmp(datos, "firefox"))
@@ -713,7 +716,16 @@ on_opcions_programa1_activate        (GtkMenuItem     *menuitem,
         else if (!strcmp(datos, "konqueror"))
              gtk_combo_box_set_active (GTK_COMBO_BOX(obj), 4);
     }
-    gtk_widget_show(prefs);
+
+    aux = ReadConfFromFile("FONT");
+
+    if (aux != NULL)
+    {
+        obj = lookup_widget(GTK_WIDGET(prefs),"font");
+        gtk_font_button_set_font_name(GTK_FONT_BUTTON(obj), aux);
+    }
+
+    gtk_widget_show_all(prefs);
 }
 
 
@@ -811,18 +823,36 @@ on_bpok_clicked                        (GtkButton       *button,
                                         gpointer         user_data)
 {
     FILE *p;
-    GtkWidget *entry,*ch;
+    GtkWidget *widget;
     const gchar *entry_text=NULL;
     gchar buf[1024];
     gchar *rcname, *browser;
+    const gchar *font;
+    PangoFontDescription *fdesc;
 
     rcname = g_build_filename (g_get_home_dir(), G_DIR_SEPARATOR_S, ".gmaneditrc", NULL );
 
-    entry=lookup_widget(prefs,"entry_command");
-    entry_text=gtk_entry_get_text(GTK_ENTRY(entry));
-    ch = lookup_widget(prefs, "combo2");
-    browser = gtk_combo_box_get_active_text (GTK_COMBO_BOX (ch));
-    snprintf(buf, sizeof buf, "# File created by gmanedit preferences option\n\nCOMMAND=%s\nINTERNET_BROWSER=%s", entry_text, browser);
+    widget = lookup_widget(prefs,"entry_command");
+    entry_text = gtk_entry_get_text(GTK_ENTRY(widget));
+
+    widget = lookup_widget(prefs, "browser");
+    browser = gtk_combo_box_get_active_text (GTK_COMBO_BOX (widget));
+
+    /* get the selected font */
+    widget = lookup_widget(prefs, "font");
+    font = gtk_font_button_get_font_name(GTK_FONT_BUTTON(widget));
+
+    /* set the text area's font */
+    widget = lookup_widget(GTK_WIDGET(wprincipal),"text");
+    fdesc = pango_font_description_from_string(font);
+    gtk_widget_modify_font (widget, fdesc);
+    pango_font_description_free(fdesc);
+
+    /* store the settings */
+    snprintf(buf, sizeof buf, "# File created by gmanedit preferences option\n\n" \
+                "COMMAND=%s\nINTERNET_BROWSER=%s\nFONT=%s",
+                entry_text, browser, font);
+
     g_free(browser);
 
     if ((p=fopen(rcname,"w"))!=NULL)
@@ -832,6 +862,7 @@ on_bpok_clicked                        (GtkButton       *button,
     }
     else
         mensaje(strerror(errno),GTK_MESSAGE_ERROR);
+
     g_free (rcname);
     gtk_widget_destroy(prefs);
 }
@@ -844,35 +875,6 @@ on_bpcancel_clicked                    (GtkButton       *button,
     gtk_widget_destroy(prefs);
 }
 
-static gchar *ReadConfFromFile(gchar *variable)
-{
-  FILE *f;
-  gchar *rcname;
-  gchar *tok;
-  gchar buf[1024];
-
-  rcname = g_build_filename (g_get_home_dir(), G_DIR_SEPARATOR_S, ".gmaneditrc", NULL );
-  f = fopen(rcname,"r");
-  g_free (rcname);
-
-  if (f == NULL) return((gchar *)NULL);
-
-  while (fgets(buf,80,f) != NULL)
-  {
-     if (buf[strlen(buf)-1] == '\n')
-        buf[strlen(buf)-1] = '\0';
-
-     if ((buf[0] != '#') && (!strncmp(variable,buf,strlen(variable))))
-     {
-        tok = strtok(buf,"=");
-        tok = strtok(NULL,"=");
-        fclose(f);
-        return(tok);
-     }
-  }
-  fclose(f);
-  return((gchar *)NULL);
-}
 
 void
 on_help1_activate                      (GtkMenuItem     *menuitem,
@@ -1082,7 +1084,7 @@ void
 on_home_page1_activate                 (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
-    gchar *browser;
+    const gchar *browser;
     gchar buf[1024];
     gint exitstatus;
 
@@ -1097,12 +1099,12 @@ on_home_page1_activate                 (GtkMenuItem     *menuitem,
 static void help_without_gnome(GtkWidget *wid)
 {
     GtkWidget *statusbar;
-    gchar *datos;
+    const gchar *datos;
     gchar temp[10],command[1024];
     gint exitstatus;
 
     strcpy(temp," 7 man");
-    datos=ReadConfFromFile("COMMAND");
+    datos = ReadConfFromFile("COMMAND");
 
     if (datos==NULL)
         snprintf(command, sizeof command, "xterm -e man %s", temp);
