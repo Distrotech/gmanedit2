@@ -19,7 +19,6 @@
  */
 
 #include <stdio.h>
-#include <errno.h>
 #include <string.h>
 #include <unistd.h>
 #include <stdlib.h>
@@ -37,8 +36,6 @@
 #include "interface.h"
 #include "support.h"
 
-#define BUFFER_SIZE 131072
-
 extern GtkWidget *wprincipal;
 GtkWidget *open_file=NULL;
 GtkWidget *save_file=NULL;
@@ -49,16 +46,12 @@ GtkWidget *prefs=NULL;
 GtkWidget *wizard=NULL;
 
 gchar *filename=NULL;
-gint in_gzip=0;
 
 /* Funciones */
 static void save_as(gchar *name);
-static void mensaje (gchar *msg,gint tipo);
 static gchar *ReadConfFromFile(gchar *variable);
 static void insert_label(const gchar *base,const gchar *text_info);
 static void help_without_gnome(GtkWidget *wid);
-static void open_man_file(gchar *manfile);
-
 
 /* Eventos */
 void
@@ -150,7 +143,6 @@ on_novo1_activate                      (GtkMenuItem     *menuitem,
     statusbar = lookup_widget(GTK_WIDGET(wprincipal),"statusbar1");
     gtk_statusbar_pop (GTK_STATUSBAR (statusbar), 1);
     gtk_statusbar_push (GTK_STATUSBAR (statusbar), 1, _("New file."));
-    in_gzip=0;
 }
 
 
@@ -233,6 +225,7 @@ static void save_as(gchar *name)
     FILE *f;
     gchar *datos;
     gint bytes_written;
+    gint in_gzip;
     char extension[5];
     int n;
 
@@ -277,7 +270,7 @@ static void save_as(gchar *name)
     }
     if (in_gzip)
         gzclose(f);
-        else
+    else
         fclose(f);
 }
 
@@ -781,7 +774,7 @@ on_about2_activate                     (GtkMenuItem     *menuitem,
      create_about();
 }
 
-static void
+void
 mensaje (gchar *msg,gint tipo)
 {
     GtkWidget *msgbox;
@@ -1115,63 +1108,6 @@ static void help_without_gnome(GtkWidget *wid)
     statusbar=lookup_widget(GTK_WIDGET(wprincipal),"statusbar1");
     gtk_statusbar_pop(GTK_STATUSBAR(statusbar),1);
     gtk_statusbar_push(GTK_STATUSBAR(statusbar),1,_("Man help."));
-}
-
-static void open_man_file(gchar *manfile)
-{
-    GtkWidget *statusbar,*text;
-    GtkTextBuffer *tb;
-    gzFile *f;
-    gint bytes_read;
-    int n;
-    char extension[10];
-    gchar *utf8;
-    gchar * buffer = (gchar*)malloc(BUFFER_SIZE);
-
-
-    text=lookup_widget(GTK_WIDGET(wprincipal),"text");
-    tb = gtk_text_view_get_buffer (GTK_TEXT_VIEW (text));
-    gtk_text_buffer_set_text (tb, "", 0);
-
-/* Barra de estado */
-    statusbar=lookup_widget(GTK_WIDGET(wprincipal),"statusbar1");
-    gtk_statusbar_pop(GTK_STATUSBAR(statusbar),1);
-    gtk_statusbar_push(GTK_STATUSBAR(statusbar),1,_("File opened."));
-
-/* Ahora abro el fichero */
-
-    n = strlen(manfile)-3;
-    strncpy(extension,manfile+n,3);
-    if (!strncmp(extension,".gz",3))
-        in_gzip=1;
-    else
-        in_gzip=0;
-
-
-    if ((f=gzopen((gchar *)manfile,"rb"))!=NULL)
-    {
-      while(!gzeof(f))
-      {
-        bytes_read=gzread(f,buffer,BUFFER_SIZE);
-        if (bytes_read>0)
-        {
-            utf8 = NULL;
-            if (g_utf8_validate(buffer, -1, NULL) == FALSE)
-            {
-                utf8 = g_locale_to_utf8(buffer, -1, NULL, NULL, NULL);
-            }
-            if (utf8 != NULL){
-                strncpy(buffer,utf8, BUFFER_SIZE - 1);
-                buffer[BUFFER_SIZE - 1] = 0;
-            }
-            gtk_text_buffer_insert_at_cursor(tb, buffer ,bytes_read);
-        }
-      }
-      gzclose(f);
-    }
-    else
-        mensaje(strerror(errno),GTK_MESSAGE_ERROR);
-    if (open_file) gtk_widget_destroy (open_file);
 }
 
 void

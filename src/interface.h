@@ -18,6 +18,8 @@
  *  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02111-1307, USA.
  */
 
+extern GtkWidget *wprincipal;
+
 GtkWidget* create_wprincipal (void);
 GtkWidget* create_fileselection (GtkWidget *parent);
 GtkWidget* create_save_file (GtkWidget *parent);

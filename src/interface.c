@@ -29,7 +29,6 @@
 #include "interface.h"
 #include "support.h"
 
-extern GtkWidget *wprincipal;
 GtkUIManager *ui_manager;
 
 static const GtkActionEntry entries[] = {

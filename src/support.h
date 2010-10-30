@@ -22,9 +22,9 @@
   #undef _
   #define _(String) dgettext (PACKAGE, String)
   #ifdef gettext_noop
-	#define N_(String) gettext_noop (String)
+    #define N_(String) gettext_noop (String)
   #else
-	#define N_(String) (String)
+    #define N_(String) (String)
   #endif
 #else
   #define textdomain(String) (String)
@@ -45,3 +45,4 @@ GtkWidget*  lookup_widget              (GtkWidget       *widget,
 
 GdkPixbuf* create_image            (const gchar     *filename);
 void add_pixmap_directory(const gchar *directory);
+void open_man_file(gchar *manfile);

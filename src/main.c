@@ -20,6 +20,7 @@
 #include <libintl.h>
 #include <gtk/gtk.h>
 
+#include "callbacks.h"
 #include "interface.h"
 #include "support.h"
 
@@ -63,13 +64,22 @@ main (int argc, char *argv[])
    */
   wprincipal = create_wprincipal ();
   gtk_widget_show (wprincipal);
-  
+
   text=lookup_widget(GTK_WIDGET(wprincipal),"text");
 
-  gtk_drag_dest_set(text, GTK_DEST_DEFAULT_ALL, tabla, cuantos-1, 
-		  GDK_ACTION_COPY|GDK_ACTION_MOVE);
+  gtk_drag_dest_set(text, GTK_DEST_DEFAULT_ALL, tabla, cuantos-1,
+          GDK_ACTION_COPY|GDK_ACTION_MOVE);
 
-  gtk_main ();  
+    /* if a command line argument has been specified, check if it is a
+     * file and try to load it */
+    if (argc && g_file_test (argv[1], G_FILE_TEST_IS_REGULAR))
+    {
+
+        open_man_file(argv[1]);
+        filename = g_strdup(argv[1]);
+    }
+
+  gtk_main ();
   return 0;
 }
 

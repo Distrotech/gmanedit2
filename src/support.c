@@ -1,7 +1,7 @@
 /*
  *  Copyright 2000-2001: Sergio Rua <srua@debian.org>
  *  Copyright 2008 Joop Stakenborg <pg4i@amsat.org>
- * 
+ *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation; either version 2 of the License, or
@@ -17,14 +17,20 @@
  *  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02111-1307, USA.
  */
 
+#include <errno.h>
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <unistd.h>
 #include <string.h>
+#include <zlib.h>
 
 #include <gtk/gtk.h>
 
+#include "callbacks.h"
+#include "interface.h"
 #include "support.h"
+
+#define BUFFER_SIZE 131072
 
 GtkWidget*
 lookup_widget                          (GtkWidget       *widget,
@@ -105,3 +111,59 @@ create_image(const gchar *filename)
         return pixbuf;
 }
 
+void open_man_file(gchar *manfile)
+{
+    GtkWidget *statusbar,*text;
+    GtkTextBuffer *tb;
+    gzFile *f;
+    gint bytes_read;
+    gint in_gzip;
+    int n;
+    char extension[10];
+    gchar *utf8;
+    gchar * buffer = (gchar*)malloc(BUFFER_SIZE);
+
+    text=lookup_widget(GTK_WIDGET(wprincipal),"text");
+    tb = gtk_text_view_get_buffer (GTK_TEXT_VIEW (text));
+    gtk_text_buffer_set_text (tb, "", 0);
+
+/* Barra de estado */
+    statusbar=lookup_widget(GTK_WIDGET(wprincipal),"statusbar1");
+    gtk_statusbar_pop(GTK_STATUSBAR(statusbar),1);
+    gtk_statusbar_push(GTK_STATUSBAR(statusbar),1,_("File opened."));
+
+/* Ahora abro el fichero */
+
+    n = strlen(manfile)-3;
+    strncpy(extension,manfile+n,3);
+    if (!strncmp(extension,".gz",3))
+        in_gzip=1;
+    else
+        in_gzip=0;
+
+
+    if ((f=gzopen((gchar *)manfile,"rb"))!=NULL)
+    {
+      while(!gzeof(f))
+      {
+        bytes_read=gzread(f,buffer,BUFFER_SIZE);
+        if (bytes_read>0)
+        {
+            utf8 = NULL;
+            if (g_utf8_validate(buffer, -1, NULL) == FALSE)
+            {
+                utf8 = g_locale_to_utf8(buffer, -1, NULL, NULL, NULL);
+            }
+            if (utf8 != NULL){
+                strncpy(buffer,utf8, BUFFER_SIZE - 1);
+                buffer[BUFFER_SIZE - 1] = 0;
+            }
+            gtk_text_buffer_insert_at_cursor(tb, buffer ,bytes_read);
+        }
+      }
+      gzclose(f);
+    }
+    else
+        mensaje(strerror(errno),GTK_MESSAGE_ERROR);
+    if (open_file) gtk_widget_destroy (open_file);
+}

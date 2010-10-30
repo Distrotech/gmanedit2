@@ -17,6 +17,9 @@
  *  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02111-1307, USA.
  */
 
+extern GtkWidget *open_file;
+extern gchar *filename;
+
 void
 on_wprincipal_delete                (GtkObject       *object,
                                         gpointer         user_data);
@@ -265,6 +268,9 @@ on_bdialog_aceptar_clicked             (GtkButton       *button,
 void
 on_data1_activate                      (GtkMenuItem     *menuitem,
                                         gpointer         user_data);
+
+void
+mensaje (gchar *msg,gint tipo);
 
 void
 on_about2_activate                     (GtkMenuItem     *menuitem,
