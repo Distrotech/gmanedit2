@@ -2,7 +2,7 @@
  *  Copyright 2000-2001: Sergio Rua
  *  Copyright 2008 Joop Stakenborg <pg4i@amsat.org>
  *  Copyright 2008 Anibal Avelar <aavelar@cofradia.org>
- * 
+ *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation; either version 2 of the License, or
@@ -217,7 +217,7 @@ create_wprincipal (void)
   vbox1 = gtk_vbox_new (FALSE, 0);
   gtk_widget_show (vbox1);
   gtk_container_add (GTK_CONTAINER (wprincipal), vbox1);
-  
+
   GtkActionGroup *action_group = gtk_action_group_new ("MenuActions");
   gtk_action_group_set_translation_domain (action_group, PACKAGE);
   gtk_action_group_add_actions (action_group, entries,
@@ -226,11 +226,11 @@ create_wprincipal (void)
   gtk_ui_manager_insert_action_group (ui_manager, action_group, 0);
   GtkAccelGroup *accel_group = gtk_ui_manager_get_accel_group (ui_manager);
   gtk_window_add_accel_group (GTK_WINDOW (wprincipal), accel_group);
-  
+
   gtk_ui_manager_add_ui_from_string (ui_manager, ui_description, -1, NULL);
   GtkWidget *menubar = gtk_ui_manager_get_widget (ui_manager, "/MainMenu");
   gtk_box_pack_start (GTK_BOX (vbox1), menubar, FALSE, FALSE, 0);
-  
+
   GtkWidget *handlebox = gtk_handle_box_new ();
   gtk_box_pack_start (GTK_BOX (vbox1), handlebox, FALSE, FALSE, 0);
   GtkWidget *toolbar = gtk_ui_manager_get_widget (ui_manager, "/ToolBar");
@@ -270,11 +270,11 @@ create_fileselection (GtkWidget *parent)
   GtkWidget *fileselection;
 
   fileselection = gtk_file_chooser_dialog_new (_("Gmanedit - Select file"),
-				      GTK_WINDOW (parent),
-				      GTK_FILE_CHOOSER_ACTION_OPEN,
-				      GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
-				      GTK_STOCK_OPEN, GTK_RESPONSE_ACCEPT,
-				      NULL);
+                      GTK_WINDOW (parent),
+                      GTK_FILE_CHOOSER_ACTION_OPEN,
+                      GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
+                      GTK_STOCK_OPEN, GTK_RESPONSE_ACCEPT,
+                      NULL);
   GdkPixbuf *icon_pixbuf = create_image ("gmanedit_icon.png");
   gtk_window_set_icon (GTK_WINDOW (fileselection), icon_pixbuf);
 
@@ -287,11 +287,11 @@ create_save_file (GtkWidget *parent)
   GtkWidget *save_file;
 
   save_file = gtk_file_chooser_dialog_new (_("Gmanedit - Saving file"),
-				      GTK_WINDOW (parent),
-				      GTK_FILE_CHOOSER_ACTION_OPEN,
-				      GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
-				      GTK_STOCK_OPEN, GTK_RESPONSE_ACCEPT,
-				      NULL);
+                      GTK_WINDOW (parent),
+                      GTK_FILE_CHOOSER_ACTION_SAVE,
+                      GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
+                      GTK_STOCK_OPEN, GTK_RESPONSE_ACCEPT,
+                      NULL);
   GdkPixbuf *icon_pixbuf = create_image ("gmanedit_icon.png");
   gtk_window_set_icon (GTK_WINDOW (save_file), icon_pixbuf);
 
@@ -393,8 +393,8 @@ void create_about (void)
     NULL
   };
   const gchar *translators = "Sergio Rua\n"
-	"Jordi Mallach <jordi@sindominio.net>\n"
-	"Takeshi Aihana <aihana@muc.biglobe.ne.jp>";
+    "Jordi Mallach <jordi@sindominio.net>\n"
+    "Takeshi Aihana <aihana@muc.biglobe.ne.jp>";
 
   const gchar *license =
     "Copyright 2000, 2001 Sergio Rua\n"
@@ -418,14 +418,14 @@ void create_about (void)
   GdkPixbuf *icon_pixbuf = create_image ("gmanedit.png");
 
   gtk_show_about_dialog (GTK_WINDOW(wprincipal),
-  	"authors", authors,
-  	"comments", _("Man Pages Editor"),
-  	"license", license,
-  	"website", "http://sourceforge.net/projects/gmanedit2",
-  	"logo", icon_pixbuf,
-  	"translator-credits", translators,
-  	"version", VERSION,
-  	NULL);
+    "authors", authors,
+    "comments", _("Man Pages Editor"),
+    "license", license,
+    "website", "http://sourceforge.net/projects/gmanedit2",
+    "logo", icon_pixbuf,
+    "translator-credits", translators,
+    "version", VERSION,
+    NULL);
 }
 
 GtkWidget*
@@ -437,13 +437,13 @@ create_exit_dialog (void)
   GtkWidget *cancel_button;
 
   exit_dialog = gtk_dialog_new_with_buttons (_("Gmanedit - Exit"),
-  	GTK_WINDOW(wprincipal), GTK_DIALOG_DESTROY_WITH_PARENT, NULL);
+    GTK_WINDOW(wprincipal), GTK_DIALOG_DESTROY_WITH_PARENT, NULL);
 
   label3 = gtk_label_new (_("Exit from gmanedit?"));
   gtk_widget_show (label3);
   gtk_container_add (GTK_CONTAINER (GTK_DIALOG (exit_dialog)->vbox), label3);
   gtk_misc_set_padding (GTK_MISC (label3), 10, 10);
-  
+
   ok_button = gtk_dialog_add_button (GTK_DIALOG (exit_dialog),
                 GTK_STOCK_OK, GTK_RESPONSE_OK);
   cancel_button = gtk_dialog_add_button (GTK_DIALOG (exit_dialog),
@@ -478,7 +478,7 @@ create_wpreferences (void)
 //  tooltips = gtk_tooltips_new ();
 
   wpreferences = gtk_dialog_new_with_buttons (_("Gmanedit - Preferences"),
-  	GTK_WINDOW(wprincipal), GTK_DIALOG_DESTROY_WITH_PARENT, NULL);
+    GTK_WINDOW(wprincipal), GTK_DIALOG_DESTROY_WITH_PARENT, NULL);
 
   vbox3 = gtk_vbox_new (FALSE, 0);
   gtk_widget_show (vbox3);
@@ -579,10 +579,10 @@ create_wizard (void)
   GdkPixbuf *icon_pixbuf;
   time_t fech;
   struct tm *fecha;
-	gchar cad[30];
-	gchar *meses[]={_("January"),_("February"),_("March"),_("April"),
-        		_("May"),_("June"),_("July"),_("August"),
-        		_("September"),_("October"),_("November"),_("December")};
+    gchar cad[30];
+    gchar *meses[]={_("January"),_("February"),_("March"),_("April"),
+                _("May"),_("June"),_("July"),_("August"),
+                _("September"),_("October"),_("November"),_("December")};
 
 //  tooltips = gtk_tooltips_new ();
 
@@ -612,7 +612,7 @@ create_wizard (void)
   gtk_fixed_put (GTK_FIXED (fixed1), mname, 248, 24);
   gtk_widget_set_size_request (mname, 158, 26);
 //  gtk_tooltips_set_tip (tooltips, mname, _("Short name to the man page (example: gmanedit)"), NULL);
-  
+
   mdate = gtk_entry_new ();
   HOOKUP_OBJECT (wizard, mdate, "mdate");
   gtk_widget_show (mdate);
@@ -621,12 +621,12 @@ create_wizard (void)
 //  gtk_tooltips_set_tip (tooltips, mdate, _("Creation date (default today)"), NULL);
   time(&fech);
   fecha=localtime(&fech);
-	
-	if (fecha!=NULL)
-	{
-		sprintf(cad,"%s %d, %d",meses[fecha->tm_mon],fecha->tm_mday,fecha->tm_year+1900);			
-		gtk_entry_set_text(GTK_ENTRY(mdate),cad);
-	}
+
+    if (fecha!=NULL)
+    {
+        sprintf(cad,"%s %d, %d",meses[fecha->tm_mon],fecha->tm_mday,fecha->tm_year+1900);
+        gtk_entry_set_text(GTK_ENTRY(mdate),cad);
+    }
 
   mtitle = gtk_entry_new ();
   HOOKUP_OBJECT (wizard, mtitle, "mtitle");
@@ -851,7 +851,7 @@ create_wizard (void)
 
   g_signal_connect (G_OBJECT (wizard), "close",
                     G_CALLBACK (on_dthe_end_finish), NULL);
-  
+
   g_signal_connect (G_OBJECT (wizard), "cancel",
                     G_CALLBACK (on_assistant_cancel), NULL);
   return wizard;
