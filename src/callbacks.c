@@ -98,7 +98,6 @@ on_copiar1_activate                    (GtkMenuItem     *menuitem,
     statusbar = lookup_widget (GTK_WIDGET (wprincipal), "statusbar1");
     gtk_statusbar_pop (GTK_STATUSBAR (statusbar), 1);
     gtk_statusbar_push (GTK_STATUSBAR (statusbar), 1, _("Text copied."));
-
 }
 
 
@@ -440,14 +439,6 @@ on_conforme_a1_activate                (GtkMenuItem     *menuitem,
 {
     const gchar *base=_(".SH \"CONFORMING TO\"\n");
     insert_label(base,"Section conforming to written.");
-}
-
-
-void
-on__1_activate                         (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
-{
-
 }
 
 

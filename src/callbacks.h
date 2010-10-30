@@ -142,10 +142,6 @@ on_conforme_a1_activate                (GtkMenuItem     *menuitem,
                                         gpointer         user_data);
 
 void
-on__1_activate                         (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
-
-void
 on_otro1_activate                      (GtkMenuItem     *menuitem,
                                         gpointer         user_data);
 
