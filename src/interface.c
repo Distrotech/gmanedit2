@@ -496,6 +496,7 @@ create_wpreferences (void)
 
   entry_command = gtk_entry_new ();
   gtk_widget_show (entry_command);
+  gtk_entry_set_max_length (entry_command, 100);
   HOOKUP_OBJECT (wpreferences, entry_command, "entry_command");
 
   gtk_box_pack_start (GTK_BOX (hbox3), entry_command, FALSE, TRUE, 0);
@@ -607,6 +608,7 @@ create_wizard (void)
   gtk_box_pack_start (GTK_BOX (druid_vbox2), fixed1, TRUE, TRUE, 0);
 
   mname = gtk_entry_new ();
+  gtk_entry_set_max_length (mname, 100);
   HOOKUP_OBJECT (wizard, mname, "mname");
   gtk_widget_show (mname);
   gtk_fixed_put (GTK_FIXED (fixed1), mname, 248, 24);
@@ -614,6 +616,7 @@ create_wizard (void)
 //  gtk_tooltips_set_tip (tooltips, mname, _("Short name to the man page (example: gmanedit)"), NULL);
 
   mdate = gtk_entry_new ();
+  gtk_entry_set_max_length (mdate, 100);
   HOOKUP_OBJECT (wizard, mdate, "mdate");
   gtk_widget_show (mdate);
   gtk_fixed_put (GTK_FIXED (fixed1), mdate, 248, 80);
@@ -629,6 +632,7 @@ create_wizard (void)
     }
 
   mtitle = gtk_entry_new ();
+  gtk_entry_set_max_length (mtitle, 100);
   HOOKUP_OBJECT (wizard, mtitle, "mtitle");
   gtk_widget_show (mtitle);
   gtk_fixed_put (GTK_FIXED (fixed1), mtitle, 248, 136);

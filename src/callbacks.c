@@ -931,7 +931,7 @@ on_dthe_end_finish                     (GtkAssistant *assistant,
 {
    GtkWidget *ch,*text,*druid;
    gchar *nombre,*snumber,*date,*title;
-   gchar cadena[500];
+   gchar cadena[5000];
    gint number;
 
 /* Init for main_window */
