@@ -47,7 +47,7 @@ static const GtkActionEntry entries[] = {
   { "SelectAll", GTK_STOCK_SELECT_ALL, N_("_Select All"), NULL, "", G_CALLBACK(on_select_all1_activate) },
   { "InsertMenu", NULL, "_Insert" },
   { "BasicPage", NULL, N_("Basic Page"), NULL, "", G_CALLBACK(on_pagina_base1_activate) },
-  { "Title", NULL, N_("Titel"), NULL, "", G_CALLBACK(on_titulo_activate) },
+  { "Title", NULL, N_("Title"), NULL, "", G_CALLBACK(on_titulo_activate) },
   { "Date", NULL, N_("Date"), NULL, "", G_CALLBACK(on_data1_activate) },
   { "SectionMenu", NULL, "Section" },
   { "Name", NULL, N_("Name"), NULL, "", G_CALLBACK(on_nome1_activate) },
