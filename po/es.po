@@ -20,52 +20,45 @@ msgstr "_Nuevo"
 
 #: src/interface.c:38
 msgid "New _Wizard page"
-msgstr "Nueva página con _Asistente"
+msgstr "Nueva _página de asistente"
 
 #: src/interface.c:39
-#, fuzzy
 msgid "_Open..."
-msgstr "Abrir"
+msgstr "_Abrir..."
 
 #: src/interface.c:40
-#, fuzzy
 msgid "_Save"
-msgstr "Guardar"
+msgstr "_Guardar"
 
 #: src/interface.c:41
 msgid "Save _As..."
-msgstr ""
+msgstr "Guardar _como..."
 
 #: src/interface.c:42
 msgid "_Quit"
-msgstr ""
+msgstr "_Salir"
 
 #: src/interface.c:44
-#, fuzzy
 msgid "Cu_t"
-msgstr "Cortar"
+msgstr "Cor_tar"
 
 #: src/interface.c:45
-#, fuzzy
 msgid "_Copy"
-msgstr "Copiar"
+msgstr "_Copiar"
 
 #: src/interface.c:46
-#, fuzzy
 msgid "_Paste"
-msgstr "Pegar"
+msgstr "_Pegar"
 
 #: src/interface.c:47
 msgid "_Select All"
-msgstr "Seleccionar todo"
+msgstr "Seleccionar _Todo"
 
 #: src/interface.c:49
-#, fuzzy
 msgid "Basic Page"
-msgstr "Página base"
+msgstr "Página básica"
 
 #: src/interface.c:50
-#, fuzzy
 msgid "Titel"
 msgstr "Título"
 
@@ -82,9 +75,8 @@ msgid "Synopsis"
 msgstr "Sinopsis"
 
 #: src/interface.c:55
-#, fuzzy
 msgid "Configuration"
-msgstr "Conforme a"
+msgstr "Configuración"
 
 #: src/interface.c:56
 msgid "Description"
@@ -95,9 +87,8 @@ msgid "Options"
 msgstr "Opciones"
 
 #: src/interface.c:58
-#, fuzzy
 msgid "Return value"
-msgstr "Valores devueltos"
+msgstr "Valor devuelto"
 
 #: src/interface.c:59
 msgid "Exit status"
@@ -105,20 +96,19 @@ msgstr "Estados de salida"
 
 #: src/interface.c:60
 msgid "Errors"
-msgstr ""
+msgstr "Errores"
 
 #: src/interface.c:61
 msgid "Environment"
 msgstr "Entorno"
 
 #: src/interface.c:62
-#, fuzzy
 msgid "Files"
-msgstr "Fichero"
+msgstr "Ficheros"
 
 #: src/interface.c:63
 msgid "Versions"
-msgstr ""
+msgstr "Versiones"
 
 #: src/interface.c:64
 msgid "Conforming to"
@@ -133,13 +123,12 @@ msgid "Bugs"
 msgstr "Fallos"
 
 #: src/interface.c:67
-#, fuzzy
 msgid "Example"
-msgstr "Ejemplos"
+msgstr "Ejemplo"
 
 #: src/interface.c:68
 msgid "See also"
-msgstr "Ver también"
+msgstr "Véase también"
 
 #: src/interface.c:70
 msgid "Left"
@@ -159,47 +148,45 @@ msgstr "Desactivar"
 
 #: src/interface.c:76
 msgid "Bold"
-msgstr ""
+msgstr "Negrita"
 
 #: src/interface.c:77
 msgid "Bold - Roman"
-msgstr ""
+msgstr "Negrita - Roman"
 
 #: src/interface.c:78
 msgid "Italic"
-msgstr ""
+msgstr "Itálica"
 
 #: src/interface.c:79
 msgid "Italic - Bold"
-msgstr ""
+msgstr "Itálica - Negrita"
 
 #: src/interface.c:80
 msgid "Italic - Roman"
-msgstr ""
+msgstr "Itálica - Roman"
 
 #: src/interface.c:81
 msgid "Roman - Bold"
-msgstr ""
+msgstr "Roman - Negrita"
 
 #: src/interface.c:82
 msgid "Roman - Italic"
-msgstr ""
+msgstr "Roman - Itálica"
 
 #: src/interface.c:83
 msgid "Small - Bold"
-msgstr ""
+msgstr "Pequeña - Negrita"
 
 #: src/interface.c:84
 msgid "Small"
-msgstr ""
+msgstr "Pequeña"
 
 #: src/interface.c:86
-#, fuzzy
 msgid "New Paragraph"
-msgstr "Nuevo párrafo"
+msgstr "Párrafo nuevo"
 
 #: src/interface.c:87
-#, fuzzy
 msgid "Paragraph Start"
 msgstr "Inicio del párrafo"
 
@@ -213,7 +200,7 @@ msgstr "Fin del margen"
 
 #: src/interface.c:92
 msgid "Default tabs"
-msgstr "Tabulador por defecto"
+msgstr "Pestañas predeterminadas"
 
 #: src/interface.c:93
 msgid "Subheader"
@@ -221,49 +208,43 @@ msgstr "Subcabecera"
 
 #: src/interface.c:94
 msgid "Comments"
-msgstr ""
+msgstr "Comentarios"
 
 #: src/interface.c:96
-#, fuzzy
 msgid "View created page"
-msgstr "Página creada"
+msgstr "Ver página creada"
 
 #: src/interface.c:97
-#, fuzzy
 msgid "_Preferences"
-msgstr "Preferencias"
+msgstr "_Preferencias"
 
 #: src/interface.c:99
 msgid "H_elp"
 msgstr "A_yuda"
 
 #: src/interface.c:100
-#, fuzzy
 msgid "_Home page"
-msgstr "Nueva página"
+msgstr "Página de _inicio"
 
 #: src/interface.c:101
 msgid "_About"
-msgstr ""
+msgstr "Acerca _de"
 
 #: src/interface.c:213
 msgid "Gmanedit - Gnome manpages editor"
-msgstr ""
+msgstr "Gmanedit - Editor de páginas de manual para GNOME"
 
 #: src/interface.c:272
-#, fuzzy
 msgid "Gmanedit - Select file"
-msgstr "Escoge fichero"
+msgstr "Gmanedit - Seleccione fichero"
 
 #: src/interface.c:289
-#, fuzzy
 msgid "Gmanedit - Saving file"
-msgstr "Salvando el fichero"
+msgstr "Gmanedit - Guardando archivo"
 
 #: src/interface.c:319
-#, fuzzy
 msgid "Gmanedit - Search and replace"
-msgstr "Buscar y reemplazar"
+msgstr "Gmanedit - Buscar y reemplazar"
 
 #: src/interface.c:332
 msgid "Search:         "
@@ -271,39 +252,35 @@ msgstr "Buscar:        "
 
 #: src/interface.c:340 src/interface.c:354
 msgid "Option not yet available"
-msgstr "Opción no disponible"
+msgstr "Opción aún no disponible"
 
 #: src/interface.c:346
 msgid "Replace with: "
 msgstr "Reemplazar por: "
 
 #: src/interface.c:422
-#, fuzzy
 msgid "Man Pages Editor"
-msgstr "Título de la página:"
+msgstr "Editor de páginas de manual"
 
 #: src/interface.c:439
-#, fuzzy
 msgid "Gmanedit - Exit"
-msgstr "Escoge fichero"
+msgstr "Gmanedit - Salir"
 
 #: src/interface.c:442
 msgid "Exit from gmanedit?"
-msgstr "¿Salir do gmanedit?"
+msgstr "¿Salir de gmanedit?"
 
 #: src/interface.c:480
-#, fuzzy
 msgid "Gmanedit - Preferences"
-msgstr "Escoge fichero"
+msgstr "Gmanedit - Preferencias"
 
 #: src/interface.c:493
-#, fuzzy
 msgid "Command to test created man pages: "
-msgstr "Comando para ver las páginas creadas: "
+msgstr "Orden para revisar las páginas de manual creadas: "
 
 #: src/interface.c:502
 msgid "xterm -e man "
-msgstr ""
+msgstr "xterm -e man "
 
 #: src/interface.c:506
 msgid "Internet browser"
@@ -443,7 +420,7 @@ msgstr "Paso 2: Número de sección"
 
 #: src/interface.c:750
 msgid "What sections would you like include?"
-msgstr "¿Qué secciones quiere incluir?"
+msgstr "¿Qué secciones desea incluir?"
 
 #: src/interface.c:754
 msgid "NAME"
@@ -458,6 +435,8 @@ msgid ""
 "CONFIGURATION\n"
 "(Section 4)"
 msgstr ""
+"CONFIGURACIÓN\n"
+"(Sección 4)"
 
 #: src/interface.c:771
 msgid "DESCRIPTION"
@@ -501,6 +480,8 @@ msgid ""
 "VERSIONS\n"
 "(Section 2/3)"
 msgstr ""
+"VERSIONES\n"
+"(Sección 2/3)"
 
 #: src/interface.c:815
 msgid "CONFORMING TO"
@@ -556,7 +537,6 @@ msgid "Text pasted."
 msgstr "Texto pegado."
 
 #: src/callbacks.c:126
-#, fuzzy
 msgid ""
 ".\\\"Created with GNOME Manpages Editor\n"
 ".\\\"http://sourceforge.net/projects/gmanedit2\n"
@@ -584,41 +564,36 @@ msgid ""
 "\n"
 ".SH SEE ALSO\n"
 msgstr ""
-".\\\"Creada con el GNOME Manpages Editor (gmanedit)\n"
-".\\\"http://gmanedit.sourceforge.net\n"
-".\\\"Sergio Rua <srua@gpul.org>\n"
-".\\\"\n"
-".TH programa <nº seccion> \"<fecha>\" \"<título>\"\n"
+".\\\"Creado con el editor de páginas de manual para GNOME\n"
+".\\\"http://sourceforge.net/projects/gmanedit2\n"
+"\n"
+".\\\"Reemplace <programa> con el nombre del programa, x con el número de\n"
+"sección"
+".TH <programa> x \"<fecha>\" \"\" \"Manual de usuario de Linux\"\n"
 "\n"
 ".SH NOMBRE\n"
-"<programa> \\-programa para...\n"
+"<programa> \\- programa para...\n"
 "\n"
-".SH SINOPSIS\n"
+"..SH SINOPSIS\n"
 ".B <programa>\n"
 ".RI [ opciones ]\n"
 ".br\n"
 "\n"
-".SH DESCRIPCION\n"
-"Esta página de manual explica el\n"
-".B <programa>\n"
-"programa. Este programa...\n"
-".PP\n"
-"\\fB<programa>\\fP es para...\n"
+".SH DESCRIPCIÓN\n"
+"Esta página de manual explica el uso del programa \\fB<program>\\fP."
+"El programa \\fB<programa>\\fP sirve para...\n"
 "\n"
-".SH OPCIÓNES\n"
-".B\n"
-".IP -OPCIÓN\n"
+".SH OPCIONES\n"
+".IP \\fB\\-OPTION\\fP\n"
 "Esta opción...\n"
 "\n"
-".SH LICENCIA\n"
+".SH NOTAS\n"
 "\n"
-".SH FALLOS\n"
-"\n"
-".SH AUTOR\n"
+".SH \"VÉASE TAMBIÉN\"\n"
 
 #: src/callbacks.c:153
 msgid "New file."
-msgstr "Nuevo fichero."
+msgstr "Fichero nuevo."
 
 #: src/callbacks.c:269
 msgid "File saved."
@@ -793,8 +768,8 @@ msgid ""
 "This manual page explains the\n"
 ".B "
 msgstr ""
-".SH DESCRIPCION\n"
-"Esta página del manual explica el\n"
+".SH DESCRIPCIÓN\n"
+"Esta página de manual explica el\n"
 ".B "
 
 #: src/callbacks.c:1019
@@ -814,7 +789,7 @@ msgid ""
 "\\fP is for...\n"
 "\n"
 msgstr ""
-"\\fP es para...\n"
+"\\fP sirve para...\n"
 "\n"
 
 #: src/callbacks.c:1026
@@ -947,7 +922,7 @@ msgstr ""
 #~ msgstr "Autor"
 
 #~ msgid "Other"
-#~ msgstr "Otro"
+#~ msgstr "Otros"
 
 #~ msgid "Empty lines"
 #~ msgstr "Líneas en blanco"
@@ -977,23 +952,20 @@ msgstr ""
 #~ msgid ".UN <address>\n"
 #~ msgstr ".UN <dirección>\n"
 
-#, fuzzy
 #~ msgid "Can not open Internet Browser"
-#~ msgstr "No pudo abrirse el Navegador de Internet"
+#~ msgstr "No se pudo abrir el navegador de Internet"
 
 #~ msgid "_Search"
 #~ msgstr "_Buscar"
 
-#, fuzzy
 #~ msgid "_Replace"
 #~ msgstr "_Reemplazar"
 
 #~ msgid "_Close"
 #~ msgstr "_Cerrar"
 
-#, fuzzy
 #~ msgid "yelp"
-#~ msgstr "A_yuda"
+#~ msgstr "yelp"
 
 #~ msgid "Select your internet browser from this list"
 #~ msgstr "Selecione su navegador de internet de la lista"
@@ -1005,19 +977,19 @@ msgstr ""
 #~ msgstr "Julio"
 
 #~ msgid "Short name to the man page (example: gmanedit)"
-#~ msgstr "Nombre corto para la página del manual (ejemplo: gmanedit)"
+#~ msgstr "Nombre corto para la página de manual (ejemplo: gmanedit)"
 
 #~ msgid "Creation date (default today)"
-#~ msgstr "Fecha de creación (por defecto hoy)"
+#~ msgstr "Fecha de creación (por defecto, hoy)"
 
 #~ msgid "Long man page name or title"
-#~ msgstr "Nombre largo o título para la página"
+#~ msgstr "Nombre largo o título para la página de manual"
 
 #~ msgid "First_Name Last_Name <my@email.com>"
 #~ msgstr "Nombre Apellidos <yo@dominio.com>"
 
 #~ msgid "Section 7: Macro packages and Coventions"
-#~ msgstr "Sección 7: Macro paquetes y Conveciones"
+#~ msgstr "Sección 7: Macro paquetes y Convenciones"
 
 #~ msgid "Section 9: Kernel routines"
 #~ msgstr "Sección 9: Rutinas del kernel"
@@ -1035,7 +1007,7 @@ msgstr ""
 #~ msgstr "ERRORES"
 
 #~ msgid "OPTIONS"
-#~ msgstr "OPCIÓNES"
+#~ msgstr "OPCIONES"
 
 #~ msgid "AUTHOR"
 #~ msgstr "AUTOR"
@@ -1047,7 +1019,7 @@ msgstr ""
 #~ msgstr "SEGURIDAD"
 
 #~ msgid "New File."
-#~ msgstr "Nuevo fichero."
+#~ msgstr "Fichero nuevo."
 
 #~ msgid ""
 #~ ".SH USAGE\n"
@@ -1078,7 +1050,7 @@ msgstr ""
 #~ "\n"
 
 #~ msgid "Start a margin"
-#~ msgstr "Inicio de un margen"
+#~ msgstr "Iniciar un margen"
 
 #~ msgid "Like .SH"
 #~ msgstr "Como .SH"
@@ -1086,21 +1058,20 @@ msgstr ""
 #~ msgid "Section"
 #~ msgstr "Sección"
 
-#, fuzzy
 #~ msgid "Justify"
-#~ msgstr "Justificación"
+#~ msgstr "Justificar"
 
 #~ msgid "Filling"
 #~ msgstr "Relleno"
 
 #~ msgid "Font"
-#~ msgstr "Fuente"
+#~ msgstr "Tipografía"
 
 #~ msgid "Paragraphs"
 #~ msgstr "Párrafos"
 
 #~ msgid "Margin"
-#~ msgstr "Marjen"
+#~ msgstr "Margen"
 
 #~ msgid "Hypertext"
 #~ msgstr "Hipertexto"
@@ -1136,7 +1107,7 @@ msgstr ""
 #~ msgstr "Salir"
 
 #~ msgid "Exit from gmanedit"
-#~ msgstr "¿Salir del gmanedit?"
+#~ msgstr "Salir de gmanedit"
 
 #~ msgid "Wizard"
 #~ msgstr "Asistente"
