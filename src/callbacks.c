@@ -561,53 +561,61 @@ on_xustificacion_a_esquerda1_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
     const gchar *base=".AD L\n";
     insert_label(base,"Left justifier.");
-
 }
 
 void
 on_paxina_creada1_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
     GtkWidget *text,*statusbar;
-    FILE *f;
-    gint bytes_written=0;
-    gchar temp[30];
-    gchar command[50];
+    gchar filename[31];
+    gchar command[51];
     const gchar *datos;
-    gint exitstatus;
 
-    /* I read conf file ~/.gmaneditrc */
+    /* create temporary file */
+    g_snprintf(filename, sizeof(filename) - 1, "/tmp/gmanedit.XXXXXX");
+    mkstemp(filename);
 
-    strcpy(temp, "/tmp/gmanedit.XXXXXX");
-    mkstemp (temp);
-    datos=ReadConfFromFile("COMMAND");
+    /* get the configured preview command from ~/.gmaneditrc */
+    datos = ReadConfFromFile("COMMAND");
 
-    if (datos==NULL)
-        snprintf(command, sizeof command, "xterm -e man -l %s", temp);
-    else
-        snprintf(command, sizeof command, "%s -l %s", datos, temp);
+    if (datos == NULL) {
+        /* no seting found - use default */
+        g_snprintf(command, sizeof(command) - 1, "xterm -e man %s", filename);
+    } else {
+        /* use program specified by user */
+        g_snprintf(command, sizeof(command) - 1, "%s %s", datos, filename);
+    }
 
-    text=lookup_widget(wprincipal,"text");
+    /* update the status bar */
+    statusbar = lookup_widget(wprincipal, "statusbar1");
+    gtk_statusbar_pop(GTK_STATUSBAR(statusbar), 1);
+    gtk_statusbar_push(GTK_STATUSBAR(statusbar), 1 ,_("Page preview."));
 
-    /* Barra de estado */
-    statusbar=lookup_widget(wprincipal,"statusbar1");
-    gtk_statusbar_pop(GTK_STATUSBAR(statusbar),1);
-    gtk_statusbar_push(GTK_STATUSBAR(statusbar),1,_("Page preview."));
+    /* get the current content of the text view */
+    text = lookup_widget(wprincipal, "text");
 
-    GtkTextBuffer *b = gtk_text_view_get_buffer (GTK_TEXT_VIEW(text));
+    GtkTextBuffer *b = gtk_text_view_get_buffer(GTK_TEXT_VIEW(text));
     GtkTextIter startiter, enditer;
-    gtk_text_buffer_get_start_iter (b, &startiter);
-    gtk_text_buffer_get_end_iter (b, &enditer);
-    datos=gtk_text_buffer_get_text (b, &startiter, &enditer, FALSE);
-    if ((f=fopen(temp,"w"))!=NULL) {
-        bytes_written=fwrite(datos,sizeof(gchar),strlen(datos),f);
-        fclose(f);
-    } else
-        mensaje(strerror(errno),GTK_MESSAGE_ERROR);
+    gtk_text_buffer_get_start_iter(b, &startiter);
+    gtk_text_buffer_get_end_iter(b, &enditer);
+    datos = gtk_text_buffer_get_text (b, &startiter, &enditer, FALSE);
 
+    /* write the content of the text view to a temporary file */
+    if (!g_file_set_contents(filename, datos, -1, NULL)) {
+        /* writing failed */
+        mensaje(strerror(errno), GTK_MESSAGE_ERROR);
+    } else {
+        /* show preview */
+        g_spawn_command_line_async(command, NULL);
 
-    if (bytes_written>0)
-        g_spawn_command_line_sync(command, NULL, NULL, &exitstatus, NULL);
-    unlink(temp);
+        /* wait one second to make sure the program has had enough time
+         * to read the temporary file
+         * FIXME: there must be a better way to ensure this! */
+        sleep(1);
+    }
+
+    /* remove the temporary file */
+    unlink(filename);
 }
 
 void
@@ -999,14 +1007,13 @@ on_home_page1_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
     const gchar *browser;
     gchar buf[1024];
-    gint exitstatus;
 
     browser=ReadConfFromFile("INTERNET_BROWSER");
     if (browser==NULL)
         browser="mozilla";
     snprintf(buf, sizeof buf, "%s http://sourceforge.net/projects/gmanedit2", browser);
 
-    g_spawn_command_line_sync(buf, NULL, NULL, &exitstatus, NULL);
+    g_spawn_command_line_async(buf, NULL);
 }
 
 static void help_without_gnome(GtkWidget *wid)
@@ -1014,7 +1021,6 @@ static void help_without_gnome(GtkWidget *wid)
     GtkWidget *statusbar;
     const gchar *datos;
     gchar temp[10],command[1024];
-    gint exitstatus;
 
     strcpy(temp," 7 man");
     datos = ReadConfFromFile("COMMAND");
@@ -1024,7 +1030,7 @@ static void help_without_gnome(GtkWidget *wid)
     else
         snprintf(command, sizeof command, "%s %s", datos, temp);
 
-    g_spawn_command_line_sync(command, NULL, NULL, &exitstatus, NULL);
+    g_spawn_command_line_async(command, NULL);
 
     /* Barra de estado */
     statusbar=lookup_widget(GTK_WIDGET(wprincipal),"statusbar1");
