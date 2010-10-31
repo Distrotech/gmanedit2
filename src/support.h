@@ -46,3 +46,4 @@ GdkPixbuf* create_image(const gchar *filename);
 void add_pixmap_directory(const gchar *directory);
 void open_man_file(gchar *manfile);
 const gchar *ReadConfFromFile(const gchar *variable);
+gboolean OpenWebsite(const gchar *url);

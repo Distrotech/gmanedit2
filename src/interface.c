@@ -96,6 +96,7 @@ static const GtkActionEntry entries[] = {
     { "Preferences", GTK_STOCK_PREFERENCES, N_("_Preferences"), NULL, "", G_CALLBACK(on_opcions_programa1_activate) },
     { "HelpMenu", NULL, "_Help" },
     { "Help", GTK_STOCK_HELP, N_("H_elp"), NULL, "", G_CALLBACK(on_help1_activate) },
+    { "Howto", NULL, N_("Linux Man Page H_owto"), NULL, "", G_CALLBACK(on_howto_activate) },
     { "Homepage", NULL, N_("_Home page"), NULL, "", G_CALLBACK(on_home_page1_activate) },
     { "About", GTK_STOCK_ABOUT, N_("_About"), NULL, "", G_CALLBACK(on_about2_activate) },
 };
@@ -179,6 +180,7 @@ static const char *ui_description =
     "        </menu>"
     "        <menu action='HelpMenu'>"
     "               <menuitem action='Help'/>"
+    "               <menuitem action='Howto'/>"
     "               <menuitem action='Homepage'/>"
     "               <menuitem action='About'/>"
     "        </menu>"

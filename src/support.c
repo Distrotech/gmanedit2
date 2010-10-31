@@ -185,3 +185,18 @@ const gchar *ReadConfFromFile(const gchar *variable)
     fclose(f);
     return((gchar *)NULL);
 }
+
+gboolean OpenWebsite(const gchar *url)
+{
+    const gchar *browser;
+    gchar buf[1024];
+
+    browser = ReadConfFromFile("INTERNET_BROWSER");
+
+    if (browser == NULL)
+        browser = "firefox";
+
+    g_snprintf(buf, sizeof(buf) - 1, "%s %s", browser, url);
+
+    return g_spawn_command_line_async(buf, NULL);
+}

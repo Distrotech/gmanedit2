@@ -815,6 +815,13 @@ on_help1_activate(GtkMenuItem *menuitem, gpointer user_data)
 
 
 void
+on_howto_activate(GtkMenuItem *menuitem, gpointer user_data)
+{
+    OpenWebsite("http://www.schweikhardt.net/Man-Page.html");
+}
+
+
+void
 on_select_all1_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
     GtkWidget *text,*statusbar;
@@ -1005,15 +1012,7 @@ void insert_label(const gchar *base,const gchar *text_info)
 void
 on_home_page1_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
-    const gchar *browser;
-    gchar buf[1024];
-
-    browser=ReadConfFromFile("INTERNET_BROWSER");
-    if (browser==NULL)
-        browser="mozilla";
-    snprintf(buf, sizeof buf, "%s http://sourceforge.net/projects/gmanedit2", browser);
-
-    g_spawn_command_line_async(buf, NULL);
+    OpenWebsite("http://sourceforge.net/projects/gmanedit2");
 }
 
 static void help_without_gnome(GtkWidget *wid)
