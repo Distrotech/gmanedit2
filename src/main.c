@@ -27,18 +27,18 @@
 #define cuantos (sizeof(tabla)/sizeof(GtkTargetEntry))
 
 enum {
-          TARGET_STRING,
-          TARGET_URL,
-          TARGET_MAN
+    TARGET_STRING,
+    TARGET_URL,
+    TARGET_MAN
 };
 
 GtkWidget *wprincipal;
 
-static GtkTargetEntry tabla[]={
-        { "STRING", 0, TARGET_STRING },
-        { "text/plain", 0, TARGET_STRING },
-        { "text/uri-list", 0, TARGET_URL },
-        { "application/x-troff-man", 0, TARGET_MAN }
+static GtkTargetEntry tabla[]= {
+    { "STRING", 0, TARGET_STRING },
+    { "text/plain", 0, TARGET_STRING },
+    { "text/uri-list", 0, TARGET_URL },
+    { "application/x-troff-man", 0, TARGET_MAN }
 };
 
 
@@ -75,8 +75,7 @@ main (int argc, char *argv[])
                       GDK_ACTION_COPY|GDK_ACTION_MOVE);
 
     /* set the font if it has been defined in the config file */
-    if ((fname = ReadConfFromFile("FONT")))
-    {
+    if ((fname = ReadConfFromFile("FONT"))) {
         fdesc = pango_font_description_from_string(fname);
         gtk_widget_modify_font(text, fdesc);
         pango_font_description_free(fdesc);
@@ -84,8 +83,7 @@ main (int argc, char *argv[])
 
     /* if a command line argument has been specified, check if it is a
      * file and try to load it */
-    if (argc && g_file_test (argv[1], G_FILE_TEST_IS_REGULAR))
-    {
+    if (argc && g_file_test (argv[1], G_FILE_TEST_IS_REGULAR)) {
 
         open_man_file(argv[1]);
         filename = g_strdup(argv[1]);

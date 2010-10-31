@@ -54,8 +54,7 @@ static void help_without_gnome(GtkWidget *wid);
 
 /* Eventos */
 void
-on_wprincipal_delete                  (GtkObject       *object,
-                                        gpointer         user_data)
+on_wprincipal_delete (GtkObject *object, gpointer  user_data)
 {
     if (exit_dialog==NULL)
         exit_dialog=create_exit_dialog();
@@ -64,8 +63,7 @@ on_wprincipal_delete                  (GtkObject       *object,
 }
 
 void
-on_cortar1_activate                    (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
+on_cortar1_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
     GtkWidget *text,*statusbar;
 
@@ -79,8 +77,7 @@ on_cortar1_activate                    (GtkMenuItem     *menuitem,
 
 
 void
-on_copiar1_activate                    (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
+on_copiar1_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
     GtkWidget *text,*statusbar;
 
@@ -94,8 +91,7 @@ on_copiar1_activate                    (GtkMenuItem     *menuitem,
 
 
 void
-on_pegar1_activate                     (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
+on_pegar1_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
     GtkWidget *text,*statusbar;
 
@@ -110,29 +106,27 @@ on_pegar1_activate                     (GtkMenuItem     *menuitem,
 
 
 void
-on_pagina_base1_activate               (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
+on_pagina_base1_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
     const gchar *base=_(
-    ".\\\"Created with GNOME Manpages Editor\n"
-    ".\\\"http://sourceforge.net/projects/gmanedit2\n\n"
-    ".\\\"Replace <program> with the program name, x with the Section Number\n"
-    ".TH <program> x \"<date>\" \"\" \"Linux User\'s Manual\"\n\n"
-    ".SH NAME\n<program> \\- program for...\n\n."
-    ".SH SYNOPSIS\n.B <program>\n.RI [ options ]\n.br\n\n"
-    ".SH DESCRIPTION\nThis manual page explains the \\fB<program>\\fP program."
-    " The \\fB<program>\\fP program is for...\n\n"
-    ".SH OPTIONS\n.IP \\fB\\-OPTION\\fP\nThis option...\n\n"
-    ".SH NOTES\n\n"
-    ".SH \"SEE ALSO\"\n");
+                          ".\\\"Created with GNOME Manpages Editor\n"
+                          ".\\\"http://sourceforge.net/projects/gmanedit2\n\n"
+                          ".\\\"Replace <program> with the program name, x with the Section Number\n"
+                          ".TH <program> x \"<date>\" \"\" \"Linux User\'s Manual\"\n\n"
+                          ".SH NAME\n<program> \\- program for...\n\n."
+                          ".SH SYNOPSIS\n.B <program>\n.RI [ options ]\n.br\n\n"
+                          ".SH DESCRIPTION\nThis manual page explains the \\fB<program>\\fP program."
+                          " The \\fB<program>\\fP program is for...\n\n"
+                          ".SH OPTIONS\n.IP \\fB\\-OPTION\\fP\nThis option...\n\n"
+                          ".SH NOTES\n\n"
+                          ".SH \"SEE ALSO\"\n");
 
     insert_label(base,"Page created.");
 }
 
 
 void
-on_novo1_activate                      (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
+on_novo1_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
     GtkWidget *text,*statusbar;
 
@@ -144,8 +138,7 @@ on_novo1_activate                      (GtkMenuItem     *menuitem,
     gtk_statusbar_push (GTK_STATUSBAR (statusbar), 1, _("New file."));
 
     /* reset filename */
-    if (filename)
-    {
+    if (filename) {
         g_free(filename);
         filename = NULL;
     }
@@ -153,71 +146,62 @@ on_novo1_activate                      (GtkMenuItem     *menuitem,
 
 
 void
-on_abrir1_activate                     (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
+on_abrir1_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
     const gchar *temp;
 
     open_file = create_fileselection (GTK_WIDGET(wprincipal));
     gtk_widget_show (open_file);
-    if (gtk_dialog_run (GTK_DIALOG (open_file)) == GTK_RESPONSE_ACCEPT)
-    {
+    if (gtk_dialog_run (GTK_DIALOG (open_file)) == GTK_RESPONSE_ACCEPT) {
         temp = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (open_file));
         filename = g_strdup(temp);
         gtk_widget_hide(open_file);
         open_man_file(filename);
-    }
-    else
+    } else
         gtk_widget_destroy (open_file);
 }
 
 
 void
-on_gardar1_activate                    (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
+on_gardar1_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
-        const gchar *temp;
+    const gchar *temp;
     if (filename!=NULL)
         save_as(filename);
-    else
-    {
+    else {
         save_file=create_save_file(GTK_WIDGET(wprincipal));
         gtk_widget_show(save_file);
-                if (gtk_dialog_run (GTK_DIALOG (save_file)) == GTK_RESPONSE_ACCEPT)
-                {
-                 temp = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (save_file));
-                 filename = g_strdup(temp);
-                 gtk_widget_hide(save_file);
-                 save_as(filename);
-                }else{
-                 gtk_widget_destroy (save_file);
-                }
+        if (gtk_dialog_run (GTK_DIALOG (save_file)) == GTK_RESPONSE_ACCEPT) {
+            temp = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (save_file));
+            filename = g_strdup(temp);
+            gtk_widget_hide(save_file);
+            save_as(filename);
+        } else {
+            gtk_widget_destroy (save_file);
+        }
     }
 }
 
 
 void
-on_gardar_como1_activate               (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
+on_gardar_como1_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
-        const gchar *temp;
-        save_file=create_save_file(GTK_WIDGET(wprincipal));
-        gtk_widget_show(save_file);
-        if (gtk_dialog_run (GTK_DIALOG (save_file)) == GTK_RESPONSE_ACCEPT)
-                {
-                 temp = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (save_file));
-                 filename = g_strdup(temp);
-                 gtk_widget_hide(save_file);
-                 save_as(filename);
-        }else{
-                 gtk_widget_destroy (save_file);
-        }
+    const gchar *temp;
+    save_file=create_save_file(GTK_WIDGET(wprincipal));
+    gtk_widget_show(save_file);
+    if (gtk_dialog_run (GTK_DIALOG (save_file)) == GTK_RESPONSE_ACCEPT) {
+        temp = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (save_file));
+        filename = g_strdup(temp);
+        gtk_widget_hide(save_file);
+        save_as(filename);
+    } else {
+        gtk_widget_destroy (save_file);
+    }
 }
 
 
 void
-on_sair4_activate                      (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
+on_sair4_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
     if (exit_dialog==NULL)
         exit_dialog=create_exit_dialog();
@@ -235,18 +219,18 @@ static void save_as(gchar *name)
     char extension[5];
     int n;
 
-/* Esta comprabación se hace para permitir guardar un fichero comprimido */
-/* sin comprimir */
+    /* Esta comprabación se hace para permitir guardar un fichero comprimido */
+    /* sin comprimir */
     n = strlen(name)-3;
-        strncpy(extension,name+n,3);
-        if (!strncmp(extension,".gz",3))
-            in_gzip=1;
-        else
-            in_gzip=0;
+    strncpy(extension,name+n,3);
+    if (!strncmp(extension,".gz",3))
+        in_gzip=1;
+    else
+        in_gzip=0;
 
     text=lookup_widget(GTK_WIDGET(wprincipal),"text");
 
-/* Barra de estado */
+    /* Barra de estado */
     statusbar=lookup_widget(GTK_WIDGET(wprincipal),"statusbar1");
     gtk_statusbar_pop(GTK_STATUSBAR(statusbar),1);
 
@@ -261,18 +245,15 @@ static void save_as(gchar *name)
     else
         f=fopen(name,"w");
 
-    if ((f!=NULL) && (f!=Z_NULL))
-    {
-      if (!in_gzip)
-        bytes_written=fwrite(datos,sizeof(gchar),strlen(datos),f);
-      else
-        bytes_written=gzwrite(f,datos,strlen(datos));
-      gtk_statusbar_push(GTK_STATUSBAR(statusbar),1,_("File saved."));
-    }
-    else
-    {
-      gtk_statusbar_push(GTK_STATUSBAR(statusbar),1,_("File NOT saved."));
-      mensaje(strerror(errno),GTK_MESSAGE_ERROR);
+    if ((f!=NULL) && (f!=Z_NULL)) {
+        if (!in_gzip)
+            bytes_written=fwrite(datos,sizeof(gchar),strlen(datos),f);
+        else
+            bytes_written=gzwrite(f,datos,strlen(datos));
+        gtk_statusbar_push(GTK_STATUSBAR(statusbar),1,_("File saved."));
+    } else {
+        gtk_statusbar_push(GTK_STATUSBAR(statusbar),1,_("File NOT saved."));
+        mensaje(strerror(errno),GTK_MESSAGE_ERROR);
     }
     if (in_gzip)
         gzclose(f);
@@ -281,8 +262,7 @@ static void save_as(gchar *name)
 }
 
 void
-on_titulo_activate                     (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
+on_titulo_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
     const gchar *base=_(".TH <program> <section number> \"<date>\" \"\" \"Linux User\'s Manual\"\n\n");
 
@@ -291,18 +271,16 @@ on_titulo_activate                     (GtkMenuItem     *menuitem,
 
 
 void
-on_nome1_activate                      (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
+on_nome1_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
     const gchar *base=_(".SH NAME\n<program> \\- program for... \n");
 
-        insert_label(base,"Section name written.");
+    insert_label(base,"Section name written.");
 }
 
 
 void
-on_sinopsis1_activate                  (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
+on_sinopsis1_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
     const gchar *base=_(".SH SYNOPSIS\n");
 
@@ -311,8 +289,7 @@ on_sinopsis1_activate                  (GtkMenuItem     *menuitem,
 
 
 void
-on_configuration_activate                  (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
+on_configuration_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
     const gchar *base=_(".SH CONFIGURATION\n");
 
@@ -320,8 +297,7 @@ on_configuration_activate                  (GtkMenuItem     *menuitem,
 }
 
 void
-on_descripcion1_activate               (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
+on_descripcion1_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
     const gchar *base=_(".SH DESCRIPTION\n");
 
@@ -330,8 +306,7 @@ on_descripcion1_activate               (GtkMenuItem     *menuitem,
 
 
 void
-on_opcions1_activate                   (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
+on_opcions1_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
     const gchar *base=_(".SH OPTIONS\n");
 
@@ -340,8 +315,7 @@ on_opcions1_activate                   (GtkMenuItem     *menuitem,
 
 
 void
-on_valores_retornados1_activate        (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
+on_valores_retornados1_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
     const gchar *base=_(".SH \"RETURN VALUE\"\n");
 
@@ -350,8 +324,7 @@ on_valores_retornados1_activate        (GtkMenuItem     *menuitem,
 
 
 void
-on_estados_de_saida1_activate          (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
+on_estados_de_saida1_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
     const gchar *base=_(".SH \"EXIT STATUS\"\n");
     insert_label(base,"Section exit status written.");
@@ -359,8 +332,7 @@ on_estados_de_saida1_activate          (GtkMenuItem     *menuitem,
 
 
 void
-on_errors_activate                       (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
+on_errors_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
     const gchar *base=_(".SH ERRORS\n");
 
@@ -369,8 +341,7 @@ on_errors_activate                       (GtkMenuItem     *menuitem,
 
 
 void
-on_ficheiro1_activate                  (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
+on_ficheiro1_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
     const gchar *base=_(".SH FILES\n");
     insert_label(base,"Section files written.");
@@ -378,8 +349,7 @@ on_ficheiro1_activate                  (GtkMenuItem     *menuitem,
 
 
 void
-on_entorno1_activate                   (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
+on_entorno1_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
     const gchar *base=_(".SH ENVIRONMENT\n");
     insert_label(base,"Section environment written.");
@@ -387,8 +357,7 @@ on_entorno1_activate                   (GtkMenuItem     *menuitem,
 
 
 void
-on_versions_activate               (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
+on_versions_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
     const gchar *base=_(".SH VERSIONS\n");
     insert_label(base,"Section versions written.");
@@ -396,8 +365,7 @@ on_versions_activate               (GtkMenuItem     *menuitem,
 
 
 void
-on_notas1_activate                     (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
+on_notas1_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
     const gchar *base=_(".SH NOTES\n");
     insert_label(base,"Section notes written.");
@@ -405,8 +373,7 @@ on_notas1_activate                     (GtkMenuItem     *menuitem,
 
 
 void
-on_bugs1_activate                      (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
+on_bugs1_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
     const gchar *base=_(".SH BUGS\n");
     insert_label(base,"Section bugs written.");
@@ -414,8 +381,7 @@ on_bugs1_activate                      (GtkMenuItem     *menuitem,
 
 
 void
-on_exemplos1_activate                  (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
+on_exemplos1_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
     const gchar *base=_(".SH EXAMPLE\n");
 
@@ -424,8 +390,7 @@ on_exemplos1_activate                  (GtkMenuItem     *menuitem,
 
 
 void
-on_ver_tamen1_activate                 (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
+on_ver_tamen1_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
     const gchar *base=_(".SH \"SEE ALSO\"\n");
     insert_label(base,"Section see also written.");
@@ -433,8 +398,7 @@ on_ver_tamen1_activate                 (GtkMenuItem     *menuitem,
 
 
 void
-on_conforme_a1_activate                (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
+on_conforme_a1_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
     const gchar *base=_(".SH \"CONFORMING TO\"\n");
     insert_label(base,"Section conforming to written.");
@@ -442,8 +406,7 @@ on_conforme_a1_activate                (GtkMenuItem     *menuitem,
 
 
 void
-on_otro1_activate                      (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
+on_otro1_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
     const gchar *base=_(".SH \"<SECTION NAME>\"\n");
     insert_label(base,"Section other written.");
@@ -451,8 +414,7 @@ on_otro1_activate                      (GtkMenuItem     *menuitem,
 
 
 void
-on_ambas1_activate                     (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
+on_ambas1_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
     const gchar *base=".AD B\n";
     insert_label(base,"Right and left justify.");
@@ -460,8 +422,7 @@ on_ambas1_activate                     (GtkMenuItem     *menuitem,
 
 
 void
-on_activar1_activate                   (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
+on_activar1_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
     const gchar *base=".FI\n";
     insert_label(base,"Filling enabled.");
@@ -469,8 +430,7 @@ on_activar1_activate                   (GtkMenuItem     *menuitem,
 
 
 void
-on_desactivar1_activate                (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
+on_desactivar1_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
     const gchar *base=".NF\n";
     insert_label(base,"Filling disabled.");
@@ -478,8 +438,7 @@ on_desactivar1_activate                (GtkMenuItem     *menuitem,
 
 
 void
-on_bold1_activate                      (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
+on_bold1_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
     const gchar *base=".B\n";
     insert_label(base,"Font Bold selected.");
@@ -487,8 +446,7 @@ on_bold1_activate                      (GtkMenuItem     *menuitem,
 
 
 void
-on_bold_roman1_activate                (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
+on_bold_roman1_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
     const gchar *base=".BR\n";
     insert_label(base,"Font Bold-Roman selected.");
@@ -496,8 +454,7 @@ on_bold_roman1_activate                (GtkMenuItem     *menuitem,
 
 
 void
-on_italica1_activate                   (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
+on_italica1_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
     const gchar *base=".I\n";
     insert_label(base,"Font Italic selected.");
@@ -505,8 +462,7 @@ on_italica1_activate                   (GtkMenuItem     *menuitem,
 
 
 void
-on_italica_bold1_activate              (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
+on_italica_bold1_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
     const gchar *base=".IB\n";
     insert_label(base,"Font Italic-Bold selected.");
@@ -514,8 +470,7 @@ on_italica_bold1_activate              (GtkMenuItem     *menuitem,
 
 
 void
-on_italica_roman1_activate             (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
+on_italica_roman1_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
     const gchar *base=".IR\n";
     insert_label(base,"Font Italic-Roman selected.");
@@ -523,8 +478,7 @@ on_italica_roman1_activate             (GtkMenuItem     *menuitem,
 
 
 void
-on_roman_bold1_activate                (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
+on_roman_bold1_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
     const gchar *base=".RB\n";
     insert_label(base,"Font Roman-Bold selected.");
@@ -532,8 +486,7 @@ on_roman_bold1_activate                (GtkMenuItem     *menuitem,
 
 
 void
-on_roman_italic1_activate              (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
+on_roman_italic1_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
     const gchar *base=".RI\n";
     insert_label(base,"Font Roman-Italic selected.");
@@ -541,8 +494,7 @@ on_roman_italic1_activate              (GtkMenuItem     *menuitem,
 
 
 void
-on_small_bold1_activate                (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
+on_small_bold1_activate(GtkMenuItem *menuitem, gpointer nuser_data)
 {
     const gchar *base=".SB\n";
     insert_label(base,"Font Small-Bold selected.");
@@ -550,8 +502,7 @@ on_small_bold1_activate                (GtkMenuItem     *menuitem,
 
 
 void
-on_small1_activate                     (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
+on_small1_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
     const gchar *base=".SM\n";
     insert_label(base,"Font Small selected.");
@@ -559,8 +510,7 @@ on_small1_activate                     (GtkMenuItem     *menuitem,
 
 
 void
-on_novo_parrafo1_activate              (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
+on_novo_parrafo1_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
     const gchar *base=".LP\n";
     insert_label(base,"New paragraph.");
@@ -568,8 +518,7 @@ on_novo_parrafo1_activate              (GtkMenuItem     *menuitem,
 
 
 void
-on_comezo_parrafo1_activate            (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
+on_comezo_parrafo1_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
     const gchar *base=".PP\n";
     insert_label(base,"Paragraph start.");
@@ -577,8 +526,7 @@ on_comezo_parrafo1_activate            (GtkMenuItem     *menuitem,
 
 
 void
-on_comezo_marxen1_activate             (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
+on_comezo_marxen1_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
     const gchar *base=_(".RS <margin position>\n");
     insert_label(base,"Margin position.");
@@ -586,8 +534,7 @@ on_comezo_marxen1_activate             (GtkMenuItem     *menuitem,
 
 
 void
-on_finaliza_marxen1_activate           (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
+on_finaliza_marxen1_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
     const gchar *base=".RE\n";
     insert_label(base,"Relative margin end.");
@@ -595,25 +542,22 @@ on_finaliza_marxen1_activate           (GtkMenuItem     *menuitem,
 
 
 void
-on_tabulador_por_defecto1_activate     (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
+on_tabulador_por_defecto1_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
     const gchar *base=".DT\n";
     insert_label(base,"Default tab.");
- }
+}
 
 
 void
-on_subcabeceira1_activate              (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
+on_subcabeceira1_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
     const gchar *base=_(".SS \"<NAME>\"\n");
     insert_label(base,"Subheader inserted.");
 }
 
 void
-on_xustificacion_a_esquerda1_activate  (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
+on_xustificacion_a_esquerda1_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
     const gchar *base=".AD L\n";
     insert_label(base,"Left justifier.");
@@ -621,8 +565,7 @@ on_xustificacion_a_esquerda1_activate  (GtkMenuItem     *menuitem,
 }
 
 void
-on_paxina_creada1_activate             (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
+on_paxina_creada1_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
     GtkWidget *text,*statusbar;
     FILE *f;
@@ -632,7 +575,7 @@ on_paxina_creada1_activate             (GtkMenuItem     *menuitem,
     const gchar *datos;
     gint exitstatus;
 
-/* I read conf file ~/.gmaneditrc */
+    /* I read conf file ~/.gmaneditrc */
 
     strcpy(temp, "/tmp/gmanedit.XXXXXX");
     mkstemp (temp);
@@ -645,7 +588,7 @@ on_paxina_creada1_activate             (GtkMenuItem     *menuitem,
 
     text=lookup_widget(wprincipal,"text");
 
-/* Barra de estado */
+    /* Barra de estado */
     statusbar=lookup_widget(wprincipal,"statusbar1");
     gtk_statusbar_pop(GTK_STATUSBAR(statusbar),1);
     gtk_statusbar_push(GTK_STATUSBAR(statusbar),1,_("Page preview."));
@@ -655,13 +598,11 @@ on_paxina_creada1_activate             (GtkMenuItem     *menuitem,
     gtk_text_buffer_get_start_iter (b, &startiter);
     gtk_text_buffer_get_end_iter (b, &enditer);
     datos=gtk_text_buffer_get_text (b, &startiter, &enditer, FALSE);
-    if ((f=fopen(temp,"w"))!=NULL)
-    {
-         bytes_written=fwrite(datos,sizeof(gchar),strlen(datos),f);
-         fclose(f);
-    }
-    else
-         mensaje(strerror(errno),GTK_MESSAGE_ERROR);
+    if ((f=fopen(temp,"w"))!=NULL) {
+        bytes_written=fwrite(datos,sizeof(gchar),strlen(datos),f);
+        fclose(f);
+    } else
+        mensaje(strerror(errno),GTK_MESSAGE_ERROR);
 
 
     if (bytes_written>0)
@@ -670,18 +611,16 @@ on_paxina_creada1_activate             (GtkMenuItem     *menuitem,
 }
 
 void
-on_buscar_e_reemprazar1_activate        (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
+on_buscar_e_reemprazar1_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
-     if (buscar == NULL)
-            buscar = create_wbuscar();
+    if (buscar == NULL)
+        buscar = create_wbuscar();
 
-     gtk_widget_show(buscar);
+    gtk_widget_show(buscar);
 }
 
 void
-on_opcions_programa1_activate (GtkMenuItem *menuitem,
-                               gpointer  user_data)
+on_opcions_programa1_activate(GtkMenuItem *menuitem, gpointer  user_data)
 {
     const gchar *aux;
     GtkWidget *obj;
@@ -690,8 +629,7 @@ on_opcions_programa1_activate (GtkMenuItem *menuitem,
     prefs = create_wpreferences();
     aux = ReadConfFromFile("COMMAND");
 
-    if (aux != NULL)
-    {
+    if (aux != NULL) {
         strncpy(datos,aux, sizeof datos - 1);
         datos[sizeof(datos) - 1] = 0;
         obj = lookup_widget(GTK_WIDGET(prefs),"entry_command");
@@ -700,27 +638,25 @@ on_opcions_programa1_activate (GtkMenuItem *menuitem,
 
     aux = ReadConfFromFile("INTERNET_BROWSER");
 
-    if (aux != NULL)
-    {
+    if (aux != NULL) {
         strncpy(datos,aux, sizeof(datos) - 1);
         datos[sizeof(datos) - 1] = 0;
         obj = lookup_widget(GTK_WIDGET(prefs),"browser");
         if (!strcmp(datos, "mozilla"))
-             gtk_combo_box_set_active (GTK_COMBO_BOX(obj), 0);
+            gtk_combo_box_set_active (GTK_COMBO_BOX(obj), 0);
         else if (!strcmp(datos, "firefox"))
-             gtk_combo_box_set_active (GTK_COMBO_BOX(obj), 1);
+            gtk_combo_box_set_active (GTK_COMBO_BOX(obj), 1);
         else if (!strcmp(datos, "galeon"))
-             gtk_combo_box_set_active (GTK_COMBO_BOX(obj), 2);
+            gtk_combo_box_set_active (GTK_COMBO_BOX(obj), 2);
         else if (!strcmp(datos, "epiphany"))
-             gtk_combo_box_set_active (GTK_COMBO_BOX(obj), 3);
+            gtk_combo_box_set_active (GTK_COMBO_BOX(obj), 3);
         else if (!strcmp(datos, "konqueror"))
-             gtk_combo_box_set_active (GTK_COMBO_BOX(obj), 4);
+            gtk_combo_box_set_active (GTK_COMBO_BOX(obj), 4);
     }
 
     aux = ReadConfFromFile("FONT");
 
-    if (aux != NULL)
-    {
+    if (aux != NULL) {
         obj = lookup_widget(GTK_WIDGET(prefs),"font");
         gtk_font_button_set_font_name(GTK_FONT_BUTTON(obj), aux);
     }
@@ -730,67 +666,60 @@ on_opcions_programa1_activate (GtkMenuItem *menuitem,
 
 
 void
-on_bbuscar_clicked                     (GtkButton       *button,
-                                        gpointer         user_data)
+on_bbuscar_clicked(GtkButton *button, gpointer user_data)
 {
 
 }
 
 
 void
-on_breemprazar_clicked                 (GtkButton       *button,
-                                        gpointer         user_data)
+on_breemprazar_clicked(GtkButton *button, gpointer user_data)
 {
 
 }
 
 
 void
-on_bpechar_clicked                     (GtkButton       *button,
-                                        gpointer         user_data)
+on_bpechar_clicked(GtkButton *button, gpointer user_data)
 {
     gtk_widget_hide(buscar);
 }
 
 
 void
-on_data1_activate                      (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
+on_data1_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
-     GtkWidget *text,*statusbar;
-     GtkTextBuffer*  buffer;
-     time_t fech;
-     struct tm *fecha;
-     gchar cad[30];
-     gchar *meses[]={_("January"),_("February"),_("March"),_("April"),
-                _("May"),_("June"),_("July"),_("August"),
-                _("September"),_("October"),_("November"),_("December")};
+    GtkWidget *text,*statusbar;
+    GtkTextBuffer*  buffer;
+    time_t fech;
+    struct tm *fecha;
+    gchar cad[30];
+    gchar *meses[]= {_("January"),_("February"),_("March"),_("April"),
+                     _("May"),_("June"),_("July"),_("August"),
+                     _("September"),_("October"),_("November"),_("December")
+                    };
 
+    time(&fech);
+    fecha=localtime(&fech);
 
-     time(&fech);
-     fecha=localtime(&fech);
-
-    if (fecha!=NULL)
-    {
+    if (fecha!=NULL) {
         sprintf(cad,"%d %s %d",fecha->tm_mday,meses[fecha->tm_mon],fecha->tm_year+1900);
         text=lookup_widget(wprincipal,"text");
-        if (GTK_IS_TEXT_VIEW (text)){
-                  buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (text));
-                  gtk_text_buffer_insert_at_cursor( buffer, cad ,strlen(cad));
-            }
+        if (GTK_IS_TEXT_VIEW (text)) {
+            buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (text));
+            gtk_text_buffer_insert_at_cursor( buffer, cad ,strlen(cad));
+        }
         statusbar = lookup_widget(wprincipal,"statusbar1");
         gtk_statusbar_pop (GTK_STATUSBAR (statusbar), 1);
         gtk_statusbar_push (GTK_STATUSBAR (statusbar), 1, _("Date inserted."));
-    }
-    else
+    } else
         mensaje(_("Cannot get system date!"),GTK_MESSAGE_ERROR);
 }
 
 void
-on_about2_activate                     (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
+on_about2_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
-     create_about();
+    create_about();
 }
 
 void
@@ -804,23 +733,20 @@ mensaje (gchar *msg,gint tipo)
 }
 
 void
-on_bdialog_yes_clicked                 (GtkButton       *button,
-                                        gpointer         user_data)
+on_bdialog_yes_clicked(GtkButton *button, gpointer user_data)
 {
     gtk_main_quit();
 }
 
 
 void
-on_bdialog_no_clicked                  (GtkButton       *button,
-                                        gpointer         user_data)
+on_bdialog_no_clicked(GtkButton *button, gpointer user_data)
 {
     gtk_widget_hide(exit_dialog);
 }
 
 void
-on_bpok_clicked                        (GtkButton       *button,
-                                        gpointer         user_data)
+on_bpok_clicked(GtkButton *button, gpointer user_data)
 {
     FILE *p;
     GtkWidget *widget;
@@ -850,17 +776,15 @@ on_bpok_clicked                        (GtkButton       *button,
 
     /* store the settings */
     snprintf(buf, sizeof buf, "# File created by gmanedit preferences option\n\n" \
-                "COMMAND=%s\nINTERNET_BROWSER=%s\nFONT=%s",
-                entry_text, browser, font);
+             "COMMAND=%s\nINTERNET_BROWSER=%s\nFONT=%s",
+             entry_text, browser, font);
 
     g_free(browser);
 
-    if ((p=fopen(rcname,"w"))!=NULL)
-    {
+    if ((p=fopen(rcname,"w"))!=NULL) {
         fprintf(p,"%s\n",buf);
         fclose(p);
-    }
-    else
+    } else
         mensaje(strerror(errno),GTK_MESSAGE_ERROR);
 
     g_free (rcname);
@@ -869,24 +793,21 @@ on_bpok_clicked                        (GtkButton       *button,
 
 
 void
-on_bpcancel_clicked                    (GtkButton       *button,
-                                        gpointer         user_data)
+on_bpcancel_clicked(GtkButton *button, gpointer user_data)
 {
     gtk_widget_destroy(prefs);
 }
 
 
 void
-on_help1_activate                      (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
+on_help1_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
     help_without_gnome(wprincipal);
 }
 
 
 void
-on_select_all1_activate                (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
+on_select_all1_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
     GtkWidget *text,*statusbar;
     gchar *datos;
@@ -899,19 +820,17 @@ on_select_all1_activate                (GtkMenuItem     *menuitem,
     gtk_text_buffer_get_end_iter (b, &enditer);
     datos=gtk_text_buffer_get_text (b, &startiter, &enditer, FALSE);
 
-    if (strlen(datos)>0)
-    {
-    gtk_text_buffer_select_range (b, &startiter, &enditer);
-    statusbar = lookup_widget (GTK_WIDGET (wprincipal), "statusbar1");
-    gtk_statusbar_pop (GTK_STATUSBAR (statusbar), 1);
-    gtk_statusbar_push (GTK_STATUSBAR (statusbar), 1, _("Text selected."));
+    if (strlen(datos)>0) {
+        gtk_text_buffer_select_range (b, &startiter, &enditer);
+        statusbar = lookup_widget (GTK_WIDGET (wprincipal), "statusbar1");
+        gtk_statusbar_pop (GTK_STATUSBAR (statusbar), 1);
+        gtk_statusbar_push (GTK_STATUSBAR (statusbar), 1, _("Text selected."));
     }
 }
 
 
 void
-on_new_wizard_page1_activate           (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
+on_new_wizard_page1_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
     if (wizard == NULL)
         wizard=create_wizard();
@@ -919,8 +838,7 @@ on_new_wizard_page1_activate           (GtkMenuItem     *menuitem,
 }
 
 void
-on_assistant_cancel                    (GtkAssistant *assistant,
-                                        gpointer         user_data)
+on_assistant_cancel(GtkAssistant *assistant, gpointer user_data)
 {
     gtk_widget_destroy (GTK_WIDGET(assistant));
     wizard = NULL;
@@ -928,152 +846,148 @@ on_assistant_cancel                    (GtkAssistant *assistant,
 
 
 void
-on_dthe_end_finish                     (GtkAssistant *assistant,
-                                        gpointer         user_data)
+on_dthe_end_finish(GtkAssistant *assistant, gpointer user_data)
 {
-   GtkWidget *ch,*text,*druid;
-   gchar *nombre,*snumber,*date,*title;
-   gchar cadena[5000];
-   gint number;
+    GtkWidget *ch,*text,*druid;
+    gchar *nombre,*snumber,*date,*title;
+    gchar cadena[5000];
+    gint number;
 
-/* Init for main_window */
-   druid = gtk_widget_get_toplevel (GTK_WIDGET (assistant));
+    /* Init for main_window */
+    druid = gtk_widget_get_toplevel (GTK_WIDGET (assistant));
 
-/* First, I get man page name from step 1 */
-   text = lookup_widget(GTK_WIDGET(assistant), "mname");
-   nombre = gtk_editable_get_chars(GTK_EDITABLE(text),0,-1);
+    /* First, I get man page name from step 1 */
+    text = lookup_widget(GTK_WIDGET(assistant), "mname");
+    nombre = gtk_editable_get_chars(GTK_EDITABLE(text),0,-1);
 
-/* Date from step 1 */
-   text = lookup_widget(GTK_WIDGET(assistant), "mdate");
-   date = gtk_editable_get_chars(GTK_EDITABLE(text),0,-1);
+    /* Date from step 1 */
+    text = lookup_widget(GTK_WIDGET(assistant), "mdate");
+    date = gtk_editable_get_chars(GTK_EDITABLE(text),0,-1);
 
-/* Title from step 1 */
-   text = lookup_widget(GTK_WIDGET(assistant), "mtitle");
-   title = gtk_editable_get_chars(GTK_EDITABLE(text),0,-1);
+    /* Title from step 1 */
+    text = lookup_widget(GTK_WIDGET(assistant), "mtitle");
+    title = gtk_editable_get_chars(GTK_EDITABLE(text),0,-1);
 
-/* Section number from combo */
-   ch = lookup_widget(GTK_WIDGET(assistant), "combo1");
-   number = gtk_combo_box_get_active (GTK_COMBO_BOX(ch));
-   snumber = g_strdup_printf ("%d", number+1);
+    /* Section number from combo */
+    ch = lookup_widget(GTK_WIDGET(assistant), "combo1");
+    number = gtk_combo_box_get_active (GTK_COMBO_BOX(ch));
+    snumber = g_strdup_printf ("%d", number+1);
 
-/* Page Start */
-   strcpy(cadena,
-   ".\\\"Created with GNOME Manpages Editor Wizard\n"
-   ".\\\"http://sourceforge.net/projects/gmanedit2\n");
-   strcat(cadena,".TH ");
-   strcat(cadena,nombre);
-   strcat(cadena," ");
-   strcat(cadena,snumber);
-   strcat(cadena," \"");
-   strcat(cadena,date);
-   strcat(cadena,"\" ");
-   strcat(cadena,"\"\" ");
-   strcat(cadena,"\"");
-   strcat(cadena,title);
-   strcat(cadena,"\"\n\n");
-
-/* Section NAME */
-   ch = lookup_widget (GTK_WIDGET (assistant), "chname");
-   if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
-   {
-    strcat(cadena,_(".SH NAME\n"));
+    /* Page Start */
+    strcpy(cadena,
+           ".\\\"Created with GNOME Manpages Editor Wizard\n"
+           ".\\\"http://sourceforge.net/projects/gmanedit2\n");
+    strcat(cadena,".TH ");
     strcat(cadena,nombre);
-    strcat(cadena,_(" \\- program for...\n\n"));
-   }
-/* Section SYNOPSIS */
-   ch = lookup_widget (GTK_WIDGET (assistant), "chsynopsis");
-   if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
-   {
-    strcat(cadena,_(".SH SYNOPSIS\n.B "));
-    strcat(cadena,nombre);
-    strcat(cadena,_("\n.RI [ options ]\n.br\n\n"));
-   }
-/* Section CONFIGURATION */
-   ch = lookup_widget (GTK_WIDGET (assistant), "chconfiguration");
-   if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
-    strcat(cadena,_(".SH CONFIGURATION\n\n"));
-/* Section DESCRIPTION */
-   ch = lookup_widget (GTK_WIDGET (assistant), "chdescription");
-   if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
-   {
-    strcat(cadena,_(".SH DESCRIPTION\nThis manual page explains the\n.B "));
-    strcat(cadena,nombre);
-    strcat(cadena,_("\nprogram. This program...\n.PP\n\\fB"));
-    strcat(cadena,nombre);
-    strcat(cadena,_("\\fP is for...\n\n"));
-   }
-/* Section OPTIONS */
-   ch = lookup_widget (GTK_WIDGET (assistant), "choptions");
-   if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
-    strcat(cadena,_(".SH OPTIONS\n.B\n.IP -OPTION\nThis option...\n\n"));
-/* Section EXIT STATUS */
-   ch = lookup_widget (GTK_WIDGET (assistant), "chexitstatus");
-   if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
-    strcat(cadena,_(".SH \"EXIT STATUS\"\n\n"));
+    strcat(cadena," ");
+    strcat(cadena,snumber);
+    strcat(cadena," \"");
+    strcat(cadena,date);
+    strcat(cadena,"\" ");
+    strcat(cadena,"\"\" ");
+    strcat(cadena,"\"");
+    strcat(cadena,title);
+    strcat(cadena,"\"\n\n");
+
+    /* Section NAME */
+    ch = lookup_widget (GTK_WIDGET (assistant), "chname");
+    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE) {
+        strcat(cadena,_(".SH NAME\n"));
+        strcat(cadena,nombre);
+        strcat(cadena,_(" \\- program for...\n\n"));
+    }
+    /* Section SYNOPSIS */
+    ch = lookup_widget (GTK_WIDGET (assistant), "chsynopsis");
+    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE) {
+        strcat(cadena,_(".SH SYNOPSIS\n.B "));
+        strcat(cadena,nombre);
+        strcat(cadena,_("\n.RI [ options ]\n.br\n\n"));
+    }
+    /* Section CONFIGURATION */
+    ch = lookup_widget (GTK_WIDGET (assistant), "chconfiguration");
+    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
+        strcat(cadena,_(".SH CONFIGURATION\n\n"));
+    /* Section DESCRIPTION */
+    ch = lookup_widget (GTK_WIDGET (assistant), "chdescription");
+    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE) {
+        strcat(cadena,_(".SH DESCRIPTION\nThis manual page explains the\n.B "));
+        strcat(cadena,nombre);
+        strcat(cadena,_("\nprogram. This program...\n.PP\n\\fB"));
+        strcat(cadena,nombre);
+        strcat(cadena,_("\\fP is for...\n\n"));
+    }
+    /* Section OPTIONS */
+    ch = lookup_widget (GTK_WIDGET (assistant), "choptions");
+    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
+        strcat(cadena,_(".SH OPTIONS\n.B\n.IP -OPTION\nThis option...\n\n"));
+    /* Section EXIT STATUS */
+    ch = lookup_widget (GTK_WIDGET (assistant), "chexitstatus");
+    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
+        strcat(cadena,_(".SH \"EXIT STATUS\"\n\n"));
 
 
-/* Section RETURN VALUE */
-   ch = lookup_widget (GTK_WIDGET (assistant), "chreturnvalues");
-   if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
-    strcat(cadena,".SH \"RETURN VALUE\"\n\n");
-/* Section ERRORS */
-   ch = lookup_widget (GTK_WIDGET (assistant), "cherrors");
-   if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
-    strcat(cadena,_(".SH ERRORS\n\n"));
-/* Section ENVIRONMENT */
-   ch = lookup_widget (GTK_WIDGET (assistant), "chenvironment");
-   if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
-    strcat(cadena,_(".SH ENVIRONMENT\n\n"));
-/* Section FILES */
-   ch = lookup_widget (GTK_WIDGET (assistant), "chfiles");
-   if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
-    strcat(cadena,_(".SH FILES\n\n"));
-/* Section VERSIONS */
-   ch = lookup_widget (GTK_WIDGET (assistant), "chversions");
-   if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
-    strcat(cadena,_(".SH VERSIONS\n\n"));
+    /* Section RETURN VALUE */
+    ch = lookup_widget (GTK_WIDGET (assistant), "chreturnvalues");
+    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
+        strcat(cadena,".SH \"RETURN VALUE\"\n\n");
+    /* Section ERRORS */
+    ch = lookup_widget (GTK_WIDGET (assistant), "cherrors");
+    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
+        strcat(cadena,_(".SH ERRORS\n\n"));
+    /* Section ENVIRONMENT */
+    ch = lookup_widget (GTK_WIDGET (assistant), "chenvironment");
+    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
+        strcat(cadena,_(".SH ENVIRONMENT\n\n"));
+    /* Section FILES */
+    ch = lookup_widget (GTK_WIDGET (assistant), "chfiles");
+    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
+        strcat(cadena,_(".SH FILES\n\n"));
+    /* Section VERSIONS */
+    ch = lookup_widget (GTK_WIDGET (assistant), "chversions");
+    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
+        strcat(cadena,_(".SH VERSIONS\n\n"));
 
-/* Section CONFORMING TO */
-   ch = lookup_widget (GTK_WIDGET (assistant), "chconformingto");
-   if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
-    strcat(cadena,_(".SH \"CONFORMING TO\"\n\n"));
-/* Section NOTES */
-   ch = lookup_widget (GTK_WIDGET (assistant), "chnotes");
-   if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
-    strcat(cadena,_(".SH NOTES\n\n"));
-/* Section BUGS */
-   ch = lookup_widget (GTK_WIDGET (assistant), "chbugs");
-   if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
-    strcat(cadena,_(".SH BUGS\n\n"));
-/* Section EXAMPLE */
-   ch = lookup_widget (GTK_WIDGET (assistant), "chexample");
-   if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
-    strcat(cadena,_(".SH EXAMPLE\n\n"));
-/* Section SEE ALSO */
-   ch = lookup_widget (GTK_WIDGET (assistant), "chseealso");
-   if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
-    strcat(cadena,_(".SH \"SEE ALSO\"\n\n"));
+    /* Section CONFORMING TO */
+    ch = lookup_widget (GTK_WIDGET (assistant), "chconformingto");
+    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
+        strcat(cadena,_(".SH \"CONFORMING TO\"\n\n"));
+    /* Section NOTES */
+    ch = lookup_widget (GTK_WIDGET (assistant), "chnotes");
+    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
+        strcat(cadena,_(".SH NOTES\n\n"));
+    /* Section BUGS */
+    ch = lookup_widget (GTK_WIDGET (assistant), "chbugs");
+    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
+        strcat(cadena,_(".SH BUGS\n\n"));
+    /* Section EXAMPLE */
+    ch = lookup_widget (GTK_WIDGET (assistant), "chexample");
+    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
+        strcat(cadena,_(".SH EXAMPLE\n\n"));
+    /* Section SEE ALSO */
+    ch = lookup_widget (GTK_WIDGET (assistant), "chseealso");
+    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
+        strcat(cadena,_(".SH \"SEE ALSO\"\n\n"));
 
-/* Hide wizard */
-   gtk_widget_hide(wizard);
+    /* Hide wizard */
+    gtk_widget_hide(wizard);
 
-/* Insert all into gmanedit */
-   insert_label(cadena,_("Wizard page created."));
+    /* Insert all into gmanedit */
+    insert_label(cadena,_("Wizard page created."));
 
-/* Wizard closed */
-   gtk_widget_destroy(wizard);
-   wizard=NULL;
+    /* Wizard closed */
+    gtk_widget_destroy(wizard);
+    wizard=NULL;
 }
 
 static
 void insert_label(const gchar *base,const gchar *text_info)
 {
     GtkWidget *text,*statusbar;
-        GtkTextBuffer *buffer;
+    GtkTextBuffer *buffer;
 
     text=lookup_widget(GTK_WIDGET(wprincipal),"text");
-        buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (text));
-        gtk_text_buffer_insert_at_cursor(buffer, base, -1);
+    buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (text));
+    gtk_text_buffer_insert_at_cursor(buffer, base, -1);
 
     statusbar = lookup_widget(GTK_WIDGET(wprincipal),"statusbar1");
     gtk_statusbar_pop (GTK_STATUSBAR (statusbar), 1);
@@ -1081,8 +995,7 @@ void insert_label(const gchar *base,const gchar *text_info)
 }
 
 void
-on_home_page1_activate                 (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
+on_home_page1_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
     const gchar *browser;
     gchar buf[1024];
@@ -1113,29 +1026,22 @@ static void help_without_gnome(GtkWidget *wid)
 
     g_spawn_command_line_sync(command, NULL, NULL, &exitstatus, NULL);
 
-/* Barra de estado */
+    /* Barra de estado */
     statusbar=lookup_widget(GTK_WIDGET(wprincipal),"statusbar1");
     gtk_statusbar_pop(GTK_STATUSBAR(statusbar),1);
     gtk_statusbar_push(GTK_STATUSBAR(statusbar),1,_("Man help."));
 }
 
 void
-on_text_drag_data_received             (GtkWidget       *widget,
-                                        GdkDragContext  *drag_context,
-                                        gint             x,
-                                        gint             y,
-                                        GtkSelectionData *data,
-                                        guint            info,
-                                        guint            time,
-                                        gpointer         user_data)
+on_text_drag_data_received(GtkWidget *widget, GdkDragContext  *drag_context,
+                           gint x, gint y, GtkSelectionData *data,
+                           guint info, guint time, gpointer user_data)
 {
-    if (data->length >= 0)
-    {
-        if (!strncmp((gchar *)data->data,"file:",4))
-        {
-        filename = g_strdup((gchar *)data->data + 6);
-        filename[strlen(filename)-2]='\0';
-        open_man_file(filename);
+    if (data->length >= 0) {
+        if (!strncmp((gchar *)data->data,"file:",4)) {
+            filename = g_strdup((gchar *)data->data + 6);
+            filename[strlen(filename)-2]='\0';
+            open_man_file(filename);
         }
     }
     gtk_drag_finish(drag_context, TRUE, FALSE, time);
@@ -1143,8 +1049,7 @@ on_text_drag_data_received             (GtkWidget       *widget,
 
 
 void
-on_comments1_activate                  (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
+on_comments1_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
     const gchar *comm=".\\\" ";
 

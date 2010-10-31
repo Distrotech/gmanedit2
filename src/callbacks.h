@@ -21,315 +21,235 @@ extern GtkWidget *open_file;
 extern gchar *filename;
 
 void
-on_wprincipal_delete                (GtkObject       *object,
-                                        gpointer         user_data);
+on_wprincipal_delete(GtkObject *object, gpointer user_data);
 
 void
-on_cortar1_activate                    (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
+on_cortar1_activate(GtkMenuItem *menuitem, gpointer user_data);
 
 void
-on_copiar1_activate                    (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
+on_copiar1_activate(GtkMenuItem *menuitem, gpointer user_data);
 
 void
-on_pegar1_activate                     (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
+on_pegar1_activate(GtkMenuItem *menuitem, gpointer user_data);
 
 void
-on_pagina_base1_activate               (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
+on_pagina_base1_activate(GtkMenuItem *menuitem, gpointer user_data);
 
 void
-on_novo1_activate                      (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
+on_novo1_activate(GtkMenuItem *menuitem, gpointer user_data);
 
 void
-on_abrir1_activate                     (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
+on_abrir1_activate(GtkMenuItem *menuitem, gpointer user_data);
 
 void
-on_gardar1_activate                    (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
+on_gardar1_activate(GtkMenuItem *menuitem, gpointer user_data);
 
 void
-on_gardar_como1_activate               (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
+on_gardar_como1_activate(GtkMenuItem *menuitem, gpointer user_data);
 
 void
-on_sair4_activate                      (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
+on_sair4_activate(GtkMenuItem *menuitem, gpointer user_data);
 
 void
-on_ok_button1_clicked                  (GtkButton       *button,
-                                        gpointer         user_data);
+on_ok_button1_clicked(GtkButton *button, gpointer user_data);
 
 void
-on_cancel_button1_clicked              (GtkButton       *button,
-                                        gpointer         user_data);
+on_cancel_button1_clicked(GtkButton *button, gpointer user_data);
 
 void
-on_ok_button2_clicked                  (GtkButton       *button,
-                                        gpointer         user_data);
+on_ok_button2_clicked(GtkButton *button, gpointer user_data);
 
 void
-on_cancel_button2_clicked              (GtkButton       *button,
-                                        gpointer         user_data);
+on_cancel_button2_clicked(GtkButton *button, gpointer user_data);
 
 void
-on_titulo_activate                     (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
+on_titulo_activate(GtkMenuItem *menuitem, gpointer user_data);
 
 void
-on_nome1_activate                      (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
+on_nome1_activate(GtkMenuItem *menuitem, gpointer user_data);
 
 void
-on_sinopsis1_activate                  (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
+on_sinopsis1_activate(GtkMenuItem *menuitem, gpointer user_data);
 
 void
-on_configuration_activate                  (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
+on_configuration_activate(GtkMenuItem *menuitem, gpointer user_data);
 
 void
-on_descripcion1_activate               (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
+on_descripcion1_activate(GtkMenuItem *menuitem, gpointer user_data);
 
 void
-on_opcions1_activate                   (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
+on_opcions1_activate(GtkMenuItem *menuitem, gpointer user_data);
 
 void
-on_valores_retornados1_activate        (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
+on_valores_retornados1_activate(GtkMenuItem *menuitem, gpointer user_data);
 
 void
-on_estados_de_saida1_activate          (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
+on_estados_de_saida1_activate(GtkMenuItem *menuitem, gpointer user_data);
 
 void
-on_errors_activate                       (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
+on_errors_activate(GtkMenuItem *menuitem, gpointer user_data);
 
 void
-on_ficheiro1_activate                  (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
+on_ficheiro1_activate(GtkMenuItem *menuitem, gpointer user_data);
 
 void
-on_entorno1_activate                   (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
+on_entorno1_activate(GtkMenuItem *menuitem, gpointer user_data);
 
 void
-on_versions_activate               (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
+on_versions_activate(GtkMenuItem *menuitem, gpointer user_data);
 
 void
-on_notas1_activate                     (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
+on_notas1_activate(GtkMenuItem *menuitem, gpointer user_data);
 
 void
-on_bugs1_activate                      (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
+on_bugs1_activate(GtkMenuItem *menuitem, gpointer user_data);
 
 void
-on_exemplos1_activate                  (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
+on_exemplos1_activate(GtkMenuItem *menuitem, gpointer user_data);
 
 void
-on_ver_tamen1_activate                 (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
+on_ver_tamen1_activate(GtkMenuItem *menuitem, gpointer user_data);
 
 void
-on_conforme_a1_activate                (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
+on_conforme_a1_activate(GtkMenuItem *menuitem, gpointer user_data);
 
 void
-on_otro1_activate                      (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
+on_otro1_activate(GtkMenuItem *menuitem, gpointer user_data);
 
 void
-on_justificacion_esquerda1_activate    (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
+on_justificacion_esquerda1_activate(GtkMenuItem *menuitem, gpointer user_data);
 
 void
-on_xustificacion_a_dereita_es_esquerda1_activate
-                                        (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
+on_xustificacion_a_dereita_es_esquerda1_activate(GtkMenuItem *menuitem,
+        gpointer user_data);
 
 void
-on_ambas1_activate                     (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
+on_ambas1_activate(GtkMenuItem *menuitem, gpointer user_data);
 
 void
-on_activar1_activate                   (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
+on_activar1_activate(GtkMenuItem *menuitem, gpointer user_data);
 
 void
-on_desactivar1_activate                (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
+on_desactivar1_activate(GtkMenuItem *menuitem, gpointer user_data);
 
 void
-on_bold1_activate                      (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
+on_bold1_activate(GtkMenuItem *menuitem, gpointer user_data);
 
 void
-on_bold_roman1_activate                (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
+on_bold_roman1_activate(GtkMenuItem *menuitem, gpointer user_data);
 
 void
-on_italica1_activate                   (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
+on_italica1_activate(GtkMenuItem *menuitem, gpointer user_data);
 
 void
-on_italica_bold1_activate              (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
+on_italica_bold1_activate(GtkMenuItem *menuitem, gpointer user_data);
 
 void
-on_italica_roman1_activate             (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
+on_italica_roman1_activate(GtkMenuItem *menuitem, gpointer user_data);
 
 void
-on_roman_bold1_activate                (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
+on_roman_bold1_activate(GtkMenuItem *menuitem, gpointer user_data);
 
 void
-on_roman_italic1_activate              (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
+on_roman_italic1_activate(GtkMenuItem *menuitem, gpointer user_data);
 
 void
-on_small_bold1_activate                (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
+on_small_bold1_activate(GtkMenuItem *menuitem, gpointer user_data);
 
 void
-on_small1_activate                     (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
+on_small1_activate(GtkMenuItem *menuitem, gpointer user_data);
 
 void
-on_novo_parrafo1_activate              (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
+on_novo_parrafo1_activate(GtkMenuItem *menuitem, gpointer user_data);
 
 void
-on_comezo_parrafo1_activate            (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
+on_comezo_parrafo1_activate(GtkMenuItem *menuitem, gpointer user_data);
 
 void
-on_comezo_marxen1_activate             (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
+on_comezo_marxen1_activate(GtkMenuItem *menuitem, gpointer user_data);
 
 void
-on_finaliza_marxen1_activate           (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
+on_finaliza_marxen1_activate(GtkMenuItem *menuitem, gpointer user_data);
 
 void
-on_hypertext1_activate                 (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
+on_hypertext1_activate(GtkMenuItem *menuitem, gpointer user_data);
 
 void
-on_tabulador_por_defecto1_activate     (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
+on_tabulador_por_defecto1_activate(GtkMenuItem *menuitem, gpointer user_data);
 
 void
-on_subcabeceira1_activate              (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
+on_subcabeceira1_activate(GtkMenuItem *menuitem, gpointer user_data);
 
 void
-on_xustificacion_a_esquerda1_activate  (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
+on_xustificacion_a_esquerda1_activate(GtkMenuItem *menuitem, gpointer user_data);
 
 void
-on_paxina_creada1_activate             (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
+on_paxina_creada1_activate(GtkMenuItem *menuitem, gpointer user_data);
 
 void
-on_opcions_programa1_activate          (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
+on_opcions_programa1_activate(GtkMenuItem *menuitem, gpointer user_data);
 
 void
-on_buscar_e_reemprazar1_activate       (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
+on_buscar_e_reemprazar1_activate(GtkMenuItem *menuitem, gpointer user_data);
 
 void
-on_bbuscar_clicked                     (GtkButton       *button,
-                                        gpointer         user_data);
+on_bbuscar_clicked(GtkButton *button, gpointer user_data);
 
 void
-on_breemprazar_clicked                 (GtkButton       *button,
-                                        gpointer         user_data);
+on_breemprazar_clicked(GtkButton *button, gpointer user_data);
 
 void
-on_bpechar_clicked                     (GtkButton       *button,
-                                        gpointer         user_data);
+on_bpechar_clicked(GtkButton *button, gpointer user_data);
 
 void
-on_bdialog_aceptar_clicked             (GtkButton       *button,
-                                        gpointer         user_data);
+on_bdialog_aceptar_clicked(GtkButton *button, gpointer user_data);
 
 void
-on_data1_activate                      (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
+on_data1_activate(GtkMenuItem *menuitem, gpointer user_data);
 
 void
 mensaje (gchar *msg,gint tipo);
 
 void
-on_about2_activate                     (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
+on_about2_activate(GtkMenuItem *menuitem, gpointer user_data);
 
 void
-on_bdialog_yes_clicked                 (GtkButton       *button,
-                                        gpointer         user_data);
+on_bdialog_yes_clicked(GtkButton *button, gpointer user_data);
 
 void
-on_bdialog_no_clicked                  (GtkButton       *button,
-                                        gpointer         user_data);
+on_bdialog_no_clicked(GtkButton *button, gpointer user_data);
 
 void
-on_bdialog_cancel_clicked              (GtkButton       *button,
-                                        gpointer         user_data);
+on_bdialog_cancel_clicked(GtkButton *button, gpointer user_data);
 
 void
-on_bpok_clicked                        (GtkButton       *button,
-                                        gpointer         user_data);
+on_bpok_clicked(GtkButton *button, gpointer user_data);
 
 void
-on_bpcancel_clicked                    (GtkButton       *button,
-                                        gpointer         user_data);
+on_bpcancel_clicked(GtkButton *button, gpointer user_data);
 
 void
-on_help1_activate                      (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
+on_help1_activate(GtkMenuItem *menuitem, gpointer user_data);
 
 void
-on_select_all1_activate                (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
+on_select_all1_activate(GtkMenuItem *menuitem, gpointer user_data);
 
 void
-on_new_wizard_page1_activate           (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
+on_new_wizard_page1_activate(GtkMenuItem *menuitem, gpointer user_data);
 
 void
-on_assistant_cancel                    (GtkAssistant *assistant,
-                                        gpointer         user_data);
+on_assistant_cancel(GtkAssistant *assistant, gpointer user_data);
 
 void
-on_dthe_end_finish                     (GtkAssistant *assistant,
-                                        gpointer         user_data);
+on_dthe_end_finish(GtkAssistant *assistant, gpointer user_data);
 
 void
-on_home_page1_activate                 (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
+on_home_page1_activate(GtkMenuItem *menuitem, gpointer user_data);
 
 void
-on_text_drag_data_received             (GtkWidget       *widget,
-                                        GdkDragContext  *drag_context,
-                                        gint             x,
-                                        gint             y,
-                                        GtkSelectionData *data,
-                                        guint            info,
-                                        guint            time,
-                                        gpointer         user_data);
+on_text_drag_data_received(GtkWidget *widget, GdkDragContext *drag_context,
+                           gint x, gint y, GtkSelectionData *data,
+                           guint info, guint time, gpointer user_data);
 
 void
-on_comments1_activate                  (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
+on_comments1_activate(GtkMenuItem *menuitem, gpointer user_data);
