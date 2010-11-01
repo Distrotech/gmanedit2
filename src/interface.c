@@ -30,6 +30,8 @@
 #include "support.h"
 
 GtkUIManager *ui_manager;
+GtkWidget *wbuscar;
+GtkTextIter titer;
 
 static const GtkActionEntry entries[] = {
     { "FileMenu", NULL, "_File" },
@@ -44,6 +46,7 @@ static const GtkActionEntry entries[] = {
     { "Copy", GTK_STOCK_COPY, N_("_Copy"), NULL, "", G_CALLBACK(on_copiar1_activate) },
     { "Paste", GTK_STOCK_PASTE, N_("_Paste"), NULL, "", G_CALLBACK(on_pegar1_activate) },
     { "SelectAll", GTK_STOCK_SELECT_ALL, N_("_Select All"), NULL, "", G_CALLBACK(on_select_all1_activate) },
+    { "SearchAndReplace", GTK_STOCK_FIND_AND_REPLACE, N_("S_earch and Replace"), NULL, "", G_CALLBACK(on_buscar_e_reemprazar1_activate) },
     { "InsertMenu", NULL, "_Insert" },
     { "BasicPage", NULL, N_("Basic Page"), NULL, "", G_CALLBACK(on_pagina_base1_activate) },
     { "Title", NULL, N_("Title"), NULL, "", G_CALLBACK(on_titulo_activate) },
@@ -117,7 +120,10 @@ static const char *ui_description =
     "               <menuitem action='Cut'/>"
     "               <menuitem action='Copy'/>"
     "               <menuitem action='Paste'/>"
+    "               <separator />"
     "               <menuitem action='SelectAll'/>"
+    "               <separator />"
+    "               <menuitem action='SearchAndReplace'/>"
     "        </menu>"
     "        <menu action='InsertMenu'>"
     "               <menuitem action='BasicPage'/>"
@@ -302,86 +308,106 @@ create_save_file (GtkWidget *parent)
 GtkWidget*
 create_wbuscar (void)
 {
-    GtkWidget *wbuscar;
-    GtkWidget *vbox2;
-    GtkWidget *hbox1;
+    static GtkListStore *slist = NULL;
+    static GtkListStore *rlist = NULL;
+    
+    GtkWidget *vbox;
+    GtkWidget *table;
     GtkWidget *label1;
-    GtkWidget *buscar;
-    GtkWidget *hbox2;
+    GtkWidget *search;
     GtkWidget *label2;
-    GtkWidget *reemprazar;
+    GtkWidget *replace;
     GtkWidget *hbuttonbox1;
-    GtkWidget *bbuscar;
-    GtkWidget *breemprazar;
-    GtkWidget *bpechar;
+    GtkWidget *bsearch;
+    GtkWidget *breplace;
+    GtkWidget *bclose;
+    
+    /* required for the actual search functions */
+    GtkWidget *text;
+    GtkTextBuffer *buffer;
 
     wbuscar = gtk_window_new (GTK_WINDOW_TOPLEVEL);
-    g_object_set_data (G_OBJECT (wbuscar), "wbuscar", wbuscar);
-    gtk_window_set_title (GTK_WINDOW (wbuscar), _("Gmanedit - Search and replace"));
-    gtk_window_set_position (GTK_WINDOW (wbuscar), GTK_WIN_POS_CENTER);
-    GdkPixbuf *icon_pixbuf = create_image ("gmanedit_icon.png");
+    g_object_set_data(G_OBJECT (wbuscar), "wbuscar", wbuscar);
+    gtk_window_set_title(GTK_WINDOW (wbuscar), _("Gmanedit - Search and replace"));
+    gtk_window_set_position(GTK_WINDOW (wbuscar), GTK_WIN_POS_CENTER);
+    gtk_window_set_resizable (GTK_WINDOW (wbuscar), FALSE);
+    /* keep this window on top of the main window */
+    gtk_window_set_transient_for (GTK_WINDOW (wbuscar), GTK_WINDOW (wprincipal));
+    GdkPixbuf *icon_pixbuf = create_image("gmanedit_icon.png");
     gtk_window_set_icon (GTK_WINDOW (wbuscar), icon_pixbuf);
+    
+    
+    /* create the persistent search text list if required */
+    if (!slist) {
+        slist = gtk_list_store_new (1, G_TYPE_STRING);
+    }
+    HOOKUP_OBJECT(wbuscar, slist, "slist");
+        
+    /* create the persistent replace text list if required */
+    if (!rlist) {
+        rlist = gtk_list_store_new (1, G_TYPE_STRING);
+    }  
+    HOOKUP_OBJECT(wbuscar, rlist, "rlist");  
+    
+    /* get the text buffer */
+    text = lookup_widget(GTK_WIDGET(wprincipal), "text");
+    buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW(text));
+   
+    /* set the text iterator at the beginning of the text */
+    gtk_text_buffer_get_start_iter (buffer, &titer);
+    /* attach the iterator to the window */
+    g_object_set_data (G_OBJECT(wbuscar), "titer", &titer);
 
-    vbox2 = gtk_vbox_new (FALSE, 0);
-    gtk_widget_show (vbox2);
-    gtk_container_add (GTK_CONTAINER (wbuscar), vbox2);
 
-    hbox1 = gtk_hbox_new (FALSE, 0);
-    gtk_widget_show (hbox1);
-    gtk_box_pack_start (GTK_BOX (vbox2), hbox1, FALSE, FALSE, 0);
+    /* fill the window with content */
+    vbox = gtk_vbox_new(FALSE, 5);
+    gtk_container_add (GTK_CONTAINER (wbuscar), vbox);
 
-    label1 = gtk_label_new (_("Search:         "));
-    gtk_widget_show (label1);
-    gtk_box_pack_start (GTK_BOX (hbox1), label1, FALSE, FALSE, 0);
+    table = gtk_table_new(2, 2, FALSE);
+    gtk_table_set_row_spacings(GTK_TABLE(table), 5);
+    gtk_table_set_col_spacings(GTK_TABLE(table), 5);
+    gtk_box_pack_start(GTK_BOX (vbox), table, FALSE, FALSE, 0);
 
-    buscar = gtk_entry_new ();
-    HOOKUP_OBJECT (wbuscar, buscar, "buscar");
-    gtk_widget_show (buscar);
-    gtk_box_pack_start (GTK_BOX (hbox1), buscar, TRUE, TRUE, 0);
-    gtk_entry_set_text (GTK_ENTRY (buscar), _("Option not yet available"));
+    label1 = gtk_label_new(_("Search:"));
+    gtk_table_attach_defaults(GTK_TABLE(table), label1, 0, 1, 0, 1 );
 
-    hbox2 = gtk_hbox_new (FALSE, 0);
-    gtk_widget_show (hbox2);
-    gtk_box_pack_start (GTK_BOX (vbox2), hbox2, TRUE, TRUE, 0);
+    search = gtk_combo_box_entry_new_with_model(GTK_TREE_MODEL(slist), 0);
+    gtk_table_attach_defaults(GTK_TABLE(table), search, 1, 2, 0, 1 );
+    HOOKUP_OBJECT(wbuscar, search, "search");
 
-    label2 = gtk_label_new (_("Replace with: "));
-    gtk_widget_show (label2);
-    gtk_box_pack_start (GTK_BOX (hbox2), label2, FALSE, FALSE, 0);
+    label2 = gtk_label_new(_("Replace with:"));
+    gtk_table_attach_defaults(GTK_TABLE(table), label2, 0, 1, 1, 2 );
 
-    reemprazar = gtk_entry_new ();
-    HOOKUP_OBJECT (wbuscar, reemprazar, "reemprazar");
-    gtk_widget_show (reemprazar);
-    gtk_box_pack_start (GTK_BOX (hbox2), reemprazar, TRUE, TRUE, 0);
-    gtk_entry_set_text (GTK_ENTRY (reemprazar), _("Option not yet available"));
+    replace = gtk_combo_box_entry_new_with_model(GTK_TREE_MODEL(rlist), 0);
+    gtk_table_attach_defaults(GTK_TABLE(table), replace, 1, 2, 1, 2 );
+    HOOKUP_OBJECT(wbuscar, replace, "replace");
 
-    hbuttonbox1 = gtk_hbutton_box_new ();
-    gtk_widget_show (hbuttonbox1);
-    gtk_box_pack_start (GTK_BOX (vbox2), hbuttonbox1, TRUE, TRUE, 0);
+    hbuttonbox1 = gtk_hbutton_box_new();
+    gtk_box_pack_start(GTK_BOX (vbox), hbuttonbox1, TRUE, TRUE, 5);
 
-    bbuscar = gtk_button_new_with_mnemonic ("_Search");
-    HOOKUP_OBJECT (wbuscar, bbuscar, "bbuscar");
-    gtk_widget_show (bbuscar);
-    gtk_container_add (GTK_CONTAINER (hbuttonbox1), bbuscar);
+    bsearch = gtk_button_new_with_mnemonic ("_Search");
+    gtk_container_add (GTK_CONTAINER (hbuttonbox1), bsearch);
+    HOOKUP_OBJECT(wbuscar, bsearch, "bsearch");
 
-    breemprazar = gtk_button_new_with_label ("_Replace");
-    HOOKUP_OBJECT (wbuscar, breemprazar, "breemprazar");
-    gtk_widget_show (breemprazar);
-    gtk_container_add (GTK_CONTAINER (hbuttonbox1), breemprazar);
+    breplace = gtk_button_new_with_mnemonic ("_Replace");
+    HOOKUP_OBJECT (wbuscar, breplace, "breplace");
+    gtk_container_add(GTK_CONTAINER (hbuttonbox1), breplace);
 
-    bpechar = gtk_button_new_with_label ("_Close");
-    HOOKUP_OBJECT (wbuscar, bpechar, "bpechar");
-    gtk_widget_show (bpechar);
-    gtk_container_add (GTK_CONTAINER (hbuttonbox1), bpechar);
+    bclose = gtk_button_new_with_mnemonic ("_Close");
+    HOOKUP_OBJECT(wbuscar, bclose, "bclose");
+    gtk_container_add(GTK_CONTAINER (hbuttonbox1), bclose);
+    
+    gtk_widget_show_all(wbuscar);
 
-    g_signal_connect (G_OBJECT (bbuscar), "clicked",
+    g_signal_connect (G_OBJECT (bsearch), "clicked",
                       G_CALLBACK (on_bbuscar_clicked),
-                      NULL);
-    g_signal_connect (G_OBJECT (breemprazar), "clicked",
+                      wbuscar);
+    g_signal_connect (G_OBJECT (breplace), "clicked",
                       G_CALLBACK (on_breemprazar_clicked),
-                      NULL);
-    g_signal_connect (G_OBJECT (bpechar), "clicked",
+                      wbuscar);
+    g_signal_connect (G_OBJECT (bclose), "clicked",
                       G_CALLBACK (on_bpechar_clicked),
-                      NULL);
+                      wbuscar);
     return wbuscar;
 }
 

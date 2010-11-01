@@ -676,7 +676,50 @@ on_opcions_programa1_activate(GtkMenuItem *menuitem, gpointer  user_data)
 void
 on_bbuscar_clicked(GtkButton *button, gpointer user_data)
 {
+    GtkTreeIter iter;
+    GtkTextIter mstart, mend; 
+    gboolean found;
+    GtkWidget *text;
+    GtkTextBuffer *buffer;
+        
+    /* get search term combo box */
+    GtkBin *scombo = GTK_BIN(lookup_widget(GTK_WIDGET(user_data), "search"));
+    /* get the entry field of the combo box */
+    GtkEntry *entry = GTK_ENTRY(gtk_bin_get_child(scombo));
+    /* get the value of the entry field */
+    const gchar *etext = gtk_entry_get_text(entry);
+    
+    /* get the search term list */
+    GtkListStore *slist = GTK_LIST_STORE(lookup_widget( GTK_WIDGET(user_data), 
+                                         "slist"));
 
+    if (strlen(etext) == 0) {
+        /* empty entry field */
+        return;
+    }
+    
+    /* append a row to the search term list */                  
+    /* FIXME: check for duplicates */
+    gtk_list_store_append(slist, &iter);
+    /* attach a copy of the entry field content to the list */
+    gtk_list_store_set(slist, &iter, 0, g_strdup(etext), -1); 
+
+    /* get the text buffer */
+    text = lookup_widget(GTK_WIDGET(wprincipal), "text");
+    buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW(text));
+    
+    /* look for the entry field value in the text buffer */
+    found = gtk_text_iter_forward_search (&titer, etext, 0, &mstart, &mend, NULL);
+
+    if (found)
+    {
+        /* If found, hilight the text. */
+        gtk_text_buffer_select_range (buffer, &mstart, &mend);
+        
+        /* move the starting pont iterator towards the end of the find */
+        /* FIXME: this has to leak memory.. */
+        titer = mend;
+    }
 }
 
 
