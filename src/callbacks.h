@@ -247,9 +247,6 @@ void
 on_dthe_end_finish(GtkAssistant *assistant, gpointer user_data);
 
 void
-on_home_page1_activate(GtkMenuItem *menuitem, gpointer user_data);
-
-void
 on_text_drag_data_received(GtkWidget *widget, GdkDragContext *drag_context,
                            gint x, gint y, GtkSelectionData *data,
                            guint info, guint time, gpointer user_data);

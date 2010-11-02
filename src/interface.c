@@ -99,7 +99,6 @@ static const GtkActionEntry entries[] = {
     { "HelpMenu", NULL, "_Help" },
     { "Help", GTK_STOCK_HELP, N_("H_elp"), NULL, "", G_CALLBACK(on_help1_activate) },
     { "Howto", NULL, N_("Linux Man Page H_owto"), NULL, "", G_CALLBACK(on_howto_activate) },
-    { "Homepage", NULL, N_("_Home page"), NULL, "", G_CALLBACK(on_home_page1_activate) },
     { "About", GTK_STOCK_ABOUT, N_("_About"), NULL, "", G_CALLBACK(on_about2_activate) },
 };
 
@@ -186,7 +185,6 @@ static const char *ui_description =
     "        <menu action='HelpMenu'>"
     "               <menuitem action='Help'/>"
     "               <menuitem action='Howto'/>"
-    "               <menuitem action='Homepage'/>"
     "               <menuitem action='About'/>"
     "        </menu>"
     "  </menubar>"
@@ -467,15 +465,10 @@ create_wpreferences (void)
     GtkWidget *table;
     GtkWidget *label1;
     GtkWidget *entry_command;
-    GtkWidget *label2;
-    GtkWidget *combo;
     GtkWidget *label3;
     GtkWidget *button;
     GtkWidget *bpok;
     GtkWidget *bpcancel;
-//  GtkTooltips *tooltips;
-
-//  tooltips = gtk_tooltips_new ();
 
     wpreferences = gtk_dialog_new_with_buttons (_("Gmanedit - Preferences"),
                    GTK_WINDOW(wprincipal), GTK_DIALOG_DESTROY_WITH_PARENT, NULL);
@@ -494,26 +487,12 @@ create_wpreferences (void)
     gtk_entry_set_text (GTK_ENTRY (entry_command), _("xterm -e man "));
     gtk_table_attach_defaults(GTK_TABLE(table), entry_command, 1, 2, 0, 1 );
 
-    label2 = gtk_label_new (_("Internet browser"));
-    gtk_table_attach_defaults(GTK_TABLE(table), label2, 0, 1, 1, 2 );
-
-    combo = gtk_combo_box_entry_new_text ();
-    gtk_combo_box_append_text (GTK_COMBO_BOX(combo), "mozilla");
-    gtk_combo_box_append_text (GTK_COMBO_BOX(combo), "firefox");
-    gtk_combo_box_append_text (GTK_COMBO_BOX(combo), "galeon");
-    gtk_combo_box_append_text (GTK_COMBO_BOX(combo), "epiphany");
-    gtk_combo_box_append_text (GTK_COMBO_BOX(combo), "konqueror");
-    HOOKUP_OBJECT (wpreferences, combo, "browser");
-    gtk_table_attach_defaults(GTK_TABLE(table), combo, 1, 2, 1, 2 );
-
     label3 = gtk_label_new (_("Editor Font"));
-    gtk_table_attach_defaults(GTK_TABLE(table), label3, 0, 1, 2, 3 );
+    gtk_table_attach_defaults(GTK_TABLE(table), label3, 0, 1, 1, 2 );
 
     button = gtk_font_button_new();
-    gtk_table_attach_defaults(GTK_TABLE(table), button, 1, 2, 2, 3 );
+    gtk_table_attach_defaults(GTK_TABLE(table), button, 1, 2, 1, 2 );
     HOOKUP_OBJECT (wpreferences, button, "font");
-
-//  gtk_tooltips_set_tip (tooltips, cbinet, _("Select your internet browser from this list"), NULL);
 
     bpok = gtk_dialog_add_button (GTK_DIALOG (wpreferences),
                                   GTK_STOCK_OK, GTK_RESPONSE_OK);

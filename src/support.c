@@ -191,17 +191,18 @@ const gchar *ReadConfFromFile(const gchar *variable)
 
 gboolean OpenWebsite(const gchar *url)
 {
-    const gchar *browser;
-    gchar buf[1024];
+    gchar *cmdline;
+    gboolean success;
 
-    browser = ReadConfFromFile("INTERNET_BROWSER");
+    /* assemble command line for xdg-open */
+    cmdline = g_strdup_printf("/usr/bin/env xdg-open %s", url);
 
-    if (browser == NULL)
-        browser = "firefox";
+    /* spawn xdg-open */
+    success = g_spawn_command_line_async(cmdline, NULL);
 
-    g_snprintf(buf, sizeof(buf) - 1, "%s %s", browser, url);
+    g_free(cmdline);
 
-    return g_spawn_command_line_async(buf, NULL);
+    return success;
 }
 
 gboolean document_modified(GtkWindow *win, const gchar *tname)

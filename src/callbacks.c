@@ -700,24 +700,6 @@ on_opcions_programa1_activate(GtkMenuItem *menuitem, gpointer  user_data)
         gtk_entry_set_text(GTK_ENTRY(obj),datos);
     }
 
-    aux = ReadConfFromFile("INTERNET_BROWSER");
-
-    if (aux != NULL) {
-        strncpy(datos,aux, sizeof(datos) - 1);
-        datos[sizeof(datos) - 1] = 0;
-        obj = lookup_widget(GTK_WIDGET(prefs),"browser");
-        if (!strcmp(datos, "mozilla"))
-            gtk_combo_box_set_active (GTK_COMBO_BOX(obj), 0);
-        else if (!strcmp(datos, "firefox"))
-            gtk_combo_box_set_active (GTK_COMBO_BOX(obj), 1);
-        else if (!strcmp(datos, "galeon"))
-            gtk_combo_box_set_active (GTK_COMBO_BOX(obj), 2);
-        else if (!strcmp(datos, "epiphany"))
-            gtk_combo_box_set_active (GTK_COMBO_BOX(obj), 3);
-        else if (!strcmp(datos, "konqueror"))
-            gtk_combo_box_set_active (GTK_COMBO_BOX(obj), 4);
-    }
-
     aux = ReadConfFromFile("FONT");
 
     if (aux != NULL) {
@@ -869,21 +851,19 @@ mensaje (gchar *msg,gint tipo)
 void
 on_bpok_clicked(GtkButton *button, gpointer user_data)
 {
-    FILE *p;
     GtkWidget *widget;
-    const gchar *entry_text=NULL;
-    gchar buf[1024];
-    gchar *rcname, *browser;
+    FILE *p;
+    gchar *buf;
+    gchar *rcname;
+    const gchar *entry_command = NULL;
     const gchar *font;
     PangoFontDescription *fdesc;
 
-    rcname = g_build_filename (g_get_home_dir(), G_DIR_SEPARATOR_S, ".gmaneditrc", NULL );
+    rcname = g_build_filename (g_get_home_dir(), G_DIR_SEPARATOR_S,
+                               ".gmaneditrc", NULL );
 
     widget = lookup_widget(prefs,"entry_command");
-    entry_text = gtk_entry_get_text(GTK_ENTRY(widget));
-
-    widget = lookup_widget(prefs, "browser");
-    browser = gtk_combo_box_get_active_text (GTK_COMBO_BOX (widget));
+    entry_command = gtk_entry_get_text(GTK_ENTRY(widget));
 
     /* get the selected font */
     widget = lookup_widget(prefs, "font");
@@ -896,18 +876,19 @@ on_bpok_clicked(GtkButton *button, gpointer user_data)
     pango_font_description_free(fdesc);
 
     /* store the settings */
-    snprintf(buf, sizeof buf, "# File created by gmanedit preferences option\n\n" \
-             "COMMAND=%s\nINTERNET_BROWSER=%s\nFONT=%s",
-             entry_text, browser, font);
+    buf = g_strdup_printf("# File created by gmanedit preferences option\n\n" \
+             "COMMAND=%s\nFONT=%s",
+             entry_command, font);
 
-    g_free(browser);
-
-    if ((p=fopen(rcname,"w"))!=NULL) {
-        fprintf(p,"%s\n",buf);
+    if ((p = fopen(rcname, "w")) != NULL) {
+        fprintf(p, "%s\n", buf);
         fclose(p);
-    } else
-        mensaje(strerror(errno),GTK_MESSAGE_ERROR);
+    } else {
+        mensaje(strerror(errno), GTK_MESSAGE_ERROR);
+    }
 
+    /* free allocated ressources */
+    g_free(buf);
     g_free (rcname);
     gtk_widget_destroy(prefs);
 }
@@ -1120,12 +1101,6 @@ void insert_label(const gchar *base,const gchar *text_info)
     statusbar = lookup_widget(GTK_WIDGET(wprincipal),"statusbar1");
     gtk_statusbar_pop (GTK_STATUSBAR (statusbar), 1);
     gtk_statusbar_push (GTK_STATUSBAR (statusbar), 1, text_info);
-}
-
-void
-on_home_page1_activate(GtkMenuItem *menuitem, gpointer user_data)
-{
-    OpenWebsite("http://sourceforge.net/projects/gmanedit2");
 }
 
 static void help_without_gnome(GtkWidget *wid)
