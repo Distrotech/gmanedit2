@@ -30,7 +30,7 @@
 #include "support.h"
 
 GtkUIManager *ui_manager;
-GtkWidget *wbuscar;
+GtkWidget *wsearch;
 
 static const GtkActionEntry entries[] = {
     { "FileMenu", NULL, "_File" },
@@ -331,37 +331,37 @@ create_wbuscar (void)
     GtkWidget *search;
     GtkWidget *label2;
     GtkWidget *replace;
-    GtkWidget *hbuttonbox1;
+    GtkWidget *hbuttonbox;
     GtkWidget *bsearch;
     GtkWidget *breplace;
     GtkWidget *bclose;
 
-    wbuscar = gtk_window_new (GTK_WINDOW_TOPLEVEL);
-    g_object_set_data(G_OBJECT (wbuscar), "wbuscar", wbuscar);
-    gtk_window_set_title(GTK_WINDOW (wbuscar), _("Gmanedit - Search and replace"));
-    gtk_window_set_position(GTK_WINDOW (wbuscar), GTK_WIN_POS_CENTER);
-    gtk_window_set_resizable (GTK_WINDOW (wbuscar), FALSE);
+    wsearch = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+    g_object_set_data(G_OBJECT (wsearch), "wsearch", wsearch);
+    gtk_window_set_title(GTK_WINDOW (wsearch), _("Gmanedit - Search and replace"));
+    gtk_window_set_position(GTK_WINDOW (wsearch), GTK_WIN_POS_CENTER);
+    gtk_window_set_resizable (GTK_WINDOW (wsearch), FALSE);
     /* keep this window on top of the main window */
-    gtk_window_set_transient_for (GTK_WINDOW (wbuscar), GTK_WINDOW (wprincipal));
+    gtk_window_set_transient_for (GTK_WINDOW (wsearch), GTK_WINDOW (wprincipal));
     GdkPixbuf *icon_pixbuf = create_image("gmanedit_icon.png");
-    gtk_window_set_icon (GTK_WINDOW (wbuscar), icon_pixbuf);
+    gtk_window_set_icon (GTK_WINDOW (wsearch), icon_pixbuf);
 
 
     /* create the persistent search text list if required */
     if (!slist) {
         slist = gtk_list_store_new (1, G_TYPE_STRING);
     }
-    HOOKUP_OBJECT(wbuscar, slist, "slist");
+    HOOKUP_OBJECT(wsearch, slist, "slist");
 
     /* create the persistent replace text list if required */
     if (!rlist) {
         rlist = gtk_list_store_new (1, G_TYPE_STRING);
     }
-    HOOKUP_OBJECT(wbuscar, rlist, "rlist");
+    HOOKUP_OBJECT(wsearch, rlist, "rlist");
 
     /* fill the window with content */
     vbox = gtk_vbox_new(FALSE, 5);
-    gtk_container_add (GTK_CONTAINER (wbuscar), vbox);
+    gtk_container_add (GTK_CONTAINER (wsearch), vbox);
 
     table = gtk_table_new(2, 2, FALSE);
     gtk_table_set_row_spacings(GTK_TABLE(table), 5);
@@ -373,42 +373,42 @@ create_wbuscar (void)
 
     search = gtk_combo_box_entry_new_with_model(GTK_TREE_MODEL(slist), 0);
     gtk_table_attach_defaults(GTK_TABLE(table), search, 1, 2, 0, 1 );
-    HOOKUP_OBJECT(wbuscar, search, "search");
+    HOOKUP_OBJECT(wsearch, search, "search");
 
     label2 = gtk_label_new(_("Replace with:"));
     gtk_table_attach_defaults(GTK_TABLE(table), label2, 0, 1, 1, 2 );
 
     replace = gtk_combo_box_entry_new_with_model(GTK_TREE_MODEL(rlist), 0);
     gtk_table_attach_defaults(GTK_TABLE(table), replace, 1, 2, 1, 2 );
-    HOOKUP_OBJECT(wbuscar, replace, "replace");
+    HOOKUP_OBJECT(wsearch, replace, "replace");
 
-    hbuttonbox1 = gtk_hbutton_box_new();
-    gtk_box_pack_start(GTK_BOX (vbox), hbuttonbox1, TRUE, TRUE, 5);
+    hbuttonbox = gtk_hbutton_box_new();
+    gtk_box_pack_start(GTK_BOX (vbox), hbuttonbox, TRUE, TRUE, 5);
 
     bsearch = gtk_button_new_with_mnemonic ("_Search");
-    gtk_container_add (GTK_CONTAINER (hbuttonbox1), bsearch);
-    HOOKUP_OBJECT(wbuscar, bsearch, "bsearch");
+    gtk_container_add (GTK_CONTAINER (hbuttonbox), bsearch);
+    HOOKUP_OBJECT(wsearch, bsearch, "bsearch");
 
     breplace = gtk_button_new_with_mnemonic ("_Replace");
-    HOOKUP_OBJECT (wbuscar, breplace, "breplace");
-    gtk_container_add(GTK_CONTAINER (hbuttonbox1), breplace);
+    HOOKUP_OBJECT (wsearch, breplace, "breplace");
+    gtk_container_add(GTK_CONTAINER (hbuttonbox), breplace);
 
     bclose = gtk_button_new_with_mnemonic ("_Close");
-    HOOKUP_OBJECT(wbuscar, bclose, "bclose");
-    gtk_container_add(GTK_CONTAINER (hbuttonbox1), bclose);
+    HOOKUP_OBJECT(wsearch, bclose, "bclose");
+    gtk_container_add(GTK_CONTAINER (hbuttonbox), bclose);
 
-    gtk_widget_show_all(wbuscar);
+    gtk_widget_show_all(wsearch);
 
     g_signal_connect (G_OBJECT (bsearch), "clicked",
-                      G_CALLBACK (on_bbuscar_clicked),
-                      wbuscar);
+                      G_CALLBACK (on_bsearch_clicked),
+                      wsearch);
     g_signal_connect (G_OBJECT (breplace), "clicked",
-                      G_CALLBACK (on_breemprazar_clicked),
-                      wbuscar);
+                      G_CALLBACK (on_breplace_clicked),
+                      wsearch);
     g_signal_connect (G_OBJECT (bclose), "clicked",
-                      G_CALLBACK (on_bpechar_clicked),
-                      wbuscar);
-    return wbuscar;
+                      G_CALLBACK (on_bclose_clicked),
+                      wsearch);
+    return wsearch;
 }
 
 void create_about (void)

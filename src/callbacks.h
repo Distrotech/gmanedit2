@@ -193,13 +193,13 @@ void
 on_buscar_e_reemprazar1_activate(GtkMenuItem *menuitem, gpointer user_data);
 
 void
-on_bbuscar_clicked(GtkButton *button, gpointer user_data);
+on_bsearch_clicked(GtkButton *button, gpointer user_data);
 
 void
-on_breemprazar_clicked(GtkButton *button, gpointer user_data);
+on_breplace_clicked(GtkButton *button, gpointer user_data);
 
 void
-on_bpechar_clicked(GtkButton *button, gpointer user_data);
+on_bclose_clicked(GtkButton *button, gpointer user_data);
 
 void
 on_bdialog_aceptar_clicked(GtkButton *button, gpointer user_data);

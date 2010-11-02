@@ -19,7 +19,7 @@
  */
 
 extern GtkWidget *wprincipal;
-extern GtkWidget *wbuscar;
+extern GtkWidget *wsearch;
 
 GtkWidget* create_wprincipal (void);
 GtkWidget* create_fileselection (GtkWidget *parent);

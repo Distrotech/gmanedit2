@@ -215,3 +215,33 @@ gboolean document_modified(GtkWindow *win, const gchar *tname)
 
     return gtk_text_buffer_get_modified(tb);
 }
+
+gboolean
+tree_list_add_unique(GtkListStore *slist, const gchar *string)
+{
+    GtkTreeIter iter;
+    gboolean found = FALSE;
+
+    /* look for the search term in the search history */
+    if (gtk_tree_model_get_iter_first(GTK_TREE_MODEL(slist), &iter)) {
+        do {
+            const gchar *sval;
+
+            gtk_tree_model_get(GTK_TREE_MODEL(slist), &iter, 0, &sval, -1);
+
+            /* compare the current item's value with the search term*/
+            if (g_strcmp0(sval, string) == 0) {
+                found = TRUE;
+            }
+        } while (!found && gtk_tree_model_iter_next(GTK_TREE_MODEL(slist), &iter));
+    }
+
+    if (!found) {
+        /* prepend a row to the search term list */
+        gtk_list_store_prepend(slist, &iter);
+        /* attach a copy of the entry field content to the list */
+        gtk_list_store_set(slist, &iter, 0, g_strdup(string), -1);
+    }
+
+    return found;
+}

@@ -712,9 +712,8 @@ on_opcions_programa1_activate(GtkMenuItem *menuitem, gpointer  user_data)
 
 
 void
-on_bbuscar_clicked(GtkButton *button, gpointer user_data)
+on_bsearch_clicked(GtkButton *button, gpointer user_data)
 {
-    GtkTreeIter iter;
     GtkTextIter titer, mstart, mend;
     gboolean found = FALSE;
     GtkWidget *text;
@@ -739,41 +738,34 @@ on_bbuscar_clicked(GtkButton *button, gpointer user_data)
         return;
     }
 
-    /* look for the search term in the search history */
-    if (gtk_tree_model_get_iter_first(GTK_TREE_MODEL(slist), &iter)) {
-        do {
-            const gchar *sval;
-
-            gtk_tree_model_get(GTK_TREE_MODEL(slist), &iter, 0, &sval, -1);
-
-            /* compare the current item's value with the search term*/
-            if (g_strcmp0(sval, etext) == 0) {
-                found = TRUE;
-            }
-        } while (!found && gtk_tree_model_iter_next(GTK_TREE_MODEL(slist), &iter));
-    }
-
-    if (!found) {
-        /* prepend a row to the search term list */
-        gtk_list_store_prepend(slist, &iter);
-        /* attach a copy of the entry field content to the list */
-        gtk_list_store_set(slist, &iter, 0, g_strdup(etext), -1);
-    }
+    /* add the search term to the list */
+    found = tree_list_add_unique(slist, etext);
 
     /* get the text buffer */
     text = lookup_widget(GTK_WIDGET(wprincipal), "text");
     buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW(text));
 
-    if ((pos = gtk_text_buffer_get_mark(buffer, "found"))) {
-        /* search starting at the last find */
+    /* get the last position mark */
+    pos = gtk_text_buffer_get_mark(buffer, "found");
+
+    if (found && pos) {
+        /* this is a previously used search term and the position  of
+         * the last search result has been stored, thus start searching
+         * at the position of the last finding */
         gtk_text_buffer_get_iter_at_mark(buffer, &titer, pos);
     } else {
-        /* search from the start from buffer for text */
-        gtk_text_buffer_get_start_iter (buffer, &titer);
+        /* start from the beginning */
+        gtk_text_buffer_get_start_iter(buffer, &titer);
+    }
+
+    if (pos) {
+        /* delete the mark from a previous search */
+        gtk_text_buffer_delete_mark(buffer, pos);
     }
 
     /* look for the entry field value in the text buffer */
-    found = gtk_text_iter_forward_search (&titer, etext, 0, &mstart, &mend, NULL);
+    found = gtk_text_iter_forward_search (&titer, etext, 0,
+                                          &mstart, &mend, NULL);
 
     if (found) {
         /* If found, hilight the text. */
@@ -781,22 +773,22 @@ on_bbuscar_clicked(GtkButton *button, gpointer user_data)
 
         /* set a mark in the text */
         pos = gtk_text_buffer_create_mark(buffer, "found", &mend, TRUE);
-    } else {
-        /* remove the mark */
-        gtk_text_buffer_delete_mark_by_name(buffer, "found");
+
+        /* scroll the text view to the found position */
+        gtk_text_view_scroll_mark_onscreen (GTK_TEXT_VIEW(text), pos);
     }
 }
 
 
 void
-on_breemprazar_clicked(GtkButton *button, gpointer user_data)
+on_breplace_clicked(GtkButton *button, gpointer user_data)
 {
 
 }
 
 
 void
-on_bpechar_clicked(GtkButton *button, gpointer user_data)
+on_bclose_clicked(GtkButton *button, gpointer user_data)
 {
     gtk_widget_hide(buscar);
 }
@@ -877,8 +869,8 @@ on_bpok_clicked(GtkButton *button, gpointer user_data)
 
     /* store the settings */
     buf = g_strdup_printf("# File created by gmanedit preferences option\n\n" \
-             "COMMAND=%s\nFONT=%s",
-             entry_command, font);
+                          "COMMAND=%s\nFONT=%s",
+                          entry_command, font);
 
     if ((p = fopen(rcname, "w")) != NULL) {
         fprintf(p, "%s\n", buf);

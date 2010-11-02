@@ -48,3 +48,5 @@ void open_man_file(gchar *manfile);
 const gchar *ReadConfFromFile(const gchar *variable);
 gboolean OpenWebsite(const gchar *url);
 gboolean document_modified(GtkWindow *win, const gchar *tname);
+
+gboolean tree_list_add_unique(GtkListStore *slist, const gchar *string);
