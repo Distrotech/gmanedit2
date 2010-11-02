@@ -32,3 +32,5 @@ GtkWidget* create_wizard (void);
 gint dialog_question(const gchar *title,
                      const gchar *text,
                      const gchar *icons);
+
+void update_window_title(GtkWidget *w, gpointer window);

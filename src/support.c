@@ -204,12 +204,12 @@ gboolean OpenWebsite(const gchar *url)
     return g_spawn_command_line_async(buf, NULL);
 }
 
-gboolean document_modified()
+gboolean document_modified(GtkWindow *win, const gchar *tname)
 {
     GtkWidget *text;
     GtkTextBuffer *tb;
 
-    text = lookup_widget(GTK_WIDGET(wprincipal),"text");
+    text = lookup_widget(GTK_WIDGET(win), tname);
     tb = gtk_text_view_get_buffer(GTK_TEXT_VIEW(text));
 
     return gtk_text_buffer_get_modified(tb);

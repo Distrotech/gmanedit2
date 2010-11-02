@@ -162,7 +162,7 @@ on_open_activate(GtkMenuItem *menuitem, gpointer user_data)
     gint res;
 
     /* check if the text buffer has been modified */
-    if (document_modified()) {
+    if (document_modified(GTK_WINDOW(wprincipal), "text")) {
         /* ask if the changes shall be abandoned */
         res = dialog_question(_("Continue loading?"),
                               _("<big><b>The document has been modified.</b></big>\n\n" \
@@ -231,7 +231,7 @@ void
 on_quit_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
     /* check if the text buffer has been modified */
-    if (document_modified()) {
+    if (document_modified(GTK_WINDOW(wprincipal), "text")) {
         int res;
 
         /* ask if the changes shall be abandoned */
@@ -253,6 +253,9 @@ on_quit_activate(GtkMenuItem *menuitem, gpointer user_data)
 static void save_as(gchar *name)
 {
     GtkWidget *text,*statusbar;
+    GtkTextBuffer *buf;
+    GtkTextIter startiter, enditer;
+
     FILE *f;
     gchar *datos;
     gint bytes_written;
@@ -262,44 +265,56 @@ static void save_as(gchar *name)
 
     /* Esta comprabación se hace para permitir guardar un fichero comprimido */
     /* sin comprimir */
-    n = strlen(name)-3;
-    strncpy(extension,name+n,3);
-    if (!strncmp(extension,".gz",3))
+    n = strlen(name) - 3;
+    strncpy(extension,name + n, 3);
+    if (!strncmp(extension,".gz", 3)) {
         in_gzip=1;
-    else
-        in_gzip=0;
-
-    text=lookup_widget(GTK_WIDGET(wprincipal),"text");
-
-    /* Barra de estado */
-    statusbar=lookup_widget(GTK_WIDGET(wprincipal),"statusbar1");
-    gtk_statusbar_pop(GTK_STATUSBAR(statusbar),1);
-
-    GtkTextBuffer *b = gtk_text_view_get_buffer (GTK_TEXT_VIEW(text));
-    GtkTextIter startiter, enditer;
-    gtk_text_buffer_get_start_iter (b, &startiter);
-    gtk_text_buffer_get_end_iter (b, &enditer);
-    datos=gtk_text_buffer_get_text (b, &startiter, &enditer, FALSE);
-
-    if (in_gzip)
-        f=gzopen(name,"wb");
-    else
-        f=fopen(name,"w");
-
-    if ((f!=NULL) && (f!=Z_NULL)) {
-        if (!in_gzip)
-            bytes_written=fwrite(datos,sizeof(gchar),strlen(datos),f);
-        else
-            bytes_written=gzwrite(f,datos,strlen(datos));
-        gtk_statusbar_push(GTK_STATUSBAR(statusbar),1,_("File saved."));
     } else {
-        gtk_statusbar_push(GTK_STATUSBAR(statusbar),1,_("File NOT saved."));
-        mensaje(strerror(errno),GTK_MESSAGE_ERROR);
+        in_gzip=0;
     }
-    if (in_gzip)
+
+    /* get the text view */
+    text = lookup_widget(GTK_WIDGET(wprincipal),"text");
+
+    /* get the status bar */
+    statusbar = lookup_widget(GTK_WIDGET(wprincipal),"statusbar1");
+    gtk_statusbar_pop(GTK_STATUSBAR(statusbar), 1);
+
+    /* get the content of the text buffer */
+    buf = gtk_text_view_get_buffer (GTK_TEXT_VIEW(text));
+    gtk_text_buffer_get_start_iter (buf, &startiter);
+    gtk_text_buffer_get_end_iter (buf, &enditer);
+    datos = gtk_text_buffer_get_text (buf, &startiter, &enditer, FALSE);
+
+    /* open the file */
+    if (in_gzip) {
+        f = gzopen(name, "wb");
+    } else {
+        f = fopen(name, "w");
+    }
+
+    /* try to write to the file */
+    if ((f != NULL) && (f != Z_NULL)) {
+        if (!in_gzip) {
+            bytes_written = fwrite(datos,sizeof(gchar),strlen(datos),f);
+        } else {
+            bytes_written = gzwrite(f,datos,strlen(datos));
+        }
+        gtk_statusbar_push(GTK_STATUSBAR(statusbar), 1 ,_("File saved."));
+    } else {
+        gtk_statusbar_push(GTK_STATUSBAR(statusbar), 1, _("File NOT saved."));
+        mensaje(strerror(errno), GTK_MESSAGE_ERROR);
+    }
+
+    /* close the file */
+    if (in_gzip) {
         gzclose(f);
-    else
+    } else {
         fclose(f);
+    }
+
+    /* mark the text buffer as unmodified */
+    gtk_text_buffer_set_modified(buf, FALSE);
 }
 
 void

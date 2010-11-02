@@ -216,12 +216,10 @@ create_wprincipal (void)
     wprincipal = gtk_window_new (GTK_WINDOW_TOPLEVEL);
     g_object_set_data (G_OBJECT (wprincipal), "wprincipal", wprincipal);
     gtk_widget_set_size_request (wprincipal, 640, 500);
-    gtk_window_set_title (GTK_WINDOW (wprincipal), _("Gmanedit - Gnome manpages editor"));
     GdkPixbuf *icon_pixbuf = create_image ("gmanedit_icon.png");
     gtk_window_set_icon (GTK_WINDOW (wprincipal), icon_pixbuf);
 
     vbox1 = gtk_vbox_new (FALSE, 0);
-    gtk_widget_show (vbox1);
     gtk_container_add (GTK_CONTAINER (wprincipal), vbox1);
 
     GtkActionGroup *action_group = gtk_action_group_new ("MenuActions");
@@ -241,32 +239,51 @@ create_wprincipal (void)
     gtk_box_pack_start (GTK_BOX (vbox1), handlebox, FALSE, FALSE, 0);
     GtkWidget *toolbar = gtk_ui_manager_get_widget (ui_manager, "/ToolBar");
     gtk_container_add (GTK_CONTAINER (handlebox), toolbar);
-    gtk_widget_show_all (handlebox);
     scrolledwindow1 = gtk_scrolled_window_new (NULL, NULL);
-    gtk_widget_show (scrolledwindow1);
     gtk_box_pack_start (GTK_BOX (vbox1), scrolledwindow1, TRUE, TRUE, 0);
     gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolledwindow1), GTK_POLICY_NEVER, GTK_POLICY_ALWAYS);
 
+    /* create the text view */
     text = gtk_text_view_new();
-    gtk_text_view_set_wrap_mode(GTK_TEXT_VIEW(text), GTK_WRAP_WORD);
-    HOOKUP_OBJECT (wprincipal, text, "text");
-    gtk_widget_show (text);
     gtk_container_add (GTK_CONTAINER (scrolledwindow1), text);
+    gtk_text_view_set_wrap_mode(GTK_TEXT_VIEW(text), GTK_WRAP_WORD);
     gtk_text_view_set_editable(GTK_TEXT_VIEW(text), TRUE);
+    HOOKUP_OBJECT (wprincipal, text, "text");
 
+    /* attach the window title update function to the text view */
+    g_signal_connect(gtk_text_view_get_buffer(GTK_TEXT_VIEW(text)),
+                     "changed",
+                     G_CALLBACK(update_window_title),
+                     wprincipal);
+
+    g_signal_connect(gtk_text_view_get_buffer(GTK_TEXT_VIEW(text)),
+                     "modified-changed",
+                     G_CALLBACK(update_window_title),
+                     wprincipal);
+
+    /* create the status bar */
     statusbar1 = gtk_statusbar_new ();
     HOOKUP_OBJECT (wprincipal, statusbar1, "statusbar1");
-    gtk_widget_show (statusbar1);
     gtk_box_pack_start (GTK_BOX (vbox1), statusbar1, FALSE, FALSE, 0);
 
+    /* show all widgets attached to the window */
+    gtk_widget_show_all (wprincipal);
+
+    /* attach close window signal handler */
     g_signal_connect (G_OBJECT (wprincipal), "delete_event",
                       G_CALLBACK (on_quit_activate),
                       NULL);
+
+    /* attach drag & drop signal handler */
     g_signal_connect (G_OBJECT (text), "drag_data_received",
                       G_CALLBACK (on_text_drag_data_received),
                       NULL);
 
     gtk_widget_grab_focus (text);
+
+    /* set the window title */
+    update_window_title(NULL, GTK_WINDOW(wprincipal));
+
     return wprincipal;
 }
 
@@ -902,4 +919,68 @@ gint dialog_question(const gchar *title,
     gtk_widget_destroy(GTK_WIDGET(dialog));
 
     return res;
+}
+
+void update_window_title(GtkWidget *w, gpointer window)
+{
+    GString *title;
+    GtkWindow *win = GTK_WINDOW(window);
+
+    /* keep the last modification state of the buffer here.
+     * start with TRUE to ensure a title update if this function is
+     * called for the first time. */
+    static gboolean last_state = TRUE;
+
+    gboolean doc_modified;
+
+    /* check if the text buffer has been modified */
+    if (w != NULL) {
+        /* called by a signal -> get modified status from buffer */
+        doc_modified = gtk_text_buffer_get_modified(GTK_TEXT_BUFFER(w));
+    } else {
+        /* called manually -> buffer is unmodified */
+        doc_modified = FALSE;
+    }
+
+    /* check if the new text buffer status is different from previous status */
+    if (doc_modified != last_state)
+    {
+        /* yes - store the new status for the next call of this function */
+        last_state = doc_modified;
+    } else {
+        /* no - nothing has changed, just leave this function */
+        return;
+    }
+
+    /* create the Gstring to hold the window title */
+    title = g_string_new(NULL);
+
+    /* if the document has been modified, prepend a * to its name */
+    if (document_modified(win, "text")) {
+        g_string_append_c(title, '*');
+    }
+
+    /* add the file information */
+    if (filename) {
+        /* editing an existing file */
+        gchar *basename = g_path_get_basename(filename);
+        gchar *dirname = g_path_get_dirname(filename);
+
+        g_string_append_printf(title, "%s (%s)", basename, dirname);
+
+        /* free returned values */
+        g_free(basename);
+        g_free(dirname);
+    } else {
+        /* editing an unsaved document */
+        g_string_append(title, _("Unsaved Document"));
+    }
+
+    /* append the application name to the title */
+    g_string_append_printf(title, " - %s", PACKAGE_STRING);
+
+    /* set the window title */
+    gtk_window_set_title (win, title->str);
+
+    g_string_free(title, TRUE);
 }
