@@ -966,6 +966,18 @@ void update_window_title(GtkWidget *w, gpointer window)
         gchar *basename = g_path_get_basename(filename);
         gchar *dirname = g_path_get_dirname(filename);
 
+        /* replace home directory by ~ */
+        if (g_str_has_prefix(dirname, g_get_home_dir())) {
+            gchar *tmp;
+            gint pos = strlen(g_get_home_dir());
+
+            tmp = g_strdup(dirname + pos - 1);
+            tmp[0] = '~';
+
+            g_free(dirname);
+            dirname = tmp;
+        }
+
         g_string_append_printf(title, "%s (%s)", basename, dirname);
 
         /* free returned values */
