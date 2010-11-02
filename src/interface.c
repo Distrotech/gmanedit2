@@ -31,7 +31,6 @@
 
 GtkUIManager *ui_manager;
 GtkWidget *wbuscar;
-GtkTextIter titer;
 
 static const GtkActionEntry entries[] = {
     { "FileMenu", NULL, "_File" },
@@ -310,7 +309,7 @@ create_wbuscar (void)
 {
     static GtkListStore *slist = NULL;
     static GtkListStore *rlist = NULL;
-    
+
     GtkWidget *vbox;
     GtkWidget *table;
     GtkWidget *label1;
@@ -321,10 +320,6 @@ create_wbuscar (void)
     GtkWidget *bsearch;
     GtkWidget *breplace;
     GtkWidget *bclose;
-    
-    /* required for the actual search functions */
-    GtkWidget *text;
-    GtkTextBuffer *buffer;
 
     wbuscar = gtk_window_new (GTK_WINDOW_TOPLEVEL);
     g_object_set_data(G_OBJECT (wbuscar), "wbuscar", wbuscar);
@@ -335,29 +330,19 @@ create_wbuscar (void)
     gtk_window_set_transient_for (GTK_WINDOW (wbuscar), GTK_WINDOW (wprincipal));
     GdkPixbuf *icon_pixbuf = create_image("gmanedit_icon.png");
     gtk_window_set_icon (GTK_WINDOW (wbuscar), icon_pixbuf);
-    
-    
+
+
     /* create the persistent search text list if required */
     if (!slist) {
         slist = gtk_list_store_new (1, G_TYPE_STRING);
     }
     HOOKUP_OBJECT(wbuscar, slist, "slist");
-        
+
     /* create the persistent replace text list if required */
     if (!rlist) {
         rlist = gtk_list_store_new (1, G_TYPE_STRING);
-    }  
-    HOOKUP_OBJECT(wbuscar, rlist, "rlist");  
-    
-    /* get the text buffer */
-    text = lookup_widget(GTK_WIDGET(wprincipal), "text");
-    buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW(text));
-   
-    /* set the text iterator at the beginning of the text */
-    gtk_text_buffer_get_start_iter (buffer, &titer);
-    /* attach the iterator to the window */
-    g_object_set_data (G_OBJECT(wbuscar), "titer", &titer);
-
+    }
+    HOOKUP_OBJECT(wbuscar, rlist, "rlist");
 
     /* fill the window with content */
     vbox = gtk_vbox_new(FALSE, 5);
@@ -396,7 +381,7 @@ create_wbuscar (void)
     bclose = gtk_button_new_with_mnemonic ("_Close");
     HOOKUP_OBJECT(wbuscar, bclose, "bclose");
     gtk_container_add(GTK_CONTAINER (hbuttonbox1), bclose);
-    
+
     gtk_widget_show_all(wbuscar);
 
     g_signal_connect (G_OBJECT (bsearch), "clicked",

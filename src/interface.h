@@ -20,7 +20,6 @@
 
 extern GtkWidget *wprincipal;
 extern GtkWidget *wbuscar;
-extern GtkTextIter titer;
 
 GtkWidget* create_wprincipal (void);
 GtkWidget* create_fileselection (GtkWidget *parent);

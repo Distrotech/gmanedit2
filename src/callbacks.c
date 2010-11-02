@@ -677,37 +677,63 @@ void
 on_bbuscar_clicked(GtkButton *button, gpointer user_data)
 {
     GtkTreeIter iter;
-    GtkTextIter mstart, mend; 
-    gboolean found;
+    GtkTextIter titer, mstart, mend;
+    gboolean found = FALSE;
     GtkWidget *text;
     GtkTextBuffer *buffer;
-        
+    GtkTextMark *pos;
+
     /* get search term combo box */
     GtkBin *scombo = GTK_BIN(lookup_widget(GTK_WIDGET(user_data), "search"));
+
     /* get the entry field of the combo box */
     GtkEntry *entry = GTK_ENTRY(gtk_bin_get_child(scombo));
-    /* get the value of the entry field */
+
+    /* get the value of the entry field = the search term */
     const gchar *etext = gtk_entry_get_text(entry);
-    
+
     /* get the search term list */
-    GtkListStore *slist = GTK_LIST_STORE(lookup_widget( GTK_WIDGET(user_data), 
+    GtkListStore *slist = GTK_LIST_STORE(lookup_widget(GTK_WIDGET(user_data),
                                          "slist"));
 
     if (strlen(etext) == 0) {
         /* empty entry field */
         return;
     }
-    
-    /* append a row to the search term list */                  
-    /* FIXME: check for duplicates */
-    gtk_list_store_append(slist, &iter);
-    /* attach a copy of the entry field content to the list */
-    gtk_list_store_set(slist, &iter, 0, g_strdup(etext), -1); 
+
+    /* look for the search term in the search history */
+    if (gtk_tree_model_get_iter_first(GTK_TREE_MODEL(slist), &iter)) {
+        do {
+            const gchar *sval;
+
+            gtk_tree_model_get(GTK_TREE_MODEL(slist), &iter, 0, &sval, -1);
+
+            /* compare the current item's value with the search term*/
+            if (g_strcmp0(sval, etext) == 0) {
+                found = TRUE;
+            }
+        } while (!found && gtk_tree_model_iter_next(GTK_TREE_MODEL(slist), &iter));
+    }
+
+    if (!found) {
+        /* prepend a row to the search term list */
+        gtk_list_store_prepend(slist, &iter);
+        /* attach a copy of the entry field content to the list */
+        gtk_list_store_set(slist, &iter, 0, g_strdup(etext), -1);
+    }
 
     /* get the text buffer */
     text = lookup_widget(GTK_WIDGET(wprincipal), "text");
     buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW(text));
-    
+
+    if ((pos = gtk_text_buffer_get_mark(buffer, "found"))) {
+       /* search starting at the last find */
+       gtk_text_buffer_get_iter_at_mark(buffer, &titer, pos);
+    } else {
+        /* search from the start from buffer for text */
+        gtk_text_buffer_get_start_iter (buffer, &titer);
+    }
+
     /* look for the entry field value in the text buffer */
     found = gtk_text_iter_forward_search (&titer, etext, 0, &mstart, &mend, NULL);
 
@@ -715,10 +741,12 @@ on_bbuscar_clicked(GtkButton *button, gpointer user_data)
     {
         /* If found, hilight the text. */
         gtk_text_buffer_select_range (buffer, &mstart, &mend);
-        
-        /* move the starting pont iterator towards the end of the find */
-        /* FIXME: this has to leak memory.. */
-        titer = mend;
+
+        /* set a mark in the text */
+        pos = gtk_text_buffer_create_mark(buffer, "found", &mend, TRUE);
+    } else {
+        /* remove the mark */
+        gtk_text_buffer_delete_mark_by_name(buffer, "found");
     }
 }
 
