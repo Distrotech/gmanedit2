@@ -154,7 +154,7 @@ void open_man_file(gchar *manfile)
         }
         gzclose(f);
     } else
-        mensaje(strerror(errno),GTK_MESSAGE_ERROR);
+        dialog_message(strerror(errno),GTK_MESSAGE_ERROR);
     if (open_file) gtk_widget_destroy (open_file);
 
     /* mark the text buffer as unaltered */

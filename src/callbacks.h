@@ -208,9 +208,6 @@ void
 on_data1_activate(GtkMenuItem *menuitem, gpointer user_data);
 
 void
-mensaje (gchar *msg,gint tipo);
-
-void
 on_about2_activate(GtkMenuItem *menuitem, gpointer user_data);
 
 void

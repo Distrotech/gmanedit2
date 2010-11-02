@@ -830,6 +830,19 @@ create_wizard (void)
     return wizard;
 }
 
+void
+dialog_message(gchar *msg, gint tipo)
+{
+    GtkWidget *msgbox;
+
+    msgbox = gtk_message_dialog_new_with_markup(GTK_WINDOW(wprincipal),
+                                                GTK_DIALOG_MODAL, tipo,
+                                                GTK_BUTTONS_OK, msg, NULL);
+
+    gtk_dialog_run (GTK_DIALOG (msgbox));
+    gtk_widget_destroy (msgbox);
+}
+
 gint dialog_question(const gchar *title,
                      const gchar *text,
                      const gchar *icon)
@@ -842,7 +855,7 @@ gint dialog_question(const gchar *title,
     dialog = GTK_DIALOG(gtk_dialog_new_with_buttons(
                             title,
                             GTK_WINDOW(wprincipal),
-                            GTK_DIALOG_MODAL ,
+                            GTK_DIALOG_MODAL,
                             GTK_STOCK_OK,
                             GTK_RESPONSE_ACCEPT,
                             GTK_STOCK_CANCEL,
@@ -922,8 +935,7 @@ void update_window_title(GtkWidget *w, gpointer window)
     }
 
     /* check if the new text buffer status is different from previous status */
-    if (doc_modified != last_state)
-    {
+    if (doc_modified != last_state) {
         /* yes - store the new status for the next call of this function */
         last_state = doc_modified;
     } else {

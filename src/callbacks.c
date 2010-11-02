@@ -252,7 +252,7 @@ on_quit_activate(GtkMenuItem *menuitem, gpointer user_data)
 
 static void save_as(gchar *name)
 {
-    GtkWidget *text,*statusbar;
+    GtkWidget *text, *statusbar;
     GtkTextBuffer *buf;
     GtkTextIter startiter, enditer;
 
@@ -266,8 +266,8 @@ static void save_as(gchar *name)
     /* Esta comprabación se hace para permitir guardar un fichero comprimido */
     /* sin comprimir */
     n = strlen(name) - 3;
-    strncpy(extension,name + n, 3);
-    if (!strncmp(extension,".gz", 3)) {
+    strncpy(extension, name + n, 3);
+    if (!strncmp(extension, ".gz", 3)) {
         in_gzip=1;
     } else {
         in_gzip=0;
@@ -293,18 +293,27 @@ static void save_as(gchar *name)
         f = fopen(name, "w");
     }
 
-    /* try to write to the file */
-    if ((f != NULL) && (f != Z_NULL)) {
-        if (!in_gzip) {
-            bytes_written = fwrite(datos,sizeof(gchar),strlen(datos),f);
-        } else {
-            bytes_written = gzwrite(f,datos,strlen(datos));
-        }
-        gtk_statusbar_push(GTK_STATUSBAR(statusbar), 1 ,_("File saved."));
-    } else {
+    if ((f == NULL) || (f == Z_NULL)) {
+        /* opening the file failed */
         gtk_statusbar_push(GTK_STATUSBAR(statusbar), 1, _("File NOT saved."));
-        mensaje(strerror(errno), GTK_MESSAGE_ERROR);
+
+        datos = g_strdup_printf(_("<big><b>An error occured while opening "
+                                  "\"%s\" for writing:</b></big>\n\n%s"),
+                                name, strerror(errno));
+
+        dialog_message(datos, GTK_MESSAGE_ERROR);
+        g_free(datos);
+
+        return;
     }
+
+    /* try to write to the file */
+    if (in_gzip) {
+        bytes_written = gzwrite(f, datos, strlen(datos));
+    } else {
+        bytes_written = fwrite(datos, sizeof(gchar), strlen(datos), f);
+    }
+    gtk_statusbar_push(GTK_STATUSBAR(statusbar), 1 ,_("File saved."));
 
     /* close the file */
     if (in_gzip) {
@@ -659,7 +668,7 @@ on_paxina_creada1_activate(GtkMenuItem *menuitem, gpointer user_data)
     /* write the content of the text view to a temporary file */
     if (!g_file_set_contents(filename, datos, -1, NULL)) {
         /* writing failed */
-        mensaje(strerror(errno), GTK_MESSAGE_ERROR);
+        dialog_message(strerror(errno), GTK_MESSAGE_ERROR);
     } else {
         /* show preview */
         g_spawn_command_line_async(command, NULL);
@@ -821,23 +830,13 @@ on_data1_activate(GtkMenuItem *menuitem, gpointer user_data)
         gtk_statusbar_pop (GTK_STATUSBAR (statusbar), 1);
         gtk_statusbar_push (GTK_STATUSBAR (statusbar), 1, _("Date inserted."));
     } else
-        mensaje(_("Cannot get system date!"),GTK_MESSAGE_ERROR);
+        dialog_message(_("Cannot get system date!"),GTK_MESSAGE_ERROR);
 }
 
 void
 on_about2_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
     create_about();
-}
-
-void
-mensaje (gchar *msg,gint tipo)
-{
-    GtkWidget *msgbox;
-
-    msgbox=gtk_message_dialog_new(GTK_WINDOW(wprincipal),GTK_DIALOG_MODAL,tipo, GTK_BUTTONS_OK, msg,NULL);
-    gtk_dialog_run (GTK_DIALOG (msgbox));
-    gtk_widget_destroy (msgbox);
 }
 
 void
@@ -876,7 +875,7 @@ on_bpok_clicked(GtkButton *button, gpointer user_data)
         fprintf(p, "%s\n", buf);
         fclose(p);
     } else {
-        mensaje(strerror(errno), GTK_MESSAGE_ERROR);
+        dialog_message(strerror(errno), GTK_MESSAGE_ERROR);
     }
 
     /* free allocated ressources */
