@@ -402,16 +402,19 @@ void create_about (void)
         "Sergio Rua",
         "Joop Stakenborg <pg4i@amsat.org>",
         "Anibal Avelar <aavelar@cofradia.org>",
+        "Joachim de Groot <jdegroot@web.de>",
         NULL
     };
     const gchar *translators = "Sergio Rua\n"
                                "Jordi Mallach <jordi@sindominio.net>\n"
-                               "Takeshi Aihana <aihana@muc.biglobe.ne.jp>";
+                               "Takeshi Aihana <aihana@muc.biglobe.ne.jp>\n"
+                               "Daniel Nylander <po@danielnylander.se>";
 
     const gchar *license =
         "Copyright 2000, 2001 Sergio Rua\n"
         "Copyright 2008 Joop Stakenborg <pg4i@amsat.org>\n"
         "Copyright 2008 Anibal Avelar <aavelar@cofradia.org>\n"
+        "Copyright 2010 Joachim de Groot <jdegroot@web.de>\n"
         "\n"
         "This program is free software; you can redistribute it and/or modify\n"
         "it under the terms of the GNU General Public License as published by\n"
