@@ -34,12 +34,12 @@ GtkWidget *wbuscar;
 
 static const GtkActionEntry entries[] = {
     { "FileMenu", NULL, "_File" },
-    { "New", GTK_STOCK_NEW, N_("_New"), NULL, "", G_CALLBACK(on_novo1_activate) },
+    { "New", GTK_STOCK_NEW, N_("_New"), NULL, "", G_CALLBACK(on_new_activate) },
     { "Wizard", NULL, N_("New _Wizard page"), NULL, "", G_CALLBACK(on_new_wizard_page1_activate) },
-    { "Open", GTK_STOCK_OPEN, N_("_Open..."), NULL, "", G_CALLBACK(on_abrir1_activate) },
+    { "Open", GTK_STOCK_OPEN, N_("_Open..."), NULL, "", G_CALLBACK(on_open_activate) },
     { "Save", GTK_STOCK_SAVE, N_("_Save"), NULL, "", G_CALLBACK(on_gardar1_activate) },
     { "SaveAs", GTK_STOCK_SAVE_AS, N_("Save _As..."), NULL, "", G_CALLBACK(on_gardar_como1_activate) },
-    { "Quit", GTK_STOCK_QUIT, N_("_Quit"), NULL, "", G_CALLBACK(on_sair4_activate) },
+    { "Quit", GTK_STOCK_QUIT, N_("_Quit"), NULL, "", G_CALLBACK(on_quit_activate) },
     { "EditMenu", NULL, "_Edit" },
     { "Cut", GTK_STOCK_CUT, N_("Cu_t"), NULL, "", G_CALLBACK(on_cortar1_activate) },
     { "Copy", GTK_STOCK_COPY, N_("_Copy"), NULL, "", G_CALLBACK(on_copiar1_activate) },
@@ -260,7 +260,7 @@ create_wprincipal (void)
     gtk_box_pack_start (GTK_BOX (vbox1), statusbar1, FALSE, FALSE, 0);
 
     g_signal_connect (G_OBJECT (wprincipal), "delete_event",
-                      G_CALLBACK (on_wprincipal_delete),
+                      G_CALLBACK (on_quit_activate),
                       NULL);
     g_signal_connect (G_OBJECT (text), "drag_data_received",
                       G_CALLBACK (on_text_drag_data_received),
@@ -438,37 +438,6 @@ void create_about (void)
                            "translator-credits", translators,
                            "version", VERSION,
                            NULL);
-}
-
-GtkWidget*
-create_exit_dialog (void)
-{
-    GtkWidget *exit_dialog;
-    GtkWidget *label3;
-    GtkWidget *ok_button;
-    GtkWidget *cancel_button;
-
-    exit_dialog = gtk_dialog_new_with_buttons (_("Gmanedit - Exit"),
-                  GTK_WINDOW(wprincipal), GTK_DIALOG_DESTROY_WITH_PARENT, NULL);
-
-    label3 = gtk_label_new (_("Exit from gmanedit?"));
-    gtk_widget_show (label3);
-    gtk_container_add (GTK_CONTAINER (GTK_DIALOG (exit_dialog)->vbox), label3);
-    gtk_misc_set_padding (GTK_MISC (label3), 10, 10);
-
-    ok_button = gtk_dialog_add_button (GTK_DIALOG (exit_dialog),
-                                       GTK_STOCK_OK, GTK_RESPONSE_OK);
-    cancel_button = gtk_dialog_add_button (GTK_DIALOG (exit_dialog),
-                                           GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL);
-
-    g_signal_connect (G_OBJECT (ok_button), "clicked",
-                      G_CALLBACK (on_bdialog_yes_clicked),
-                      NULL);
-    g_signal_connect (G_OBJECT (cancel_button), "clicked",
-                      G_CALLBACK (on_bdialog_no_clicked),
-                      NULL);
-
-    return exit_dialog;
 }
 
 GtkWidget*
@@ -860,4 +829,74 @@ create_wizard (void)
     g_signal_connect (G_OBJECT (wizard), "cancel",
                       G_CALLBACK (on_assistant_cancel), NULL);
     return wizard;
+}
+
+gint dialog_question(const gchar *title,
+                     const gchar *text,
+                     const gchar *icon)
+{
+    GtkDialog *dialog;
+    GtkWidget *hbox, *image, *label;
+    gint res;
+
+    /* create a dialog */
+    dialog = GTK_DIALOG(gtk_dialog_new_with_buttons(
+                            title,
+                            GTK_WINDOW(wprincipal),
+                            GTK_DIALOG_MODAL ,
+                            GTK_STOCK_OK,
+                            GTK_RESPONSE_ACCEPT,
+                            GTK_STOCK_CANCEL,
+                            GTK_RESPONSE_REJECT,
+                            NULL));
+
+    /* default: NO */
+    gtk_dialog_set_default_response(dialog, GTK_RESPONSE_REJECT);
+
+    /* create a hbox to hold the label and the icon */
+    hbox = g_object_new(GTK_TYPE_HBOX,
+                        "border-width", 8,
+                        "spacing", 8,
+                        NULL);
+
+    /* create an icon */
+    image = g_object_new(GTK_TYPE_IMAGE,
+                         "stock", icon,
+                         "icon-size", GTK_ICON_SIZE_DIALOG,
+                         "xalign", 0.5,
+                         "yalign", 0,
+                         NULL);
+
+    /* put the icon into the hbox */
+    gtk_box_pack_start(GTK_BOX(hbox),
+                       GTK_WIDGET(image),
+                       FALSE, FALSE, 0);
+
+    /* create a label */
+    label = g_object_new(GTK_TYPE_LABEL,
+                         "wrap", TRUE,
+                         "use-markup", TRUE,
+                         "label", text,
+                         NULL);
+
+    /* put the label into the hbox */
+    gtk_box_pack_start(GTK_BOX(hbox),
+                       GTK_WIDGET(label),
+                       TRUE, TRUE, 0);
+
+    /* put the hbox into the dialog */
+    gtk_box_pack_start(GTK_BOX(dialog->vbox),
+                       GTK_WIDGET(hbox),
+                       FALSE, FALSE, 0);
+
+    /* enable all widgets */
+    gtk_widget_show_all(GTK_WIDGET(dialog));
+
+    /* run the dialog */
+    res = gtk_dialog_run(dialog);
+
+    /* destroy the dialog */
+    gtk_widget_destroy(GTK_WIDGET(dialog));
+
+    return res;
 }

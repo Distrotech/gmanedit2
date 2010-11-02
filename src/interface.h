@@ -26,6 +26,9 @@ GtkWidget* create_fileselection (GtkWidget *parent);
 GtkWidget* create_save_file (GtkWidget *parent);
 GtkWidget* create_wbuscar (void);
 void create_about (void);
-GtkWidget* create_exit_dialog (void);
 GtkWidget* create_wpreferences (void);
 GtkWidget* create_wizard (void);
+
+gint dialog_question(const gchar *title,
+                     const gchar *text,
+                     const gchar *icons);

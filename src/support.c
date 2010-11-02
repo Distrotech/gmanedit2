@@ -156,6 +156,9 @@ void open_man_file(gchar *manfile)
     } else
         mensaje(strerror(errno),GTK_MESSAGE_ERROR);
     if (open_file) gtk_widget_destroy (open_file);
+
+    /* mark the text buffer as unaltered */
+    gtk_text_buffer_set_modified(tb, FALSE);
 }
 
 const gchar *ReadConfFromFile(const gchar *variable)
@@ -199,4 +202,15 @@ gboolean OpenWebsite(const gchar *url)
     g_snprintf(buf, sizeof(buf) - 1, "%s %s", browser, url);
 
     return g_spawn_command_line_async(buf, NULL);
+}
+
+gboolean document_modified()
+{
+    GtkWidget *text;
+    GtkTextBuffer *tb;
+
+    text = lookup_widget(GTK_WIDGET(wprincipal),"text");
+    tb = gtk_text_view_get_buffer(GTK_TEXT_VIEW(text));
+
+    return gtk_text_buffer_get_modified(tb);
 }

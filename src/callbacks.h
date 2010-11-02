@@ -36,10 +36,10 @@ void
 on_pagina_base1_activate(GtkMenuItem *menuitem, gpointer user_data);
 
 void
-on_novo1_activate(GtkMenuItem *menuitem, gpointer user_data);
+on_new_activate(GtkMenuItem *menuitem, gpointer user_data);
 
 void
-on_abrir1_activate(GtkMenuItem *menuitem, gpointer user_data);
+on_open_activate(GtkMenuItem *menuitem, gpointer user_data);
 
 void
 on_gardar1_activate(GtkMenuItem *menuitem, gpointer user_data);
@@ -48,7 +48,7 @@ void
 on_gardar_como1_activate(GtkMenuItem *menuitem, gpointer user_data);
 
 void
-on_sair4_activate(GtkMenuItem *menuitem, gpointer user_data);
+on_quit_activate(GtkMenuItem *menuitem, gpointer user_data);
 
 void
 on_ok_button1_clicked(GtkButton *button, gpointer user_data);

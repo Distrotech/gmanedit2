@@ -41,7 +41,6 @@ GtkWidget *open_file=NULL;
 GtkWidget *save_file=NULL;
 GtkWidget *buscar=NULL;
 GtkWidget *about=NULL;
-GtkWidget *exit_dialog=NULL;
 GtkWidget *prefs=NULL;
 GtkWidget *wizard=NULL;
 
@@ -53,15 +52,6 @@ static void insert_label(const gchar *base,const gchar *text_info);
 static void help_without_gnome(GtkWidget *wid);
 
 /* Eventos */
-void
-on_wprincipal_delete (GtkObject *object, gpointer  user_data)
-{
-    if (exit_dialog==NULL)
-        exit_dialog=create_exit_dialog();
-
-    gtk_widget_show(exit_dialog);
-}
-
 void
 on_cortar1_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
@@ -126,13 +116,30 @@ on_pagina_base1_activate(GtkMenuItem *menuitem, gpointer user_data)
 
 
 void
-on_novo1_activate(GtkMenuItem *menuitem, gpointer user_data)
+on_new_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
-    GtkWidget *text,*statusbar;
+    GtkWidget *text, *statusbar;
+    GtkTextBuffer *buf;
 
-    text=lookup_widget(GTK_WIDGET(wprincipal),"text");
-    GtkTextBuffer *b = gtk_text_view_get_buffer (GTK_TEXT_VIEW(text));
-    gtk_text_buffer_set_text (b, "", -1);
+    text = lookup_widget(GTK_WIDGET(wprincipal),"text");
+    buf = gtk_text_view_get_buffer (GTK_TEXT_VIEW(text));
+
+    /* check if the text buffer contains unsaved changes */
+    if (gtk_text_buffer_get_modified(buf)) {
+        /* buffer has been modified, ask for permission to reset */
+        int res = dialog_question(_("Start new document?"),
+                                  _("<big><b>The document has been modified.</b></big>\n\n" \
+                                    "Are you sure you want to start a new document?"),
+                                  GTK_STOCK_DIALOG_QUESTION);
+
+        if (res != GTK_RESPONSE_ACCEPT) {
+            /* abort */
+            return;
+        }
+    }
+
+    /* set status bar */
+    gtk_text_buffer_set_text (buf, "", -1);
     statusbar = lookup_widget(GTK_WIDGET(wprincipal),"statusbar1");
     gtk_statusbar_pop (GTK_STATUSBAR (statusbar), 1);
     gtk_statusbar_push (GTK_STATUSBAR (statusbar), 1, _("New file."));
@@ -142,23 +149,43 @@ on_novo1_activate(GtkMenuItem *menuitem, gpointer user_data)
         g_free(filename);
         filename = NULL;
     }
+
+    /* mark the text buffer as unaltered */
+    gtk_text_buffer_set_modified(buf, FALSE);
 }
 
 
 void
-on_abrir1_activate(GtkMenuItem *menuitem, gpointer user_data)
+on_open_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
     const gchar *temp;
+    gint res;
+
+    /* check if the text buffer has been modified */
+    if (document_modified()) {
+        /* ask if the changes shall be abandoned */
+        res = dialog_question(_("Continue loading?"),
+                              _("<big><b>The document has been modified.</b></big>\n\n" \
+                                "Do you want to continue loading a file?"),
+                              GTK_STOCK_DIALOG_QUESTION);
+
+        if (res == GTK_RESPONSE_REJECT) {
+            /* loading aborted */
+            return;
+        }
+    }
 
     open_file = create_fileselection (GTK_WIDGET(wprincipal));
     gtk_widget_show (open_file);
+
     if (gtk_dialog_run (GTK_DIALOG (open_file)) == GTK_RESPONSE_ACCEPT) {
         temp = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (open_file));
         filename = g_strdup(temp);
         gtk_widget_hide(open_file);
         open_man_file(filename);
-    } else
-        gtk_widget_destroy (open_file);
+    } else {
+        gtk_widget_destroy(open_file);
+    }
 }
 
 
@@ -201,12 +228,26 @@ on_gardar_como1_activate(GtkMenuItem *menuitem, gpointer user_data)
 
 
 void
-on_sair4_activate(GtkMenuItem *menuitem, gpointer user_data)
+on_quit_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
-    if (exit_dialog==NULL)
-        exit_dialog=create_exit_dialog();
+    /* check if the text buffer has been modified */
+    if (document_modified()) {
+        int res;
 
-    gtk_widget_show(exit_dialog);
+        /* ask if the changes shall be abandoned */
+        res = dialog_question(_("Continue quitting?"),
+                              _("<big><b>The document has been modified.</b></big>\n\n" \
+                                "Do you want to continue to quit?"),
+                              GTK_STOCK_DIALOG_QUESTION);
+
+        if (res == GTK_RESPONSE_REJECT) {
+            /* exiting aborted */
+            return;
+        }
+    }
+
+    /* the answer was yes - terminate the program */
+    gtk_main_quit();
 }
 
 static void save_as(gchar *name)
@@ -727,8 +768,8 @@ on_bbuscar_clicked(GtkButton *button, gpointer user_data)
     buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW(text));
 
     if ((pos = gtk_text_buffer_get_mark(buffer, "found"))) {
-       /* search starting at the last find */
-       gtk_text_buffer_get_iter_at_mark(buffer, &titer, pos);
+        /* search starting at the last find */
+        gtk_text_buffer_get_iter_at_mark(buffer, &titer, pos);
     } else {
         /* search from the start from buffer for text */
         gtk_text_buffer_get_start_iter (buffer, &titer);
@@ -737,8 +778,7 @@ on_bbuscar_clicked(GtkButton *button, gpointer user_data)
     /* look for the entry field value in the text buffer */
     found = gtk_text_iter_forward_search (&titer, etext, 0, &mstart, &mend, NULL);
 
-    if (found)
-    {
+    if (found) {
         /* If found, hilight the text. */
         gtk_text_buffer_select_range (buffer, &mstart, &mend);
 
@@ -809,19 +849,6 @@ mensaje (gchar *msg,gint tipo)
     msgbox=gtk_message_dialog_new(GTK_WINDOW(wprincipal),GTK_DIALOG_MODAL,tipo, GTK_BUTTONS_OK, msg,NULL);
     gtk_dialog_run (GTK_DIALOG (msgbox));
     gtk_widget_destroy (msgbox);
-}
-
-void
-on_bdialog_yes_clicked(GtkButton *button, gpointer user_data)
-{
-    gtk_main_quit();
-}
-
-
-void
-on_bdialog_no_clicked(GtkButton *button, gpointer user_data)
-{
-    gtk_widget_hide(exit_dialog);
 }
 
 void
