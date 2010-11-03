@@ -190,13 +190,15 @@ on_open_activate(GtkMenuItem *menuitem, gpointer user_data)
 
 
 void
-on_gardar1_activate(GtkMenuItem *menuitem, gpointer user_data)
+on_save_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
     const gchar *temp;
-    if (filename!=NULL)
+
+    if (filename != NULL) {
         save_as(filename);
+    }
     else {
-        save_file=create_save_file(GTK_WIDGET(wprincipal));
+        save_file = create_save_file(GTK_WIDGET(wprincipal), GTK_STOCK_SAVE);
         gtk_widget_show(save_file);
         if (gtk_dialog_run (GTK_DIALOG (save_file)) == GTK_RESPONSE_ACCEPT) {
             temp = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (save_file));
@@ -211,14 +213,17 @@ on_gardar1_activate(GtkMenuItem *menuitem, gpointer user_data)
 
 
 void
-on_gardar_como1_activate(GtkMenuItem *menuitem, gpointer user_data)
+on_save_as_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
-    const gchar *temp;
-    save_file=create_save_file(GTK_WIDGET(wprincipal));
+    save_file = create_save_file(GTK_WIDGET(wprincipal), GTK_STOCK_SAVE_AS);
     gtk_widget_show(save_file);
+
     if (gtk_dialog_run (GTK_DIALOG (save_file)) == GTK_RESPONSE_ACCEPT) {
-        temp = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (save_file));
-        filename = g_strdup(temp);
+        if (filename != NULL) {
+            g_free(filename);
+        }
+
+        filename = gtk_file_chooser_get_filename(GTK_FILE_CHOOSER (save_file));
         gtk_widget_hide(save_file);
         save_as(filename);
     } else {

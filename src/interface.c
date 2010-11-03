@@ -37,8 +37,8 @@ static const GtkActionEntry entries[] = {
     { "New", GTK_STOCK_NEW, N_("_New"), NULL, "", G_CALLBACK(on_new_activate) },
     { "Wizard", NULL, N_("New _Wizard page"), NULL, "", G_CALLBACK(on_new_wizard_page1_activate) },
     { "Open", GTK_STOCK_OPEN, N_("_Open..."), NULL, "", G_CALLBACK(on_open_activate) },
-    { "Save", GTK_STOCK_SAVE, N_("_Save"), NULL, "", G_CALLBACK(on_gardar1_activate) },
-    { "SaveAs", GTK_STOCK_SAVE_AS, N_("Save _As..."), NULL, "", G_CALLBACK(on_gardar_como1_activate) },
+    { "Save", GTK_STOCK_SAVE, N_("_Save"), NULL, "", G_CALLBACK(on_save_activate) },
+    { "SaveAs", GTK_STOCK_SAVE_AS, N_("Save _As..."), NULL, "", G_CALLBACK(on_save_as_activate) },
     { "Quit", GTK_STOCK_QUIT, N_("_Quit"), NULL, "", G_CALLBACK(on_quit_activate) },
     { "EditMenu", NULL, "_Edit" },
     { "Cut", GTK_STOCK_CUT, N_("Cu_t"), NULL, "", G_CALLBACK(on_cortar1_activate) },
@@ -303,7 +303,7 @@ create_fileselection (GtkWidget *parent)
 }
 
 GtkWidget*
-create_save_file (GtkWidget *parent)
+create_save_file (GtkWidget *parent, const gchar *save_type)
 {
     GtkWidget *save_file;
 
@@ -311,8 +311,9 @@ create_save_file (GtkWidget *parent)
                 GTK_WINDOW (parent),
                 GTK_FILE_CHOOSER_ACTION_SAVE,
                 GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
-                GTK_STOCK_OPEN, GTK_RESPONSE_ACCEPT,
+                save_type, GTK_RESPONSE_ACCEPT,
                 NULL);
+
     GdkPixbuf *icon_pixbuf = create_image ("gmanedit_icon.png");
     gtk_window_set_icon (GTK_WINDOW (save_file), icon_pixbuf);
 

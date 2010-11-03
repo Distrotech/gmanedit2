@@ -42,10 +42,10 @@ void
 on_open_activate(GtkMenuItem *menuitem, gpointer user_data);
 
 void
-on_gardar1_activate(GtkMenuItem *menuitem, gpointer user_data);
+on_save_activate(GtkMenuItem *menuitem, gpointer user_data);
 
 void
-on_gardar_como1_activate(GtkMenuItem *menuitem, gpointer user_data);
+on_save_as_activate(GtkMenuItem *menuitem, gpointer user_data);
 
 void
 on_quit_activate(GtkMenuItem *menuitem, gpointer user_data);

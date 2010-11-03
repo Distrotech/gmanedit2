@@ -23,7 +23,7 @@ extern GtkWidget *wsearch;
 
 GtkWidget* create_wprincipal (void);
 GtkWidget* create_fileselection (GtkWidget *parent);
-GtkWidget* create_save_file (GtkWidget *parent);
+GtkWidget* create_save_file (GtkWidget *parent, const gchar *save_type);
 GtkWidget* create_wbuscar (void);
 void create_about (void);
 GtkWidget* create_wpreferences (void);
