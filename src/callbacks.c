@@ -260,17 +260,12 @@ static void save_as(gchar *name)
     gchar *datos;
     gint bytes_written;
     gint in_gzip;
-    char extension[5];
-    int n;
 
-    /* Esta comprabación se hace para permitir guardar un fichero comprimido */
-    /* sin comprimir */
-    n = strlen(name) - 3;
-    strncpy(extension, name + n, 3);
-    if (!strncmp(extension, ".gz", 3)) {
-        in_gzip=1;
+    /* this is done to allow saving a compressed file uncompressed */
+    if (g_str_has_suffix(name, ".gz")) {
+        in_gzip = 1;
     } else {
-        in_gzip=0;
+        in_gzip = 0;
     }
 
     /* get the text view */

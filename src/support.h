@@ -44,7 +44,7 @@ GtkWidget* lookup_widget(GtkWidget *widget, const gchar *widget_name);
 
 GdkPixbuf* create_image(const gchar *filename);
 void add_pixmap_directory(const gchar *directory);
-void open_man_file(gchar *manfile);
+void open_man_file(const gchar *manfile);
 const gchar *ReadConfFromFile(const gchar *variable);
 gboolean OpenWebsite(const gchar *url);
 gboolean document_modified(GtkWindow *win, const gchar *tname);
