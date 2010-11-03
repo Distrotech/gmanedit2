@@ -37,8 +37,6 @@
 #include "support.h"
 
 extern GtkWidget *wprincipal;
-GtkWidget *open_file=NULL;
-GtkWidget *save_file=NULL;
 GtkWidget *buscar=NULL;
 GtkWidget *about=NULL;
 GtkWidget *prefs=NULL;
@@ -158,7 +156,7 @@ on_new_activate(GtkMenuItem *menuitem, gpointer user_data)
 void
 on_open_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
-    const gchar *temp;
+    GtkWidget *open_file;
     gint res;
 
     /* check if the text buffer has been modified */
@@ -179,19 +177,23 @@ on_open_activate(GtkMenuItem *menuitem, gpointer user_data)
     gtk_widget_show (open_file);
 
     if (gtk_dialog_run (GTK_DIALOG (open_file)) == GTK_RESPONSE_ACCEPT) {
-        temp = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (open_file));
-        filename = g_strdup(temp);
-        gtk_widget_hide(open_file);
+        if (filename != NULL) {
+            g_free(filename);
+        }
+
+        filename = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (open_file));
         open_man_file(filename);
-    } else {
-        gtk_widget_destroy(open_file);
     }
+
+    gtk_widget_destroy(open_file);
 }
 
 
 void
 on_save_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
+    GtkWidget *save_file = NULL;
+
     if (filename != NULL) {
         save_as(filename);
     }
@@ -202,9 +204,9 @@ on_save_activate(GtkMenuItem *menuitem, gpointer user_data)
             filename = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (save_file));
             gtk_widget_hide(save_file);
             save_as(filename);
-        } else {
-            gtk_widget_destroy (save_file);
         }
+
+        gtk_widget_destroy (save_file);
     }
 }
 
@@ -212,6 +214,8 @@ on_save_activate(GtkMenuItem *menuitem, gpointer user_data)
 void
 on_save_as_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
+    GtkWidget *save_file;
+
     save_file = create_save_file(GTK_WIDGET(wprincipal), GTK_STOCK_SAVE_AS);
     gtk_widget_show(save_file);
 
@@ -223,9 +227,9 @@ on_save_as_activate(GtkMenuItem *menuitem, gpointer user_data)
         filename = gtk_file_chooser_get_filename(GTK_FILE_CHOOSER (save_file));
         gtk_widget_hide(save_file);
         save_as(filename);
-    } else {
-        gtk_widget_destroy (save_file);
     }
+
+    gtk_widget_destroy (save_file);
 }
 
 
@@ -318,6 +322,9 @@ static void save_as(gchar *name)
     } else {
         fclose(f);
     }
+
+    /* free the memory returned by gtk_text_buffer_get_text() */
+    g_free(datos);
 
     /* mark the text buffer as unmodified */
     gtk_text_buffer_set_modified(buf, FALSE);

@@ -17,7 +17,6 @@
  *  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02111-1307, USA.
  */
 
-extern GtkWidget *open_file;
 extern gchar *filename;
 
 void

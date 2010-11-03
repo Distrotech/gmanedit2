@@ -113,7 +113,7 @@ void open_man_file(const gchar *manfile)
     GtkTextBuffer *tb;
     gzFile *f;
     gint bytes_read;
-    gchar *buffer = (gchar*)malloc(BUFFER_SIZE);
+    gchar *buffer = g_malloc(BUFFER_SIZE);
 
     text = lookup_widget(GTK_WIDGET(wprincipal),"text");
     tb = gtk_text_view_get_buffer (GTK_TEXT_VIEW (text));
@@ -147,9 +147,8 @@ void open_man_file(const gchar *manfile)
         dialog_message(strerror(errno),GTK_MESSAGE_ERROR);
     }
 
-    if (open_file) {
-        gtk_widget_destroy (open_file);
-    }
+    /* return the buffer */
+    g_free(buffer);
 
     /* mark the text buffer as unaltered */
     gtk_text_buffer_set_modified(tb, FALSE);
