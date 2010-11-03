@@ -192,8 +192,6 @@ on_open_activate(GtkMenuItem *menuitem, gpointer user_data)
 void
 on_save_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
-    const gchar *temp;
-
     if (filename != NULL) {
         save_as(filename);
     }
@@ -201,8 +199,7 @@ on_save_activate(GtkMenuItem *menuitem, gpointer user_data)
         save_file = create_save_file(GTK_WIDGET(wprincipal), GTK_STOCK_SAVE);
         gtk_widget_show(save_file);
         if (gtk_dialog_run (GTK_DIALOG (save_file)) == GTK_RESPONSE_ACCEPT) {
-            temp = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (save_file));
-            filename = g_strdup(temp);
+            filename = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (save_file));
             gtk_widget_hide(save_file);
             save_as(filename);
         } else {
