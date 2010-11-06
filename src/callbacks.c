@@ -636,10 +636,11 @@ void
 on_view_created_page(GtkMenuItem *menuitem, gpointer user_data)
 {
     GtkWidget *text, *statusbar;
+    GtkTextIter startiter, enditer;
     gchar filename[31];
-    gchar command[51];
-    const gchar *config;
-    gchar *page;
+    const gchar *config = NULL;
+    gchar *command = NULL;
+    gchar *page = NULL;
 
     /* create temporary file */
     g_snprintf(filename, sizeof(filename) - 1, "/tmp/gmanedit.XXXXXX");
@@ -650,10 +651,10 @@ on_view_created_page(GtkMenuItem *menuitem, gpointer user_data)
 
     if (config == NULL) {
         /* no seting found - use default */
-        g_snprintf(command, sizeof(command) - 1, "xterm -e man %s", filename);
+        command = g_strdup_printf("xterm -e man %s", filename);
     } else {
         /* use program specified by user */
-        g_snprintf(command, sizeof(command) - 1, "%s %s", config, filename);
+        command = g_strdup_printf("%s %s", config, filename);
     }
 
     /* update the status bar */
@@ -665,12 +666,11 @@ on_view_created_page(GtkMenuItem *menuitem, gpointer user_data)
     text = lookup_widget(wprincipal, "text");
 
     GtkTextBuffer *b = gtk_text_view_get_buffer(GTK_TEXT_VIEW(text));
-    GtkTextIter startiter, enditer;
     gtk_text_buffer_get_start_iter(b, &startiter);
     gtk_text_buffer_get_end_iter(b, &enditer);
     page = gtk_text_buffer_get_text (b, &startiter, &enditer, FALSE);
 
-    /* write the content of the text view to a temporary file */
+    /* write the content of the text view to the temporary file */
     if (!g_file_set_contents(filename, page, -1, NULL)) {
         /* writing failed */
         dialog_message(strerror(errno), GTK_MESSAGE_ERROR);
@@ -683,6 +683,8 @@ on_view_created_page(GtkMenuItem *menuitem, gpointer user_data)
          * FIXME: there must be a better way to ensure this! */
         sleep(1);
     }
+
+    g_free(command);
 
     /* free the memory allocated by gtk_text_buffer_get_text() */
     g_free(page);
