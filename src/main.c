@@ -24,31 +24,11 @@
 #include "interface.h"
 #include "support.h"
 
-#define cuantos (sizeof(tabla)/sizeof(GtkTargetEntry))
-
-enum {
-    TARGET_STRING,
-    TARGET_URL,
-    TARGET_MAN
-};
-
 GtkWidget *wprincipal;
-
-static GtkTargetEntry tabla[]= {
-    { "STRING", 0, TARGET_STRING },
-    { "text/plain", 0, TARGET_STRING },
-    { "text/uri-list", 0, TARGET_URL },
-    { "application/x-troff-man", 0, TARGET_MAN }
-};
-
 
 int
 main (int argc, char *argv[])
 {
-    GtkWidget *text;
-    const gchar *fname;
-    PangoFontDescription *fdesc;
-
 #ifdef ENABLE_NLS
     bindtextdomain (PACKAGE, LOCALEDIR);
     textdomain (PACKAGE);
@@ -66,20 +46,6 @@ main (int argc, char *argv[])
      */
     wprincipal = create_wprincipal ();
     gtk_widget_show (wprincipal);
-
-    /* get the text widget */
-    text = lookup_widget(GTK_WIDGET(wprincipal),"text");
-
-    /* add it as a drag & drop target */
-    gtk_drag_dest_set(text, GTK_DEST_DEFAULT_ALL, tabla, cuantos-1,
-                      GDK_ACTION_COPY|GDK_ACTION_MOVE);
-
-    /* set the font if it has been defined in the config file */
-    if ((fname = ReadConfFromFile("FONT"))) {
-        fdesc = pango_font_description_from_string(fname);
-        gtk_widget_modify_font(text, fdesc);
-        pango_font_description_free(fdesc);
-    }
 
     /* if a command line argument has been specified, check if it is a
      * file and try to load it */

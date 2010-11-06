@@ -210,6 +210,21 @@ create_wprincipal (void)
     GtkWidget *scrolledwindow1;
     GtkWidget *text;
     GtkWidget *statusbar1;
+    const gchar *fname;
+    PangoFontDescription *fdesc;
+
+    enum {
+        TARGET_STRING,
+        TARGET_URL,
+        TARGET_MAN
+    };
+
+    GtkTargetEntry tabla[]= {
+        { "STRING", 0, TARGET_STRING },
+        { "text/plain", 0, TARGET_STRING },
+        { "text/uri-list", 0, TARGET_URL },
+        { "application/x-troff-man", 0, TARGET_MAN }
+    };
 
     wprincipal = gtk_window_new (GTK_WINDOW_TOPLEVEL);
     g_object_set_data (G_OBJECT (wprincipal), "wprincipal", wprincipal);
@@ -258,6 +273,18 @@ create_wprincipal (void)
                      "modified-changed",
                      G_CALLBACK(update_window_title),
                      wprincipal);
+
+    /* set the font of the text view if it is defined in the config file */
+    if ((fname = ReadConfFromFile("FONT"))) {
+        fdesc = pango_font_description_from_string(fname);
+        gtk_widget_modify_font(text, fdesc);
+        pango_font_description_free(fdesc);
+    }
+
+    /* add it as a drag & drop target */
+    gtk_drag_dest_set(text, GTK_DEST_DEFAULT_ALL, tabla,
+                      sizeof(tabla) / sizeof(GtkTargetEntry),
+                      GDK_ACTION_COPY | GDK_ACTION_MOVE);
 
     /* create the status bar */
     statusbar1 = gtk_statusbar_new ();
@@ -571,7 +598,7 @@ create_wizard (void)
 
     /* create page 1: Welcome */
     GtkWidget *labelbegin = gtk_label_new (_("Welcome to the Gmanedit Man Pages Wizard."
-                                             " Follow the next steps to build a Basic Man Page"));
+                                           " Follow the next steps to build a Basic Man Page"));
     HOOKUP_OBJECT(wizard, labelbegin, "labelbegin");
     gtk_label_set_line_wrap (GTK_LABEL(labelbegin), TRUE);
 
