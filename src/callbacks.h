@@ -183,7 +183,7 @@ void
 on_xustificacion_a_esquerda1_activate(GtkMenuItem *menuitem, gpointer user_data);
 
 void
-on_paxina_creada1_activate(GtkMenuItem *menuitem, gpointer user_data);
+on_view_created_page(GtkMenuItem *menuitem, gpointer user_data);
 
 void
 on_opcions_programa1_activate(GtkMenuItem *menuitem, gpointer user_data);

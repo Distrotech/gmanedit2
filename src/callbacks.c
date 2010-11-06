@@ -633,26 +633,27 @@ on_xustificacion_a_esquerda1_activate(GtkMenuItem *menuitem, gpointer user_data)
 }
 
 void
-on_paxina_creada1_activate(GtkMenuItem *menuitem, gpointer user_data)
+on_view_created_page(GtkMenuItem *menuitem, gpointer user_data)
 {
-    GtkWidget *text,*statusbar;
+    GtkWidget *text, *statusbar;
     gchar filename[31];
     gchar command[51];
-    const gchar *datos;
+    const gchar *config;
+    gchar *page;
 
     /* create temporary file */
     g_snprintf(filename, sizeof(filename) - 1, "/tmp/gmanedit.XXXXXX");
     mkstemp(filename);
 
     /* get the configured preview command from ~/.gmaneditrc */
-    datos = ReadConfFromFile("COMMAND");
+    config = ReadConfFromFile("COMMAND");
 
-    if (datos == NULL) {
+    if (config == NULL) {
         /* no seting found - use default */
         g_snprintf(command, sizeof(command) - 1, "xterm -e man %s", filename);
     } else {
         /* use program specified by user */
-        g_snprintf(command, sizeof(command) - 1, "%s %s", datos, filename);
+        g_snprintf(command, sizeof(command) - 1, "%s %s", config, filename);
     }
 
     /* update the status bar */
@@ -667,10 +668,10 @@ on_paxina_creada1_activate(GtkMenuItem *menuitem, gpointer user_data)
     GtkTextIter startiter, enditer;
     gtk_text_buffer_get_start_iter(b, &startiter);
     gtk_text_buffer_get_end_iter(b, &enditer);
-    datos = gtk_text_buffer_get_text (b, &startiter, &enditer, FALSE);
+    page = gtk_text_buffer_get_text (b, &startiter, &enditer, FALSE);
 
     /* write the content of the text view to a temporary file */
-    if (!g_file_set_contents(filename, datos, -1, NULL)) {
+    if (!g_file_set_contents(filename, page, -1, NULL)) {
         /* writing failed */
         dialog_message(strerror(errno), GTK_MESSAGE_ERROR);
     } else {
@@ -682,6 +683,9 @@ on_paxina_creada1_activate(GtkMenuItem *menuitem, gpointer user_data)
          * FIXME: there must be a better way to ensure this! */
         sleep(1);
     }
+
+    /* free the memory allocated by gtk_text_buffer_get_text() */
+    g_free(page);
 
     /* remove the temporary file */
     unlink(filename);

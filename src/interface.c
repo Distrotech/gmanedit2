@@ -94,7 +94,7 @@ static const GtkActionEntry entries[] = {
     { "Subheader", NULL, N_("Subheader"), NULL, "", G_CALLBACK(on_subcabeceira1_activate) },
     { "Comments", NULL, N_("Comments"), NULL, "", G_CALLBACK(on_comments1_activate) },
     { "ViewMenu", NULL, "_View" },
-    { "ViewCreatedPage", NULL, N_("View created page"), NULL, "", G_CALLBACK(on_paxina_creada1_activate) },
+    { "ViewCreatedPage", NULL, N_("View created page"), NULL, "", G_CALLBACK(on_view_created_page) },
     { "Preferences", GTK_STOCK_PREFERENCES, N_("_Preferences"), NULL, "", G_CALLBACK(on_opcions_programa1_activate) },
     { "HelpMenu", NULL, "_Help" },
     { "Help", GTK_STOCK_HELP, N_("H_elp"), NULL, "", G_CALLBACK(on_help1_activate) },
