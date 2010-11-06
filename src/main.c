@@ -49,10 +49,9 @@ main (int argc, char *argv[])
 
     /* if a command line argument has been specified, check if it is a
      * file and try to load it */
-    if (argc && g_file_test (argv[1], G_FILE_TEST_IS_REGULAR)) {
-
-        open_man_file(argv[1]);
-        filename = g_strdup(argv[1]);
+    if ((argc > 1) && g_file_test (argv[argc - 1], G_FILE_TEST_IS_REGULAR)) {
+        open_man_file(argv[argc - 1]);
+        filename = g_strdup(argv[argc - 1]);
     }
 
     gtk_main ();
