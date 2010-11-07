@@ -295,12 +295,15 @@ static void save_as(gchar *name)
     }
 
     if ((f == NULL) || (f == Z_NULL)) {
+        /* free the memory returned by gtk_text_buffer_get_text() */
+        g_free(datos);
+
         /* opening the file failed */
         gtk_statusbar_push(GTK_STATUSBAR(statusbar), 1, _("File NOT saved."));
 
-        datos = g_strdup_printf(_("<big><b>An error occured while opening "
-                                  "\"%s\" for writing:</b></big>\n\n%s"),
-                                name, strerror(errno));
+        datos = g_strdup_printf(_("<big><b>An error occured while saving"
+                                  " the file.</b></big>\n\n%s"),
+                                strerror(errno));
 
         dialog_message(datos, GTK_MESSAGE_ERROR);
         g_free(datos);
