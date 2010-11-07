@@ -32,6 +32,14 @@
 GtkUIManager *ui_manager;
 GtkWidget *wsearch;
 
+/* accepted drag & drop target types */
+const GtkTargetEntry dnd_targets[]= {
+    { "STRING", 0, TARGET_STRING },
+    { "text/plain", 0, TARGET_STRING },
+    { "text/uri-list", 0, TARGET_URL },
+    { "application/x-troff-man", 0, TARGET_MAN }
+};
+
 static const GtkActionEntry entries[] = {
     { "FileMenu", NULL, "_File" },
     { "New", GTK_STOCK_NEW, N_("_New"), NULL, "", G_CALLBACK(on_new_activate) },
@@ -213,19 +221,6 @@ create_wprincipal (void)
     const gchar *fname;
     PangoFontDescription *fdesc;
 
-    enum {
-        TARGET_STRING,
-        TARGET_URL,
-        TARGET_MAN
-    };
-
-    GtkTargetEntry tabla[]= {
-        { "STRING", 0, TARGET_STRING },
-        { "text/plain", 0, TARGET_STRING },
-        { "text/uri-list", 0, TARGET_URL },
-        { "application/x-troff-man", 0, TARGET_MAN }
-    };
-
     wprincipal = gtk_window_new (GTK_WINDOW_TOPLEVEL);
     g_object_set_data (G_OBJECT (wprincipal), "wprincipal", wprincipal);
     gtk_widget_set_size_request (wprincipal, 640, 500);
@@ -281,11 +276,6 @@ create_wprincipal (void)
         pango_font_description_free(fdesc);
     }
 
-    /* add it as a drag & drop target */
-    gtk_drag_dest_set(text, GTK_DEST_DEFAULT_ALL, tabla,
-                      sizeof(tabla) / sizeof(GtkTargetEntry),
-                      GDK_ACTION_COPY | GDK_ACTION_MOVE);
-
     /* create the status bar */
     statusbar1 = gtk_statusbar_new ();
     HOOKUP_OBJECT (wprincipal, statusbar1, "statusbar1");
@@ -300,7 +290,11 @@ create_wprincipal (void)
                       NULL);
 
     /* attach drag & drop signal handler */
-    g_signal_connect (G_OBJECT (text), "drag_data_received",
+    gtk_drag_dest_set(text, GTK_DEST_DEFAULT_ALL, dnd_targets,
+                      G_N_ELEMENTS(dnd_targets),
+                      GDK_ACTION_COPY);
+
+    g_signal_connect (G_OBJECT (text), "drag-data-received",
                       G_CALLBACK (on_text_drag_data_received),
                       NULL);
 

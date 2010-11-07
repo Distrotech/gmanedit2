@@ -1137,12 +1137,17 @@ on_text_drag_data_received(GtkWidget *widget, GdkDragContext  *drag_context,
                            guint info, guint time, gpointer user_data)
 {
     if (data->length >= 0) {
-        if (!strncmp((gchar *)data->data,"file:",4)) {
-            filename = g_strdup((gchar *)data->data + 6);
-            filename[strlen(filename)-2]='\0';
+
+        if (g_str_has_prefix ((gchar *)data->data, "file://")) {
+            if (filename != NULL) {
+                g_free(filename);
+            }
+            filename = g_strdup((gchar *)data->data + 7);
+            filename[strlen(filename) - 2] = '\0';
             open_man_file(filename);
         }
     }
+
     gtk_drag_finish(drag_context, TRUE, FALSE, time);
 }
 
