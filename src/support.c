@@ -115,43 +115,78 @@ void open_man_file(const gchar *manfile)
     gint bytes_read;
     gchar *buffer = g_malloc(BUFFER_SIZE);
 
+    /* find the text buffer */
     text = lookup_widget(GTK_WIDGET(wprincipal),"text");
     tb = gtk_text_view_get_buffer (GTK_TEXT_VIEW (text));
-    gtk_text_buffer_set_text (tb, "", 0);
 
     /* status bar */
     statusbar = lookup_widget(GTK_WIDGET(wprincipal), "statusbar1");
     gtk_statusbar_pop(GTK_STATUSBAR(statusbar), 1);
-    gtk_statusbar_push(GTK_STATUSBAR(statusbar), 1, _("File opened."));
 
     /* now open the file */
     if ((f = gzopen(manfile, "rb")) != NULL) {
+        /* opening the file succeeded */
+
+        /* empty the text buffer */
+        gtk_text_buffer_set_text (tb, "", 0);
+
         while(!gzeof(f)) {
+            /* read the file */
             bytes_read = gzread(f, buffer, BUFFER_SIZE);
             if (bytes_read > 0) {
                 gchar *utf8 = NULL;
 
                 if (g_utf8_validate(buffer, -1, NULL) == FALSE) {
-                    utf8 = g_locale_to_utf8(buffer, -1, NULL, NULL, NULL);
+                    /* buffer content is not UTF-8 encoded */
+                    GError *err = NULL;
+
+                    /* convert the file content to UTF-8 */
+                    utf8 = g_locale_to_utf8(buffer, -1, NULL, NULL, &err);
+
+                    if (err != NULL) {
+                        gchar *message;
+                        message = g_strdup_printf(_("<big><b>Converting the file content to "
+                                                  "UTF-8 failed:</b></big>\n\n%s."),
+                                                  err->message);
+
+                        dialog_message(message, GTK_MESSAGE_ERROR);
+
+                        g_free(message);
+                        g_error_free(err);
+                    }
                 }
 
                 if (utf8 != NULL) {
-                    strncpy(buffer,utf8, BUFFER_SIZE - 1);
-                    buffer[BUFFER_SIZE - 1] = 0;
+                    /* the string has been converted to UTF8 */
+                    g_strlcpy(buffer, utf8, BUFFER_SIZE - 1);
+                    g_free(utf8);
                 }
+
+                /* insert the content of the read buffer into the text buffer */
                 gtk_text_buffer_insert_at_cursor(tb, buffer, bytes_read);
             }
         }
+
         gzclose(f);
+        gtk_statusbar_push(GTK_STATUSBAR(statusbar), 1, _("File opened."));
+
+        /* mark the text buffer as unaltered */
+        gtk_text_buffer_set_modified(tb, FALSE);
     } else {
-        dialog_message(strerror(errno),GTK_MESSAGE_ERROR);
+        /* opening the file failed */
+        gchar *message;
+        gtk_statusbar_push(GTK_STATUSBAR(statusbar), 1, _("File NOT opened."));
+
+        message = g_strdup_printf(_("<big><b>An error occured while opening"
+                                  " the file.</b></big>\n\n%s."),
+                                  strerror(errno));
+
+        dialog_message(message, GTK_MESSAGE_ERROR);
+        g_free(message);
     }
 
     /* return the buffer */
     g_free(buffer);
-
-    /* mark the text buffer as unaltered */
-    gtk_text_buffer_set_modified(tb, FALSE);
 }
 
 const gchar *ReadConfFromFile(const gchar *variable)
