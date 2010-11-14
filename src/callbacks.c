@@ -38,12 +38,12 @@
 #include "support.h"
 
 extern GtkWidget *wprincipal;
-GtkWidget *buscar=NULL;
-GtkWidget *about=NULL;
-GtkWidget *prefs=NULL;
-GtkWidget *wizard=NULL;
+GtkWidget *buscar = NULL;
+GtkWidget *about  = NULL;
+GtkWidget *prefs  = NULL;
+GtkWidget *wizard = NULL;
 
-gchar *filename=NULL;
+gchar *filename = NULL;
 
 /* Funciones */
 static void save_as(gchar *name);
@@ -335,12 +335,15 @@ static void save_as(gchar *name)
     }
 
     if ((f == NULL) || (f == Z_NULL)) {
+        /* free the memory returned by gtk_text_buffer_get_text() */
+        g_free(datos);
+
         /* opening the file failed */
         gtk_statusbar_push(GTK_STATUSBAR(statusbar), 1, _("File NOT saved."));
 
-        datos = g_strdup_printf(_("<big><b>An error occured while opening "
-                                  "\"%s\" for writing:</b></big>\n\n%s"),
-                                name, strerror(errno));
+        datos = g_strdup_printf(_("<big><b>An error occured while saving"
+                                  " the file.</b></big>\n\n%s"),
+                                strerror(errno));
 
         dialog_message(datos, GTK_MESSAGE_ERROR);
         g_free(datos);
@@ -673,26 +676,28 @@ on_xustificacion_a_esquerda1_activate(GtkMenuItem *menuitem, gpointer user_data)
 }
 
 void
-on_paxina_creada1_activate(GtkMenuItem *menuitem, gpointer user_data)
+on_view_created_page(GtkMenuItem *menuitem, gpointer user_data)
 {
-    GtkWidget *text,*statusbar;
+    GtkWidget *text, *statusbar;
+    GtkTextIter startiter, enditer;
     gchar filename[31];
-    gchar command[51];
-    const gchar *datos;
+    const gchar *config = NULL;
+    gchar *command = NULL;
+    gchar *page = NULL;
 
     /* create temporary file */
     g_snprintf(filename, sizeof(filename) - 1, "/tmp/gmanedit.XXXXXX");
     mkstemp(filename);
 
     /* get the configured preview command from ~/.gmaneditrc */
-    datos = ReadConfFromFile("COMMAND");
+    config = ReadConfFromFile("COMMAND");
 
-    if (datos == NULL) {
+    if (config == NULL) {
         /* no seting found - use default */
-        g_snprintf(command, sizeof(command) - 1, "xterm -e man %s", filename);
+        command = g_strdup_printf("xterm -e man %s", filename);
     } else {
         /* use program specified by user */
-        g_snprintf(command, sizeof(command) - 1, "%s %s", datos, filename);
+        command = g_strdup_printf("%s %s", config, filename);
     }
 
     /* update the status bar */
@@ -704,13 +709,12 @@ on_paxina_creada1_activate(GtkMenuItem *menuitem, gpointer user_data)
     text = lookup_widget(wprincipal, "text");
 
     GtkTextBuffer *b = gtk_text_view_get_buffer(GTK_TEXT_VIEW(text));
-    GtkTextIter startiter, enditer;
     gtk_text_buffer_get_start_iter(b, &startiter);
     gtk_text_buffer_get_end_iter(b, &enditer);
-    datos = gtk_text_buffer_get_text (b, &startiter, &enditer, FALSE);
+    page = gtk_text_buffer_get_text (b, &startiter, &enditer, FALSE);
 
-    /* write the content of the text view to a temporary file */
-    if (!g_file_set_contents(filename, datos, -1, NULL)) {
+    /* write the content of the text view to the temporary file */
+    if (!g_file_set_contents(filename, page, -1, NULL)) {
         /* writing failed */
         dialog_message(strerror(errno), GTK_MESSAGE_ERROR);
     } else {
@@ -722,6 +726,11 @@ on_paxina_creada1_activate(GtkMenuItem *menuitem, gpointer user_data)
          * FIXME: there must be a better way to ensure this! */
         sleep(1);
     }
+
+    g_free(command);
+
+    /* free the memory allocated by gtk_text_buffer_get_text() */
+    g_free(page);
 
     /* remove the temporary file */
     unlink(filename);
@@ -992,9 +1001,9 @@ on_assistant_cancel(GtkAssistant *assistant, gpointer user_data)
 void
 on_dthe_end_finish(GtkAssistant *assistant, gpointer user_data)
 {
-    GtkWidget *ch,*text,*druid;
-    gchar *nombre,*snumber,*date,*title;
-    gchar cadena[5000];
+    GtkWidget *ch, *text, *druid;
+    gchar *name, *date, *title;
+    GString *page;
     gint number;
 
     /* Init for main_window */
@@ -1002,134 +1011,139 @@ on_dthe_end_finish(GtkAssistant *assistant, gpointer user_data)
 
     /* First, I get man page name from step 1 */
     text = lookup_widget(GTK_WIDGET(assistant), "mname");
-    nombre = gtk_editable_get_chars(GTK_EDITABLE(text),0,-1);
+    name = gtk_editable_get_chars(GTK_EDITABLE(text), 0, -1);
 
     /* Date from step 1 */
     text = lookup_widget(GTK_WIDGET(assistant), "mdate");
-    date = gtk_editable_get_chars(GTK_EDITABLE(text),0,-1);
+    date = gtk_editable_get_chars(GTK_EDITABLE(text), 0, -1);
 
     /* Title from step 1 */
     text = lookup_widget(GTK_WIDGET(assistant), "mtitle");
-    title = gtk_editable_get_chars(GTK_EDITABLE(text),0,-1);
+    title = gtk_editable_get_chars(GTK_EDITABLE(text), 0, -1);
 
     /* Section number from combo */
     ch = lookup_widget(GTK_WIDGET(assistant), "combo1");
     number = gtk_combo_box_get_active (GTK_COMBO_BOX(ch));
-    snumber = g_strdup_printf ("%d", number+1);
 
     /* Page Start */
-    strcpy(cadena,
-           ".\\\"Created with GNOME Manpages Editor Wizard\n"
+    page = g_string_new(".\\\"Created with GNOME Manpages Editor Wizard\n"
            ".\\\"http://sourceforge.net/projects/gmanedit2\n");
-    strcat(cadena,".TH ");
-    strcat(cadena,nombre);
-    strcat(cadena," ");
-    strcat(cadena,snumber);
-    strcat(cadena," \"");
-    strcat(cadena,date);
-    strcat(cadena,"\" ");
-    strcat(cadena,"\"\" ");
-    strcat(cadena,"\"");
-    strcat(cadena,title);
-    strcat(cadena,"\"\n\n");
+
+    g_string_append_printf(page, ".TH %s %d \"%s\" \"\" \"%s\"\n\n",
+                           name, number + 1, date, title);
 
     /* Section NAME */
     ch = lookup_widget (GTK_WIDGET (assistant), "chname");
     if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE) {
-        strcat(cadena,_(".SH NAME\n"));
-        strcat(cadena,nombre);
-        strcat(cadena,_(" \\- program for...\n\n"));
+        g_string_append_printf(page, _(".SH NAME\n"));
+        g_string_append_printf(page, _("%s \\- program for...\n\n"), name);
     }
+
     /* Section SYNOPSIS */
     ch = lookup_widget (GTK_WIDGET (assistant), "chsynopsis");
-    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE) {
-        strcat(cadena,_(".SH SYNOPSIS\n.B "));
-        strcat(cadena,nombre);
-        strcat(cadena,_("\n.RI [ options ]\n.br\n\n"));
+    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch)) == TRUE) {
+        g_string_append_printf(page, _(".SH SYNOPSIS\n.B %s"), name);
+        g_string_append_printf(page, _("\n.RI [ options ]\n.br\n\n"));
     }
+
     /* Section CONFIGURATION */
     ch = lookup_widget (GTK_WIDGET (assistant), "chconfiguration");
-    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
-        strcat(cadena,_(".SH CONFIGURATION\n\n"));
+    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch)) == TRUE)
+        g_string_append_printf(page,  _(".SH CONFIGURATION\n\n"));
+
     /* Section DESCRIPTION */
     ch = lookup_widget (GTK_WIDGET (assistant), "chdescription");
-    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE) {
-        strcat(cadena,_(".SH DESCRIPTION\nThis manual page explains the\n.B "));
-        strcat(cadena,nombre);
-        strcat(cadena,_("\nprogram. This program...\n.PP\n\\fB"));
-        strcat(cadena,nombre);
-        strcat(cadena,_("\\fP is for...\n\n"));
+    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch)) == TRUE) {
+        g_string_append_printf(page, _(".SH DESCRIPTION\n"));
+        g_string_append_printf(page, _("This manual page explains the\n.B %s"), name);
+        g_string_append_printf(page, _("\nprogram. This program...\n.PP\n"));
+        g_string_append_printf(page, _("\\fB%s\\fP is for...\n\n"), name);
     }
+
     /* Section OPTIONS */
     ch = lookup_widget (GTK_WIDGET (assistant), "choptions");
-    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
-        strcat(cadena,_(".SH OPTIONS\n.B\n.IP -OPTION\nThis option...\n\n"));
+    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch)) == TRUE)
+        g_string_append_printf(page, _(".SH OPTIONS\n.B\n.IP -OPTION\nThis option...\n\n"));
+
     /* Section EXIT STATUS */
     ch = lookup_widget (GTK_WIDGET (assistant), "chexitstatus");
-    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
-        strcat(cadena,_(".SH \"EXIT STATUS\"\n\n"));
-
+    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch)) == TRUE)
+        g_string_append_printf(page, _(".SH \"EXIT STATUS\"\n\n"));
 
     /* Section RETURN VALUE */
     ch = lookup_widget (GTK_WIDGET (assistant), "chreturnvalues");
-    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
-        strcat(cadena,".SH \"RETURN VALUE\"\n\n");
+    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch)) == TRUE)
+        g_string_append_printf(page, ".SH \"RETURN VALUE\"\n\n");
+
     /* Section ERRORS */
     ch = lookup_widget (GTK_WIDGET (assistant), "cherrors");
-    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
-        strcat(cadena,_(".SH ERRORS\n\n"));
+    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch)) == TRUE)
+        g_string_append_printf(page, _(".SH ERRORS\n\n"));
+
     /* Section ENVIRONMENT */
     ch = lookup_widget (GTK_WIDGET (assistant), "chenvironment");
-    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
-        strcat(cadena,_(".SH ENVIRONMENT\n\n"));
+    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch)) == TRUE)
+        g_string_append_printf(page, _(".SH ENVIRONMENT\n\n"));
+
     /* Section FILES */
     ch = lookup_widget (GTK_WIDGET (assistant), "chfiles");
-    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
-        strcat(cadena,_(".SH FILES\n\n"));
+    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch)) == TRUE)
+        g_string_append_printf(page, _(".SH FILES\n\n"));
+
     /* Section VERSIONS */
     ch = lookup_widget (GTK_WIDGET (assistant), "chversions");
-    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
-        strcat(cadena,_(".SH VERSIONS\n\n"));
+    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch)) == TRUE)
+        g_string_append_printf(page, _(".SH VERSIONS\n\n"));
 
     /* Section CONFORMING TO */
     ch = lookup_widget (GTK_WIDGET (assistant), "chconformingto");
-    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
-        strcat(cadena,_(".SH \"CONFORMING TO\"\n\n"));
+    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch)) == TRUE)
+        g_string_append_printf(page, _(".SH \"CONFORMING TO\"\n\n"));
+
     /* Section NOTES */
     ch = lookup_widget (GTK_WIDGET (assistant), "chnotes");
-    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
-        strcat(cadena,_(".SH NOTES\n\n"));
+    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch)) == TRUE)
+        g_string_append_printf(page, _(".SH NOTES\n\n"));
+
     /* Section BUGS */
     ch = lookup_widget (GTK_WIDGET (assistant), "chbugs");
-    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
-        strcat(cadena,_(".SH BUGS\n\n"));
+    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch)) == TRUE)
+        g_string_append_printf(page, _(".SH BUGS\n\n"));
+
     /* Section EXAMPLE */
     ch = lookup_widget (GTK_WIDGET (assistant), "chexample");
-    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
-        strcat(cadena,_(".SH EXAMPLE\n\n"));
+    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch)) == TRUE)
+        g_string_append_printf(page, _(".SH EXAMPLE\n\n"));
+
     /* Section SEE ALSO */
     ch = lookup_widget (GTK_WIDGET (assistant), "chseealso");
-    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch))==TRUE)
-        strcat(cadena,_(".SH \"SEE ALSO\"\n\n"));
+    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ch)) == TRUE)
+        g_string_append_printf(page, _(".SH \"SEE ALSO\"\n\n"));
 
     /* Hide wizard */
     gtk_widget_hide(wizard);
 
-    /* Insert all into gmanedit */
-    insert_label(cadena,_("Wizard page created."));
+    /* Insert the generated page into gmanedit */
+    insert_label(page->str, _("Wizard page created."));
+
+    /* free allocated memory */
+    g_free(name);
+    g_free(date);
+    g_free(title);
+    g_string_free(page, TRUE);
 
     /* Wizard closed */
     gtk_widget_destroy(wizard);
-    wizard=NULL;
+    wizard = NULL;
 }
 
 static
-void insert_label(const gchar *base,const gchar *text_info)
+void insert_label(const gchar *base, const gchar *text_info)
 {
-    GtkWidget *text,*statusbar;
+    GtkWidget *text, *statusbar;
     GtkTextBuffer *buffer;
 
-    text=lookup_widget(GTK_WIDGET(wprincipal),"text");
+    text = lookup_widget(GTK_WIDGET(wprincipal),"text");
     buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (text));
     gtk_text_buffer_insert_at_cursor(buffer, base, -1);
 
@@ -1166,12 +1180,17 @@ on_text_drag_data_received(GtkWidget *widget, GdkDragContext  *drag_context,
                            guint info, guint time, gpointer user_data)
 {
     if (data->length >= 0) {
-        if (!strncmp((gchar *)data->data,"file:",4)) {
-            filename = g_strdup((gchar *)data->data + 6);
-            filename[strlen(filename)-2]='\0';
+
+        if (g_str_has_prefix ((gchar *)data->data, "file://")) {
+            if (filename != NULL) {
+                g_free(filename);
+            }
+            filename = g_strdup((gchar *)data->data + 7);
+            filename[strlen(filename) - 2] = '\0';
             open_man_file(filename);
         }
     }
+
     gtk_drag_finish(drag_context, TRUE, FALSE, time);
 }
 

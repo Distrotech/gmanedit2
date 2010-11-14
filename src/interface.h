@@ -21,6 +21,15 @@
 extern GtkWidget *wprincipal;
 extern GtkWidget *wsearch;
 
+/* values for the info field of drag & drop targets (GtkTargetEntry) */
+enum {
+    TARGET_STRING,
+    TARGET_URL,
+    TARGET_MAN
+};
+
+extern const GtkTargetEntry dnd_targets[];
+
 GtkWidget* create_wprincipal (void);
 GtkWidget* create_fileselection (GtkWidget *parent);
 GtkWidget* create_save_file (GtkWidget *parent, const gchar *save_type);
