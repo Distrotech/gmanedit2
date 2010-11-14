@@ -23,6 +23,12 @@ void
 on_wprincipal_delete(GtkObject *object, gpointer user_data);
 
 void
+on_undo_activate(GtkMenuItem *menuitem, gpointer user_data);
+
+void
+on_redo_activate(GtkMenuItem *menuitem, gpointer user_data);
+
+void
 on_cortar1_activate(GtkMenuItem *menuitem, gpointer user_data);
 
 void

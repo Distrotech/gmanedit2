@@ -42,6 +42,8 @@ static const GtkActionEntry entries[] = {
     { "SaveAs", GTK_STOCK_SAVE_AS, N_("Save _As..."), NULL, "", G_CALLBACK(on_save_as_activate) },
     { "Quit", GTK_STOCK_QUIT, N_("_Quit"), NULL, "", G_CALLBACK(on_quit_activate) },
     { "EditMenu", NULL, "_Edit" },
+    { "Undo", GTK_STOCK_UNDO, N_("_Undo"), "<Ctrl>z", "", G_CALLBACK(on_undo_activate) },
+    { "Redo", GTK_STOCK_REDO, N_("_Redo"), "<Ctrl><Shift>z", "", G_CALLBACK(on_redo_activate) },
     { "Cut", GTK_STOCK_CUT, N_("Cu_t"), NULL, "", G_CALLBACK(on_cortar1_activate) },
     { "Copy", GTK_STOCK_COPY, N_("_Copy"), NULL, "", G_CALLBACK(on_copiar1_activate) },
     { "Paste", GTK_STOCK_PASTE, N_("_Paste"), NULL, "", G_CALLBACK(on_pegar1_activate) },
@@ -116,6 +118,9 @@ static const char *ui_description =
     "               <menuitem action='Quit'/>"
     "        </menu>"
     "        <menu action='EditMenu'>"
+    "               <menuitem action='Undo'/>"
+    "               <menuitem action='Redo'/>"
+    "               <separator />"
     "               <menuitem action='Cut'/>"
     "               <menuitem action='Copy'/>"
     "               <menuitem action='Paste'/>"

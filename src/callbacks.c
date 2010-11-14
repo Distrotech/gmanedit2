@@ -31,6 +31,7 @@
 #include <sys/wait.h>
 
 #include <gtk/gtk.h>
+#include <gtksourceview/gtksourceview.h>
 
 #include "callbacks.h"
 #include "interface.h"
@@ -50,6 +51,45 @@ static void insert_label(const gchar *base,const gchar *text_info);
 static void help_without_gnome(GtkWidget *wid);
 
 /* Eventos */
+void
+on_undo_activate(GtkMenuItem *menuitem, gpointer user_data)
+{
+    GtkWidget *text, *statusbar;
+    GtkSourceBuffer *buf;
+
+    text = lookup_widget (GTK_WIDGET (wprincipal), "text");
+    buf = GTK_SOURCE_BUFFER(gtk_text_view_get_buffer (GTK_TEXT_VIEW(text)));
+
+    if (gtk_source_buffer_can_undo(buf))
+    {
+        gtk_source_buffer_undo(buf);
+
+        statusbar = lookup_widget (GTK_WIDGET (wprincipal), "statusbar1");
+        gtk_statusbar_pop (GTK_STATUSBAR (statusbar), 1);
+        gtk_statusbar_push (GTK_STATUSBAR (statusbar), 1, _("Undo"));
+    }
+}
+
+
+void
+on_redo_activate(GtkMenuItem *menuitem, gpointer user_data)
+{
+    GtkWidget *text, *statusbar;
+    GtkSourceBuffer *buf;
+
+    text = lookup_widget (GTK_WIDGET (wprincipal), "text");
+    buf = GTK_SOURCE_BUFFER(gtk_text_view_get_buffer (GTK_TEXT_VIEW(text)));
+
+    if (gtk_source_buffer_can_redo(buf)) {
+        gtk_source_buffer_redo(buf);
+
+        statusbar = lookup_widget (GTK_WIDGET (wprincipal), "statusbar1");
+        gtk_statusbar_pop (GTK_STATUSBAR (statusbar), 1);
+        gtk_statusbar_push (GTK_STATUSBAR (statusbar), 1, _("Redo."));
+    }
+}
+
+
 void
 on_cortar1_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
