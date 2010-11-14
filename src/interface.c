@@ -24,6 +24,7 @@
 #include <string.h>
 
 #include <gtk/gtk.h>
+#include <gtksourceview/gtksourceview.h>
 
 #include "callbacks.h"
 #include "interface.h"
@@ -241,9 +242,12 @@ create_wprincipal (void)
     gtk_box_pack_start (GTK_BOX (vbox1), scrolledwindow1, TRUE, TRUE, 0);
     gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolledwindow1), GTK_POLICY_NEVER, GTK_POLICY_ALWAYS);
 
-    /* create the text view */
-    text = gtk_text_view_new();
+    /* create the source view */
+    text = gtk_source_view_new();
     gtk_container_add (GTK_CONTAINER (scrolledwindow1), text);
+    gtk_source_view_set_show_line_numbers(GTK_SOURCE_VIEW(text), TRUE);
+    gtk_source_view_set_smart_home_end(GTK_SOURCE_VIEW(text), TRUE);
+    gtk_source_view_set_highlight_current_line(GTK_SOURCE_VIEW(text), TRUE);
     gtk_text_view_set_wrap_mode(GTK_TEXT_VIEW(text), GTK_WRAP_WORD);
     gtk_text_view_set_editable(GTK_TEXT_VIEW(text), TRUE);
     HOOKUP_OBJECT (wprincipal, text, "text");

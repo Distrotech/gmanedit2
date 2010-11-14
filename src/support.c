@@ -25,6 +25,7 @@
 #include <zlib.h>
 
 #include <gtk/gtk.h>
+#include <gtksourceview/gtksourceview.h>
 
 #include "callbacks.h"
 #include "interface.h"
@@ -110,14 +111,13 @@ create_image(const gchar *filename)
 void open_man_file(const gchar *manfile)
 {
     GtkWidget *statusbar, *text;
-    GtkTextBuffer *tb;
+    GtkSourceBuffer *tb;
     gzFile *f;
     gint bytes_read;
     gchar *buffer = g_malloc(BUFFER_SIZE);
 
     text = lookup_widget(GTK_WIDGET(wprincipal),"text");
-    tb = gtk_text_view_get_buffer (GTK_TEXT_VIEW (text));
-    gtk_text_buffer_set_text (tb, "", 0);
+    tb = GTK_SOURCE_BUFFER(gtk_text_view_get_buffer (GTK_TEXT_VIEW (text)));
 
     /* status bar */
     statusbar = lookup_widget(GTK_WIDGET(wprincipal), "statusbar1");
@@ -126,6 +126,9 @@ void open_man_file(const gchar *manfile)
 
     /* now open the file */
     if ((f = gzopen(manfile, "rb")) != NULL) {
+        gtk_source_buffer_begin_not_undoable_action(tb);
+        gtk_text_buffer_set_text (GTK_TEXT_BUFFER(tb), "", 0);
+
         while(!gzeof(f)) {
             bytes_read = gzread(f, buffer, BUFFER_SIZE);
             if (bytes_read > 0) {
@@ -139,9 +142,11 @@ void open_man_file(const gchar *manfile)
                     strncpy(buffer,utf8, BUFFER_SIZE - 1);
                     buffer[BUFFER_SIZE - 1] = 0;
                 }
-                gtk_text_buffer_insert_at_cursor(tb, buffer, bytes_read);
+                gtk_text_buffer_insert_at_cursor(GTK_TEXT_BUFFER(tb),
+                                                 buffer, bytes_read);
             }
         }
+        gtk_source_buffer_end_not_undoable_action(tb);
         gzclose(f);
     } else {
         dialog_message(strerror(errno),GTK_MESSAGE_ERROR);
@@ -151,7 +156,7 @@ void open_man_file(const gchar *manfile)
     g_free(buffer);
 
     /* mark the text buffer as unaltered */
-    gtk_text_buffer_set_modified(tb, FALSE);
+    gtk_text_buffer_set_modified(GTK_TEXT_BUFFER(tb), FALSE);
 }
 
 const gchar *ReadConfFromFile(const gchar *variable)
