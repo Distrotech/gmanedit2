@@ -2,6 +2,7 @@
 
 INCLUDES = \
 	@GTK_CFLAGS@ \
+	@GTKSOURCEVIEW_CFLAGS@ \
 	-DDATADIR=\""$(datadir)"\" \
 	-DLOCALEDIR=\""$(datadir)/locale"\" \
 	-DG_DISABLE_DEPRECATED \
@@ -18,5 +19,5 @@ gmanedit_SOURCES = \
 	callbacks.c callbacks.h
 
 gmanedit_LDADD = \
-	@GTK_LIBS@
-
+	@GTK_LIBS@ \
+	@GTKSOURCEVIEW_LIBS@
