@@ -18,5 +18,5 @@ gmanedit_SOURCES = \
 	callbacks.c callbacks.h
 
 gmanedit_LDADD = \
-	@GTK_LIBS@
+	@GTK_LIBS@ -lz
 
